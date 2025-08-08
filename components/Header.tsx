@@ -31,15 +31,38 @@ const Header = () => {
 
   // Always white navbar (with slight blur and shadow on scroll)
   const headerBgClasses = isScrolled
-    ? 'bg-white/95 backdrop-blur-md shadow-lg'
+    ? 'bg-white/95 backdrop-blur-md shadow-lg ring-1 ring-black/10'
     : 'bg-white'
+
+  // Position and shape for dynamic island-like pill on scroll (desktop only)
+  const basePositionClasses = 'top-0 left-0 right-0 translate-x-0'
+  const desktopScrolledPositionClasses = isScrolled
+    ? 'lg:top-5 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:rounded-full'
+    : 'lg:top-0 lg:left-0 lg:right-0 lg:translate-x-0 lg:rounded-none'
+
+  // Width behavior: shrink on scroll (desktop only); keep full width on mobile/tablet
+  const containerWidthClasses = isScrolled
+    ? 'w-full lg:w-[70%] xl:w-[56%]'
+    : 'w-full lg:w-full'
+
+  // Height: shrink on desktop only
+  const containerHeightClasses = isScrolled ? 'h-16 lg:h-14' : 'h-16 lg:h-20'
+
+  // Logo size: shrink on desktop only
+  const logoImageHeight = isScrolled ? 'h-10 lg:h-8' : 'h-10 lg:h-10'
+
+  // Brand text: hide on desktop when scrolled only
+  const brandInfoVisibility = isScrolled ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden' : ''
+
+  // Desktop nav spacing only
+  const desktopNavSpacing = isScrolled ? 'lg:space-x-6' : 'lg:space-x-8'
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBgClasses}`}
+      className={`fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${basePositionClasses} ${desktopScrolledPositionClasses} ${containerWidthClasses} ${headerBgClasses}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+      <div className="px-4 sm:px-5 lg:px-6">
+        <div className={`flex justify-between items-center transition-all duration-500 ${containerHeightClasses}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
@@ -48,9 +71,9 @@ const Header = () => {
               width={120}
               height={40}
               priority
-              className="h-10 w-auto"
+              className={`${logoImageHeight} w-auto transition-all duration-300`}
             />
-            <div className="hidden sm:block">
+            <div className={`hidden sm:block transition-opacity duration-300 ${brandInfoVisibility}`}>
               <h1 className="text-xl lg:text-2xl font-cheddar font-bold gradient-text">
                 PKBA
               </h1>
@@ -61,7 +84,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className={`hidden lg:flex items-center ${desktopNavSpacing} transition-all duration-300`}>
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -92,13 +115,25 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Quick Links */}
+          <div className="flex items-center lg:hidden">
+            <a
+              href="https://instagram.com/parkourbassindarcachon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
+              aria-label="Instagram PKBA"
+            >
+              <Instagram size={22} />
+            </a>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              aria-label="Ouvrir le menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -123,6 +158,13 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/inscription"
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-semibold transition-all duration-200"
+              >
+                Rejoindre le club
+              </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a
                   href="https://instagram.com/parkourbassindarcachon"
