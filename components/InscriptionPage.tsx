@@ -118,6 +118,19 @@ const InscriptionPage = () => {
     return age < 18 || (age === 18 && monthDiff < 0)
   }
 
+  const isTooYoung = () => {
+    if (!formData.birthDate) return false
+    const birthDate = new Date(formData.birthDate)
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const monthDiff = today.getMonth() - birthDate.getMonth()
+    const dayDiff = today.getDate() - birthDate.getDate()
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age -= 1
+    }
+    return age < 6
+  }
+
   if (isSuccess) {
     return (
       <div className="pt-16 lg:pt-20 min-h-screen bg-gray-50">
@@ -299,6 +312,7 @@ const InscriptionPage = () => {
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
+                    <p className="text-xs text-gray-500 mt-1">Âge minimum: 6 ans (avec autorisation parentale pour les mineurs).</p>
                   </div>
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
@@ -473,7 +487,7 @@ const InscriptionPage = () => {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isTooYoung()}
                 className="w-full bg-primary hover:bg-secondary disabled:bg-gray-400 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
@@ -484,7 +498,7 @@ const InscriptionPage = () => {
                 ) : (
                   <>
                     <User size={20} />
-                    <span>Envoyer l'inscription</span>
+                    <span>{isTooYoung() ? 'Âge minimum 6 ans requis' : "Envoyer l'inscription"}</span>
                   </>
                 )}
               </button>

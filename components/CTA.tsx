@@ -106,7 +106,7 @@ const CTA = () => {
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Quel âge pour commencer ?</strong>
-                    <p className="text-sm mt-1">À partir de 12 ans avec autorisation parentale</p>
+                    <p className="text-sm mt-1">À partir de 6 ans avec autorisation parentale</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">

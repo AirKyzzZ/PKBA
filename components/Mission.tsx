@@ -111,7 +111,7 @@ const Mission = () => {
               </h4>
               <p className="font-montserrat text-white/90 leading-relaxed">
                 Rejoignez-nous dès septembre 2025 pour une saison exceptionnelle ! 
-                Inscriptions ouvertes pour tous les niveaux, de 12 à 99 ans.
+                Inscriptions ouvertes pour tous les niveaux, à partir de 6 ans (avec autorisation parentale pour les mineurs).
               </p>
             </div>
           </div>

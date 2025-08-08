@@ -112,7 +112,7 @@ const Features = () => {
             {[
               { number: '3', label: 'Niveaux' },
               { number: '12+', label: 'Heures/semaine' },
-              { number: '5', label: 'Lieux d\'entraînement' },
+               { number: '2', label: 'Lieux d\'entraînement' },
               { number: '∞', label: 'Possibilités' }
             ].map((stat, index) => (
               <motion.div

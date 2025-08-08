@@ -19,9 +19,21 @@ export default function MentionsLegales() {
             <p>
               <strong>PKBA - Parkour Bassin d'Arcachon</strong><br />
               Association loi 1901<br />
+              SIREN : 990115685<br />
+              SIRET (siège social) : 99011568500010<br />
+              Code APE : 93.12Z<br />
               Bassin d'Arcachon, France<br />
               Email : parkourBA33@gmail.com<br />
               Téléphone : 06 60 14 71 44
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-cheddar font-bold text-gray-900 mb-4">
+              Affiliation
+            </h2>
+            <p>
+              Le club est affilié à la « Fédération française de gymnastique (FFG) », attestant de la qualité de son encadrement et du respect des standards fédéraux.
             </p>
           </section>
 

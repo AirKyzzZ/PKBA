@@ -28,6 +28,9 @@ export default function CGV() {
             <p>
               <strong>PKBA - Parkour Bassin d'Arcachon</strong><br />
               Association loi 1901<br />
+              SIREN : 990115685<br />
+              SIRET (siège social) : 99011568500010<br />
+              Code APE : 93.12Z<br />
               Bassin d'Arcachon, France<br />
               Email : parkourBA33@gmail.com<br />
               Téléphone : 06 60 14 71 44

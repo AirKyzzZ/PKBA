@@ -25,6 +25,9 @@ const Footer = () => {
               Club de parkour associatif au Bassin d'Arcachon. 
               Encadrement professionnel, progression et sécurité.
             </p>
+            <p className="text-gray-400 font-montserrat text-xs">
+              Affilié à la Fédération française de gymnastique (FFG)
+            </p>
             <div className="flex space-x-4">
               <a
                 href="https://instagram.com/parkourbassindarcachon"
