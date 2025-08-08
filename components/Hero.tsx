@@ -8,8 +8,19 @@ import { ArrowRight, Calendar, ShoppingBag } from 'lucide-react'
 const Hero = () => {
   return (
     <section className="relative h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero_background.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      {/* Background Pattern (subtle, behind overlay) */}
+      <div className="absolute inset-0 opacity-10 z-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
@@ -17,20 +28,23 @@ const Hero = () => {
       <motion.div
         animate={{ y: [-20, 20, -20] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
+        className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20 z-0"
       />
       <motion.div
         animate={{ y: [20, -20, 20] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-40 right-20 w-6 h-6 bg-white rounded-full opacity-30"
+        className="absolute top-40 right-20 w-6 h-6 bg-white rounded-full opacity-30 z-0"
       />
       <motion.div
         animate={{ y: [-15, 15, -15] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-25"
+        className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-25 z-0"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Readability Overlay */}
+      <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/50" />
+
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
