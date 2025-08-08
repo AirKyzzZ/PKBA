@@ -28,6 +28,7 @@ const Header = () => {
     { name: 'Boutique', href: '/boutique' },
     { name: 'Inscription', href: '/inscription' },
     { name: 'Actualités', href: '/actualites' },
+    { name: 'Nous Soutenir', href: '/donations' },
     { name: 'Contact', href: '/contact' },
   ]
 

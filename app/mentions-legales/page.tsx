@@ -97,10 +97,26 @@ export default function MentionsLegales() {
 
           <section>
             <h2 className="text-2xl font-cheddar font-bold text-gray-900 mb-4">
+              Dons et soutien
+            </h2>
+            <p>
+              PKBA accepte les dons pour soutenir ses activités associatives. Les dons sont déductibles des impôts selon les articles 200, 200 bis et 238 bis du code des Impôts. Un reçu fiscal vous sera adressé pour chaque don effectué.
+            </p>
+            <p className="mt-4">
+              <strong>Informations importantes :</strong><br />
+              • Les dons sont traités de manière sécurisée via Stripe<br />
+              • Un reçu fiscal vous sera envoyé par email<br />
+              • Les informations collectées sont utilisées uniquement pour la gestion des dons et l'envoi des reçus fiscaux<br />
+              • Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-cheddar font-bold text-gray-900 mb-4">
               Contact
             </h2>
             <p>
-              Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l'adresse suivante : parkourBA33@gmail.com
+              Pour toute question concernant ces mentions légales ou les dons, vous pouvez nous contacter à l'adresse suivante : parkourBA33@gmail.com
             </p>
           </section>
         </div>

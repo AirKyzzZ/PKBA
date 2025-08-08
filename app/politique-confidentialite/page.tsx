@@ -62,6 +62,18 @@ export default function PolitiqueConfidentialite() {
               </div>
               <div>
                 <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
+                  Données de don
+                </h3>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Nom, prénom et coordonnées complètes</li>
+                  <li>Raison sociale (si applicable)</li>
+                  <li>Montant du don</li>
+                  <li>Signature électronique</li>
+                  <li>Informations de paiement (via Stripe)</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
                   Données techniques
                 </h3>
                 <ul className="list-disc list-inside space-y-1 ml-4">
@@ -89,6 +101,12 @@ export default function PolitiqueConfidentialite() {
                   Gestion des commandes
                 </h3>
                 <p>Traitement des commandes de la boutique en ligne et gestion des paiements.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
+                  Gestion des dons
+                </h3>
+                <p>Traitement des dons, génération des reçus fiscaux et conformité aux obligations légales.</p>
               </div>
               <div>
                 <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
@@ -172,6 +190,12 @@ export default function PolitiqueConfidentialite() {
                   Données de commande
                 </h3>
                 <p>Conservées pendant 10 ans pour des raisons comptables et fiscales.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
+                  Données de don
+                </h3>
+                <p>Conservées pendant 10 ans pour des raisons comptables, fiscales et légales (conformité aux articles 200, 200 bis et 238 bis du code des Impôts).</p>
               </div>
               <div>
                 <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
