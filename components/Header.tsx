@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Instagram } from 'lucide-react'
@@ -41,9 +42,14 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-cheddar text-lg font-bold">PK</span>
-            </div>
+            <Image
+              src="/images/transparent_full.png"
+              alt="PKBA logo"
+              width={120}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
             <div className="hidden sm:block">
               <h1 className="text-xl lg:text-2xl font-cheddar font-bold gradient-text">
                 PKBA

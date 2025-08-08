@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
 const Footer = () => {
@@ -11,9 +12,13 @@ const Footer = () => {
           {/* Club Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-cheddar text-sm font-bold">PK</span>
-              </div>
+              <Image
+                src="/images/transparent_full.png"
+                alt="PKBA logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto"
+              />
               <h3 className="text-xl font-cheddar font-bold gradient-text">PKBA</h3>
             </div>
             <p className="text-gray-300 font-montserrat text-sm">
