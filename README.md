@@ -1,220 +1,213 @@
-# PKBA - Parkour Bassin d'Arcachon
+# PKBA — Parkour Bassin d'Arcachon
 
-Site web officiel du club de parkour PKBA - Parkour Bassin d'Arcachon. Une plateforme moderne et responsive pour présenter le club, gérer les inscriptions et vendre des produits officiels.
+![Next.js](https://img.shields.io/badge/Next.js-14.0.4-black?logo=nextdotjs)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-API_2023--10--16-635BFF?logo=stripe&logoColor=white)
+![Node](https://img.shields.io/badge/Node.js-18-green?logo=node.js&logoColor=white)
+![Netlify](https://img.shields.io/badge/Deploys%20to-Netlify-00C7B7?logo=netlify&logoColor=white)
 
-## 🚀 Fonctionnalités
+Plateforme web officielle du club PKBA, conçue avec un focus sur performance, accessibilité et conversion. Elle présente le club, gère les inscriptions, collecte des dons, et vend des produits officiels avec paiement sécurisé.
 
-### Pages Principales
-- **Accueil** : Landing page avec présentation du club et call-to-action
-- **Boutique** : E-commerce avec T-shirts personnalisables et paiement Stripe
-- **Inscription** : Formulaire d'inscription pour la saison 2025/2026
-- **Actualités** : Blog avec annonces et événements du club
-- **Contact** : Formulaire de contact et informations
+- **Production**: [`https://pkba.vertiflow.fr`](https://pkba.vertiflow.fr)
 
-### Fonctionnalités Techniques
-- ✅ Design responsive et moderne
-- ✅ Animations fluides avec Framer Motion
-- ✅ Intégration Stripe pour les paiements
-- ✅ EmailJS pour les notifications
-- ✅ Formspree pour les formulaires
-- ✅ SEO optimisé
-- ✅ Accessibilité
-- ✅ Performance optimisée
+## Présentation
 
-## 🛠️ Technologies
+PKBA (Parkour Bassin d’Arcachon) est un club associatif dédié à la pratique du parkour sur le Bassin d’Arcachon. Le site a pour objectifs de:
 
-- **Framework** : Next.js 14 avec App Router
-- **Language** : TypeScript
-- **Styling** : Tailwind CSS
-- **Animations** : Framer Motion
-- **Paiements** : Stripe
-- **Emails** : EmailJS
-- **Formulaires** : Formspree
-- **Déploiement** : Netlify
+- Présenter le club, ses valeurs et ses actualités
+- Faciliter les inscriptions à la saison 2025/2026 (lancement Septembre 2025)
+- Permettre les dons en ligne de manière simple et sécurisée
+- Proposer une boutique de produits officiels (T‑shirts) avec paiement Stripe
+- Centraliser les informations pratiques et la prise de contact
 
-## 📦 Installation
+L’accent est mis sur l’encadrement professionnel, la progression et la sécurité à chaque étape du parcours des adhérents.
+
+## Sommaire
+
+- **[Présentation](#présentation)**
+- **[Fonctionnalités](#fonctionnalités)**
+- **[Pile technique](#pile-technique)**
+- **[Démarrage rapide](#démarrage-rapide)**
+- **[Variables d'environnement](#variables-denvironnement)**
+- **[Scripts NPM](#scripts-npm)**
+- **[API Routes](#api-routes)**
+- **[Structure du projet](#structure-du-projet)**
+- **[Paiements et Dons](#paiements-et-dons)**
+- **[SEO, PWA et Accessibilité](#seo-pwa-et-accessibilité)**
+- **[Déploiement (Netlify)](#déploiement-netlify)**
+- **[Support](#support)**
+- **[Licence](#licence)**
+
+## Fonctionnalités
+
+- **Pages clés**
+  - Accueil, Actualités, Inscription, Contact, Mentions légales, CGV, Politique de confidentialité
+  - Boutique: vente de T‑shirts (personnalisation, tailles, couleurs), panier et checkout
+  - Dons: formulaire avec signature et reçu par email
+
+- **Technique**
+  - Design responsive (Tailwind), animations (Framer Motion)
+  - Paiements sécurisés avec Stripe (PaymentIntent, EUR uniquement)
+  - Emails transactionnels via EmailJS et notifications d'order via Formspree
+  - SEO, Open Graph/Twitter Cards, sitemap et robots configurés
+  - En-têtes de sécurité et caching configurés pour l’hébergement
+
+## Pile technique
+
+- **Framework**: Next.js 14 (App Router)
+- **Langage**: TypeScript
+- **UI**: Tailwind CSS, Framer Motion, Lucide Icons
+- **Paiements**: Stripe (`stripe` SDK Node et `@stripe/react-stripe-js`)
+- **Emails**: EmailJS (@emailjs/browser)
+- **Formulaires**: Formspree
+- **Hébergement**: Netlify (voir `netlify.toml`)
+
+## Démarrage rapide
 
 ### Prérequis
-- Node.js 18+ 
-- npm ou yarn
 
-### Installation des dépendances
+- Node.js 18+
+- npm (ou yarn/pnpm)
+
+### Installation
+
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-### Configuration des variables d'environnement
-Créez un fichier `.env.local` à la racine du projet :
+### Développement
+
+```bash
+npm run dev
+```
+
+Site accessible sur [`http://localhost:3000`](http://localhost:3000)
+
+## Variables d'environnement
+
+Créez un fichier `.env.local` à la racine avec les clés suivantes:
 
 ```env
 # Stripe
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key
-STRIPE_SECRET_KEY=sk_test_your_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
 
 # EmailJS
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=...
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
 
 # Formspree
-NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_contact_form_id
-NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_registration_form_id
-NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=your_order_form_id
+NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=...
+NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=...
+NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=...
+
+# SEO / Vérifications (optionnel)
+NEXT_PUBLIC_SITE_NAME=PKBA
+NEXT_PUBLIC_SITE_URL=https://pkba.vertiflow.fr
 ```
 
-### Démarrage en développement
+Sur Netlify, définissez les mêmes variables dans l’onglet Environment. Le fichier `netlify.toml` expose également des en-têtes de sécurité et la version Node.
+
+## Scripts NPM
+
 ```bash
-npm run dev
-# ou
-yarn dev
+npm run dev        # Démarrage en développement
+npm run build      # Build de production
+npm run start      # Démarrage du serveur Next en mode prod
+npm run lint       # Linting via ESLint
+npm run test:backend # Outil de test des endpoints backend (si clés valides)
 ```
 
-Le site sera accessible à l'adresse [http://localhost:3000](http://localhost:3000)
+## API Routes
 
-## 🚀 Déploiement
+- `POST /api/create-payment-intent`
+  - Entrée: `{ amount: number (cents), currency: 'eur', items: { name, color, size, customization?, quantity, price }[] }`
+  - Sortie: `{ clientSecret: string }`
+  - Particularités: vérifie un montant valide, impose la devise `eur`, et renseigne des métadonnées d’items.
 
-### Netlify (Recommandé)
+- `POST /api/create-donation-intent`
+  - Entrée: `{ amount: number (cents), currency: 'eur' }`
+  - Sortie: `{ clientSecret: string }`
+  - Particularités: impose `eur`, ajoute des métadonnées de type `donation`.
 
-1. **Connectez votre repository GitHub à Netlify**
-2. **Configurez les variables d'environnement** dans les paramètres Netlify
-3. **Déployez automatiquement** à chaque push sur la branche main
+## Structure du projet
 
-### Configuration Netlify
-
-Variables d'environnement à configurer dans Netlify :
-- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-- `STRIPE_SECRET_KEY`
-- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`
-- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`
-- `NEXT_PUBLIC_EMAILJS_USER_ID`
-- `NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID`
-- `NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID`
-
-### Build Command
-```bash
-npm run build
-```
-
-### Publish Directory
-```
-.next
-```
-
-## 📁 Structure du Projet
-
-```
+```text
 PKBA/
-├── app/                    # App Router (Next.js 14)
-│   ├── api/               # API Routes
-│   ├── boutique/          # Page boutique
-│   ├── inscription/       # Page inscription
-│   ├── actualites/        # Page actualités
-│   ├── contact/           # Page contact
-│   ├── mentions-legales/  # Mentions légales
-│   ├── politique-confidentialite/ # Politique de confidentialité
-│   ├── cgv/              # Conditions générales de vente
-│   ├── globals.css       # Styles globaux
-│   ├── layout.tsx        # Layout principal
-│   └── page.tsx          # Page d'accueil
-├── components/            # Composants React
-│   ├── Header.tsx        # Navigation
-│   ├── Footer.tsx        # Pied de page
-│   ├── Hero.tsx          # Section héro
-│   ├── Mission.tsx       # Section mission
-│   ├── Features.tsx      # Section fonctionnalités
-│   ├── CTA.tsx           # Call-to-action
-│   ├── BoutiquePage.tsx  # Page boutique
-│   ├── ProductCard.tsx   # Carte produit
-│   ├── CheckoutModal.tsx # Modal de paiement
-│   ├── CheckoutForm.tsx  # Formulaire de paiement
-│   ├── InscriptionPage.tsx # Page inscription
-│   ├── ContactPage.tsx   # Page contact
-│   └── ActualitesPage.tsx # Page actualités
-├── public/               # Assets statiques
-├── tailwind.config.js    # Configuration Tailwind
-├── next.config.js        # Configuration Next.js
-├── package.json          # Dépendances
-└── README.md            # Documentation
+├─ app/
+│  ├─ api/
+│  │  ├─ create-payment-intent/
+│  │  │  └─ route.ts
+│  │  └─ create-donation-intent/
+│  │     └─ route.ts
+│  ├─ boutique/
+│  ├─ donations/
+│  ├─ inscription/
+│  ├─ actualites/
+│  ├─ contact/
+│  ├─ cgv/
+│  ├─ mentions-legales/
+│  ├─ politique-confidentialite/
+│  ├─ checkout/
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  └─ page.tsx
+├─ components/
+│  ├─ CartContext.tsx
+│  ├─ CheckoutForm.tsx
+│  ├─ DonationForm.tsx
+│  ├─ ...
+├─ public/
+├─ netlify.toml
+├─ tailwind.config.js
+├─ next.config.js
+├─ package.json
+└─ README.md
 ```
 
-## 🎨 Design System
+## Paiements et Dons
 
-### Couleurs
-- **Primary** : #006AFF (Bleu principal)
-- **Secondary** : #127bcb (Bleu secondaire)
-- **Accent** : #F4F2E7 (Accent de fond)
-- **Background** : #FFFFFF (Blanc)
+- **Checkout boutique** (`components/CheckoutForm.tsx`)
+  - Crée un PaymentIntent via `/api/create-payment-intent`, puis confirme le paiement côté client via Stripe Elements.
+  - Envoie une notification de commande à Formspree après succès.
 
-### Typographie
-- **Titres** : Cheddar Gothic Stencil
-- **Corps** : Montserrat
+- **Formulaire de don** (`components/DonationForm.tsx`)
+  - Signature manuscrite sur canvas (obligatoire), création de PaymentIntent via `/api/create-donation-intent` puis confirmation Stripe.
+  - Envoi d’un reçu/confirmation via EmailJS.
 
-### Animations
-- Transitions fluides avec Framer Motion
-- Hover effects sur les boutons et cartes
-- Animations d'entrée pour les sections
+### Bonnes pratiques Stripe
 
-## 🔧 Configuration
+- Montants envoyés en centimes, validés et arrondis côté serveur
+- Devise normalisée et imposée à `EUR`
+- Clé secrète Stripe utilisée côté serveur uniquement (`STRIPE_SECRET_KEY`)
 
-### Stripe
-1. Créez un compte Stripe
-2. Récupérez vos clés API (test et production)
-3. Configurez les webhooks si nécessaire
+## SEO, PWA et Accessibilité
 
-### EmailJS
-1. Créez un compte EmailJS
-2. Configurez un service email
-3. Créez un template pour les notifications de commande
-4. Récupérez les IDs de service, template et utilisateur
+- Métadonnées globales dans `app/layout.tsx` (Open Graph/Twitter, robots, canonical)
+- Manifest disponible: `public/manifest.json`
+- Sitemap et robots gérés par `app/sitemap.ts` et `app/robots.ts`
+- En‑têtes de sécurité et stratégies de cache définies dans `netlify.toml`
+- Accessibilité: navigation clavier, contrastes, textes alternatifs et structure sémantique
 
-### Formspree
-1. Créez un compte Formspree
-2. Créez deux formulaires (contact et inscription)
-3. Récupérez les IDs des formulaires
+## Déploiement (Netlify)
 
-## 📱 Responsive Design
+1. Connectez le repository à Netlify
+2. Définissez les variables d’environnement (voir plus haut)
+3. Build command: `npm run build`
+4. Publish directory: `.next`
 
-Le site est entièrement responsive avec des breakpoints :
-- **Mobile** : < 768px
-- **Tablet** : 768px - 1024px
-- **Desktop** : > 1024px
+Le fichier `netlify.toml` fixe Node 18 et ajoute des en‑têtes de sécurité (X-Frame-Options, X-XSS-Protection, etc.) et un cache agressif pour les assets.
 
-## 🔍 SEO
+## Support
 
-- Métadonnées optimisées pour chaque page
-- Structure HTML sémantique
-- Open Graph tags
-- Twitter Cards
-- Sitemap automatique
+- Email: `parkourBA33@gmail.com`
+- Téléphone: `06 60 14 71 44`
 
-## ♿ Accessibilité
+## Licence
 
-- Navigation au clavier
-- Contraste des couleurs respecté
-- Alt text pour les images
-- Structure HTML sémantique
-- ARIA labels
+Projet propriétaire réalisé pour PKBA — Parkour Bassin d’Arcachon. Tous droits réservés.
 
-## 🚀 Performance
-
-- Images optimisées
-- Lazy loading
-- Code splitting automatique
-- Compression des assets
-- Cache optimisé
-
-## 📞 Support
-
-Pour toute question ou problème :
-- Email : parkourBA33@gmail.com
-- Téléphone : 06 60 14 71 44
-
-## 📄 Licence
-
-Ce projet est développé pour PKBA - Parkour Bassin d'Arcachon. Tous droits réservés.
-
----
-
-**Développé avec ❤️ pour la communauté PKBA** 
+— Développé avec ❤️ pour la communauté PKBA
