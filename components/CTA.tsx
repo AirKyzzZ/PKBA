@@ -37,7 +37,8 @@ const CTA = () => {
               description: 'Inscription pour la saison 2025/2026',
               href: '/inscription',
               color: 'bg-primary hover:bg-secondary',
-              delay: 0.2
+              delay: 0.2,
+              type: 'primary'
             },
             {
               icon: ShoppingBag,
@@ -45,7 +46,8 @@ const CTA = () => {
               description: 'T-shirts et goodies PKBA',
               href: '/boutique',
               color: 'bg-white text-primary hover:bg-gray-100',
-              delay: 0.4
+              delay: 0.4,
+              type: 'white'
             },
             {
               icon: Calendar,
@@ -53,7 +55,8 @@ const CTA = () => {
               description: 'Horaires et lieux d\'entraînement',
               href: '/actualites',
               color: 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary',
-              delay: 0.6
+              delay: 0.6,
+              type: 'transparent'
             }
           ].map((action, index) => (
             <motion.div
@@ -70,15 +73,31 @@ const CTA = () => {
               >
                 <div className="text-center space-y-4">
                   <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-200">
-                    <action.icon size={32} className="text-white" />
+                    <action.icon size={32} className={
+                      action.type === 'white' 
+                        ? 'text-primary group-hover:text-primary' 
+                        : 'text-white group-hover:text-primary'
+                    } />
                   </div>
-                  <h3 className="text-2xl font-cheddar font-bold">
+                  <h3 className={`text-2xl font-cheddar font-bold ${
+                    action.type === 'white' 
+                      ? 'text-primary group-hover:text-primary' 
+                      : 'text-white group-hover:text-primary'
+                  }`}>
                     {action.title}
                   </h3>
-                  <p className="font-montserrat text-sm opacity-90">
+                  <p className={`font-montserrat text-sm opacity-90 ${
+                    action.type === 'white' 
+                      ? 'text-primary group-hover:text-primary' 
+                      : 'text-white group-hover:text-primary'
+                  }`}>
                     {action.description}
                   </p>
-                  <div className="flex items-center justify-center space-x-2 text-sm font-montserrat font-medium">
+                  <div className={`flex items-center justify-center space-x-2 text-sm font-montserrat font-medium ${
+                    action.type === 'white' 
+                      ? 'text-primary group-hover:text-primary' 
+                      : 'text-white group-hover:text-primary'
+                  }`}>
                     <span>En savoir plus</span>
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </div>
