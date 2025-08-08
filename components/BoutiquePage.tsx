@@ -6,8 +6,21 @@ import { ShoppingBag, Star, Truck, Shield, CreditCard } from 'lucide-react'
 import ProductCard from './ProductCard'
 import CheckoutModal from './CheckoutModal'
 
+interface Product {
+  id: number
+  name: string
+  price: number
+  originalPrice: number
+  image: string
+  description: string
+  features: string[]
+  colors: string[]
+  sizes: string[]
+  customization: boolean
+}
+
 const BoutiquePage = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
 
   const products = [

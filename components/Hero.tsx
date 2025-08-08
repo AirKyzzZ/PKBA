@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Calendar, ShoppingBag } from 'lucide-react'
 
 const Hero = () => {
@@ -47,15 +48,23 @@ const Hero = () => {
             <span>Lancement Septembre 2025</span>
           </motion.div>
 
-          {/* Main Title */}
-          <motion.h1
+          {/* Main Title (Image) */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-cheddar font-bold text-white leading-tight"
+            className="flex justify-center"
           >
-            PKBA
-          </motion.h1>
+            <span className="sr-only">PKBA</span>
+            <Image
+              src="/images/herotext.png"
+              alt="PKBA"
+              width={1100}
+              height={320}
+              priority
+              className="w-[70%] max-w-[900px] h-auto"
+            />
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p

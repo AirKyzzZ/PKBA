@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { motion } from 'framer-motion'
-import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react'
+import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle, Shield } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 interface Product {
