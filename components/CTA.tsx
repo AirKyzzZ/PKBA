@@ -76,12 +76,16 @@ const CTA = () => {
                     <action.icon size={32} className={
                       action.type === 'white' 
                         ? 'text-primary group-hover:text-primary' 
+                        : action.type === 'primary'
+                        ? 'text-white group-hover:text-white'
                         : 'text-white group-hover:text-primary'
                     } />
                   </div>
                   <h3 className={`text-2xl font-cheddar font-bold ${
                     action.type === 'white' 
                       ? 'text-primary group-hover:text-primary' 
+                      : action.type === 'primary'
+                      ? 'text-white group-hover:text-white'
                       : 'text-white group-hover:text-primary'
                   }`}>
                     {action.title}
@@ -89,6 +93,8 @@ const CTA = () => {
                   <p className={`font-montserrat text-sm opacity-90 ${
                     action.type === 'white' 
                       ? 'text-primary group-hover:text-primary' 
+                      : action.type === 'primary'
+                      ? 'text-white group-hover:text-white'
                       : 'text-white group-hover:text-primary'
                   }`}>
                     {action.description}
@@ -96,6 +102,8 @@ const CTA = () => {
                   <div className={`flex items-center justify-center space-x-2 text-sm font-montserrat font-medium ${
                     action.type === 'white' 
                       ? 'text-primary group-hover:text-primary' 
+                      : action.type === 'primary'
+                      ? 'text-white group-hover:text-white'
                       : 'text-white group-hover:text-primary'
                   }`}>
                     <span>En savoir plus</span>
