@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { motion } from 'framer-motion'
 import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle, Shield } from 'lucide-react'
-import { CartItem, useCart } from './CartContext'
+import { CartItem } from './CartContext'
 
 interface CheckoutFormProps {
   items: CartItem[]
@@ -21,7 +21,6 @@ const CheckoutForm = ({
 }: CheckoutFormProps) => {
   const stripe = useStripe()
   const elements = useElements()
-  const { getTotalPriceInCents } = useCart()
   const [isProcessing, setIsProcessing] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -94,7 +93,7 @@ const CheckoutForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          amount: getTotalPriceInCents(), // Use the new function that returns proper integer cents
+          amount: Math.round(total * 100),
           currency: 'eur',
           items: items.map(item => ({
             name: item.name,

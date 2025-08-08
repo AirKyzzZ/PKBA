@@ -6,6 +6,7 @@ import { X, CreditCard, Truck, Shield, User, Mail, Phone } from 'lucide-react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import CheckoutForm from './CheckoutForm'
+import { CartItem } from './CartContext'
 
 // Initialize Stripe (replace with your actual publishable key)
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || 'pk_test_your_key_here')
@@ -232,15 +233,31 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
                 {/* Checkout Form */}
                 <div className="p-6">
                   <Elements stripe={stripePromise}>
-                    <CheckoutForm
-                      product={product}
-                      selectedColor={selectedColor}
-                      selectedSize={selectedSize}
-                      customName={customName}
-                      quantity={quantity}
-                      totalPrice={totalPrice + (product.customization && customName ? 5 : 0)}
-                      onClose={onClose}
-                    />
+                    {(() => {
+                      const cartItems: CartItem[] = [
+                        {
+                          id: `${product.id}-${selectedColor}-${selectedSize}-${customName || 'std'}`,
+                          name: product.name,
+                          price: product.price,
+                          color: selectedColor,
+                          size: selectedSize,
+                          quantity: quantity,
+                          customization: product.customization && customName ? customName : undefined,
+                          image: product.image,
+                        },
+                      ]
+                      const total = totalPrice + (product.customization && customName ? 5 : 0)
+                      return (
+                        <CheckoutForm
+                          items={cartItems}
+                          total={total}
+                          onSuccess={onClose}
+                          onError={(e) => {
+                            console.error('Checkout error in modal:', e)
+                          }}
+                        />
+                      )
+                    })()}
                   </Elements>
                 </div>
               </div>
