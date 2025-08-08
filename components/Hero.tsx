@@ -24,22 +24,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        animate={{ y: [-20, 20, -20] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20 z-0"
-      />
-      <motion.div
-        animate={{ y: [20, -20, 20] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-40 right-20 w-6 h-6 bg-white rounded-full opacity-30 z-0"
-      />
-      <motion.div
-        animate={{ y: [-15, 15, -15] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-25 z-0"
-      />
+      {/* Floating Elements removed */}
 
       {/* Readability Overlay */}
       <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/50" />
