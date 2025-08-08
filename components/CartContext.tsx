@@ -1,7 +1,6 @@
 'use client'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { getCookie, setCookie, deleteCookie } from 'cookies-next'
 
 export interface CartItem {
   id: string
@@ -40,23 +39,31 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Load cart from cookies on mount
   useEffect(() => {
-    const savedCart = getCookie('cart')
-    if (savedCart) {
-      try {
-        setItems(JSON.parse(savedCart as string))
-      } catch (error) {
-        console.error('Error parsing cart from cookies:', error)
-        setItems([])
+    try {
+      const savedCart = typeof window !== 'undefined' ? window.localStorage.getItem('cart') : null
+      if (savedCart) {
+        setItems(JSON.parse(savedCart))
       }
+    } catch (error) {
+      console.error('Error reading cart from localStorage:', error)
+      setItems([])
     }
   }, [])
 
   // Save cart to cookies whenever items change
   useEffect(() => {
-    if (items.length > 0) {
-      setCookie('cart', JSON.stringify(items), { maxAge: 60 * 60 * 24 * 30 }) // 30 days
-    } else {
-      deleteCookie('cart')
+    try {
+      if (items.length > 0) {
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem('cart', JSON.stringify(items))
+        }
+      } else {
+        if (typeof window !== 'undefined') {
+          window.localStorage.removeItem('cart')
+        }
+      }
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error)
     }
   }, [items])
 
