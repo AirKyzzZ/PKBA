@@ -38,7 +38,7 @@ const Header = () => {
   const basePositionClasses = 'top-0 left-0 right-0 translate-x-0'
   const desktopScrolledPositionClasses = isScrolled
     ? 'lg:top-5 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:rounded-full'
-    : 'lg:top-0 lg:left-0 lg:right-0 lg:translate-x-0 lg:rounded-none'
+    : 'lg:top-0 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:rounded-none'
 
   // Width behavior: shrink on scroll (desktop only); keep full width on mobile/tablet
   const containerWidthClasses = isScrolled
