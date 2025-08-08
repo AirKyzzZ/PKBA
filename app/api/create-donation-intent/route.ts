@@ -20,10 +20,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create a PaymentIntent for donation
+    // Normalize and enforce currency to EUR to prevent tampering
+    const normalizedCurrency = (currency || 'eur').toString().toLowerCase()
+    if (normalizedCurrency !== 'eur') {
+      return NextResponse.json(
+        { error: 'Unsupported currency' },
+        { status: 400 }
+      )
+    }
+
+    // Create a PaymentIntent for donation with enforced currency
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
-      currency,
+      currency: 'eur',
       automatic_payment_methods: {
         enabled: true,
       },

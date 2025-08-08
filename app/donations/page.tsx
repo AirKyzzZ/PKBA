@@ -4,7 +4,6 @@ import { useState, useRef } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import DonationForm from '@/components/DonationForm'
-
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 export default function DonationsPage() {

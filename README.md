@@ -56,11 +56,12 @@ STRIPE_SECRET_KEY=sk_test_your_secret_key
 # EmailJS
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_USER_ID=your_user_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 # Formspree
 NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_contact_form_id
 NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_registration_form_id
+NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=your_order_form_id
 ```
 
 ### Démarrage en développement
