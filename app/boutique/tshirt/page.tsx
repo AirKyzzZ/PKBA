@@ -6,8 +6,10 @@ import { ShoppingCart, Truck, Shield, Star, Ruler, CheckCircle } from 'lucide-re
 import { useCart } from '@/components/CartContext'
 import ImageGallery from '@/components/ImageGallery'
 
+type ColorName = 'white' | 'black'
+
 const TshirtPage = () => {
-  const [selectedColor, setSelectedColor] = useState('white')
+  const [selectedColor, setSelectedColor] = useState<ColorName>('white')
   const [selectedSize, setSelectedSize] = useState('')
   const [quantity, setQuantity] = useState(1)
   const [customization, setCustomization] = useState('')
@@ -131,7 +133,7 @@ const TshirtPage = () => {
                 {product.colors.map((color) => (
                   <button
                     key={color.name}
-                    onClick={() => setSelectedColor(color.name)}
+                    onClick={() => setSelectedColor(color.name as ColorName)}
                     className={`w-12 h-12 rounded-full border-2 transition-all duration-200 ${
                       selectedColor === color.name
                         ? 'border-primary scale-110 shadow-lg'
