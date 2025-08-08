@@ -22,6 +22,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [
+      { url: '/images/full_white.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/full_white.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/images/full_white.png',
+    shortcut: '/images/full_white.png',
+  },
   openGraph: {
     title: 'PKBA - Parkour Bassin d\'Arcachon',
     description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité.',
@@ -68,8 +76,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/images/full_white.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/full_white.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>
