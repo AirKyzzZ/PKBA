@@ -68,19 +68,21 @@ const InscriptionPage = () => {
     setError('')
 
     try {
-      const response = await fetch('https://formspree.io/f/your-form-id', {
+      const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           ...formData,
           subject: 'Nouvelle inscription PKBA - Saison 2025/2026',
           level: levels.find(l => l.value === formData.level)?.label || formData.level
-        }),
+        }).toString(),
+        redirect: 'manual'
       })
 
-      if (response.ok) {
+      // Formspree returns 200 on success, but let's be more permissive
+      if (response.status >= 200 && response.status < 400) {
         setIsSuccess(true)
         // Reset form
         setFormData({

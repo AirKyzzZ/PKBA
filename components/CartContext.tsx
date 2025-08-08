@@ -22,6 +22,7 @@ interface CartContextType {
   clearCart: () => void
   getTotalItems: () => number
   getTotalPrice: () => number
+  getTotalPriceInCents: () => number
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -112,6 +113,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, 0)
   }
 
+  const getTotalPriceInCents = () => {
+    return Math.round(items.reduce((total, item) => {
+      const itemPrice = item.price + (item.customization ? 5 : 0) // Add 5€ for customization
+      return total + (itemPrice * item.quantity)
+    }, 0) * 100)
+  }
+
   const value = {
     items,
     addToCart,
@@ -120,6 +128,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     clearCart,
     getTotalItems,
     getTotalPrice,
+    getTotalPriceInCents,
   }
 
   return (

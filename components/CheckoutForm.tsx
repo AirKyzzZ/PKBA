@@ -4,8 +4,7 @@ import { useState } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { motion } from 'framer-motion'
 import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle, Shield } from 'lucide-react'
-import emailjs from '@emailjs/browser'
-import { CartItem } from './CartContext'
+import { CartItem, useCart } from './CartContext'
 
 interface CheckoutFormProps {
   items: CartItem[]
@@ -22,6 +21,7 @@ const CheckoutForm = ({
 }: CheckoutFormProps) => {
   const stripe = useStripe()
   const elements = useElements()
+  const { getTotalPriceInCents } = useCart()
   const [isProcessing, setIsProcessing] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -44,23 +44,35 @@ const CheckoutForm = ({
 
   const sendOrderNotification = async (orderData: any) => {
     try {
-      await emailjs.send(
-        'service_pkba', // Replace with your EmailJS service ID
-        'template_pkba_order', // Replace with your EmailJS template ID
-        {
-          to_email: 'maxime.mansiet@gmail.com',
-          order_details: JSON.stringify(orderData, null, 2),
+      const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          type: 'order_notification',
           customer_name: `${formData.firstName} ${formData.lastName}`,
           customer_email: formData.email,
+          customer_phone: formData.phone,
+          customer_address: formData.address,
+          customer_city: formData.city,
+          customer_postal_code: formData.postalCode,
+          payment_intent_id: orderData.paymentIntentId,
           items_summary: items.map(item => 
             `${item.name} - ${item.color === 'white' ? 'Blanc' : 'Noir'} - Taille ${item.size}${item.customization ? ` - Personnalisation: ${item.customization}` : ''} x${item.quantity}`
           ).join('\n'),
-          total_amount: total
-        },
-        'your_user_id' // Replace with your EmailJS user ID
-      )
+          total_amount: total.toString(),
+          order_details: JSON.stringify(orderData, null, 2),
+          order_date: new Date().toISOString()
+        }).toString(),
+        redirect: 'manual'
+      })
+
+      if (response.status < 200 || response.status >= 400) {
+        console.error('Error sending order notification to Formspree')
+      }
     } catch (error) {
-      console.error('Error sending email notification:', error)
+      console.error('Error sending order notification:', error)
     }
   }
 
@@ -82,7 +94,7 @@ const CheckoutForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          amount: total * 100, // Convert to cents
+          amount: getTotalPriceInCents(), // Use the new function that returns proper integer cents
           currency: 'eur',
           items: items.map(item => ({
             name: item.name,
@@ -334,7 +346,7 @@ const CheckoutForm = ({
         ) : (
           <>
             <CreditCard size={20} />
-            <span>Payer {total}€</span>
+            <span>Payer {total.toFixed(2)}€</span>
           </>
         )}
       </button>

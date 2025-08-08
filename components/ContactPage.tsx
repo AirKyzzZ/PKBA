@@ -59,18 +59,20 @@ const ContactPage = () => {
     setError('')
 
     try {
-      const response = await fetch('https://formspree.io/f/your-contact-form-id', {
+      const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           ...formData,
           subject: `Contact PKBA - ${formData.subject}`
-        }),
+        }).toString(),
+        redirect: 'manual'
       })
 
-      if (response.ok) {
+      // Formspree returns 200 on success, but let's be more permissive
+      if (response.status >= 200 && response.status < 400) {
         setIsSuccess(true)
         setFormData({
           name: '',

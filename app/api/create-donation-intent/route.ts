@@ -10,9 +10,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { amount, currency } = body
 
+    // Ensure amount is a valid integer
+    const amountInCents = Math.round(Number(amount))
+    
+    if (isNaN(amountInCents) || amountInCents <= 0) {
+      return NextResponse.json(
+        { error: 'Invalid amount provided' },
+        { status: 400 }
+      )
+    }
+
     // Create a PaymentIntent for donation
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount: amountInCents,
       currency,
       automatic_payment_methods: {
         enabled: true,

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:backend": "node scripts/test-backend.js"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
