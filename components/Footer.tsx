@@ -132,9 +132,22 @@ const Footer = () => {
             <p className="text-gray-400 font-montserrat text-sm">
               © {currentYear} PKBA - Parkour Bassin d'Arcachon. Tous droits réservés.
             </p>
-            <p className="text-gray-400 font-montserrat text-sm">
-              Lancement Septembre 2025
-            </p>
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+              <p className="text-gray-400 font-montserrat text-sm">
+                Lancement Septembre 2025
+              </p>
+              <p className="text-gray-400 font-montserrat text-sm">
+                Site réalisé par{' '}
+                <a 
+                  href="https://klyx.fr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary/80 transition-colors duration-200"
+                >
+                  Klyx
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
