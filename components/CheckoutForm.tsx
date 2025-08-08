@@ -195,6 +195,7 @@ const CheckoutForm = ({
               value={formData.firstName}
               onChange={handleInputChange}
               required
+                                             placeholder="ex: Martin"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -209,6 +210,7 @@ const CheckoutForm = ({
               value={formData.lastName}
               onChange={handleInputChange}
               required
+                             placeholder="ex: John"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -225,6 +227,7 @@ const CheckoutForm = ({
               value={formData.email}
               onChange={handleInputChange}
               required
+                             placeholder="ex: martinjohn@gmail.com"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -239,6 +242,7 @@ const CheckoutForm = ({
               value={formData.phone}
               onChange={handleInputChange}
               required
+                             placeholder="ex: 06 12 34 56 78"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -254,6 +258,7 @@ const CheckoutForm = ({
             value={formData.address}
             onChange={handleInputChange}
             required
+                           placeholder="ex: 123 Rue de la Paix"
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
           />
         </div>
@@ -269,6 +274,7 @@ const CheckoutForm = ({
               value={formData.city}
               onChange={handleInputChange}
               required
+                             placeholder="ex: Bordeaux"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -283,6 +289,7 @@ const CheckoutForm = ({
               value={formData.postalCode}
               onChange={handleInputChange}
               required
+                             placeholder="ex: 33000"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
             />
           </div>
@@ -302,7 +309,7 @@ const CheckoutForm = ({
                   fontSize: '16px',
                   color: '#424770',
                   '::placeholder': {
-                    color: '#aab7c4',
+                    color: '#000000',
                   },
                 },
                 invalid: {

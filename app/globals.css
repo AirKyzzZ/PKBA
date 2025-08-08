@@ -90,3 +90,132 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 } 
+
+/* Form elements - unified background */
+@layer base {
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='date'],
+  input[type='number'],
+  input[type='password'],
+  select,
+  textarea {
+    @apply bg-accent/50 text-gray-900;
+    color-scheme: light;
+    caret-color: #000000;
+  }
+
+  /* Button-style form elements (for size/color selection) */
+  button[type='button'],
+  button[type='submit'] {
+    @apply text-white;
+  }
+
+  input[type='text']:focus,
+  input[type='email']:focus,
+  input[type='tel']:focus,
+  input[type='date']:focus,
+  input[type='number']:focus,
+  input[type='password']:focus,
+  select:focus,
+  textarea:focus {
+    @apply bg-white text-gray-900;
+  }
+
+  input[disabled],
+  select[disabled],
+  textarea[disabled] {
+    @apply bg-gray-100 text-gray-500 cursor-not-allowed;
+  }
+}
+
+/* Ensure black placeholders across browsers */
+input::placeholder,
+textarea::placeholder {
+  color: #424242;
+  opacity: 1;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #424242;
+  opacity: 1;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #424242;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #424242;
+}
+
+/* Improve readability for Chrome/Safari autofill */
+ input:-webkit-autofill,
+ input:-webkit-autofill:hover,
+ input:-webkit-autofill:focus,
+ textarea:-webkit-autofill,
+ textarea:-webkit-autofill:hover,
+ textarea:-webkit-autofill:focus,
+ select:-webkit-autofill,
+ select:-webkit-autofill:hover,
+ select:-webkit-autofill:focus {
+   -webkit-text-fill-color: #111827;
+   -webkit-box-shadow: 0 0 0 1000px #F4F2E7 inset;
+   transition: background-color 9999s ease-in-out 0s;
+   caret-color: #424242;
+ }
+
+/* Form elements */
+input,
+select,
+textarea {
+  @apply bg-accent/50 text-gray-900;
+  color-scheme: light;
+  caret-color: #424242;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply bg-white text-gray-900;
+}
+
+/* Placeholder text color - lighter gray instead of pure black */
+input::placeholder,
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+textarea::placeholder,
+textarea::-webkit-input-placeholder,
+textarea::-moz-placeholder,
+textarea:-ms-input-placeholder,
+select::placeholder,
+select::-webkit-input-placeholder,
+select::-moz-placeholder,
+select:-ms-input-placeholder {
+  color: #6b7280; /* Tailwind gray-500 - lighter gray */
+  opacity: 1; /* Ensure full opacity */
+}
+
+/* Autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #111827;
+  -webkit-box-shadow: 0 0 0 1000px #F4F2E7 inset;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: #424242;
+}
+
+/* Button-style form elements (for size/color selection) */
+button[type='button'],
+button[type='submit'] {
+  @apply text-white;
+}

@@ -252,6 +252,7 @@ const InscriptionPage = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: Martin"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -265,6 +266,7 @@ const InscriptionPage = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: John"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -281,6 +283,7 @@ const InscriptionPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: martinjohn@gmail.com"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -294,6 +297,7 @@ const InscriptionPage = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: 06 12 34 56 78"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -310,6 +314,7 @@ const InscriptionPage = () => {
                       value={formData.birthDate}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: 15/03/2005"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                     <p className="text-xs text-gray-500 mt-1">Âge minimum: 6 ans (avec autorisation parentale pour les mineurs).</p>
@@ -352,6 +357,7 @@ const InscriptionPage = () => {
                       value={formData.emergencyContact}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: Marie John"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -365,6 +371,7 @@ const InscriptionPage = () => {
                       value={formData.emergencyPhone}
                       onChange={handleInputChange}
                       required
+                                                     placeholder="ex: 06 98 76 54 32"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -386,7 +393,7 @@ const InscriptionPage = () => {
                     onChange={handleInputChange}
                     rows={3}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                    placeholder="Informations importantes pour votre sécurité..."
+                                                   placeholder="ex: Aucune allergie connue"
                   />
                 </div>
               </div>
@@ -408,6 +415,7 @@ const InscriptionPage = () => {
                         value={formData.parentName}
                         onChange={handleInputChange}
                         required={isMinor()}
+                                                       placeholder="ex: Jean John"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                       />
                     </div>
@@ -421,6 +429,7 @@ const InscriptionPage = () => {
                         value={formData.parentPhone}
                         onChange={handleInputChange}
                         required={isMinor()}
+                                                       placeholder="ex: 06 11 22 33 44"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                       />
                     </div>
@@ -434,6 +443,7 @@ const InscriptionPage = () => {
                       name="parentEmail"
                       value={formData.parentEmail}
                       onChange={handleInputChange}
+                                                     placeholder="ex: jean.john@gmail.com"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>

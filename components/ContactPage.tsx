@@ -189,6 +189,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
+                      placeholder="ex: Martin John"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -202,6 +203,7 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
+                      placeholder="ex: martinjohn@gmail.com"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -238,7 +240,7 @@ const ContactPage = () => {
                     rows={5}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                    placeholder="Votre message..."
+                                                placeholder="ex: Je souhaite m'inscrire à vos cours de parkour mais..."
                   />
                 </div>
 
