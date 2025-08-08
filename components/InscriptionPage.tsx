@@ -74,9 +74,21 @@ const InscriptionPage = () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          ...formData,
-          subject: 'Nouvelle inscription PKBA - Saison 2025/2026',
-          level: levels.find(l => l.value === formData.level)?.label || formData.level
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          birthDate: formData.birthDate,
+          level: levels.find(l => l.value === formData.level)?.label || formData.level,
+          emergencyContact: formData.emergencyContact,
+          emergencyPhone: formData.emergencyPhone,
+          medicalInfo: formData.medicalInfo,
+          parentName: formData.parentName,
+          parentPhone: formData.parentPhone,
+          parentEmail: formData.parentEmail,
+          parentConsent: String(formData.parentConsent),
+          termsAccepted: String(formData.termsAccepted),
+          subject: 'Nouvelle inscription PKBA - Saison 2025/2026'
         }).toString(),
         redirect: 'manual'
       })
