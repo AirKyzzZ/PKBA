@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ShoppingBag, Star, Truck, Shield, CreditCard } from 'lucide-react'
 import ProductCard from './ProductCard'
-import CheckoutModal from './CheckoutModal'
 
 interface Product {
   id: number
@@ -20,54 +19,50 @@ interface Product {
 }
 
 const BoutiquePage = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
 
   const products = [
     {
-      id: 1,
-      name: 'T-shirt PKBA Classique',
-      price: 25,
-      originalPrice: 30,
-      image: '/images/tshirt-classic.jpg',
-      description: 'T-shirt officiel PKBA en coton bio, design exclusif',
-      features: ['100% coton bio', 'Design exclusif PKBA', 'Tailles S à XXL', 'Made in France'],
-      colors: ['Blanc', 'Noir', 'Bleu'],
-      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-      customization: true
-    },
-    {
       id: 2,
-      name: 'T-shirt PKBA Performance',
-      price: 35,
-      originalPrice: 40,
-      image: '/images/tshirt-performance.jpg',
-      description: 'T-shirt technique haute performance pour l\'entraînement',
-      features: ['Tissu technique', 'Respirant', 'Anti-odeur', 'Séchage rapide'],
-      colors: ['Gris', 'Noir', 'Bleu'],
-      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-      customization: true
-    },
-    {
-      id: 3,
       name: 'Hoodie PKBA Premium',
-      price: 55,
-      originalPrice: 65,
+      price: 45,
+      originalPrice: 55,
       image: '/images/hoodie-premium.jpg',
       description: 'Hoodie premium avec logo brodé PKBA',
       features: ['Coton premium', 'Logo brodé', 'Poche kangourou', 'Fermeture éclair'],
       colors: ['Gris', 'Noir'],
       sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-      customization: false
+      customization: false,
+      available: false
+    },
+    {
+      id: 1,
+      name: 'T-shirt Officiel PKBA',
+      price: 19.99,
+      originalPrice: 24.99,
+      image: '/images/tshirt-white.jpg',
+      description: 'T-shirt officiel du club PKBA, design exclusif haute qualité pour les performances sportives et le confort.',
+      features: ['100% coton premium', 'Design exclusif PKBA', 'Haute qualité pour performances sportives', 'Confort optimal'],
+      colors: ['Blanc', 'Noir'],
+      sizes: ['S', 'M', 'L', 'XL', '2XL'],
+      customization: true,
+      available: true
+    },
+    {
+      id: 3,
+      name: 'Shorts PKBA Sport',
+      price: 35,
+      originalPrice: 42,
+      image: '/images/pants-sport.jpg',
+      description: 'Shorts de sport technique pour l\'entraînement',
+      features: ['Tissu technique', 'Respirant', 'Anti-odeur', 'Séchage rapide'],
+      colors: ['Noir', 'Gris'],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      customization: false,
+      available: false
     }
   ]
 
   const benefits = [
-    {
-      icon: Truck,
-      title: 'Livraison Gratuite',
-      description: 'Pour toute commande supérieure à 50€'
-    },
     {
       icon: Shield,
       title: 'Paiement Sécurisé',
@@ -82,6 +77,11 @@ const BoutiquePage = () => {
       icon: CreditCard,
       title: 'Retours Faciles',
       description: '30 jours pour changer d\'avis'
+    },
+    {
+      icon: Truck,
+      title: 'Livraison Rapide',
+      description: '5-8 jours ouvrés'
     }
   ]
 
@@ -162,8 +162,17 @@ const BoutiquePage = () => {
                 <ProductCard
                   product={product}
                   onSelect={() => {
-                    setSelectedProduct(product)
-                    setIsCheckoutOpen(true)
+                    if (product.available) {
+                      if (product.id === 1) {
+                        // Navigate to T-shirt product page
+                        window.location.href = '/boutique/tshirt'
+                      } else {
+                        // Show coming soon for other products
+                        alert('Ce produit sera bientôt disponible !')
+                      }
+                    } else {
+                      alert('Ce produit sera bientôt disponible !')
+                    }
                   }}
                 />
               </motion.div>
@@ -260,17 +269,7 @@ const BoutiquePage = () => {
         </div>
       </section>
 
-      {/* Checkout Modal */}
-      {isCheckoutOpen && selectedProduct && (
-        <CheckoutModal
-          product={selectedProduct}
-          isOpen={isCheckoutOpen}
-          onClose={() => {
-            setIsCheckoutOpen(false)
-            setSelectedProduct(null)
-          }}
-        />
-      )}
+
     </div>
   )
 }

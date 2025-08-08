@@ -14,6 +14,7 @@ interface Product {
   colors: string[]
   sizes: string[]
   customization: boolean
+  available?: boolean
 }
 
 interface ProductCardProps {
@@ -111,10 +112,16 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
         {/* CTA Button */}
         <button
           onClick={onSelect}
-          className="w-full bg-primary hover:bg-secondary text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform group-hover:scale-105 flex items-center justify-center space-x-2"
+          className={`w-full font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform group-hover:scale-105 flex items-center justify-center space-x-2 ${
+            product.available !== false
+              ? 'bg-primary hover:bg-secondary text-white'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
         >
           <ShoppingCart size={20} />
-          <span>Acheter maintenant</span>
+          <span>
+            {product.available !== false ? 'Acheter maintenant' : 'Bientôt disponible'}
+          </span>
         </button>
       </div>
     </motion.div>

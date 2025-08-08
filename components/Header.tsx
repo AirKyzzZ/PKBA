@@ -5,12 +5,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Instagram } from 'lucide-react'
+import { Menu, X, Instagram, ShoppingCart } from 'lucide-react'
+import { useCart } from './CartContext'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
+  const { getTotalItems } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,6 +110,17 @@ const Header = () => {
               <Instagram size={20} />
             </a>
             <Link
+              href="/checkout"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200"
+            >
+              <ShoppingCart size={20} />
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {getTotalItems()}
+                </span>
+              )}
+            </Link>
+            <Link
               href="/inscription"
               className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg font-montserrat font-medium transition-all duration-200 transform hover:scale-105"
             >
@@ -126,6 +139,17 @@ const Header = () => {
             >
               <Instagram size={22} />
             </a>
+            <Link
+              href="/checkout"
+              className="relative p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
+            >
+              <ShoppingCart size={22} />
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">
+                  {getTotalItems()}
+                </span>
+              )}
+            </Link>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"

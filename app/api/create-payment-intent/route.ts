@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { amount, currency, product, customization, color, size, quantity } = body
+    const { amount, currency, items } = body
 
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
@@ -18,11 +18,10 @@ export async function POST(request: NextRequest) {
         enabled: true,
       },
       metadata: {
-        product,
-        customization: customization || '',
-        color,
-        size,
-        quantity: quantity.toString(),
+        items_count: items.length.toString(),
+        items_summary: items.map((item: any) => 
+          `${item.name}-${item.color}-${item.size}${item.customization ? `-${item.customization}` : ''}-x${item.quantity}`
+        ).join('|'),
       },
     })
 

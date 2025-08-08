@@ -5,38 +5,20 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { motion } from 'framer-motion'
 import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle, Shield } from 'lucide-react'
 import emailjs from '@emailjs/browser'
-
-interface Product {
-  id: number
-  name: string
-  price: number
-  originalPrice: number
-  image: string
-  description: string
-  features: string[]
-  colors: string[]
-  sizes: string[]
-  customization: boolean
-}
+import { CartItem } from './CartContext'
 
 interface CheckoutFormProps {
-  product: Product
-  selectedColor: string
-  selectedSize: string
-  customName: string
-  quantity: number
-  totalPrice: number
-  onClose: () => void
+  items: CartItem[]
+  total: number
+  onSuccess: () => void
+  onError: (error: any) => void
 }
 
 const CheckoutForm = ({
-  product,
-  selectedColor,
-  selectedSize,
-  customName,
-  quantity,
-  totalPrice,
-  onClose
+  items,
+  total,
+  onSuccess,
+  onError
 }: CheckoutFormProps) => {
   const stripe = useStripe()
   const elements = useElements()
@@ -63,15 +45,17 @@ const CheckoutForm = ({
   const sendOrderNotification = async (orderData: any) => {
     try {
       await emailjs.send(
-        'your_service_id', // Replace with your EmailJS service ID
-        'your_template_id', // Replace with your EmailJS template ID
+        'service_pkba', // Replace with your EmailJS service ID
+        'template_pkba_order', // Replace with your EmailJS template ID
         {
           to_email: 'maxime.mansiet@gmail.com',
           order_details: JSON.stringify(orderData, null, 2),
           customer_name: `${formData.firstName} ${formData.lastName}`,
           customer_email: formData.email,
-          product_name: product.name,
-          total_amount: totalPrice
+          items_summary: items.map(item => 
+            `${item.name} - ${item.color === 'white' ? 'Blanc' : 'Noir'} - Taille ${item.size}${item.customization ? ` - Personnalisation: ${item.customization}` : ''} x${item.quantity}`
+          ).join('\n'),
+          total_amount: total
         },
         'your_user_id' // Replace with your EmailJS user ID
       )
@@ -98,13 +82,16 @@ const CheckoutForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          amount: totalPrice * 100, // Convert to cents
+          amount: total * 100, // Convert to cents
           currency: 'eur',
-          product: product.name,
-          customization: customName,
-          color: selectedColor,
-          size: selectedSize,
-          quantity: quantity
+          items: items.map(item => ({
+            name: item.name,
+            color: item.color,
+            size: item.size,
+            customization: item.customization,
+            quantity: item.quantity,
+            price: item.price
+          }))
         }),
       })
 
@@ -136,24 +123,21 @@ const CheckoutForm = ({
         // Send order notification
         const orderData = {
           paymentIntentId: paymentIntent.id,
-          product: product.name,
-          color: selectedColor,
-          size: selectedSize,
-          customization: customName,
-          quantity: quantity,
-          totalPrice: totalPrice,
+          items: items,
+          total: total,
           customer: formData
         }
         
         await sendOrderNotification(orderData)
         
-        // Close modal after 3 seconds
+        // Call success callback
         setTimeout(() => {
-          onClose()
+          onSuccess()
         }, 3000)
       }
     } catch (error) {
       setError('Une erreur est survenue. Veuillez réessayer.')
+      onError(error)
     } finally {
       setIsProcessing(false)
     }
@@ -350,7 +334,7 @@ const CheckoutForm = ({
         ) : (
           <>
             <CreditCard size={20} />
-            <span>Payer {totalPrice}€</span>
+            <span>Payer {total}€</span>
           </>
         )}
       </button>

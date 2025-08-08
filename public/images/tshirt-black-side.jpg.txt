@@ -1,0 +1,3 @@
+# Placeholder for T-shirt PKBA Noir - Vue de côté
+# Replace this .txt file with the actual image file: tshirt-black-side.jpg
+# This should be a high-quality image showing the side view of the black PKBA T-shirt

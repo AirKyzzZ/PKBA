@@ -1,0 +1,3 @@
+# Placeholder for T-shirt PKBA Blanc - Vue de côté
+# Replace this .txt file with the actual image file: tshirt-white-side.jpg
+# This should be a high-quality image showing the side view of the white PKBA T-shirt
