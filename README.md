@@ -5,24 +5,26 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-API_2023--10--16-635BFF?logo=stripe&logoColor=white)
+![Airtable](https://img.shields.io/badge/Airtable-API-18BFFF?logo=airtable&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js-18-green?logo=node.js&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Deploys%20to-Netlify-00C7B7?logo=netlify&logoColor=white)
 
-Plateforme web officielle du club PKBA, conçue avec un focus sur performance, accessibilité et conversion. Elle présente le club, gère les inscriptions, collecte des dons, et vend des produits officiels avec paiement sécurisé.
+Plateforme web officielle du club PKBA, conçue avec un focus sur performance, accessibilité et conversion. Elle présente le club, gère les inscriptions avec intégration Airtable, offre un accès admin pour la gestion des adhérents, collecte des dons, et vend des produits officiels avec paiement sécurisé.
 
 - **Production**: [`https://pkba.vertiflow.fr`](https://pkba.vertiflow.fr)
 
 ## Présentation
 
-PKBA (Parkour Bassin d’Arcachon) est un club associatif dédié à la pratique du parkour sur le Bassin d’Arcachon. Le site a pour objectifs de:
+PKBA (Parkour Bassin d'Arcachon) est un club associatif dédié à la pratique du parkour sur le Bassin d'Arcachon. Le site a pour objectifs de:
 
 - Présenter le club, ses valeurs et ses actualités
-- Faciliter les inscriptions à la saison 2025/2026 (lancement Septembre 2025)
+- Faciliter les inscriptions à la saison 2025/2026 (lancement Septembre 2025) avec gestion Airtable
+- Permettre aux administrateurs de valider les licences et gérer les nouveaux adhérents
 - Permettre les dons en ligne de manière simple et sécurisée
 - Proposer une boutique de produits officiels (T‑shirts) avec paiement Stripe
 - Centraliser les informations pratiques et la prise de contact
 
-L’accent est mis sur l’encadrement professionnel, la progression et la sécurité à chaque étape du parcours des adhérents.
+L'accent est mis sur l'encadrement professionnel, la progression et la sécurité à chaque étape du parcours des adhérents.
 
 ## Sommaire
 
@@ -34,6 +36,7 @@ L’accent est mis sur l’encadrement professionnel, la progression et la sécu
 - **[Scripts NPM](#scripts-npm)**
 - **[API Routes](#api-routes)**
 - **[Structure du projet](#structure-du-projet)**
+- **[Gestion des inscriptions et Admin](#gestion-des-inscriptions-et-admin)**
 - **[Paiements et Dons](#paiements-et-dons)**
 - **[SEO, PWA et Accessibilité](#seo-pwa-et-accessibilité)**
 - **[Déploiement (Netlify)](#déploiement-netlify)**
@@ -46,13 +49,17 @@ L’accent est mis sur l’encadrement professionnel, la progression et la sécu
   - Accueil, Actualités, Inscription, Contact, Mentions légales, CGV, Politique de confidentialité
   - Boutique: vente de T‑shirts (personnalisation, tailles, couleurs), panier et checkout
   - Dons: formulaire avec signature et reçu par email
+  - **Nouveau**: Système d'inscription avec intégration Airtable
+  - **Nouveau**: Interface d'administration pour la gestion des adhérents et validation des licences
 
 - **Technique**
   - Design responsive (Tailwind), animations (Framer Motion)
   - Paiements sécurisés avec Stripe (PaymentIntent, EUR uniquement)
   - Emails transactionnels via EmailJS et notifications d'order via Formspree
+  - **Nouveau**: Intégration Airtable pour la gestion des inscriptions et adhérents
+  - **Nouveau**: Système d'authentification admin
   - SEO, Open Graph/Twitter Cards, sitemap et robots configurés
-  - En-têtes de sécurité et caching configurés pour l’hébergement
+  - En-têtes de sécurité et caching configurés pour l'hébergement
 
 ## Pile technique
 
@@ -62,6 +69,8 @@ L’accent est mis sur l’encadrement professionnel, la progression et la sécu
 - **Paiements**: Stripe (`stripe` SDK Node et `@stripe/react-stripe-js`)
 - **Emails**: EmailJS (@emailjs/browser)
 - **Formulaires**: Formspree
+- **Base de données**: Airtable (gestion des inscriptions et adhérents)
+- **Authentification**: Système d'authentification admin personnalisé
 - **Hébergement**: Netlify (voir `netlify.toml`)
 
 ## Démarrage rapide
@@ -104,12 +113,21 @@ NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=...
 NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=...
 NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=...
 
+# Airtable
+AIRTABLE_API_KEY=...
+AIRTABLE_BASE_ID=...
+AIRTABLE_INSCRIPTIONS_TABLE=...
+
+# Admin Authentication
+ADMIN_USERNAME=...
+ADMIN_PASSWORD_HASH=...
+
 # SEO / Vérifications (optionnel)
 NEXT_PUBLIC_SITE_NAME=PKBA
 NEXT_PUBLIC_SITE_URL=https://pkba.vertiflow.fr
 ```
 
-Sur Netlify, définissez les mêmes variables dans l’onglet Environment. Le fichier `netlify.toml` expose également des en-têtes de sécurité et la version Node.
+Sur Netlify, définissez les mêmes variables dans l'onglet Environment. Le fichier `netlify.toml` expose également des en-têtes de sécurité et la version Node.
 
 ## Scripts NPM
 
@@ -126,12 +144,31 @@ npm run test:backend # Outil de test des endpoints backend (si clés valides)
 - `POST /api/create-payment-intent`
   - Entrée: `{ amount: number (cents), currency: 'eur', items: { name, color, size, customization?, quantity, price }[] }`
   - Sortie: `{ clientSecret: string }`
-  - Particularités: vérifie un montant valide, impose la devise `eur`, et renseigne des métadonnées d’items.
+  - Particularités: vérifie un montant valide, impose la devise `eur`, et renseigne des métadonnées d'items.
 
 - `POST /api/create-donation-intent`
   - Entrée: `{ amount: number (cents), currency: 'eur' }`
   - Sortie: `{ clientSecret: string }`
   - Particularités: impose `eur`, ajoute des métadonnées de type `donation`.
+
+- **Nouveau**: `POST /api/submit-inscription`
+  - Entrée: `{ nom, prenom, email, telephone, dateNaissance, adresse, codePostal, ville, licence, niveau, commentaires }`
+  - Sortie: `{ success: boolean, message: string }`
+  - Particularités: enregistre l'inscription dans Airtable et envoie une confirmation.
+
+- **Nouveau**: `GET /api/get-inscriptions`
+  - Sortie: `{ inscriptions: Inscription[] }`
+  - Particularités: récupère toutes les inscriptions depuis Airtable (accès admin uniquement).
+
+- **Nouveau**: `POST /api/update-inscription-status`
+  - Entrée: `{ id: string, status: 'en_attente' | 'validee' | 'refusee' }`
+  - Sortie: `{ success: boolean, message: string }`
+  - Particularités: met à jour le statut d'une inscription (accès admin uniquement).
+
+- **Nouveau**: `POST /api/update-inscription-medical`
+  - Entrée: `{ id: string, certificatMedical: string, dateValidation: string }`
+  - Sortie: `{ success: boolean, message: string }`
+  - Particularités: met à jour les informations médicales d'une inscription (accès admin uniquement).
 
 ## Structure du projet
 
@@ -141,8 +178,19 @@ PKBA/
 │  ├─ api/
 │  │  ├─ create-payment-intent/
 │  │  │  └─ route.ts
-│  │  └─ create-donation-intent/
+│  │  ├─ create-donation-intent/
+│  │  │  └─ route.ts
+│  │  ├─ submit-inscription/
+│  │  │  └─ route.ts
+│  │  ├─ get-inscriptions/
+│  │  │  └─ route.ts
+│  │  ├─ update-inscription-status/
+│  │  │  └─ route.ts
+│  │  └─ update-inscription-medical/
 │  │     └─ route.ts
+│  ├─ admin/
+│  │  └─ inscriptions/
+│  │     └─ page.tsx
 │  ├─ boutique/
 │  ├─ donations/
 │  ├─ inscription/
@@ -159,6 +207,9 @@ PKBA/
 │  ├─ CartContext.tsx
 │  ├─ CheckoutForm.tsx
 │  ├─ DonationForm.tsx
+│  ├─ InscriptionPage.tsx
+│  ├─ InscriptionsList.tsx
+│  ├─ AdminAuth.tsx
 │  ├─ ...
 ├─ public/
 ├─ netlify.toml
@@ -167,6 +218,35 @@ PKBA/
 ├─ package.json
 └─ README.md
 ```
+
+## Gestion des inscriptions et Admin
+
+### Système d'inscription
+- **Formulaire d'inscription** (`/inscription`)
+  - Collecte des informations personnelles, licence, niveau et commentaires
+  - Validation côté client et serveur
+  - Intégration directe avec Airtable pour le stockage des données
+
+### Interface d'administration
+- **Accès admin** (`/admin/inscriptions`)
+  - Authentification sécurisée avec nom d'utilisateur et mot de passe
+  - Visualisation de toutes les inscriptions en temps réel
+  - Gestion des statuts (en attente, validée, refusée)
+  - Validation des certificats médicaux et licences
+  - Interface intuitive pour la gestion des nouveaux adhérents
+
+### Fonctionnalités admin
+- **Validation des inscriptions**: Changement de statut et ajout de commentaires
+- **Gestion médicale**: Suivi des certificats médicaux et dates de validation
+- **Suivi des licences**: Vérification et validation des numéros de licence
+- **Export des données**: Accès aux informations complètes des adhérents
+- **Sécurité**: Accès restreint aux administrateurs autorisés
+
+### Intégration Airtable
+- Synchronisation automatique des nouvelles inscriptions
+- Stockage sécurisé des données personnelles
+- Historique complet des modifications et validations
+- Structure de base optimisée pour la gestion associative
 
 ## Paiements et Dons
 
