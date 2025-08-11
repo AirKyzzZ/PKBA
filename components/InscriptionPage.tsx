@@ -1,34 +1,69 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock } from 'lucide-react'
+import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool } from 'lucide-react'
 
 const InscriptionPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const [formData, setFormData] = useState({
+    // Informations personnelles
     firstName: '',
     lastName: '',
-    email: '',
-    phone: '',
     birthDate: '',
-    level: '',
-    emergencyContact: '',
-    emergencyPhone: '',
-    medicalInfo: '',
-    parentName: '',
-    parentPhone: '',
-    parentEmail: '',
-    parentConsent: false,
-    termsAccepted: false
+    gender: '',
+    
+    // Adhésion
+    adhesionType: [] as string[],
+    otherClub: '',
+    
+    // Adresse
+    address: '',
+    postalCode: '',
+    city: '',
+    phone: '',
+    email: '',
+    
+    // Responsables légaux (si mineur)
+    legalGuardian1: {
+      title: '',
+      lastName: '',
+      firstName: '',
+      phone: '',
+      email: ''
+    },
+    legalGuardian2: {
+      title: '',
+      lastName: '',
+      firstName: '',
+      phone: '',
+      email: ''
+    },
+    
+    // Contact d'urgence
+    emergencyContact: {
+      name: '',
+      phone: ''
+    },
+    
+    // Consentements
+    imageRights: false,
+    termsAccepted: false,
+    
+    // Signature
+    signature: '',
+    signatureDate: ''
   })
 
-  const levels = [
-    { value: 'debutant', label: 'Débutant', description: 'Première approche du parkour' },
-    { value: 'intermediaire', label: 'Intermédiaire', description: 'Pratique régulière, techniques de base maîtrisées' },
-    { value: 'confirme', label: 'Confirmé', description: 'Niveau avancé, techniques complexes' }
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isDrawing, setIsDrawing] = useState(false)
+
+  const adhesionTypes = [
+    { value: 'ancien', label: 'Ancien Adhérent' },
+    { value: 'nouveau', label: 'Nouvel Adhérent' },
+    { value: 'autre_club', label: 'En provenance d\'un autre club' }
   ]
 
   const benefits = [
@@ -56,70 +91,104 @@ const InscriptionPage = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
+    const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    
+    
+    
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+      [name]: newValue
     })
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError('')
+  const handleAdhesionTypeChange = (value: string) => {
+    const selectedType = adhesionTypes.find(type => type.value === value)
+    if (selectedType) {
+      setFormData(prev => ({
+        ...prev,
+        adhesionType: prev.adhesionType.includes(selectedType.label)
+          ? prev.adhesionType.filter(type => type !== selectedType.label)
+          : [...prev.adhesionType, selectedType.label]
+      }))
+    }
+  }
 
-    try {
-      const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          birthDate: formData.birthDate,
-          level: levels.find(l => l.value === formData.level)?.label || formData.level,
-          emergencyContact: formData.emergencyContact,
-          emergencyPhone: formData.emergencyPhone,
-          medicalInfo: formData.medicalInfo,
-          parentName: formData.parentName,
-          parentPhone: formData.parentPhone,
-          parentEmail: formData.parentEmail,
-          parentConsent: String(formData.parentConsent),
-          termsAccepted: String(formData.termsAccepted),
-          subject: 'Nouvelle inscription PKBA - Saison 2025/2026'
-        }).toString(),
-        redirect: 'manual'
-      })
-
-      // Formspree returns 200 on success, but let's be more permissive
-      if (response.status >= 200 && response.status < 400) {
-        setIsSuccess(true)
-        // Reset form
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          birthDate: '',
-          level: '',
-          emergencyContact: '',
-          emergencyPhone: '',
-          medicalInfo: '',
-          parentName: '',
-          parentPhone: '',
-          parentEmail: '',
-          parentConsent: false,
-          termsAccepted: false
-        })
-      } else {
-        setError('Une erreur est survenue lors de l\'envoi. Veuillez réessayer.')
+  const handleLegalGuardianChange = (guardianIndex: number, field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [`legalGuardian${guardianIndex + 1}`]: {
+        ...prev[`legalGuardian${guardianIndex + 1}` as keyof typeof prev] as any,
+        [field]: value
       }
-    } catch (error) {
-      setError('Une erreur est survenue. Veuillez réessayer.')
-    } finally {
-      setIsSubmitting(false)
+    }))
+  }
+
+  const handleEmergencyContactChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      emergencyContact: {
+        ...prev.emergencyContact,
+        [field]: value
+      }
+    }))
+  }
+
+  // Signature handling
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    setIsDrawing(true)
+    const canvas = canvasRef.current
+    if (canvas) {
+      const ctx = canvas.getContext('2d')
+      if (ctx) {
+        const rect = canvas.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        ctx.beginPath()
+        ctx.moveTo(x, y)
+      }
+    }
+  }
+
+  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDrawing) return
+    const canvas = canvasRef.current
+    if (canvas) {
+      const ctx = canvas.getContext('2d')
+      if (ctx) {
+        const rect = canvas.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        ctx.lineTo(x, y)
+        ctx.stroke()
+      }
+    }
+  }
+
+  const stopDrawing = () => {
+    setIsDrawing(false)
+    const canvas = canvasRef.current
+    if (canvas) {
+      const signatureData = canvas.toDataURL()
+      setFormData(prev => ({
+        ...prev,
+        signature: signatureData,
+        signatureDate: new Date().toISOString()
+      }))
+    }
+  }
+
+  const clearSignature = () => {
+    const canvas = canvasRef.current
+    if (canvas) {
+      const ctx = canvas.getContext('2d')
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        setFormData(prev => ({
+          ...prev,
+          signature: '',
+          signatureDate: ''
+        }))
+      }
     }
   }
 
@@ -145,6 +214,58 @@ const InscriptionPage = () => {
     return age < 6
   }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError('')
+
+    
+
+    try {
+      // Envoi vers Airtable via API
+      const response = await fetch('/api/submit-inscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (response.ok) {
+        setIsSuccess(true)
+        // Reset form ONLY after successful submission
+        setFormData({
+          firstName: '',
+          lastName: '',
+          birthDate: '',
+          gender: '',
+          adhesionType: [] as string[],
+          otherClub: '',
+          address: '',
+          postalCode: '',
+          city: '',
+          phone: '',
+          email: '',
+          legalGuardian1: { title: '', lastName: '', firstName: '', phone: '', email: '' },
+          legalGuardian2: { title: '', lastName: '', firstName: '', phone: '', email: '' },
+          emergencyContact: { name: '', phone: '' },
+          imageRights: false,
+          termsAccepted: false,
+          signature: '',
+          signatureDate: ''
+        })
+        clearSignature()
+      } else {
+        const errorData = await response.json()
+        setError(errorData.message || 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.')
+      }
+    } catch (error) {
+      setError('Une erreur est survenue. Veuillez réessayer.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   if (isSuccess) {
     return (
       <div className="pt-16 lg:pt-20 min-h-screen bg-gray-50">
@@ -159,7 +280,7 @@ const InscriptionPage = () => {
               Inscription Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription pour la saison 2025/2026 a été enregistrée avec succès. 
+              Votre inscription a été enregistrée avec succès dans notre base de données. 
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -169,7 +290,7 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Confirmation par email sous 48h</span>
+                  <span>Confirmation par email</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -238,7 +359,7 @@ const InscriptionPage = () => {
 
       {/* Registration Form */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -249,16 +370,17 @@ const InscriptionPage = () => {
               Formulaire d'Inscription
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Personal Information */}
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Informations Personnelles */}
               <div>
-                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <User className="mr-2" />
                   Informations Personnelles
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Prénom *
+                      Prénom <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -266,13 +388,13 @@ const InscriptionPage = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                                                     placeholder="ex: Martin"
+                      placeholder="ex: Martin"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Nom *
+                      Nom <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -280,7 +402,7 @@ const InscriptionPage = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                                                     placeholder="ex: John"
+                      placeholder="ex: John"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
@@ -289,38 +411,7 @@ const InscriptionPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                                                     placeholder="ex: martinjohn@gmail.com"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Téléphone *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                                                     placeholder="ex: 06 12 34 56 78"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                  <div>
-                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Date de naissance *
+                      Date de naissance <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="date"
@@ -328,161 +419,389 @@ const InscriptionPage = () => {
                       value={formData.birthDate}
                       onChange={handleInputChange}
                       required
-                                                     placeholder="ex: 15/03/2005"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                     <p className="text-xs text-gray-500 mt-1">Âge minimum: 6 ans (avec autorisation parentale pour les mineurs).</p>
                   </div>
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Niveau *
+                      Sexe <span className="text-red-500">*</span>
                     </label>
                     <select
-                      name="level"
-                      value={formData.level}
+                      name="gender"
+                      value={formData.gender}
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     >
-                      <option value="">Sélectionnez votre niveau</option>
-                      {levels.map((level) => (
-                        <option key={level.value} value={level.value}>
-                          {level.label} - {level.description}
-                        </option>
-                      ))}
+                      <option value="">Sélectionnez</option>
+                      <option value="Masculin">Masculin</option>
+                      <option value="Féminin">Féminin</option>
+                      <option value="Autre">Autre</option>
                     </select>
                   </div>
                 </div>
               </div>
 
-              {/* Emergency Contact */}
+              {/* Type d'Adhésion */}
               <div>
-                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4">
-                  Contact d'Urgence
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <Users className="mr-2" />
+                  Type d'Adhésion
+                </h3>
+                <div className="space-y-3">
+                  {adhesionTypes.map((type) => (
+                    <div key={type.value} className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        id={type.value}
+                        checked={formData.adhesionType.includes(type.label)}
+                        onChange={() => handleAdhesionTypeChange(type.value)}
+                        className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                      />
+                      <label htmlFor={type.value} className="text-sm font-montserrat text-gray-700">
+                        {type.label}
+                      </label>
+                    </div>
+                  ))}
+                  
+                  {formData.adhesionType.includes('autre_club') && (
+                    <div className="mt-3">
+                      <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                        Nom du club d'origine
+                      </label>
+                      <input
+                        type="text"
+                        name="otherClub"
+                        value={formData.otherClub}
+                        onChange={handleInputChange}
+                        placeholder="ex: Club de Parkour de Lyon"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Adresse */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <MapPin className="mr-2" />
+                  Adresse
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                      Adresse <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="ex: 123 Rue de la Paix"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                        Code postal <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="postalCode"
+                        value={formData.postalCode}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="ex: 69000"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                        Ville <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="ex: Lyon"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coordonnées */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <Phone className="mr-2" />
+                  Coordonnées
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Nom du contact *
+                      Téléphone <span className="text-red-500">*</span>
                     </label>
                     <input
-                      type="text"
-                      name="emergencyContact"
-                      value={formData.emergencyContact}
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleInputChange}
                       required
-                                                     placeholder="ex: Marie John"
+                      placeholder="ex: 06 12 34 56 78"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Téléphone du contact *
-                    </label>
-                    <input
-                      type="tel"
-                      name="emergencyPhone"
-                      value={formData.emergencyPhone}
-                      onChange={handleInputChange}
-                      required
-                                                     placeholder="ex: 06 98 76 54 32"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Medical Information */}
-              <div>
-                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4">
-                  Informations Médicales
-                </h3>
-                <div>
-                  <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                    Allergies, conditions médicales, etc. (optionnel)
-                  </label>
-                  <textarea
-                    name="medicalInfo"
-                    value={formData.medicalInfo}
-                    onChange={handleInputChange}
-                    rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                                                   placeholder="ex: Aucune allergie connue"
-                  />
-                </div>
-              </div>
-
-              {/* Parent Information (if minor) */}
-              {isMinor() && (
-                <div>
-                  <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4">
-                    Informations Parentales
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                        Nom du parent/tuteur *
-                      </label>
-                      <input
-                        type="text"
-                        name="parentName"
-                        value={formData.parentName}
-                        onChange={handleInputChange}
-                        required={isMinor()}
-                                                       placeholder="ex: Jean John"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                        Téléphone du parent/tuteur *
-                      </label>
-                      <input
-                        type="tel"
-                        name="parentPhone"
-                        value={formData.parentPhone}
-                        onChange={handleInputChange}
-                        required={isMinor()}
-                                                       placeholder="ex: 06 11 22 33 44"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Email du parent/tuteur
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
-                      name="parentEmail"
-                      value={formData.parentEmail}
+                      name="email"
+                      value={formData.email}
                       onChange={handleInputChange}
-                                                     placeholder="ex: jean.john@gmail.com"
+                      required
+                      placeholder="ex: martin.john@gmail.com"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
+                  </div>
+                </div>
+              </div>
+
+              {/* Responsables Légaux (si mineur) */}
+              {isMinor() && (
+                <div>
+                  <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                    <Shield className="mr-2" />
+                    Responsables Légaux
+                  </h3>
+                  <div className="space-y-6">
+                    {/* Responsable 1 */}
+                    <div>
+                      <h4 className="text-lg font-cheddar font-semibold text-gray-800 mb-3">Responsable 1</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Civilité
+                          </label>
+                          <select
+                            value={formData.legalGuardian1.title}
+                            onChange={(e) => handleLegalGuardianChange(0, 'title', e.target.value)}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          >
+                            <option value="">Sélectionnez</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mr">Mr</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Nom
+                          </label>
+                          <input
+                            type="text"
+                            value={formData.legalGuardian1.lastName}
+                            onChange={(e) => handleLegalGuardianChange(0, 'lastName', e.target.value)}
+                            placeholder="ex: John"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Prénom
+                          </label>
+                          <input
+                            type="text"
+                            value={formData.legalGuardian1.firstName}
+                            onChange={(e) => handleLegalGuardianChange(0, 'firstName', e.target.value)}
+                            placeholder="ex: Jean"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Téléphone
+                          </label>
+                          <input
+                            type="tel"
+                            value={formData.legalGuardian1.phone}
+                            onChange={(e) => handleLegalGuardianChange(0, 'phone', e.target.value)}
+                            placeholder="ex: 06 11 22 33 44"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          value={formData.legalGuardian1.email}
+                          onChange={(e) => handleLegalGuardianChange(0, 'email', e.target.value)}
+                          placeholder="ex: jean.john@gmail.com"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Responsable 2 */}
+                    <div>
+                      <h4 className="text-lg font-cheddar font-semibold text-gray-800 mb-3">Responsable 2</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Civilité
+                          </label>
+                          <select
+                            value={formData.legalGuardian2.title}
+                            onChange={(e) => handleLegalGuardianChange(1, 'title', e.target.value)}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          >
+                            <option value="">Sélectionnez</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mr">Mr</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Nom
+                          </label>
+                          <input
+                            type="text"
+                            value={formData.legalGuardian2.lastName}
+                            onChange={(e) => handleLegalGuardianChange(1, 'lastName', e.target.value)}
+                            placeholder="ex: John"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Prénom
+                          </label>
+                          <input
+                            type="text"
+                            value={formData.legalGuardian2.firstName}
+                            onChange={(e) => handleLegalGuardianChange(1, 'firstName', e.target.value)}
+                            placeholder="ex: Marie"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                            Téléphone
+                          </label>
+                          <input
+                            type="tel"
+                            value={formData.legalGuardian2.phone}
+                            onChange={(e) => handleLegalGuardianChange(1, 'phone', e.target.value)}
+                            placeholder="ex: 06 98 76 54 32"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          value={formData.legalGuardian2.email}
+                          onChange={(e) => handleLegalGuardianChange(1, 'email', e.target.value)}
+                          placeholder="ex: marie.john@gmail.com"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* Consent */}
-              <div className="space-y-4">
+              {/* Contact d'Urgence */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <AlertCircle className="mr-2" />
+                  Contact d'Urgence
+                </h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Personne disponible sur les horaires d'entraînement en cas d'urgence
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                      Nom et Prénom <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.emergencyContact.name}
+                      onChange={(e) => handleEmergencyContactChange('name', e.target.value)}
+                      required
+                      placeholder="ex: Marie John"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                      Téléphone <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.emergencyContact.phone}
+                      onChange={(e) => handleEmergencyContactChange('phone', e.target.value)}
+                      required
+                      placeholder="ex: 06 98 76 54 32"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent font-montserrat"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Droit à l'Image */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <Camera className="mr-2" />
+                  Droit à l'Image
+                </h3>
+                <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                  <p className="text-sm text-gray-700 font-montserrat mb-3">
+                    <strong>Des photos où apparaît mon enfant peuvent être prises au cours des différentes manifestations auxquelles participe l'association ou organisées par elle.</strong>
+                  </p>
+                  <p className="text-sm text-gray-600 font-montserrat mb-2">
+                    Je note que je ne suis pas obligé(e) de les acheter. Ces photos peuvent être utilisées dans le cadre de la promotion de PKBA (Presse, affichage, site web, etc.).
+                  </p>
+                </div>
                 <div className="flex items-start space-x-3">
                   <input
                     type="checkbox"
-                    name="parentConsent"
-                    checked={formData.parentConsent}
+                    name="imageRights"
+                    checked={formData.imageRights}
                     onChange={handleInputChange}
-                    required={isMinor()}
+                    required
                     className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <label className="text-sm font-montserrat text-gray-700">
-                    {isMinor() 
-                      ? "J'autorise mon enfant à participer aux activités du club PKBA et j'accepte les conditions de participation."
-                      : "J'accepte de participer aux activités du club PKBA et j'accepte les conditions de participation."
-                    }
+                    J'accepte l'utilisation de mon image (ou de celle de mon enfant si mineur) dans le cadre de la promotion de PKBA
                   </label>
                 </div>
+              </div>
 
+              {/* Règlement Intérieur */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <FileText className="mr-2" />
+                  Règlement Intérieur
+                </h3>
                 <div className="flex items-start space-x-3">
                   <input
                     type="checkbox"
@@ -493,8 +812,58 @@ const InscriptionPage = () => {
                     className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <label className="text-sm font-montserrat text-gray-700">
-                    J'accepte les <a href="/mentions-legales" className="text-primary hover:underline">mentions légales</a> et la <a href="/politique-confidentialite" className="text-primary hover:underline">politique de confidentialité</a>.
+                    Vu et pris connaissance du <a href="/reglement-interieur" className="text-primary hover:underline font-semibold">règlement intérieur</a> *
                   </label>
+                </div>
+              </div>
+
+              {/* Signature */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <PenTool className="mr-2" />
+                  Signature et Date
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-2">
+                      Signature <span className="text-red-500">*</span>
+                    </label>
+                    <div className="border-2 border-gray-300 rounded-lg p-4 bg-white">
+                      <canvas
+                        ref={canvasRef}
+                        width={400}
+                        height={150}
+                        className="border border-gray-300 rounded cursor-crosshair"
+                        onMouseDown={startDrawing}
+                        onMouseMove={draw}
+                        onMouseUp={stopDrawing}
+                        onMouseLeave={stopDrawing}
+                      />
+                      <div className="mt-2 flex space-x-2">
+                        <button
+                          type="button"
+                          onClick={clearSignature}
+                          className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600"
+                        >
+                          Effacer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
+                      Date d'inscription <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      name="signatureDate"
+                      value={formData.signatureDate}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -511,7 +880,7 @@ const InscriptionPage = () => {
 
               <button
                 type="submit"
-                disabled={isSubmitting || isTooYoung()}
+                disabled={isSubmitting || isTooYoung() || !formData.signature}
                 className="w-full bg-primary hover:bg-secondary disabled:bg-gray-400 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
@@ -522,7 +891,14 @@ const InscriptionPage = () => {
                 ) : (
                   <>
                     <User size={20} />
-                    <span>{isTooYoung() ? 'Âge minimum 6 ans requis' : "Envoyer l'inscription"}</span>
+                    <span>
+                      {isTooYoung() 
+                        ? 'Âge minimum 6 ans requis' 
+                        : !formData.signature 
+                          ? 'Signature requise' 
+                          : "Envoyer l'inscription"
+                      }
+                    </span>
                   </>
                 )}
               </button>
