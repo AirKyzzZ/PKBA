@@ -45,18 +45,18 @@ const TshirtPage = () => {
   // Multiple images for each color
   const productImages = [
     // White T-shirt images
-    { id: 'white-front', src: '/images/tshirt-white-front.jpg', alt: 'T-shirt PKBA Blanc - Vue de face', color: 'white' as const },
-    { id: 'white-back', src: '/images/tshirt-white-back.jpg', alt: 'T-shirt PKBA Blanc - Vue de dos', color: 'white' as const },
-    { id: 'white-side', src: '/images/tshirt-white-side.jpg', alt: 'T-shirt PKBA Blanc - Vue de côté', color: 'white' as const },
-    { id: 'white-detail', src: '/images/tshirt-white-detail.jpg', alt: 'T-shirt PKBA Blanc - Détail du logo', color: 'white' as const },
-    { id: 'white-wear', src: '/images/tshirt-white-wear.jpg', alt: 'T-shirt PKBA Blanc - Porté', color: 'white' as const },
+    { id: 'white-front', src: '/images/mockups/front_white.png', alt: 'T-shirt PKBA Blanc - Vue de face', color: 'white' as const },
+    { id: 'white-back', src: '/images/mockups/back_white.png', alt: 'T-shirt PKBA Blanc - Vue de dos', color: 'white' as const },
+    { id: 'white-side', src: '/images/mockups/men_side_white.png', alt: 'T-shirt PKBA Blanc - Vue de côté', color: 'white' as const },
+    { id: 'white-detail', src: '/images/mockups/front_and_back_white.png', alt: 'T-shirt PKBA Blanc - Vue avant et arrière', color: 'white' as const },
+    { id: 'white-wear', src: '/images/mockups/men_front_white.png', alt: 'T-shirt PKBA Blanc - Porté', color: 'white' as const },
     
     // Black T-shirt images
-    { id: 'black-front', src: '/images/tshirt-black-front.jpg', alt: 'T-shirt PKBA Noir - Vue de face', color: 'black' as const },
-    { id: 'black-back', src: '/images/tshirt-black-back.jpg', alt: 'T-shirt PKBA Noir - Vue de dos', color: 'black' as const },
-    { id: 'black-side', src: '/images/tshirt-black-side.jpg', alt: 'T-shirt PKBA Noir - Vue de côté', color: 'black' as const },
-    { id: 'black-detail', src: '/images/tshirt-black-detail.jpg', alt: 'T-shirt PKBA Noir - Détail du logo', color: 'black' as const },
-    { id: 'black-wear', src: '/images/tshirt-black-wear.jpg', alt: 'T-shirt PKBA Noir - Porté', color: 'black' as const }
+    { id: 'black-front', src: '/images/mockups/front_black.png', alt: 'T-shirt PKBA Noir - Vue de face', color: 'black' as const },
+    { id: 'black-back', src: '/images/mockups/back_black.png', alt: 'T-shirt PKBA Noir - Vue de dos', color: 'black' as const },
+    { id: 'black-side', src: '/images/mockups/men_side_black.png', alt: 'T-shirt PKBA Noir - Vue de côté', color: 'black' as const },
+    { id: 'black-detail', src: '/images/mockups/front_and_back_black.png', alt: 'T-shirt PKBA Noir - Vue avant et arrière', color: 'black' as const },
+    { id: 'black-wear', src: '/images/mockups/men_front_black.png', alt: 'T-shirt PKBA Noir - Porté', color: 'black' as const }
   ]
 
   const sizeGuide = [
@@ -81,7 +81,7 @@ const TshirtPage = () => {
       size: selectedSize,
       quantity,
       customization: customization || undefined,
-      image: `/images/tshirt-${selectedColor}.jpg`
+      image: `/images/mockups/front_${selectedColor}.png`
     }
 
     addToCart(cartItem)

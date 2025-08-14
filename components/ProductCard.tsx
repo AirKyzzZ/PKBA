@@ -29,10 +29,12 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
       className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
     >
       {/* Product Image */}
-      <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-        <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
-          <ShoppingCart size={48} className="text-primary" />
-        </div>
+      <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
         {product.originalPrice > product.price && (
           <div className="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-montserrat font-bold">
             -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%

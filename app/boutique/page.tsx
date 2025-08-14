@@ -3,12 +3,12 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Boutique PKBA - T-shirts Officiels | Parkour Bassin d\'Arcachon',
-  description: 'Découvrez notre collection exclusive de T-shirts officiels PKBA. Personnalisez votre T-shirt avec le nom de l\'athlète. Paiement sécurisé Stripe. Livraison rapide en France.',
+  title: 'Boutique PKBA - T-shirt Officiel | Parkour Bassin d\'Arcachon',
+  description: 'Découvrez notre T-shirt officiel PKBA. Personnalisez votre T-shirt avec le nom de l\'athlète. Paiement sécurisé Stripe. Livraison rapide en France.',
   keywords: 't-shirt PKBA, vêtements parkour, boutique officielle, merchandising PKBA, t-shirt personnalisé, parkour Bassin d\'Arcachon',
   openGraph: {
-    title: 'Boutique PKBA - T-shirts Officiels | Parkour Bassin d\'Arcachon',
-    description: 'Collection exclusive de T-shirts officiels PKBA. Personnalisation disponible. Paiement sécurisé.',
+    title: 'Boutique PKBA - T-shirt Officiel | Parkour Bassin d\'Arcachon',
+    description: 'T-shirt officiel PKBA. Personnalisation disponible. Paiement sécurisé.',
     url: 'https://pkba.vertiflow.fr/boutique',
     images: ['/images/text_white.png'],
   },
@@ -29,7 +29,7 @@ export default function Boutique() {
           category: 'Vêtements de sport',
           offers: {
             '@type': 'Offer',
-            price: '25.00',
+            price: '19.99',
             priceCurrency: 'EUR',
             availability: 'https://schema.org/InStock',
             seller: {

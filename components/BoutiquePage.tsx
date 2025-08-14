@@ -22,43 +22,17 @@ const BoutiquePage = () => {
 
   const products = [
     {
-      id: 2,
-      name: 'Hoodie PKBA Premium',
-      price: 45,
-      originalPrice: 55,
-      image: '/images/hoodie-premium.jpg',
-      description: 'Hoodie premium avec logo brodé PKBA',
-      features: ['Coton premium', 'Logo brodé', 'Poche kangourou', 'Fermeture éclair'],
-      colors: ['Gris', 'Noir'],
-      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-      customization: false,
-      available: false
-    },
-    {
       id: 1,
       name: 'T-shirt Officiel PKBA',
       price: 19.99, // Reverted to original price
       originalPrice: 24.99,
-      image: '/images/tshirt-white.jpg',
+      image: '/images/mockups/front_white.png',
       description: 'T-shirt officiel du club PKBA, design exclusif haute qualité pour les performances sportives et le confort.',
       features: ['100% coton premium', 'Design exclusif PKBA', 'Haute qualité pour performances sportives', 'Confort optimal'],
       colors: ['Blanc', 'Noir'],
       sizes: ['S', 'M', 'L', 'XL', '2XL'],
       customization: true,
       available: true
-    },
-    {
-      id: 3,
-      name: 'Shorts PKBA Sport',
-      price: 35,
-      originalPrice: 42,
-      image: '/images/pants-sport.jpg',
-      description: 'Shorts de sport technique pour l\'entraînement',
-      features: ['Tissu technique', 'Respirant', 'Anti-odeur', 'Séchage rapide'],
-      colors: ['Noir', 'Gris'],
-      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-      customization: false,
-      available: false
     }
   ]
 
@@ -100,7 +74,7 @@ const BoutiquePage = () => {
               Boutique Officielle PKBA
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre collection exclusive de vêtements officiels PKBA. 
+              Découvrez notre T-shirt officiel PKBA. 
               Personnalisez votre T-shirt avec le nom de l'athlète et affichez fièrement vos couleurs !
             </p>
           </motion.div>
@@ -144,14 +118,14 @@ const BoutiquePage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-cheddar font-bold text-gray-900 mb-4">
-              Nos Produits
+              Notre Produit
             </h2>
             <p className="text-lg font-montserrat text-gray-600 max-w-2xl mx-auto">
-              Collection officielle PKBA - Qualité premium et design exclusif
+              T-shirt officiel PKBA - Qualité premium et design exclusif
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-2xl mx-auto">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -192,7 +166,7 @@ const BoutiquePage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-cheddar font-bold text-gray-900 mb-6">
-              Personnalisation
+              Personnalisation du T-shirt
             </h2>
             <p className="text-lg font-montserrat text-gray-600 max-w-3xl mx-auto">
               Ajoutez le nom de l'athlète sur votre T-shirt pour un look unique et personnalisé !
@@ -215,8 +189,8 @@ const BoutiquePage = () => {
                     1
                   </div>
                   <div>
-                    <strong>Choisissez votre produit</strong>
-                    <p className="text-sm mt-1">Sélectionnez le T-shirt qui vous plaît</p>
+                    <strong>Choisissez votre T-shirt</strong>
+                    <p className="text-sm mt-1">Sélectionnez la couleur qui vous plaît</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
