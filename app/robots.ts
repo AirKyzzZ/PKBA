@@ -66,7 +66,7 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 1,
       },
     ],
-    sitemap: 'https://pkba.vertiflow.fr/sitemap.xml',
-    host: 'https://pkba.vertiflow.fr',
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/sitemap.xml`,
+    host: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   }
 } 

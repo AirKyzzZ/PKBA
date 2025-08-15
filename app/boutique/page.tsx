@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Boutique PKBA - T-shirt Officiel | Parkour Bassin d\'Arcachon',
     description: 'T-shirt officiel PKBA. Personnalisation disponible. Paiement sécurisé.',
-    url: 'https://pkba.vertiflow.fr/boutique',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/boutique`,
     images: ['/images/text_white.png'],
   },
   alternates: {

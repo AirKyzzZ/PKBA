@@ -15,9 +15,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           alternateName: ['PKBA', 'Parkour Bassin d\'Arcachon', 'Club Parkour Arcachon', 'Club Parkour La Teste'],
           description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité. Cours, événements et compétitions de parkour.',
-          url: 'https://pkba.vertiflow.fr',
-          logo: 'https://pkba.vertiflow.fr/images/full_white.png',
-          image: 'https://pkba.vertiflow.fr/images/text_white.png',
+          url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+          logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/full_white.png`,
+          image: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/text_white.png`,
           address: {
             '@type': 'PostalAddress',
             streetAddress: 'Bassin d\'Arcachon',
@@ -80,11 +80,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           alternateName: ['PKBA', 'Parkour Bassin d\'Arcachon', 'Club Parkour Arcachon', 'Club Parkour La Teste'],
           description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité.',
-          url: 'https://pkba.vertiflow.fr',
+          url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           telephone: '+33 6 12 34 56 78',
           email: 'contact@pkba.vertiflow.fr',
-          logo: 'https://pkba.vertiflow.fr/images/full_white.png',
-          image: 'https://pkba.vertiflow.fr/images/text_white.png',
+          logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/full_white.png`,
+          image: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/text_white.png`,
           address: {
             '@type': 'PostalAddress',
             streetAddress: 'Bassin d\'Arcachon',
@@ -192,7 +192,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           sport: 'Parkour',
           description: 'Club de parkour associatif proposant des cours, événements et compétitions.',
-          url: 'https://pkba.vertiflow.fr',
+          url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           ...data,
         }
       
@@ -224,7 +224,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           organizer: {
             '@type': 'Organization',
             name: 'PKBA - Parkour Bassin d\'Arcachon',
-            url: 'https://pkba.vertiflow.fr',
+            url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           },
           location: {
             '@type': 'Place',
@@ -245,7 +245,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'LocalBusiness',
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           description: 'Club de parkour associatif au Bassin d\'Arcachon',
-          url: 'https://pkba.vertiflow.fr',
+          url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           telephone: data.telephone,
           address: {
             '@type': 'PostalAddress',

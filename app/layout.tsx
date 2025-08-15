@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://pkba.vertiflow.fr'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   alternates: {
     canonical: '/',
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PKBA - Parkour Bassin d\'Arcachon | Club de Parkour Associatif',
     description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité. Inscriptions ouvertes pour la saison 2025/2026.',
-    url: 'https://pkba.vertiflow.fr',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     siteName: 'PKBA - Parkour Bassin d\'Arcachon',
     images: [
       {

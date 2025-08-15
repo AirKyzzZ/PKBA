@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
     description: 'Inscrivez-vous au club de parkour PKBA. Formulaire sécurisé et encadrement professionnel.',
-    url: 'https://pkba.vertiflow.fr/inscription',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
     images: ['/images/text_white.png'],
   },
   alternates: {
