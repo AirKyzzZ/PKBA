@@ -87,36 +87,43 @@ exports.handler = async (event, context) => {
     
     console.log('Airtable base initialized successfully');
     
-    // Map form data to exact Airtable field names from your table
-    const fieldsToCreate = {
-      'Prénom': body.firstName,
-      'Nom': body.lastName,
-      'Date de naissance': body.birthDate,
-      'Sexe': body.gender,
-      'Type d\'adhésion': body.adhesionType && body.adhesionType.length > 0 ? body.adhesionType : [],
-      'Adresse': body.address,
-      'Code postal': body.postalCode,
-      'Ville': body.city,
-      'Téléphone': body.phone,
-      'Email': body.email,
-      'Responsable 1 - Civilité': body.legalGuardian1?.title || '',
-      'Responsable 1 - Nom': body.legalGuardian1?.lastName || '',
-      'Responsable 1 - Prénom': body.legalGuardian1?.firstName || '',
-      'Responsable 1 - Téléphone': body.legalGuardian1?.phone || '',
-      'Responsable 1 - Email': body.legalGuardian1?.email || '',
-      'Responsable 2 - Civilité': body.legalGuardian2?.title || '',
-      'Responsable 2 - Nom': body.legalGuardian2?.lastName || '',
-      'Responsable 2 - Prénom': body.legalGuardian2?.firstName || '',
-      'Responsable 2 - Téléphone': body.legalGuardian2?.phone || '',
-      'Responsable 2 - Email': body.legalGuardian2?.email || '',
-      'Contact d\'urgence - Nom': body.emergencyContact.name,
-      'Contact d\'urgence - Téléphone': body.emergencyContact.phone,
-      'Droit à l\'image': body.imageRights || false,
-      'Règlement intérieur accepté': body.termsAccepted || false,
-      'Signature': body.signature || '',
-      'Date d\'inscription': new Date().toISOString().split('T')[0],
-      'Statut': 'En attente'
-    };
+         // Map form data to exact Airtable field names from your table
+     const fieldsToCreate = {
+       'Prénom': body.firstName,
+       'Nom': body.lastName,
+       'Date de naissance': body.birthDate,
+       'Sexe': body.gender,
+       'Type d\'adhésion': body.adhesionType && body.adhesionType.length > 0 ? body.adhesionType : [],
+       'Adresse': body.address,
+       'Code postal': body.postalCode,
+       'Ville': body.city,
+       'Téléphone': body.phone,
+       'Email': body.email,
+       'Contact d\'urgence - Nom': body.emergencyContact.name,
+       'Contact d\'urgence - Téléphone': body.emergencyContact.phone,
+       'Droit à l\'image': body.imageRights || false,
+       'Règlement intérieur accepté': body.termsAccepted || false,
+       'Signature': body.signature || '',
+       'Date d\'inscription': new Date().toISOString().split('T')[0],
+       'Statut': 'En attente'
+     };
+
+     // Only add legal guardian fields if they have actual values (for minors)
+     if (body.legalGuardian1?.title && body.legalGuardian1?.lastName && body.legalGuardian1?.firstName) {
+       fieldsToCreate['Responsable 1 - Civilité'] = body.legalGuardian1.title;
+       fieldsToCreate['Responsable 1 - Nom'] = body.legalGuardian1.lastName;
+       fieldsToCreate['Responsable 1 - Prénom'] = body.legalGuardian1.firstName;
+       fieldsToCreate['Responsable 1 - Téléphone'] = body.legalGuardian1.phone || '';
+       fieldsToCreate['Responsable 1 - Email'] = body.legalGuardian1.email || '';
+     }
+
+     if (body.legalGuardian2?.title && body.legalGuardian2?.lastName && body.legalGuardian2?.firstName) {
+       fieldsToCreate['Responsable 2 - Civilité'] = body.legalGuardian2.title;
+       fieldsToCreate['Responsable 2 - Nom'] = body.legalGuardian2.lastName;
+       fieldsToCreate['Responsable 2 - Prénom'] = body.legalGuardian2.firstName;
+       fieldsToCreate['Responsable 2 - Téléphone'] = body.legalGuardian2.phone || '';
+       fieldsToCreate['Responsable 2 - Email'] = body.legalGuardian2.email || '';
+     }
 
     // Add club d'origine if specified
     if (body.otherClub) {
@@ -126,23 +133,38 @@ exports.handler = async (event, context) => {
     console.log('Creating Airtable record with fields:', JSON.stringify(fieldsToCreate, null, 2));
     console.log('Attempting to create record in table:', process.env.AIRTABLE_TABLE_NAME);
     
-    // Debug: Log specific field values that might cause issues
-    console.log('Debug - Field values:');
-    console.log('  - Type d\'adhésion:', JSON.stringify(fieldsToCreate['Type d\'adhésion']));
-    console.log('  - Droit à l\'image:', fieldsToCreate['Droit à l\'image'], '(checkbox)');
-    console.log('  - Règlement intérieur accepté:', fieldsToCreate['Règlement intérieur accepté'], '(checkbox)');
-    console.log('  - Sexe:', fieldsToCreate['Sexe'], '(single select)');
-    console.log('  - Date d\'inscription:', fieldsToCreate['Date d\'inscription'], '(date)');
-    console.log('  - Responsable 1 - Civilité:', fieldsToCreate['Responsable 1 - Civilité'], '(single select)');
-    console.log('  - Responsable 2 - Civilité:', fieldsToCreate['Responsable 2 - Civilité'], '(single select)');
-    
-    // Check for empty or invalid select field values
-    const selectFields = ['Sexe', 'Responsable 1 - Civilité', 'Responsable 2 - Civilité'];
-    selectFields.forEach(field => {
-      if (fieldsToCreate[field] === '') {
-        console.warn(`⚠️  Warning: ${field} is empty, this might cause issues`);
-      }
-    });
+         // Debug: Log specific field values that might cause issues
+     console.log('Debug - Field values:');
+     console.log('  - Type d\'adhésion:', JSON.stringify(fieldsToCreate['Type d\'adhésion']));
+     console.log('  - Droit à l\'image:', fieldsToCreate['Droit à l\'image'], '(checkbox)');
+     console.log('  - Règlement intérieur accepté:', fieldsToCreate['Règlement intérieur accepté'], '(checkbox)');
+     console.log('  - Sexe:', fieldsToCreate['Sexe'], '(single select)');
+     console.log('  - Date d\'inscription:', fieldsToCreate['Date d\'inscription'], '(date)');
+     
+     // Log legal guardian fields only if they exist
+     if (fieldsToCreate['Responsable 1 - Civilité']) {
+       console.log('  - Responsable 1 - Civilité:', fieldsToCreate['Responsable 1 - Civilité'], '(single select)');
+     } else {
+       console.log('  - Responsable 1 - Civilité: Not provided (user is major)');
+     }
+     
+     if (fieldsToCreate['Responsable 2 - Civilité']) {
+       console.log('  - Responsable 2 - Civilité:', fieldsToCreate['Responsable 2 - Civilité'], '(single select)');
+     } else {
+       console.log('  - Responsable 2 - Civilité: Not provided (user is major)');
+     }
+     
+     // Check for empty or invalid select field values (only for fields that are actually sent)
+     const sentSelectFields = Object.keys(fieldsToCreate).filter(key => 
+       ['Sexe', 'Responsable 1 - Civilité', 'Responsable 2 - Civilité'].includes(key) && 
+       fieldsToCreate[key] !== undefined
+     );
+     
+     sentSelectFields.forEach(field => {
+       if (fieldsToCreate[field] === '') {
+         console.warn(`⚠️  Warning: ${field} is empty, this might cause issues`);
+       }
+     });
     
     // Create record with mapped fields
     const record = await base(process.env.AIRTABLE_TABLE_NAME).create([
