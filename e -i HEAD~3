@@ -1,0 +1,5 @@
+[33m955b079[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m docs: remove Stripe API keys from README for security
+[33mb6da76f[m feat: privacy warning
+[33m8db7d81[m feat: complete environment configuration with live keys and EmailJS initialization
+[33maf2edcf[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: replace hardcoded URLs with environment variables and disable secrets scanning
+[33ma1768bb[m fix: configure secrets scanning to exclude build artifacts and public env vars
