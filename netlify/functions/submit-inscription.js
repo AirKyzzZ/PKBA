@@ -93,7 +93,7 @@ exports.handler = async (event, context) => {
       'Nom': body.lastName,
       'Date de naissance': body.birthDate,
       'Sexe': body.gender,
-      'Type d\'adhésion': body.adhesionType ? body.adhesionType.join(', ') : '',
+      'Type d\'adhésion': body.adhesionType && body.adhesionType.length > 0 ? body.adhesionType : [],
       'Adresse': body.address,
       'Code postal': body.postalCode,
       'Ville': body.city,
