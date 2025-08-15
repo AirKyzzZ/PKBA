@@ -5,6 +5,3 @@
 /images/* /images/:splat 200
 /fonts/* /fonts/:splat 200
 /_next/* /_next/:splat 200
-
-# Handle Netlify functions
-/.netlify/functions/* /.netlify/functions/:splat 200

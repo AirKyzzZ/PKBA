@@ -69,8 +69,6 @@ const nextConfig = {
   generateEtags: true,
   trailingSlash: true,
   assetPrefix: '',
-  output: 'export',
-  distDir: 'out',
 }
 
 module.exports = nextConfig 
