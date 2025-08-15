@@ -4,14 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-@font-face {
-  font-family: 'Cheddar Gothic Stencil';
-  src: url('/fonts/CheddarGothicStencil.woff2') format('woff2'),
-       url('/fonts/CheddarGothicStencil.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
+/* Font fallback - using Montserrat as primary font */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -89,7 +82,13 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-} 
+}
+
+/* Font fallback classes */
+.font-cheddar {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
 
 /* Form elements - unified background */
 @layer base {

@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
   # Add build hook to ensure proper environment variable handling
   [build.environment]
     NODE_VERSION = "18"
@@ -32,11 +32,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     X-DNS-Prefetch-Control = "on"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-
-[[headers]]
-  for = "/api/*"
-  [headers.values]
-    Cache-Control = "no-store, max-age=0"
 
 [[headers]]
   for = "/_next/static/*"
@@ -135,17 +130,6 @@
 # Configuration des fonctions
 [functions]
   directory = "netlify/functions"
-
-# Configuration des formulaires
-[[redirects]]
-  from = "/api/submit-inscription"
-  to = "/.netlify/functions/submit-inscription"
-  status = 200
-
-[[redirects]]
-  from = "/api/submit-contact"
-  to = "/.netlify/functions/submit-contact"
-  status = 200
 
 # Configuration des hooks de build
 [build.hooks]

@@ -61,15 +61,16 @@ const nextConfig = {
     ]
   },
   images: {
+    unoptimized: true,
     formats: ['image/webp', 'image/avif'],
-    loader: 'default',
-    path: '',
   },
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
   trailingSlash: true,
   assetPrefix: '',
+  output: 'export',
+  distDir: 'out',
 }
 
 module.exports = nextConfig 
