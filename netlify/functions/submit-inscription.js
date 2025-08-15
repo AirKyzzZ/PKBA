@@ -133,6 +133,16 @@ exports.handler = async (event, context) => {
     console.log('  - Règlement intérieur accepté:', fieldsToCreate['Règlement intérieur accepté'], '(checkbox)');
     console.log('  - Sexe:', fieldsToCreate['Sexe'], '(single select)');
     console.log('  - Date d\'inscription:', fieldsToCreate['Date d\'inscription'], '(date)');
+    console.log('  - Responsable 1 - Civilité:', fieldsToCreate['Responsable 1 - Civilité'], '(single select)');
+    console.log('  - Responsable 2 - Civilité:', fieldsToCreate['Responsable 2 - Civilité'], '(single select)');
+    
+    // Check for empty or invalid select field values
+    const selectFields = ['Sexe', 'Responsable 1 - Civilité', 'Responsable 2 - Civilité'];
+    selectFields.forEach(field => {
+      if (fieldsToCreate[field] === '') {
+        console.warn(`⚠️  Warning: ${field} is empty, this might cause issues`);
+      }
+    });
     
     // Create record with mapped fields
     const record = await base(process.env.AIRTABLE_TABLE_NAME).create([
