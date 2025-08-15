@@ -17,7 +17,7 @@ export default function MentionsLegales() {
               Éditeur du site
             </h2>
             <p>
-              <strong>PKBA - Parkour Bassin d'Arcachon</strong><br />
+              <strong>{process.env.NEXT_PUBLIC_SITE_NAME}</strong><br />
               Association loi 1901<br />
               SIREN : 990115685<br />
               SIRET (siège social) : 99011568500010<br />

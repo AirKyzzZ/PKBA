@@ -76,7 +76,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         return {
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
-          '@id': 'https://pkba.vertiflow.fr/#organization',
+          '@id': `${process.env.NEXT_PUBLIC_SITE_URL}/#organization`,
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           alternateName: ['PKBA', 'Parkour Bassin d\'Arcachon', 'Club Parkour Arcachon', 'Club Parkour La Teste'],
           description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité.',

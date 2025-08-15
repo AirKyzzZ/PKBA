@@ -17,7 +17,7 @@ export default function CGV() {
               Préambule
             </h2>
             <p>
-              Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les commandes passées sur le site web de PKBA - Parkour Bassin d'Arcachon. En passant commande, vous acceptez sans réserve les présentes conditions.
+              Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les commandes passées sur le site web de {process.env.NEXT_PUBLIC_SITE_NAME}. En passant commande, vous acceptez sans réserve les présentes conditions.
             </p>
           </section>
 
@@ -26,7 +26,7 @@ export default function CGV() {
               Éditeur
             </h2>
             <p>
-              <strong>PKBA - Parkour Bassin d'Arcachon</strong><br />
+              <strong>{process.env.NEXT_PUBLIC_SITE_NAME}</strong><br />
               Association loi 1901<br />
               SIREN : 990115685<br />
               SIRET (siège social) : 99011568500010<br />

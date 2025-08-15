@@ -19,15 +19,15 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: 'Téléphone',
-      value: '06 60 14 71 44',
-      href: 'tel:0660147144',
+      value: process.env.NEXT_PUBLIC_CONTACT_PHONE || '06 60 14 71 44',
+      href: `tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE || '0660147144'}`,
       description: 'Appelez-nous pour toute question'
     },
     {
       icon: Mail,
       title: 'Email',
-      value: 'parkourBA33@gmail.com',
-      href: 'mailto:parkourBA33@gmail.com',
+      value: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com',
+      href: `mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}`,
       description: 'Envoyez-nous un email'
     },
     {

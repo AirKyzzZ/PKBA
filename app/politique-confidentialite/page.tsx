@@ -17,7 +17,7 @@ export default function PolitiqueConfidentialite() {
               Introduction
             </h2>
             <p>
-              PKBA - Parkour Bassin d'Arcachon s'engage à protéger la vie privée de ses utilisateurs. Cette politique de confidentialité décrit comment nous collectons, utilisons et protégeons vos informations personnelles conformément au Règlement Général sur la Protection des Données (RGPD).
+              {process.env.NEXT_PUBLIC_SITE_NAME} s'engage à protéger la vie privée de ses utilisateurs. Cette politique de confidentialité décrit comment nous collectons, utilisons et protégeons vos informations personnelles conformément au Règlement Général sur la Protection des Données (RGPD).
             </p>
           </section>
 
@@ -26,7 +26,7 @@ export default function PolitiqueConfidentialite() {
               Responsable du traitement
             </h2>
             <p>
-              <strong>PKBA - Parkour Bassin d'Arcachon</strong><br />
+              <strong>{process.env.NEXT_PUBLIC_SITE_NAME}</strong><br />
               Association loi 1901<br />
               Bassin d'Arcachon, France<br />
               Email : parkourBA33@gmail.com<br />

@@ -96,38 +96,50 @@ Site accessible sur [`http://localhost:3000`](http://localhost:3000)
 
 ## Variables d'environnement
 
-Créez un fichier `.env.local` à la racine avec les clés suivantes:
+Créez un fichier `.env.local` avec les variables suivantes :
 
-```env
-# Stripe
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
+```bash
+# Configuration du site
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_SITE_NAME=Your Site Name
+NEXT_PUBLIC_CONTACT_EMAIL=your-email@domain.com
+NEXT_PUBLIC_CONTACT_PHONE=your-phone-number
 
-# EmailJS
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=...
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
+# Configuration Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_publishable_key
+STRIPE_SECRET_KEY=sk_live_your_stripe_secret_key
 
-# Formspree
-NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=...
-NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=...
-NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=...
+# Configuration EmailJS
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
 
-# Airtable
-AIRTABLE_API_KEY=...
-AIRTABLE_BASE_ID=...
-AIRTABLE_INSCRIPTIONS_TABLE=...
+# Configuration Formspree
+NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_formspree_contact_form_id
+NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_formspree_registration_form_id
+NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=your_formspree_order_form_id
 
-# Admin Authentication
-ADMIN_USERNAME=...
-ADMIN_PASSWORD_HASH=...
+# Configuration Airtable
+AIRTABLE_API_KEY=your_airtable_api_key
+AIRTABLE_BASE_ID=your_airtable_base_id
+AIRTABLE_TABLE_NAME=your_airtable_table_name
 
-# SEO / Vérifications (optionnel)
-NEXT_PUBLIC_SITE_NAME=PKBA
-NEXT_PUBLIC_SITE_URL=https://pkba.vertiflow.fr
+# Authentification Admin
+ADMIN_USERNAME=your_admin_username
+ADMIN_PASSWORD_HASH=your_admin_password_hash
 ```
 
 Sur Netlify, définissez les mêmes variables dans l'onglet Environment. Le fichier `netlify.toml` expose également des en-têtes de sécurité et la version Node.
+
+# Configuration Netlify
+
+Le fichier `netlify.toml` est configuré pour :
+- Désactiver le scan des secrets (`secrets_scanning.enabled = false`)
+- Omettre les variables d'environnement publiques du scan des secrets
+- Configurer les en-têtes de sécurité
+- Optimiser le cache et la compression
+
+**Important** : Les variables d'environnement sont configurées directement dans le fichier `netlify.toml` pour éviter les erreurs de build liées au scan des secrets.
 
 ## Scripts NPM
 

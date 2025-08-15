@@ -79,7 +79,7 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-primary" />
                 <a 
-                  href="tel:0660147144" 
+                  href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`} 
                   className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
                 >
                   06 60 14 71 44
@@ -88,10 +88,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-primary" />
                 <a 
-                  href="mailto:parkourBA33@gmail.com" 
+                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`} 
                   className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
                 >
-                  parkourBA33@gmail.com
+                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -130,7 +130,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 font-montserrat text-sm">
-              © {currentYear} PKBA - Parkour Bassin d'Arcachon. Tous droits réservés.
+              © {currentYear} {process.env.NEXT_PUBLIC_SITE_NAME}. Tous droits réservés.
             </p>
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
               <p className="text-gray-400 font-montserrat text-sm">

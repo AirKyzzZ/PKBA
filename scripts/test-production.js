@@ -12,7 +12,7 @@ console.log('🔧 PKBA Production Test Suite');
 console.log('==============================\n');
 
 // Configuration
-const SITE_URL = 'https://pkba.vertiflow.fr';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkba.vertiflow.fr';
 const TEST_ENDPOINTS = [
   '/',
   '/boutique',
