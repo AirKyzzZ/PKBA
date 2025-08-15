@@ -111,9 +111,10 @@ exports.handler = async (event, context) => {
       'Responsable 2 - Email': body.legalGuardian2?.email || '',
       'Contact d\'urgence - Nom': body.emergencyContact.name,
       'Contact d\'urgence - Téléphone': body.emergencyContact.phone,
-      'Droit à l\'image': body.imageRights ? 'Accepté' : 'Refusé',
-      'Règlement intérieur accepté': body.termsAccepted ? 'Oui' : 'Non',
+      'Droit à l\'image': body.imageRights || false,
+      'Règlement intérieur accepté': body.termsAccepted || false,
       'Signature': body.signature || '',
+      'Date d\'inscription': new Date().toISOString().split('T')[0],
       'Statut': 'En attente'
     };
 
@@ -124,6 +125,14 @@ exports.handler = async (event, context) => {
 
     console.log('Creating Airtable record with fields:', JSON.stringify(fieldsToCreate, null, 2));
     console.log('Attempting to create record in table:', process.env.AIRTABLE_TABLE_NAME);
+    
+    // Debug: Log specific field values that might cause issues
+    console.log('Debug - Field values:');
+    console.log('  - Type d\'adhésion:', JSON.stringify(fieldsToCreate['Type d\'adhésion']));
+    console.log('  - Droit à l\'image:', fieldsToCreate['Droit à l\'image'], '(checkbox)');
+    console.log('  - Règlement intérieur accepté:', fieldsToCreate['Règlement intérieur accepté'], '(checkbox)');
+    console.log('  - Sexe:', fieldsToCreate['Sexe'], '(single select)');
+    console.log('  - Date d\'inscription:', fieldsToCreate['Date d\'inscription'], '(date)');
     
     // Create record with mapped fields
     const record = await base(process.env.AIRTABLE_TABLE_NAME).create([
