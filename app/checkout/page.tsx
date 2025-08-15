@@ -103,16 +103,16 @@ const CheckoutPage = () => {
                         <div className="flex items-center space-x-2 mt-2">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 rounded border border-gray-300 flex items-center justify-center hover:bg-gray-50"
+                            className="w-6 h-6 rounded border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-600"
                           >
                             <Minus size={12} />
                           </button>
-                          <span className="w-8 text-center font-montserrat font-medium">
-                            {item.quantity}
-                          </span>
+                                                  <span className="w-8 text-center font-montserrat font-medium text-gray-900">
+                          {item.quantity}
+                        </span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 rounded border border-gray-300 flex items-center justify-center hover:bg-gray-50"
+                            className="w-6 h-6 rounded border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-600"
                           >
                             <Plus size={12} />
                           </button>
@@ -142,14 +142,14 @@ const CheckoutPage = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="font-montserrat text-gray-600">Sous-total:</span>
-                    <span className="font-cheddar font-bold">{subtotal.toFixed(2)}€</span>
+                    <span className="font-cheddar font-bold text-gray-900">{subtotal.toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-montserrat text-gray-600">Livraison:</span>
-                    <span className="font-cheddar font-bold">{shippingCost.toFixed(2)}€</span>
+                    <span className="font-cheddar font-bold text-gray-900">{shippingCost.toFixed(2)}€</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between">
-                    <span className="font-cheddar font-bold text-lg">Total:</span>
+                    <span className="font-cheddar font-bold text-lg text-gray-900">Total:</span>
                     <span className="font-cheddar font-bold text-lg text-primary">
                       {total.toFixed(2)}€
                     </span>
