@@ -26,7 +26,7 @@ import {
   Shield as ShieldIcon
 } from 'lucide-react'
 
-interface PreInscription {
+interface Préinscription {
   id: string
   fields: {
     'Nom': string
@@ -61,15 +61,15 @@ interface PreInscription {
   }
 }
 
-const PreInscriptionsList = () => {
-  const [inscriptions, setInscriptions] = useState<PreInscription[]>([])
-  const [filteredInscriptions, setFilteredInscriptions] = useState<PreInscription[]>([])
+const PréinscriptionsList = () => {
+  const [inscriptions, setInscriptions] = useState<Préinscription[]>([])
+  const [filteredInscriptions, setFilteredInscriptions] = useState<Préinscription[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [medicalFilter, setMedicalFilter] = useState('')
-  const [selectedInscription, setSelectedInscription] = useState<PreInscription | null>(null)
+  const [selectedInscription, setSelectedInscription] = useState<Préinscription | null>(null)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [previousCount, setPreviousCount] = useState(0)
@@ -96,10 +96,10 @@ const PreInscriptionsList = () => {
 
   const fetchInscriptions = async (forceRefresh = false) => {
     try {
-      console.log('=== FETCHING PRE-INSCRIPTIONS START ===')
+      console.log('=== FETCHING PRÉINSCRIPTIONS START ===')
       console.log('Force refresh:', forceRefresh)
-      console.log('Current pre-inscriptions before fetch:', inscriptions.length)
-      console.log('Current filtered pre-inscriptions before fetch:', filteredInscriptions.length)
+      console.log('Current préinscriptions before fetch:', inscriptions.length)
+      console.log('Current filtered préinscriptions before fetch:', filteredInscriptions.length)
       console.log('Setting refreshing to true...')
       setRefreshing(true)
       
@@ -119,44 +119,44 @@ const PreInscriptionsList = () => {
       console.log('API response ok:', response.ok)
       
       if (!response.ok) {
-        throw new Error('Erreur lors de la récupération des pré-inscriptions')
+        throw new Error('Erreur lors de la récupération des préinscriptions')
       }
       
       const data = await response.json()
       console.log('API response data:', data)
-      console.log('Number of pre-inscriptions received:', data.inscriptions?.length || 0)
+      console.log('Number of préinscriptions received:', data.inscriptions?.length || 0)
       
       const newCount = data.inscriptions?.length || 0
       
       // Check if there are new inscriptions
       if (previousCount > 0 && newCount > previousCount) {
         const newInscriptions = newCount - previousCount
-        console.log(`${newInscriptions} nouvelle(s) pré-inscription(s) trouvée(s)`)
+        console.log(`${newInscriptions} nouvelle(s) préinscription(s) trouvée(s)`)
       }
       
-      console.log('Setting pre-inscriptions state with new data...')
+      console.log('Setting préinscriptions state with new data...')
       setInscriptions(data.inscriptions || [])
       console.log('Setting previous count to:', newCount)
       setPreviousCount(newCount)
       console.log('Setting last updated to:', new Date())
       setLastUpdated(new Date())
-      console.log('=== PRE-INSCRIPTIONS UPDATED SUCCESSFULLY ===')
+      console.log('=== PRÉINSCRIPTIONS UPDATED SUCCESSFULLY ===')
     } catch (err) {
-      console.error('=== ERROR IN FETCH PRE-INSCRIPTIONS ===')
+      console.error('=== ERROR IN FETCH PRÉINSCRIPTIONS ===')
       console.error('Error details:', err)
-      setError('Impossible de charger les pré-inscriptions')
+              setError('Impossible de charger les préinscriptions')
     } finally {
       console.log('Setting loading to false...')
       setLoading(false)
       console.log('Setting refreshing to false...')
       setRefreshing(false)
-      console.log('=== FETCHING PRE-INSCRIPTIONS END ===')
+      console.log('=== FETCHING PRÉINSCRIPTIONS END ===')
     }
   }
 
   const filterInscriptions = () => {
-    console.log('=== FILTERING PRE-INSCRIPTIONS ===')
-    console.log('Total pre-inscriptions to filter:', inscriptions.length)
+    console.log('=== FILTERING PRÉINSCRIPTIONS ===')
+    console.log('Total préinscriptions to filter:', inscriptions.length)
     console.log('Current search term:', searchTerm)
     console.log('Current status filter:', statusFilter)
     console.log('Current medical filter:', medicalFilter)
@@ -188,7 +188,7 @@ const PreInscriptionsList = () => {
       )
     }
 
-    console.log('Filtered pre-inscriptions count:', filtered.length)
+    console.log('Filtered préinscriptions count:', filtered.length)
     setFilteredInscriptions(filtered)
   }
 
@@ -343,7 +343,7 @@ const PreInscriptionsList = () => {
     const link = document.createElement('a')
     const url = URL.createObjectURL(blob)
     link.setAttribute('href', url)
-    link.setAttribute('download', `pre-inscriptions-${new Date().toISOString().split('T')[0]}.csv`)
+    link.setAttribute('download', `préinscriptions-${new Date().toISOString().split('T')[0]}.csv`)
     link.style.visibility = 'hidden'
     document.body.appendChild(link)
     link.click()
@@ -357,7 +357,7 @@ const PreInscriptionsList = () => {
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <RefreshCw className="w-8 h-8 text-primary animate-spin mx-auto mb-4" />
-              <p className="text-gray-600">Chargement des pré-inscriptions...</p>
+              <p className="text-gray-600">Chargement des préinscriptions...</p>
             </div>
           </div>
         </div>
@@ -392,10 +392,10 @@ const PreInscriptionsList = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Gestion des Pré-inscriptions
+              Gestion des Préinscriptions
             </h1>
             <p className="text-gray-600">
-              {inscriptions.length} pré-inscription(s) au total
+                              {inscriptions.length} préinscription(s) au total
               {lastUpdated && (
                 <span className="ml-2 text-sm text-gray-500">
                   • Dernière mise à jour : {lastUpdated.toLocaleTimeString('fr-FR')}
@@ -475,7 +475,7 @@ const PreInscriptionsList = () => {
           </div>
         </div>
 
-        {/* Pre-inscriptions List */}
+        {/* Préinscriptions List */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -571,11 +571,11 @@ const PreInscriptionsList = () => {
         {filteredInscriptions.length === 0 && !loading && (
           <div className="text-center py-12">
             <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Aucune pré-inscription trouvée</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Aucune préinscription trouvée</h3>
             <p className="text-gray-500">
               {searchTerm || statusFilter || medicalFilter 
                 ? 'Essayez de modifier vos critères de recherche.'
-                : 'Aucune pré-inscription n\'a encore été soumise.'
+                : 'Aucune préinscription n\'a encore été soumise.'
               }
             </p>
           </div>
@@ -601,7 +601,7 @@ const PreInscriptionsList = () => {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-gray-900">
-                      Détails de la Pré-inscription
+                      Détails de la Préinscription
                     </h2>
                     <button
                       onClick={() => setSelectedInscription(null)}
@@ -765,7 +765,7 @@ const PreInscriptionsList = () => {
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Gestion du Statut</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Statut de la pré-inscription</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Statut de la préinscription</label>
                           <select
                             value={selectedInscription.fields['Statut'] || ''}
                             onChange={(e) => updateInscriptionStatus(selectedInscription.id, e.target.value)}
@@ -803,4 +803,4 @@ const PreInscriptionsList = () => {
   )
 }
 
-export default PreInscriptionsList
+export default PréinscriptionsList

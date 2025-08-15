@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     // Validation des données
     if (!id || !medicalStatus) {
       return NextResponse.json(
-        { message: 'ID de la pré-inscription et statut médical requis' },
+        { message: 'ID de la préinscription et statut médical requis' },
         { status: 400 }
       )
     }

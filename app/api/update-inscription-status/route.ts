@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     // Validation des données
     if (!id || !status) {
       return NextResponse.json(
-        { message: 'ID de la pré-inscription et statut requis' },
+        { message: 'ID de la préinscription et statut requis' },
         { status: 400 }
       )
     }

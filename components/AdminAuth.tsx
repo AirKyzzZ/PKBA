@@ -77,7 +77,7 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
             Accès Administrateur
           </h1>
           <p className="text-gray-600">
-            Entrez le mot de passe pour accéder à la gestion des pré-inscriptions
+            Entrez le mot de passe pour accéder à la gestion des préinscriptions
           </p>
         </div>
 

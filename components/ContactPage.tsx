@@ -256,7 +256,7 @@ const ContactPage = () => {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                   >
                     <option value="">Sélectionnez un sujet</option>
-                    <option value="Pré-inscription">Pré-inscription au club</option>
+                    <option value="Préinscription">Préinscription au club</option>
                     <option value="Boutique">Question boutique</option>
                     <option value="Entraînement">Planning d'entraînement</option>
                     <option value="Partenariat">Partenariat</option>
@@ -348,7 +348,7 @@ const ContactPage = () => {
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Support prioritaire pour les pré-inscriptions</span>
+                    <span>Support prioritaire pour les préinscriptions</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -363,7 +363,7 @@ const ContactPage = () => {
                 </h3>
                 <p className="font-montserrat text-white/90 mb-4">
                   Prêt à faire partie de notre communauté ? 
-                  Les pré-inscriptions pour la saison 2025/2026 sont ouvertes !
+                  Les préinscriptions pour la saison 2025/2026 sont ouvertes !
                 </p>
                 <a
                   href="/inscription"

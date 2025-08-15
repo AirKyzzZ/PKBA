@@ -179,20 +179,20 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       body: JSON.stringify({
         success: true,
-        message: 'Pré-inscription enregistrée avec succès',
+        message: 'Préinscription enregistrée avec succès',
         id: record[0].id
       })
     };
 
   } catch (error) {
-    console.error('=== ERROR SUBMITTING PRE-INSCRIPTION ===');
+    console.error('=== ERROR SUBMITTING PRÉINSCRIPTION ===');
     console.error('Error type:', typeof error);
     console.error('Error message:', error.message);
     console.error('Error stack:', error.stack);
     console.error('Full error object:', JSON.stringify(error, null, 2));
     
     // Return more specific error messages
-    let errorMessage = 'Erreur lors de l\'enregistrement de la pré-inscription';
+            let errorMessage = 'Erreur lors de l\'enregistrement de la préinscription';
     let errorDetails = '';
     
     if (error.message) {
