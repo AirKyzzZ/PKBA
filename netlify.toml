@@ -4,17 +4,21 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  # Allow expected public env values in build output
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_NAME,NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID,NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID,NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID,NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,NEXT_PUBLIC_EMAILJS_SERVICE_ID,NEXT_PUBLIC_EMAILJS_TEMPLATE_ID"
 
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+    Referrer-Policy = "origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-DNS-Prefetch-Control = "on"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
 
 [[headers]]
   for = "/_next/static/*"
@@ -22,41 +26,105 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.js"
+  for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.css"
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+
+# Redirections pour le SEO
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/accueil"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/club"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/parkour"
+  to = "/"
+  status = 301
+
+# Redirection des anciennes URLs vers les nouvelles
+[[redirects]]
+  from = "/tshirt"
+  to = "/boutique/tshirt"
+  status = 301
+
+[[redirects]]
+  from = "/inscriptions"
+  to = "/inscription"
+  status = 301
+
+# Redirection des erreurs 404
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
+
+# Optimisations pour les images
+[[headers]]
+  for = "*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.png"
+  for = "*.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpg"
+  for = "*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+# Compression et optimisation
+[build.processing]
+  skip_processing = false
 
-[[headers]]
-  for = "/*.ico"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+[build.processing.css]
+  bundle = true
+  minify = true
 
-[[headers]]
-  for = "/*.woff"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+[build.processing.js]
+  bundle = true
+  minify = true
 
-[[headers]]
-  for = "/*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable" 
+[build.processing.html]
+  pretty_urls = true
+
+# Configuration des fonctions
+[functions]
+  directory = "netlify/functions"
+
+# Configuration des formulaires
+[[redirects]]
+  from = "/api/submit-inscription"
+  to = "/.netlify/functions/submit-inscription"
+  status = 200
+
+[[redirects]]
+  from = "/api/submit-contact"
+  to = "/.netlify/functions/submit-contact"
+  status = 200
+
+# Configuration pour le SEO
+[build.environment]
+  NODE_ENV = "production"
+  NEXT_PUBLIC_SITE_URL = "https://pkba.vertiflow.fr" 

@@ -65,7 +65,6 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
-      'max-snippet': -1,
     },
   },
   verification: {
@@ -96,7 +95,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/full_white.png" />
         <link rel="manifest" href="/manifest.json" />
         <StructuredData 
-          type="organization" 
+          type="localSportsOrganization" 
           data={{
             foundingDate: '2025',
             sport: 'Parkour',
