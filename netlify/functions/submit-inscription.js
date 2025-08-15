@@ -79,8 +79,13 @@ exports.handler = async (event, context) => {
     }
 
     console.log('Initializing Airtable with base:', process.env.AIRTABLE_BASE_ID);
+    console.log('Using table:', process.env.AIRTABLE_TABLE_NAME);
+    console.log('API Key length:', process.env.AIRTABLE_API_KEY ? process.env.AIRTABLE_API_KEY.length : 'NOT SET');
+    
     // Initialize Airtable
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+    
+    console.log('Airtable base initialized successfully');
     
     const fieldsToCreate = {
       'Nom': body.lastName,
@@ -115,6 +120,7 @@ exports.handler = async (event, context) => {
     };
 
     console.log('Creating Airtable record with fields:', JSON.stringify(fieldsToCreate, null, 2));
+    console.log('Attempting to create record in table:', process.env.AIRTABLE_TABLE_NAME);
     
     // Create record with mapped fields
     const record = await base(process.env.AIRTABLE_TABLE_NAME).create([
@@ -135,29 +141,60 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Error submitting pre-inscription:', error);
+    console.error('=== ERROR SUBMITTING PRE-INSCRIPTION ===');
+    console.error('Error type:', typeof error);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('Full error object:', JSON.stringify(error, null, 2));
     
     // Return more specific error messages
     let errorMessage = 'Erreur lors de l\'enregistrement de la pré-inscription';
+    let errorDetails = '';
     
     if (error.message) {
-      if (error.message.includes('AUTHENTICATION_REQUIRED')) {
-        errorMessage = 'Erreur d\'authentification Airtable';
-      } else if (error.message.includes('NOT_FOUND')) {
-        errorMessage = 'Base de données Airtable introuvable';
-      } else if (error.message.includes('INVALID_PERMISSIONS')) {
+      const errorMsg = error.message.toLowerCase();
+      if (errorMsg.includes('authentication_required') || errorMsg.includes('unauthorized')) {
+        errorMessage = 'Erreur d\'authentification Airtable - Vérifiez votre clé API';
+        errorDetails = 'Vérifiez que AIRTABLE_API_KEY est correct dans Netlify';
+      } else if (errorMsg.includes('not_found') || errorMsg.includes('base not found')) {
+        errorMessage = 'Base de données Airtable introuvable - Vérifiez votre Base ID';
+        errorDetails = 'Vérifiez que AIRTABLE_BASE_ID est correct dans Netlify';
+      } else if (errorMsg.includes('invalid_permissions') || errorMsg.includes('forbidden')) {
         errorMessage = 'Permissions insuffisantes pour accéder à la base de données';
-      } else if (error.message.includes('INVALID_FIELD_NAME')) {
-        errorMessage = 'Champ Airtable invalide - vérifiez la configuration';
+        errorDetails = 'Vérifiez que votre clé API a accès à cette base';
+      } else if (errorMsg.includes('invalid_field_name') || errorMsg.includes('field not found')) {
+        errorMessage = 'Champ Airtable invalide - Vérifiez la configuration des champs';
+        errorDetails = 'Vérifiez que tous les noms de champs correspondent à votre table Airtable';
+      } else if (errorMsg.includes('rate limit') || errorMsg.includes('too many requests')) {
+        errorMessage = 'Limite de taux Airtable dépassée - Réessayez plus tard';
+        errorDetails = 'Airtable limite les requêtes, attendez quelques minutes';
+      } else if (errorMsg.includes('network') || errorMsg.includes('timeout')) {
+        errorMessage = 'Erreur de connexion réseau - Vérifiez votre connexion';
+        errorDetails = 'Problème de connectivité avec Airtable';
+      } else {
+        errorMessage = `Erreur Airtable: ${error.message}`;
+        errorDetails = 'Erreur technique lors de la communication avec Airtable';
       }
+    } else if (error.code) {
+      errorMessage = `Erreur Airtable (Code: ${error.code})`;
+      errorDetails = error.code;
     }
+    
+    console.error('Final error message:', errorMessage);
+    console.error('Error details:', errorDetails);
     
     return {
       statusCode: 500,
       body: JSON.stringify({
         success: false,
         message: errorMessage,
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        details: errorDetails,
+        debug: process.env.NODE_ENV === 'development' ? {
+          errorType: typeof error,
+          errorMessage: error.message,
+          errorCode: error.code,
+          timestamp: new Date().toISOString()
+        } : undefined
       })
     };
   }
