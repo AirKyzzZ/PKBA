@@ -290,10 +290,6 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Confirmation par email</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                   <span>Rendez-vous pour visite médicale</span>
                 </div>
                 <div className="flex items-start space-x-3">
