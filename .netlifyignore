@@ -1,0 +1,16 @@
+# Ignore build artifacts and cache files
+.next/
+.netlify/
+node_modules/
+*.pack
+*.js.map
+*.css.map
+
+# Ignore development files
+.env.local
+.env.development
+.env.test
+
+# Ignore temporary files
+*.tmp
+*.temp

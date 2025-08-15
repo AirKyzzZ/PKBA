@@ -1,22 +1,22 @@
 [build]
   command = "npm run build"
   publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "18"
-  NODE_ENV = "production"
-  # Add all the environment variables needed for the build
-  # NEXT_PUBLIC_SITE_URL
-  # NEXT_PUBLIC_SITE_NAME
-  # NEXT_PUBLIC_CONTACT_EMAIL 
-  # NEXT_PUBLIC_CONTACT_PHONE
-  # NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  # NEXT_PUBLIC_EMAILJS_SERVICE_ID
-  # NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-  # NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-  # NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID
-  # NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID
-  # NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID
+  # Add build hook to ensure proper environment variable handling
+  [build.environment]
+    NODE_VERSION = "18"
+    NODE_ENV = "production"
+    # Ensure these are available during build
+    # NEXT_PUBLIC_SITE_URL
+    # NEXT_PUBLIC_SITE_NAME
+    # NEXT_PUBLIC_CONTACT_EMAIL
+    # NEXT_PUBLIC_CONTACT_PHONE
+    # NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    # NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    # NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    # NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    # NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID
+    # NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID
+    # NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID
 
 [[headers]]
   for = "/*"
@@ -135,19 +135,50 @@
 [[redirects]]
   from = "/api/submit-contact"
   to = "/.netlify/functions/submit-contact"
-  status = 200 
+  status = 200
+
+# Configuration des hooks de build
+[build.hooks]
+  pre_build = "echo 'Starting build with environment variables configured'"
+  post_build = "echo 'Build completed successfully'"
+
+# Configuration des variables d'environnement pour le build
+[build.environment]
+  # Ajouter des variables pour éviter les faux positifs
+  SECRETS_SCAN_ENABLED = "true"
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SITE_NAME,NEXT_PUBLIC_CONTACT_EMAIL,NEXT_PUBLIC_CONTACT_PHONE,NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,NEXT_PUBLIC_EMAILJS_SERVICE_ID,NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID,NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID,NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID"
+  SECRETS_SCAN_OMIT_PATHS = ".next/**,node_modules/**,.netlify/**,**/*.pack,**/*.js,**/*.html,**/*.rsc,**/cache/**,**/webpack/**,**/static/**,**/server/**,**/standalone/**,**/chunks/**,**/blobs/**,**/deploy/**"
 
 # Configuration du scan des secrets
 [secrets_scanning]
-  enabled = false
+  enabled = true
   omit_keys = [
     "NEXT_PUBLIC_SITE_URL",
     "NEXT_PUBLIC_SITE_NAME", 
     "NEXT_PUBLIC_CONTACT_EMAIL",
-    "NEXT_PUBLIC_CONTACT_PHONE"
+    "NEXT_PUBLIC_CONTACT_PHONE",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_EMAILJS_SERVICE_ID",
+    "NEXT_PUBLIC_EMAILJS_TEMPLATE_ID",
+    "NEXT_PUBLIC_EMAILJS_PUBLIC_KEY",
+    "NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID",
+    "NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID",
+    "NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID"
   ]
   omit_paths = [
     ".next/**",
     "node_modules/**",
-    ".netlify/**"
+    ".netlify/**",
+    "**/*.pack",
+    "**/*.js",
+    "**/*.html",
+    "**/*.rsc",
+    "**/cache/**",
+    "**/webpack/**",
+    "**/static/**",
+    "**/server/**",
+    "**/standalone/**",
+    "**/chunks/**",
+    "**/blobs/**",
+    "**/deploy/**"
   ] 
