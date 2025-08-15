@@ -1,16 +1,22 @@
 import InscriptionPage from '@/components/InscriptionPage'
-import type { Metadata } from 'next'
-import StructuredData from '@/components/StructuredData'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
-  description: 'Inscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire d\'inscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
-  keywords: 'inscription parkour, club PKBA, saison 2025/2026, cours parkour Arcachon, adhésion association, encadrement professionnel',
+  title: 'Pré-inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
+  description: 'Pré-inscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de pré-inscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
+  keywords: 'pré-inscription parkour, club PKBA, saison 2025/2026, cours parkour Arcachon, adhésion association, encadrement professionnel',
   openGraph: {
-    title: 'Inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
-    description: 'Inscrivez-vous au club de parkour PKBA. Formulaire sécurisé et encadrement professionnel.',
+    title: 'Pré-inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
+    description: 'Pré-inscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de pré-inscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
     url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
-    images: ['/images/text_white.png'],
+    siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
+    type: 'website',
+    locale: 'fr_FR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pré-inscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
+    description: 'Pré-inscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de pré-inscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
   },
   alternates: {
     canonical: '/inscription',
@@ -20,29 +26,39 @@ export const metadata: Metadata = {
 export default function Inscription() {
   return (
     <>
-      <StructuredData 
-        type="event" 
-        data={{
-          name: 'Inscription Saison 2025/2026 - PKBA',
-          description: 'Inscription au club de parkour PKBA pour la saison 2025/2026',
-          startDate: '2025-09-01',
-          endDate: '2026-06-30',
-          location: {
-            '@type': 'Place',
-            name: 'Bassin d\'Arcachon',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Arcachon',
-              addressRegion: 'Nouvelle-Aquitaine',
-              addressCountry: 'FR',
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Pré-inscription Saison 2025/2026 - PKBA',
+            description: 'Pré-inscription au club de parkour PKBA pour la saison 2025/2026',
+            url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+            mainEntity: {
+              '@type': 'Form',
+              name: 'Formulaire de Pré-inscription PKBA',
+              description: 'Formulaire de pré-inscription pour rejoindre le club de parkour PKBA',
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
             },
-          },
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'EUR',
-            availability: 'https://schema.org/InStock',
-          },
+            breadcrumb: {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Accueil',
+                  item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/`,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Pré-inscription',
+                  item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+                },
+              ],
+            },
+          }),
         }}
       />
       <InscriptionPage />

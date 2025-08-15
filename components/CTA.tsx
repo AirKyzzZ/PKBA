@@ -25,7 +25,7 @@ const CTA = () => {
           </h2>
           <p className="text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ne manquez pas l'opportunité de faire partie de cette aventure exceptionnelle. 
-            Les inscriptions pour la saison 2025/2026 sont maintenant ouvertes !
+            Les pré-inscriptions pour la saison 2025/2026 sont maintenant ouvertes !
           </p>
         </motion.div>
 
@@ -34,7 +34,7 @@ const CTA = () => {
             {
               icon: Users,
               title: 'Rejoindre le Club',
-              description: 'Inscription pour la saison 2025/2026',
+              description: 'Pré-inscription pour la saison 2025/2026',
               href: '/inscription',
               color: 'bg-primary hover:bg-secondary',
               delay: 0.2,

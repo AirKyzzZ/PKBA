@@ -56,7 +56,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/inscription" className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm">
-                  Inscription
+                  Pré-inscription
                 </Link>
               </li>
               <li>

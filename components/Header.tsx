@@ -26,7 +26,7 @@ const Header = () => {
   const navItems = [
     { name: 'Accueil', href: '/' },
     { name: 'Boutique', href: '/boutique' },
-    { name: 'Inscription', href: '/inscription' },
+    { name: 'Pré-inscription', href: '/inscription' },
     { name: 'Actualités', href: '/actualites' },
     { name: 'Nous Soutenir', href: '/donations' },
     { name: 'Contact', href: '/contact' },

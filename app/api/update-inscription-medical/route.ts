@@ -5,14 +5,14 @@ const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || 'Inscriptions'
 
-export async function PATCH(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const { inscriptionId, medicalStatus } = await request.json()
+    const { id, medicalStatus } = await request.json()
 
     // Validation des données
-    if (!inscriptionId || !medicalStatus) {
+    if (!id || !medicalStatus) {
       return NextResponse.json(
-        { message: 'ID de l\'inscription et statut médical requis' },
+        { message: 'ID de la pré-inscription et statut médical requis' },
         { status: 400 }
       )
     }
@@ -28,7 +28,7 @@ export async function PATCH(request: NextRequest) {
 
     // Mise à jour du statut médical dans Airtable
     const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${inscriptionId}`,
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${id}`,
       {
         method: 'PATCH',
         headers: {

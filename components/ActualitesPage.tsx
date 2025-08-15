@@ -16,8 +16,8 @@ const ActualitesPage = () => {
       
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Fonctionnalités Principales du Nouveau Site</h2>
       
-      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🎯 Inscriptions Simplifiées</h3>
-      <p class="mb-4">Le processus d'inscription est maintenant entièrement digitalisé. Les nouveaux adhérents peuvent s'inscrire en ligne en quelques clics, avec un formulaire intuitif qui guide chaque étape. Plus besoin de se déplacer au club pour les démarches administratives !</p>
+              <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🎯 Pré-inscriptions Simplifiées</h3>
+        <p class="mb-4">Le processus de pré-inscription est maintenant entièrement digitalisé. Les nouveaux adhérents peuvent se pré-inscrire en ligne en quelques clics, avec un formulaire intuitif qui guide chaque étape. Plus besoin de se déplacer au club pour les démarches administratives !</p>
       
       <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🛒 Boutique en Ligne Intégrée</h3>
       <p class="mb-4">Notre boutique en ligne est désormais directement accessible depuis le site principal. Les membres peuvent commander leurs équipements, vêtements aux couleurs du club et accessoires sans quitter notre plateforme. Le système de panier et de commande est sécurisé et facile à utiliser.</p>
@@ -58,7 +58,7 @@ const ActualitesPage = () => {
         <div class="bg-gray-50 p-6 rounded-lg">
           <h4 class="font-cheddar font-bold text-gray-900 mb-3">✅ Avant</h4>
           <ul class="text-sm text-gray-600 space-y-1">
-            <li>• Inscriptions uniquement sur place</li>
+                            <li>• Pré-inscriptions uniquement sur place</li>
             <li>• Informations dispersées</li>
             <li>• Communication limitée</li>
             <li>• Boutique physique uniquement</li>
@@ -67,7 +67,7 @@ const ActualitesPage = () => {
         <div class="bg-green-50 p-6 rounded-lg">
           <h4 class="font-cheddar font-bold text-gray-900 mb-3">🚀 Maintenant</h4>
           <ul class="text-sm text-gray-600 space-y-1">
-            <li>• Inscriptions 100% en ligne</li>
+                            <li>• Pré-inscriptions 100% en ligne</li>
             <li>• Toutes les infos centralisées</li>
             <li>• Communication instantanée</li>
             <li>• Boutique en ligne intégrée</li>

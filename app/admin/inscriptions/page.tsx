@@ -1,15 +1,15 @@
-import InscriptionsList from '@/components/InscriptionsList'
+import PreInscriptionsList from '@/components/PreInscriptionsList'
 import AdminAuth from '@/components/AdminAuth'
 
 export const metadata = {
-  title: 'Administration - Inscriptions | PKBA',
-  description: 'Gestion des inscriptions de l\'association PKBA'
+  title: 'Administration - Pré-inscriptions | PKBA',
+  description: 'Gestion des pré-inscriptions de l\'association PKBA'
 }
 
 export default function AdminInscriptionsPage() {
   return (
     <AdminAuth>
-      <InscriptionsList />
+      <PreInscriptionsList />
     </AdminAuth>
   )
 }

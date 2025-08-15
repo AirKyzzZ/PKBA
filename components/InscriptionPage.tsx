@@ -257,10 +257,10 @@ const InscriptionPage = () => {
         clearSignature()
       } else {
         const errorData = await response.json()
-        setError(errorData.message || 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.')
+        setError(errorData.message || 'Une erreur est survenue lors de l\'envoi de la pré-inscription. Veuillez réessayer.')
       }
     } catch (error) {
-      setError('Une erreur est survenue. Veuillez réessayer.')
+      setError('Une erreur est survenue lors de l\'envoi de la pré-inscription. Veuillez réessayer.')
     } finally {
       setIsSubmitting(false)
     }
@@ -277,10 +277,10 @@ const InscriptionPage = () => {
           >
             <CheckCircle size={64} className="text-green-500 mx-auto mb-6" />
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4">
-              Inscription Confirmée !
+              Pré-inscription Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription a été enregistrée avec succès dans notre base de données. 
+              Votre pré-inscription a été enregistrée avec succès dans notre base de données. 
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -294,11 +294,15 @@ const InscriptionPage = () => {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Réception du planning d'entraînement</span>
+                  <span>Rendez-vous pour visite médicale</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Premier entraînement en septembre 2025</span>
+                  <span>Test de découverte du sport</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Validation finale et inscription définitive</span>
                 </div>
               </div>
             </div>
@@ -320,11 +324,11 @@ const InscriptionPage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Inscription Saison 2025/2026
+              Pré-inscription Saison 2025/2026
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
               Rejoignez PKBA et faites partie de notre communauté de passionnés de parkour. 
-              Inscriptions ouvertes pour tous les niveaux !
+              Pré-inscriptions ouvertes pour tous les niveaux !
             </p>
           </motion.div>
         </div>
@@ -367,7 +371,7 @@ const InscriptionPage = () => {
             className="bg-white rounded-xl shadow-lg p-8"
           >
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-8 text-center">
-              Formulaire d'Inscription
+              Formulaire de Pré-inscription
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -853,7 +857,7 @@ const InscriptionPage = () => {
                   
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Date d'inscription <span className="text-red-500">*</span>
+                      Date de pré-inscription <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="date"
@@ -896,7 +900,7 @@ const InscriptionPage = () => {
                         ? 'Âge minimum 6 ans requis' 
                         : !formData.signature 
                           ? 'Signature requise' 
-                          : "Envoyer l'inscription"
+                          : "Envoyer la pré-inscription"
                       }
                     </span>
                   </>
