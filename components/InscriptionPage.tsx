@@ -765,7 +765,7 @@ const InscriptionPage = () => {
                       onChange={(e) => handleEmergencyContactChange('phone', e.target.value)}
                       required
                       placeholder="ex: 06 98 76 54 32"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent font-montserrat"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                     />
                   </div>
                 </div>

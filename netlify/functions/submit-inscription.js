@@ -87,13 +87,13 @@ exports.handler = async (event, context) => {
     
     console.log('Airtable base initialized successfully');
     
+    // Map form data to exact Airtable field names from your table
     const fieldsToCreate = {
-      'Nom': body.lastName,
       'Prénom': body.firstName,
+      'Nom': body.lastName,
       'Date de naissance': body.birthDate,
       'Sexe': body.gender,
       'Type d\'adhésion': body.adhesionType ? body.adhesionType.join(', ') : '',
-      'Club d\'origine': body.otherClub || '',
       'Adresse': body.address,
       'Code postal': body.postalCode,
       'Ville': body.city,
@@ -114,10 +114,13 @@ exports.handler = async (event, context) => {
       'Droit à l\'image': body.imageRights ? 'Accepté' : 'Refusé',
       'Règlement intérieur accepté': body.termsAccepted ? 'Oui' : 'Non',
       'Signature': body.signature || '',
-      'Date d\'inscription': new Date().toISOString(),
-      'Statut': 'En attente',
-      'Certificat médical': 'En attente'
+      'Statut': 'En attente'
     };
+
+    // Add club d'origine if specified
+    if (body.otherClub) {
+      fieldsToCreate['Club d\'origine'] = body.otherClub;
+    }
 
     console.log('Creating Airtable record with fields:', JSON.stringify(fieldsToCreate, null, 2));
     console.log('Attempting to create record in table:', process.env.AIRTABLE_TABLE_NAME);
