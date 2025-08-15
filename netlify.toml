@@ -6,10 +6,10 @@
   NODE_VERSION = "18"
   NODE_ENV = "production"
   # Add all the environment variables needed for the build
-  # NEXT_PUBLIC_SITE_URL = "https://pkba.vertiflow.fr"
-  # NEXT_PUBLIC_SITE_NAME = "PKBA - Parkour Bassin d'Arcachon"
-  # NEXT_PUBLIC_CONTACT_EMAIL = "parkourBA33@gmail.com"
-  # NEXT_PUBLIC_CONTACT_PHONE = "0660147144"
+  # NEXT_PUBLIC_SITE_URL
+  # NEXT_PUBLIC_SITE_NAME
+  # NEXT_PUBLIC_CONTACT_EMAIL 
+  # NEXT_PUBLIC_CONTACT_PHONE
   # NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
   # NEXT_PUBLIC_EMAILJS_SERVICE_ID
   # NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
