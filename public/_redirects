@@ -1,0 +1,10 @@
+# Handle Next.js routing
+/*    /index.html   200
+
+# Handle static assets
+/images/* /images/:splat 200
+/fonts/* /fonts/:splat 200
+/_next/* /_next/:splat 200
+
+# Handle API routes
+/api/* /.netlify/functions/:splat 200

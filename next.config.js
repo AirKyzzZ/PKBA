@@ -61,12 +61,15 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['pkba.vertiflow.fr'],
     formats: ['image/webp', 'image/avif'],
+    loader: 'default',
+    path: '',
   },
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
+  trailingSlash: true,
+  assetPrefix: '',
 }
 
 module.exports = nextConfig 

@@ -141,6 +141,40 @@ Le fichier `netlify.toml` est configuré pour :
 
 **Important** : Les variables d'environnement sont configurées directement dans le fichier `netlify.toml` pour éviter les erreurs de build liées au scan des secrets.
 
+## Déploiement sur Netlify
+
+### 1. Variables d'environnement requises
+
+Dans l'interface Netlify, allez dans **Site settings > Environment variables** et ajoutez :
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-site-name.netlify.app
+NEXT_PUBLIC_SITE_NAME=PKBA
+NEXT_PUBLIC_CONTACT_EMAIL=your-email@domain.com
+NEXT_PUBLIC_CONTACT_PHONE=your-phone-number
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_formspree_contact_form_id
+NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_formspree_registration_form_id
+NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=your_formspree_order_form_id
+```
+
+### 2. Configuration du domaine personnalisé
+
+Si vous utilisez un domaine personnalisé (comme `pkba.vertiflow.fr`), assurez-vous que :
+- Le domaine est configuré dans Netlify
+- La variable `NEXT_PUBLIC_SITE_URL` pointe vers votre domaine personnalisé
+- Les DNS sont correctement configurés
+
+### 3. Résolution des problèmes d'images
+
+Si les images ne se chargent pas :
+- Vérifiez que la variable `NEXT_PUBLIC_SITE_URL` est correctement définie
+- Assurez-vous que les images sont dans le dossier `public/images/`
+- Le fichier `_redirects` dans `public/` gère le routage des assets statiques
+
 ## Scripts NPM
 
 ```bash
