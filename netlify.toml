@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NODE_ENV = "production"
+  NEXT_PUBLIC_SITE_URL = "https://pkba.vertiflow.fr"
 
 [[headers]]
   for = "/*"
@@ -122,9 +124,4 @@
 [[redirects]]
   from = "/api/submit-contact"
   to = "/.netlify/functions/submit-contact"
-  status = 200
-
-# Configuration pour le SEO
-[build.environment]
-  NODE_ENV = "production"
-  NEXT_PUBLIC_SITE_URL = "https://pkba.vertiflow.fr" 
+  status = 200 
