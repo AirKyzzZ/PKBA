@@ -12,8 +12,12 @@ exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body);
     
-    // Validate required fields
-    const requiredFields = ['nom', 'prenom', 'email', 'telephone', 'dateNaissance', 'adresse', 'codePostal', 'ville', 'licence', 'niveau'];
+    // Validate required fields based on actual form structure
+    const requiredFields = [
+      'firstName', 'lastName', 'birthDate', 'gender', 'address', 
+      'postalCode', 'city', 'phone', 'email', 'emergencyContact'
+    ];
+    
     for (const field of requiredFields) {
       if (!body[field]) {
         return {
@@ -22,25 +26,49 @@ exports.handler = async (event, context) => {
         };
       }
     }
+    
+    // Validate emergency contact fields
+    if (!body.emergencyContact.name || !body.emergencyContact.phone) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Emergency contact name and phone are required' })
+      };
+    }
 
     // Initialize Airtable
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
     
-    // Create record
+    // Create record with mapped fields
     const record = await base(process.env.AIRTABLE_TABLE_NAME).create([
       {
         fields: {
-          'Nom': body.nom,
-          'Prénom': body.prenom,
+          'Nom': body.lastName,
+          'Prénom': body.firstName,
           'Email': body.email,
-          'Téléphone': body.telephone,
-          'Date de naissance': body.dateNaissance,
-          'Adresse': body.adresse,
-          'Code postal': body.codePostal,
-          'Ville': body.ville,
-          'Licence': body.licence,
-          'Niveau': body.niveau,
-          'Commentaires': body.commentaires || '',
+          'Téléphone': body.phone,
+          'Date de naissance': body.birthDate,
+          'Sexe': body.gender,
+          'Adresse': body.address,
+          'Code postal': body.postalCode,
+          'Ville': body.city,
+          'Type d\'adhésion': body.adhesionType ? body.adhesionType.join(', ') : '',
+          'Club d\'origine': body.otherClub || '',
+          'Contact d\'urgence - Nom': body.emergencyContact.name,
+          'Contact d\'urgence - Téléphone': body.emergencyContact.phone,
+          'Responsable légal 1 - Civilité': body.legalGuardian1?.title || '',
+          'Responsable légal 1 - Nom': body.legalGuardian1?.lastName || '',
+          'Responsable légal 1 - Prénom': body.legalGuardian1?.firstName || '',
+          'Responsable légal 1 - Téléphone': body.legalGuardian1?.phone || '',
+          'Responsable légal 1 - Email': body.legalGuardian1?.email || '',
+          'Responsable légal 2 - Civilité': body.legalGuardian2?.title || '',
+          'Responsable légal 2 - Nom': body.legalGuardian2?.lastName || '',
+          'Responsable légal 2 - Prénom': body.legalGuardian2?.firstName || '',
+          'Responsable légal 2 - Téléphone': body.legalGuardian2?.phone || '',
+          'Responsable légal 2 - Email': body.legalGuardian2?.email || '',
+          'Droit à l\'image': body.imageRights ? 'Accepté' : 'Refusé',
+          'Règlement intérieur accepté': body.termsAccepted ? 'Oui' : 'Non',
+          'Signature': body.signature || '',
+          'Date signature': body.signatureDate || '',
           'Statut': 'en_attente',
           'Date inscription': new Date().toISOString()
         }
