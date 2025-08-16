@@ -77,8 +77,8 @@ const ReglementInterieurPage = () => {
     {
       icon: Phone,
       label: 'Téléphone',
-      value: '06 XX XX XX XX',
-      link: 'tel:06XXXXXXXXX'
+      value: '06 60 14 71 44',
+      link: 'tel:0660147144'
     },
     {
       icon: Mail,
@@ -89,7 +89,7 @@ const ReglementInterieurPage = () => {
     {
       icon: MapPin,
       label: 'Adresse',
-      value: 'Lyon, France',
+      value: 'Bassin d\'Arcachon',
       link: '#'
     }
   ]
