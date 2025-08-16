@@ -7,7 +7,7 @@ import { ArrowRight, Calendar, ShoppingBag } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="relative h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden">
+    <section className="relative h-[100vh] lg:h-[calc(100vh-5rem)] flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

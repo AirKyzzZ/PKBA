@@ -45,7 +45,7 @@ const Header = () => {
 
   // Width behavior: shrink on scroll (desktop only); keep full width on mobile/tablet
   const containerWidthClasses = isScrolled
-    ? 'w-full lg:w-[70%] xl:w-[56%]'
+    ? 'w-full lg:w-[85%] xl:w-[75%]'
     : 'w-full lg:w-full'
 
   // Height: shrink on desktop only
