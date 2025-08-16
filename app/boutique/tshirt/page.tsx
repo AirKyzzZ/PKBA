@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Truck, Shield, Star, Ruler, CheckCircle } from 'lucide-react'
+import { ShoppingCart, Truck, Shield, Star, Ruler, CheckCircle, AlertCircle } from 'lucide-react'
 import { useCart } from '@/components/CartContext'
 import ImageGallery from '@/components/ImageGallery'
 
@@ -14,8 +14,20 @@ const TshirtPage = () => {
   const [quantity, setQuantity] = useState(1)
   const [customization, setCustomization] = useState('')
   const [showSuccess, setShowSuccess] = useState(false)
+  const [customizationError, setCustomizationError] = useState('')
   
   const { addToCart } = useCart()
+
+  const MAX_CUSTOMIZATION_LENGTH = 7
+
+  const handleCustomizationChange = (value: string) => {
+    if (value.length <= MAX_CUSTOMIZATION_LENGTH) {
+      setCustomization(value)
+      setCustomizationError('')
+    } else {
+      setCustomizationError(`La personnalisation ne peut pas dépasser ${MAX_CUSTOMIZATION_LENGTH} caractères`)
+    }
+  }
 
   const product = {
     id: 'pkba-tshirt-2024',
@@ -208,17 +220,34 @@ const TshirtPage = () => {
               <h3 className="text-lg font-cheddar font-bold mb-3 text-gray-900">
                 Personnalisation <span className="text-sm text-gray-500">(+5€)</span>
               </h3>
-              <input
-                type="text"
-                placeholder="Nom de l'athlète (optionnel)"
-                value={customization}
-                onChange={(e) => setCustomization(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat bg-white text-gray-900 placeholder-gray-500"
-                maxLength={20}
-              />
-              <p className="text-sm text-gray-600 mt-2">
-                Ajoutez le nom de l'athlète sur le T-shirt pour un look unique
-              </p>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Nom de l'athlète (optionnel)"
+                  value={customization}
+                  onChange={(e) => handleCustomizationChange(e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat bg-white text-gray-900 placeholder-gray-500 ${
+                    customizationError ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+                  }`}
+                  maxLength={MAX_CUSTOMIZATION_LENGTH}
+                />
+                <div className="flex justify-between items-center mt-2">
+                  <p className="text-sm text-gray-600">
+                    Ajoutez le nom de l'athlète sur le T-shirt pour un look unique
+                  </p>
+                  <span className={`text-sm font-medium ${
+                    customization.length === MAX_CUSTOMIZATION_LENGTH ? 'text-red-600' : 'text-gray-500'
+                  }`}>
+                    {customization.length}/{MAX_CUSTOMIZATION_LENGTH}
+                  </span>
+                </div>
+                {customizationError && (
+                  <div className="flex items-center space-x-2 mt-2 text-red-600">
+                    <AlertCircle size={16} className="flex-shrink-0" />
+                    <span className="text-sm font-medium">{customizationError}</span>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Quantity */}
