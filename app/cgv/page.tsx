@@ -134,7 +134,7 @@ export default function CGV() {
                 <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-2">
                   Frais de livraison
                 </h3>
-                <p>Les frais de livraison sont calculés selon le poids et la destination. La livraison est gratuite pour toute commande supérieure à 50€.</p>
+                <p>Les frais de livraison rapide sont systématiques et calculés selon le poids et la destination.</p>
               </div>
             </div>
           </section>
