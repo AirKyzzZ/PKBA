@@ -22,7 +22,7 @@ const Footer = () => {
               <h3 className="text-xl font-cheddar font-bold gradient-text">PKBA</h3>
             </div>
             <p className="text-gray-300 font-montserrat text-sm">
-              Club de parkour associatif au Bassin d'Arcachon. 
+              Club de parkour associatif du Bassin d'Arcachon. 
               Encadrement professionnel, progression et sécurité.
             </p>
             <p className="text-gray-400 font-montserrat text-xs">
