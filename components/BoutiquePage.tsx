@@ -30,7 +30,7 @@ const BoutiquePage = () => {
       description: 'T-shirt officiel du club PKBA, design exclusif haute qualité pour les performances sportives et le confort.',
       features: ['100% coton premium', 'Design exclusif PKBA', 'Haute qualité pour performances sportives', 'Confort optimal'],
       colors: ['Blanc', 'Noir'],
-      sizes: ['S', 'M', 'L', 'XL', '2XL'],
+      sizes: ['5-6', '7-8', '9-11', '12-13', 'S', 'M', 'L', 'XL', '2XL'],
       customization: true,
       available: true
     }

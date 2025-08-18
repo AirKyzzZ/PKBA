@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Truck, Shield, Star, Ruler, CheckCircle, AlertCircle } from 'lucide-react'
+import { ShoppingCart, Truck, Shield, Star, Ruler, CheckCircle, AlertCircle, Info } from 'lucide-react'
 import { useCart } from '@/components/CartContext'
 import ImageGallery from '@/components/ImageGallery'
 
@@ -19,6 +19,11 @@ const TshirtPage = () => {
   const { addToCart } = useCart()
 
   const MAX_CUSTOMIZATION_LENGTH = 7
+
+  // Fonction pour vérifier si la taille sélectionnée est une taille enfant
+  const isChildSize = (size: string) => {
+    return ['5-6', '7-8', '9-11', '12-13'].includes(size)
+  }
 
   const handleCustomizationChange = (value: string) => {
     if (value.length <= MAX_CUSTOMIZATION_LENGTH) {
@@ -46,11 +51,17 @@ const TshirtPage = () => {
       { name: 'black', label: 'Noir', hex: '#000000' }
     ],
     sizes: [
-      { value: 'S', label: 'S - Small' },
-      { value: 'M', label: 'M - Medium' },
-      { value: 'L', label: 'L - Large' },
-      { value: 'XL', label: 'XL - Extra Large' },
-      { value: '2XL', label: '2XL - Double Extra Large' }
+      // Tailles enfants
+      { value: '5-6', label: '5-6 ans', isChild: true },
+      { value: '7-8', label: '7-8 ans', isChild: true },
+      { value: '9-11', label: '9-11 ans', isChild: true },
+      { value: '12-13', label: '12-13 ans', isChild: true },
+      // Tailles adultes
+      { value: 'S', label: 'S - Small', isChild: false },
+      { value: 'M', label: 'M - Medium', isChild: false },
+      { value: 'L', label: 'L - Large', isChild: false },
+      { value: 'XL', label: 'XL - Extra Large', isChild: false },
+      { value: '2XL', label: '2XL - Double Extra Large', isChild: false }
     ]
   }
 
@@ -72,11 +83,17 @@ const TshirtPage = () => {
   ]
 
   const sizeGuide = [
-    { size: 'S', chest: '86-91', length: '66', shoulders: '43' },
-    { size: 'M', chest: '91-96', length: '68', shoulders: '45' },
-    { size: 'L', chest: '96-101', length: '70', shoulders: '47' },
-    { size: 'XL', chest: '101-106', length: '72', shoulders: '49' },
-    { size: '2XL', chest: '106-111', length: '74', shoulders: '51' }
+    // Tailles enfants
+    { size: '5-6', chest: '58-63', length: '42', shoulders: '28', isChild: true },
+    { size: '7-8', chest: '63-68', length: '46', shoulders: '30', isChild: true },
+    { size: '9-11', chest: '68-73', length: '50', shoulders: '32', isChild: true },
+    { size: '12-13', chest: '73-78', length: '54', shoulders: '34', isChild: true },
+    // Tailles adultes
+    { size: 'S', chest: '86-91', length: '66', shoulders: '43', isChild: false },
+    { size: 'M', chest: '91-96', length: '68', shoulders: '45', isChild: false },
+    { size: 'L', chest: '96-101', length: '70', shoulders: '47', isChild: false },
+    { size: 'XL', chest: '101-106', length: '72', shoulders: '49', isChild: false },
+    { size: '2XL', chest: '106-111', length: '74', shoulders: '51', isChild: false }
   ]
 
   const handleAddToCart = () => {
@@ -198,6 +215,24 @@ const TshirtPage = () => {
             {/* Size Selection */}
             <div>
               <h3 className="text-lg font-cheddar font-bold mb-3 text-gray-900">Taille</h3>
+              
+              {/* Warning pour les tailles enfants */}
+              {selectedSize && isChildSize(selectedSize) && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg"
+                >
+                  <div className="flex items-start space-x-2">
+                    <Info size={18} className="text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div className="text-amber-800 text-sm">
+                      <p className="font-medium">Attention : Taille enfant sélectionnée</p>
+                      <p>Les T-shirts en tailles enfants n'ont pas de logo sur les manches pour un confort optimal.</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              
               <div className="grid grid-cols-3 gap-3">
                 {product.sizes.map((size) => (
                   <button
@@ -209,7 +244,12 @@ const TshirtPage = () => {
                         : 'border-gray-300 hover:border-gray-400 bg-white text-gray-700'
                     }`}
                   >
-                    {size.value}
+                    <div className="text-center">
+                      <div className="font-medium">{size.value}</div>
+                      {size.isChild && (
+                        <div className="text-xs opacity-75">Enfant</div>
+                      )}
+                    </div>
                   </button>
                 ))}
               </div>
@@ -345,6 +385,18 @@ const TshirtPage = () => {
           <h2 className="text-2xl font-cheddar font-bold text-center mb-8">
             Guide des Tailles
           </h2>
+          
+          {/* Warning pour les tailles enfants */}
+          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg max-w-2xl mx-auto">
+            <div className="flex items-start space-x-3">
+              <Info size={20} className="text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="text-amber-800">
+                <p className="font-medium">Information importante sur les tailles enfants</p>
+                <p className="text-sm mt-1">Les T-shirts en tailles enfants (5-6, 7-8, 9-11, 12-13) n'ont pas de logo sur les manches pour garantir un confort optimal et éviter toute irritation.</p>
+              </div>
+            </div>
+          </div>
+          
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -362,11 +414,14 @@ const TshirtPage = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Épaules (cm)
                     </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Type
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {sizeGuide.map((size) => (
-                    <tr key={size.size}>
+                    <tr key={size.size} className={size.isChild ? 'bg-amber-50' : ''}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {size.size}
                       </td>
@@ -378,6 +433,17 @@ const TshirtPage = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {size.shoulders}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        {size.isChild ? (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                            Enfant
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Adulte
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ))}
