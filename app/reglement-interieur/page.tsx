@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { FileText, Users, Shield, Clock, MapPin, Phone, Mail, AlertTriangle } from 'lucide-react'
+import ReglementPDF from '@/components/ReglementPDF'
 
 const ReglementInterieurPage = () => {
   const sections = [
@@ -54,6 +55,7 @@ const ReglementInterieurPage = () => {
       title: 'Comportement et Respect',
       content: [
         'Respecter les autres adhérents et l\'équipe d\'encadrement',
+        'Respecter les encadrants',
         'Adopter un langage correct et respectueux',
         'Éviter les comportements dangereux ou perturbateurs',
         'Participer activement et positivement aux entraînements',
@@ -150,6 +152,28 @@ const ReglementInterieurPage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* PDF Download Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
+              Télécharger le Règlement
+            </h2>
+            <p className="text-lg font-montserrat text-gray-600 max-w-2xl mx-auto">
+              Téléchargez une version imprimable du règlement intérieur avec un cadre de signature 
+              pour l'adhérent ou le représentant légal.
+            </p>
+          </motion.div>
+          
+          <ReglementPDF />
         </div>
       </section>
 
