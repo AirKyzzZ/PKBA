@@ -36,7 +36,7 @@ const Mission = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-6">
-            Notre Mission
+            Notre mission
           </h2>
           <p className="text-xl font-montserrat text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Promouvoir la pratique du parkour au Bassin d'Arcachon avec un encadrement professionnel, 

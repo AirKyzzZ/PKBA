@@ -11,27 +11,27 @@ const ActualitesPage = () => {
     content: `
       <p class="mb-6">Nous sommes ravis d'annoncer le lancement officiel de notre nouveau site web PKBA ! Après plusieurs mois de développement et de tests, notre plateforme numérique est enfin en ligne depuis le 15 août 2025, marquant une étape importante dans l'évolution de notre club.</p>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Une Refonte Complète pour une Meilleure Expérience</h2>
+              <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Une refonte complète pour une meilleure expérience</h2>
       <p class="mb-6">Ce nouveau site web représente bien plus qu'une simple mise à jour. Il s'agit d'une refonte complète pensée et conçue pour répondre aux besoins de notre communauté grandissante. Notre objectif était de créer une plateforme moderne, intuitive et accessible qui facilite l'accès à toutes les informations essentielles du club.</p>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Fonctionnalités Principales du Nouveau Site</h2>
+              <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Fonctionnalités principales du nouveau site</h2>
       
-              <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🎯 Préinscriptions Simplifiées</h3>
+              <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🎯 Préinscriptions simplifiées</h3>
         <p class="mb-4">Le processus de préinscription est maintenant entièrement digitalisé. Les nouveaux adhérents peuvent se préinscrire en ligne en quelques clics, avec un formulaire intuitif qui guide chaque étape. Plus besoin de se déplacer au club pour les démarches administratives !</p>
       
-      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🛒 Boutique en Ligne Intégrée</h3>
+              <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🛒 Boutique en ligne intégrée</h3>
       <p class="mb-4">Notre boutique en ligne est désormais directement accessible depuis le site principal. Les membres peuvent commander leurs équipements, vêtements aux couleurs du club et accessoires sans quitter notre plateforme. Le système de panier et de commande est sécurisé et facile à utiliser.</p>
       
-      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">💳 Système de Donations et Paiements</h3>
+      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">💳 Système de donations et paiements</h3>
       <p class="mb-4">Pour soutenir le développement du club, nous avons intégré un système de donations sécurisé. Les sympathisants et membres peuvent contribuer financièrement au projet PKBA via des paiements sécurisés en ligne.</p>
       
-      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">📱 Design Responsive et Moderne</h3>
+      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">📱 Design responsive et moderne</h3>
       <p class="mb-4">Le site s'adapte parfaitement à tous les appareils : ordinateurs, tablettes et smartphones. L'interface utilisateur a été pensée pour offrir une expérience fluide et agréable, quel que soit l'appareil utilisé.</p>
       
-      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🔍 Navigation Intuitive</h3>
+      <h3 class="text-xl font-cheddar font-bold text-gray-800 mb-3 mt-6">🔍 Navigation intuitive</h3>
       <p class="mb-4">La structure du site a été repensée pour une navigation plus logique et intuitive. Les informations sont organisées de manière claire, permettant aux visiteurs de trouver rapidement ce qu'ils cherchent.</p>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Pourquoi ce Nouveau Site ?</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Pourquoi ce nouveau site ?</h2>
       <p class="mb-6">L'évolution numérique était devenue nécessaire pour plusieurs raisons :</p>
       <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
         <li>Simplifier les démarches administratives pour nos membres</li>
@@ -41,7 +41,7 @@ const ActualitesPage = () => {
         <li>Créer une plateforme centralisée pour tous nos services</li>
       </ul>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Technologies et Sécurité</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Technologies et sécurité</h2>
       <p class="mb-6">Notre nouveau site utilise les technologies web les plus récentes pour garantir performance, sécurité et fiabilité :</p>
       <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
         <li>Framework Next.js pour des performances optimales</li>
@@ -51,7 +51,7 @@ const ActualitesPage = () => {
         <li>Optimisation SEO pour une meilleure visibilité</li>
       </ul>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Ce qui Change pour les Membres</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Ce qui change pour les membres</h2>
       <p class="mb-6">Avec ce nouveau site, l'expérience des membres PKBA s'améliore significativement :</p>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -75,7 +75,7 @@ const ActualitesPage = () => {
         </div>
       </div>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Prochaines Étapes et Évolutions</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Prochaines étapes et évolutions</h2>
       <p class="mb-6">Ce lancement n'est qu'une première étape. Nous prévoyons déjà plusieurs améliorations et nouvelles fonctionnalités :</p>
       <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
         <li>Espace membre personnalisé</li>
@@ -83,7 +83,7 @@ const ActualitesPage = () => {
         <li>Galerie photos et vidéos</li>
       </ul>
       
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Comment Utiliser le Nouveau Site</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Comment utiliser le nouveau site</h2>
       <p class="mb-6">Pour tirer le meilleur parti de notre nouvelle plateforme :</p>
       <ol class="list-decimal list-inside mb-6 space-y-2 text-gray-700">
         <li><strong>Explorez les différentes sections</strong> pour découvrir toutes les fonctionnalités</li>

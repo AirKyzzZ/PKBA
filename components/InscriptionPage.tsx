@@ -61,30 +61,30 @@ const InscriptionPage = () => {
   const [isDrawing, setIsDrawing] = useState(false)
 
   const adhesionTypes = [
-    { value: 'ancien', label: 'Ancien Adhérent' },
-    { value: 'nouveau', label: 'Nouvel Adhérent' },
+    { value: 'ancien', label: 'Ancien adhérent' },
+    { value: 'nouveau', label: 'Nouvel adhérent' },
     { value: 'autre_club', label: 'En provenance d\'un autre club' }
   ]
 
   const benefits = [
     {
       icon: Users,
-      title: 'Groupes de Niveaux',
+      title: 'Groupes de niveaux',
       description: 'Entraînements adaptés à votre progression'
     },
     {
       icon: Award,
-      title: 'Coach Professionnel',
+      title: 'Coach professionnel',
       description: 'Encadrement par un coach diplômé et expérimenté'
     },
     {
       icon: Clock,
-      title: 'Horaires Flexibles',
+      title: 'Horaires flexibles',
       description: 'Séances en semaine et week-end'
     },
     {
       icon: Shield,
-      title: 'Sécurité Garantie',
+      title: 'Sécurité garantie',
       description: 'Équipements et méthodes sécurisées'
     }
   ]
@@ -367,7 +367,7 @@ const InscriptionPage = () => {
             className="bg-white rounded-xl shadow-lg p-8"
           >
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-8 text-center">
-              Formulaire de Préinscription
+              Formulaire de préinscription
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -375,7 +375,7 @@ const InscriptionPage = () => {
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
                   <User className="mr-2" />
-                  Informations Personnelles
+                  Informations personnelles
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -447,7 +447,7 @@ const InscriptionPage = () => {
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
                   <Users className="mr-2" />
-                  Type d'Adhésion
+                  Type d'adhésion
                 </h3>
                 <div className="space-y-3">
                   {adhesionTypes.map((type) => (

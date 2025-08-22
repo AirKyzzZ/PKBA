@@ -20,9 +20,9 @@ const CTA = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-white mb-6">
-            Prêt à Rejoindre PKBA ?
-          </h2>
+                      <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-white mb-6">
+              Prêt à rejoindre PKBA ?
+            </h2>
           <p className="text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ne manquez pas l'opportunité de faire partie de cette aventure exceptionnelle. 
             Les préinscriptions pour la saison 2025/2026 sont maintenant ouvertes !
@@ -126,7 +126,7 @@ const CTA = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-cheddar font-bold text-white mb-4">
-                Questions Fréquentes
+                Questions fréquentes
               </h3>
               <div className="space-y-4 font-montserrat text-gray-300">
                 <div className="flex items-start space-x-3">

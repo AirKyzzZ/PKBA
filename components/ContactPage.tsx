@@ -134,7 +134,7 @@ const ContactPage = () => {
           >
             <CheckCircle size={64} className="text-green-500 mx-auto mb-6" />
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4">
-              Message Envoyé !
+              Message envoyé !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto">
               Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.

@@ -44,7 +44,7 @@ const Hero = () => {
             className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-white font-montserrat font-medium"
           >
             <Calendar size={16} />
-            <span>Lancement Septembre 2025</span>
+                            <span>Lancement septembre 2025</span>
           </motion.div>
 
           {/* Main Title (Image) */}

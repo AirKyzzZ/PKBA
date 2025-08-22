@@ -54,7 +54,7 @@ const Features = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-6">
-            Nos Atouts
+            Nos atouts
           </h2>
           <p className="text-xl font-montserrat text-gray-600 max-w-3xl mx-auto">
             Découvrez ce qui fait la force de PKBA et pourquoi nous sommes le choix idéal 
@@ -101,7 +101,7 @@ const Features = () => {
         >
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-cheddar font-bold mb-4">
-              PKBA en Chiffres
+              PKBA en chiffres
             </h3>
             <p className="text-xl font-montserrat text-white/90">
               Une communauté qui grandit et progresse ensemble

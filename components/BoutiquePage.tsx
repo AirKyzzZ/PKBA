@@ -23,7 +23,7 @@ const BoutiquePage = () => {
   const products = [
     {
       id: 1,
-      name: 'T-shirt Officiel PKBA',
+      name: 'T-shirt officiel PKBA',
       price: 19.99, // Reverted to original price
       originalPrice: 24.99,
       image: '/images/mockups/front_white.png',
@@ -39,22 +39,22 @@ const BoutiquePage = () => {
   const benefits = [
     {
       icon: Shield,
-      title: 'Paiement Sécurisé',
+      title: 'Paiement sécurisé',
       description: 'Stripe - Protection des données'
     },
     {
       icon: Star,
-      title: 'Qualité Garantie',
+      title: 'Qualité garantie',
       description: 'Produits officiels PKBA'
     },
     {
       icon: CreditCard,
-      title: 'Retours Faciles',
+      title: 'Retours faciles',
       description: '30 jours pour changer d\'avis'
     },
     {
       icon: Truck,
-      title: 'Livraison Rapide',
+      title: 'Livraison rapide',
       description: '5-8 jours ouvrés'
     }
   ]
@@ -71,7 +71,7 @@ const BoutiquePage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Boutique Officielle PKBA
+              Boutique officielle PKBA
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
               Découvrez notre T-shirt officiel PKBA. 
@@ -118,7 +118,7 @@ const BoutiquePage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-cheddar font-bold text-gray-900 mb-4">
-              Notre Produit
+              Notre produit
             </h2>
             <p className="text-lg font-montserrat text-gray-600 max-w-2xl mx-auto">
               T-shirt officiel PKBA - Qualité premium et design exclusif
