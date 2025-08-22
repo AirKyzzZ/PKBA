@@ -85,8 +85,8 @@ const ReglementInterieurPage = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'contact@pkba.fr',
-      link: 'mailto:contact@pkba.fr'
+      value: 'parkourBA33@gmail.com',
+      link: 'mailto:parkourBA33@gmail.com'
     },
     {
       icon: MapPin,

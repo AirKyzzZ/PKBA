@@ -92,7 +92,7 @@ const ReglementPDF = () => {
             <p>Ce règlement intérieur est approuvé par le conseil d'administration de l'association PKBA.</p>
             <p>Il peut être modifié à tout moment par décision du conseil d'administration.</p>
             <p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}</p>
-            <p>Contact : contact@pkba.fr - Tél : 06 60 14 71 44</p>
+            <p>Contact : parkourBA33@gmail.com - Tél : 06 60 14 71 44</p>
           </div>
         </div>
       `
@@ -250,7 +250,7 @@ const ReglementPDF = () => {
             <p>Ce règlement intérieur est approuvé par le conseil d'administration de l'association PKBA.</p>
             <p>Il peut être modifié à tout moment par décision du conseil d'administration.</p>
             <p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}</p>
-            <p>Contact : contact@pkba.fr - Tél : 06 60 14 71 44</p>
+            <p>Contact : parkourBA33@gmail.com - Tél : 06 60 14 71 44</p>
           </div>
         </body>
         </html>

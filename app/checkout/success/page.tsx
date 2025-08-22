@@ -65,7 +65,7 @@ const SuccessPage = () => {
                 <div>
                   <h3 className="font-cheddar font-bold text-gray-900 mb-2">Support client</h3>
                   <p className="text-gray-600 font-montserrat">
-                    Pour toute question, contactez-nous à contact@pkba.fr
+                    Pour toute question, contactez-nous à parkourBA33@gmail.com
                   </p>
                 </div>
               </div>
