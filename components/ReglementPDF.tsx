@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Download, FileText, User, Calendar, FileDown } from 'lucide-react'
 import { motion } from 'framer-motion'
 import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
 
 const ReglementPDF = () => {
   const [isGenerating, setIsGenerating] = useState(false)
@@ -13,131 +12,273 @@ const ReglementPDF = () => {
     setIsGenerating(true)
     
     try {
-      // Créer le contenu HTML pour le PDF
-      const content = `
-        <div style="font-family: Arial, sans-serif; padding: 40px; line-height: 1.6; max-width: 800px; margin: 0 auto;">
-          <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #333; padding-bottom: 20px;">
-            <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">RÈGLEMENT INTÉRIEUR</div>
-            <div style="font-size: 16px; color: #666;">ASSOCIATION PKBA - PARKOUR BASSIN D'ARCACHON</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">1. ADHÉSION ET INSCRIPTION</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• L'adhésion est ouverte à toute personne âgée d'au moins 6 ans</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Un certificat médical de non-contre-indication à la pratique du parkour est obligatoire</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• L'inscription se fait sur présentation d'une pièce d'identité et du certificat médical</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les mineurs doivent fournir une autorisation parentale signée</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• L'adhésion est valable pour la saison sportive (septembre à juillet)</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">2. RÈGLES DE SÉCURITÉ</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Le port de chaussures de sport adaptées est obligatoire</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les bijoux et accessoires dangereux sont interdits pendant l'entraînement</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les consignes de sécurité données par les encadrants</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Ne pas pratiquer de figures dangereuses sans l'accord de l'encadrant</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Signaler immédiatement tout incident ou blessure</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">3. HORAIRES ET PONCTUALITÉ</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les entraînements ont lieu aux horaires définis en début de saison</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Arriver 10 minutes avant le début de l'entraînement</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• En cas de retard, demander l'autorisation de rejoindre le groupe</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Prévenir l'encadrant en cas d'absence prévue</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les entraînements commencent et finissent à l'heure précise</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">4. LIEUX D'ENTRAÎNEMENT</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les lieux d'entraînement et leur environnement</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Ne pas dégrader le matériel ou les installations</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Ranger le matériel utilisé après chaque séance</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les règles spécifiques de chaque lieu</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Signaler tout problème constaté sur les installations</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">5. COMPORTEMENT ET RESPECT</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les autres adhérents et l'équipe d'encadrement</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les encadrants</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Adopter un langage correct et respectueux</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Éviter les comportements dangereux ou perturbateurs</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Participer activement et positivement aux entraînements</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Respecter les valeurs de l'association : solidarité, respect, progression</div>
-          </div>
-
-          <div style="margin-bottom: 30px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333;">6. SANCTIONS ET EXCLUSIONS</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Tout manquement aux règles peut entraîner un avertissement</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• En cas de récidive, une suspension temporaire peut être prononcée</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les comportements graves peuvent entraîner l'exclusion définitive</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Les décisions sont prises par le conseil d'administration</div>
-            <div style="margin-bottom: 8px; padding-left: 20px;">• Un recours est possible auprès du bureau de l'association</div>
-          </div>
-
-          <div style="margin-top: 60px; border-top: 1px solid #ccc; padding-top: 30px;">
-            <div style="border: 2px solid #333; padding: 20px; margin: 20px 0; text-align: center;">
-              <div style="margin-bottom: 20px;">Signature de l'adhérent (ou du représentant légal si mineur)</div>
-              <div style="border-bottom: 1px solid #333; width: 200px; margin: 10px auto; height: 40px;"></div>
-              <div style="margin-top: 20px;">
-                <strong>Nom et Prénom :</strong> _________________________________<br>
-                <strong>Date :</strong> _________________________________<br>
-                <strong>Lieu :</strong> _________________________________
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 40px; font-size: 12px; color: #666; text-align: center;">
-            <p>Ce règlement intérieur est approuvé par le conseil d'administration de l'association PKBA.</p>
-            <p>Il peut être modifié à tout moment par décision du conseil d'administration.</p>
-            <p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}</p>
-            <p>Contact : parkourBA33@gmail.com - Tél : 06 60 14 71 44</p>
-          </div>
-        </div>
-      `
-
-      // Créer un élément temporaire pour le contenu
-      const tempDiv = document.createElement('div')
-      tempDiv.innerHTML = content
-      tempDiv.style.position = 'absolute'
-      tempDiv.style.left = '-9999px'
-      tempDiv.style.top = '0'
-      document.body.appendChild(tempDiv)
-
-      // Convertir le HTML en canvas
-      const canvas = await html2canvas(tempDiv, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff'
-      })
-
-      // Nettoyer l'élément temporaire
-      document.body.removeChild(tempDiv)
-
-      // Créer le PDF
-      const imgData = canvas.toDataURL('image/png')
+      // Créer le PDF avec jsPDF
       const pdf = new jsPDF('p', 'mm', 'a4')
-      const imgWidth = 210
-      const pageHeight = 295
-      const imgHeight = (canvas.height * imgWidth) / canvas.width
-      let heightLeft = imgHeight
-
-      let position = 0
-
-      // Ajouter la première page
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-      heightLeft -= pageHeight
-
-      // Ajouter des pages supplémentaires si nécessaire
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight
-        pdf.addPage()
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-        heightLeft -= pageHeight
+      
+      // Configuration des polices et couleurs
+      pdf.setFont('helvetica')
+      pdf.setFontSize(12)
+      
+      // Marges
+      const margin = 20
+      const pageWidth = 210
+      const contentWidth = pageWidth - (2 * margin)
+      let yPosition = 30
+      
+      // Fonction pour ajouter du texte avec gestion des sauts de ligne
+      const addText = (text: string, x: number, y: number, maxWidth: number, fontSize: number = 12) => {
+        pdf.setFontSize(fontSize)
+        const lines = pdf.splitTextToSize(text, maxWidth)
+        pdf.text(lines, x, y)
+        return lines.length * (fontSize * 0.4) // Retourne la hauteur utilisée
       }
-
+      
+      // En-tête
+      pdf.setFontSize(20)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('RÈGLEMENT INTÉRIEUR', pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 15
+      
+      pdf.setFontSize(14)
+      pdf.setFont('helvetica', 'normal')
+      pdf.text('ASSOCIATION PKBA - PARKOUR BASSIN D\'ARCACHON', pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 25
+      
+      // Ligne de séparation
+      pdf.line(margin, yPosition, pageWidth - margin, yPosition)
+      yPosition += 20
+      
+      // Section 1: Adhésion et Inscription
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('1. ADHÉSION ET INSCRIPTION', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules1 = [
+        '• L\'adhésion est ouverte à toute personne âgée d\'au moins 6 ans',
+        '• Un certificat médical de non-contre-indication à la pratique du parkour est obligatoire',
+        '• L\'inscription se fait sur présentation d\'une pièce d\'identité et du certificat médical',
+        '• Les mineurs doivent fournir une autorisation parentale signée',
+        '• L\'adhésion est valable pour la saison sportive (septembre à juillet)'
+      ]
+      
+      rules1.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 15
+      
+      // Section 2: Règles de Sécurité
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('2. RÈGLES DE SÉCURITÉ', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules2 = [
+        '• Le port de chaussures de sport adaptées est obligatoire',
+        '• Les bijoux et accessoires dangereux sont interdits pendant l\'entraînement',
+        '• Respecter les consignes de sécurité données par les encadrants',
+        '• Ne pas pratiquer de figures dangereuses sans l\'accord de l\'encadrant',
+        '• Signaler immédiatement tout incident ou blessure'
+      ]
+      
+      rules2.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 15
+      
+      // Section 3: Horaires et Ponctualité
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('3. HORAIRES ET PONCTUALITÉ', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules3 = [
+        '• Les entraînements ont lieu aux horaires définis en début de saison',
+        '• Arriver 10 minutes avant le début de l\'entraînement',
+        '• En cas de retard, demander l\'autorisation de rejoindre le groupe',
+        '• Prévenir l\'encadrant en cas d\'absence prévue',
+        '• Les entraînements commencent et finissent à l\'heure précise'
+      ]
+      
+      rules3.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 15
+      
+      // Section 4: Lieux d'Entraînement
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('4. LIEUX D\'ENTRAÎNEMENT', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules4 = [
+        '• Respecter les lieux d\'entraînement et leur environnement',
+        '• Ne pas dégrader le matériel ou les installations',
+        '• Ranger le matériel utilisé après chaque séance',
+        '• Respecter les règles spécifiques de chaque lieu',
+        '• Signaler tout problème constaté sur les installations'
+      ]
+      
+      rules4.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 15
+      
+      // Section 5: Comportement et Respect
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('5. COMPORTEMENT ET RESPECT', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules5 = [
+        '• Respecter les autres adhérents et l\'équipe d\'encadrement',
+        '• Respecter les encadrants',
+        '• Adopter un langage correct et respectueux',
+        '• Éviter les comportements dangereux ou perturbateurs',
+        '• Participer activement et positivement aux entraînements',
+        '• Respecter les valeurs de l\'association : solidarité, respect, progression'
+      ]
+      
+      rules5.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 15
+      
+      // Section 6: Sanctions et Exclusions
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(16)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('6. SANCTIONS ET EXCLUSIONS', margin, yPosition)
+      yPosition += 10
+      
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      const rules6 = [
+        '• Tout manquement aux règles peut entraîner un avertissement',
+        '• En cas de récidive, une suspension temporaire peut être prononcée',
+        '• Les comportements graves peuvent entraîner l\'exclusion définitive',
+        '• Les décisions sont prises par le conseil d\'administration',
+        '• Un recours est possible auprès du bureau de l\'association'
+      ]
+      
+      rules6.forEach(rule => {
+        if (yPosition > 250) {
+          pdf.addPage()
+          yPosition = 30
+        }
+        pdf.text(rule, margin + 5, yPosition)
+        yPosition += 7
+      })
+      yPosition += 20
+      
+      // Section Signature
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      // Ligne de séparation
+      pdf.line(margin, yPosition, pageWidth - margin, yPosition)
+      yPosition += 20
+      
+      // Cadre de signature
+      pdf.setFontSize(14)
+      pdf.setFont('helvetica', 'bold')
+      pdf.text('Signature de l\'adhérent (ou du représentant légal si mineur)', pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 15
+      
+      // Rectangle pour la signature
+      const signatureWidth = 80
+      const signatureHeight = 30
+      const signatureX = (pageWidth - signatureWidth) / 2
+      pdf.rect(signatureX, yPosition, signatureWidth, signatureHeight)
+      yPosition += 40
+      
+      // Champs de saisie
+      pdf.setFontSize(11)
+      pdf.setFont('helvetica', 'normal')
+      pdf.text('Nom et Prénom : _________________________________', margin, yPosition)
+      yPosition += 8
+      pdf.text('Date : _________________________________', margin, yPosition)
+      yPosition += 8
+      pdf.text('Lieu : _________________________________', margin, yPosition)
+      yPosition += 20
+      
+      // Pied de page
+      if (yPosition > 250) {
+        pdf.addPage()
+        yPosition = 30
+      }
+      
+      pdf.setFontSize(10)
+      pdf.setFont('helvetica', 'italic')
+      pdf.text('Ce règlement intérieur est approuvé par le conseil d\'administration de l\'association PKBA.', pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 6
+      pdf.text('Il peut être modifié à tout moment par décision du conseil d\'administration.', pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 6
+      pdf.text(`Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}`, pageWidth / 2, yPosition, { align: 'center' })
+      yPosition += 6
+      pdf.text('Contact : parkourBA33@gmail.com - Tél : 06 60 14 71 44', pageWidth / 2, yPosition, { align: 'center' })
+      
       // Télécharger le PDF
       pdf.save('reglement-interieur-pkba.pdf')
       
@@ -340,7 +481,7 @@ const ReglementPDF = () => {
       </div>
 
       <div className="mt-4 text-xs text-gray-500 text-center">
-        <p><strong>PDF :</strong> Format professionnel, parfait pour l'impression et la signature électronique.</p>
+        <p><strong>PDF :</strong> Format professionnel avec texte lisible, parfait pour l'impression et la signature électronique.</p>
         <p><strong>HTML :</strong> Format léger, peut être ouvert dans n'importe quel navigateur et imprimé.</p>
       </div>
     </motion.div>
