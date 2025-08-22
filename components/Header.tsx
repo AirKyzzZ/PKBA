@@ -64,7 +64,7 @@ const Header = () => {
     <header
       className={`fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${basePositionClasses} ${desktopScrolledPositionClasses} ${containerWidthClasses} ${headerBgClasses}`}
     >
-      <div className="px-4 sm:px-5 lg:px-6">
+      <div className="px-3 sm:px-4 sm:px-5 lg:px-6">
         <div className={`flex justify-between items-center transition-all duration-500 ${containerHeightClasses}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
@@ -77,7 +77,7 @@ const Header = () => {
               className={`${logoImageHeight} w-auto transition-all duration-300`}
             />
             <div className={`hidden sm:block transition-opacity duration-300 ${brandInfoVisibility}`}>
-              <h1 className="text-xl lg:text-2xl font-cheddar font-bold gradient-text">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-cheddar font-bold gradient-text">
                 PKBA
               </h1>
               <p className="text-xs text-gray-600 font-montserrat">
@@ -123,7 +123,7 @@ const Header = () => {
             </Link>
             <Link
               href="/inscription"
-              className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg font-montserrat font-medium transition-all duration-200 transform hover:scale-105"
+              className="bg-primary hover:bg-secondary text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-medium transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
             >
               Rejoindre le club
             </Link>
@@ -138,13 +138,13 @@ const Header = () => {
               className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
               aria-label="Instagram PKBA"
             >
-              <Instagram size={22} />
+              <Instagram size={20} className="sm:w-6 sm:h-6" />
             </a>
             <Link
               href="/checkout"
               className="relative p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
             >
-              <ShoppingCart size={22} />
+              <ShoppingCart size={20} className="sm:w-6 sm:h-6" />
               {getTotalItems() > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">
                   {getTotalItems()}
@@ -156,7 +156,7 @@ const Header = () => {
               className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
               aria-label="Ouvrir le menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} className="sm:w-6 sm:h-6" /> : <Menu size={22} className="sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
@@ -178,7 +178,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block text-gray-700 hover:text-primary font-montserrat font-medium py-2 transition-colors duration-200"
+                  className="block text-gray-700 hover:text-primary font-montserrat font-medium py-2 transition-colors duration-200 text-base"
                 >
                   {item.name}
                 </Link>
@@ -186,7 +186,7 @@ const Header = () => {
               <Link
                 href="/inscription"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-semibold transition-all duration-200"
+                className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-semibold transition-all duration-200 text-base"
               >
                 Rejoindre le club
               </Link>
@@ -195,9 +195,9 @@ const Header = () => {
                   href="https://instagram.com/parkourbassindarcachon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors duration-200"
+                  className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
                 >
-                  <Instagram size={20} />
+                  <Instagram size={18} />
                   <span className="font-montserrat">@parkourbassindarcachon</span>
                 </a>
               </div>

@@ -16,6 +16,9 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
+  /* Ensure proper mobile viewport handling */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -31,6 +34,27 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, 
+  a, 
+  input, 
+  select, 
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure proper spacing for mobile */
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

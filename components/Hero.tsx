@@ -7,7 +7,7 @@ import { ArrowRight, Calendar, ShoppingBag } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="relative h-[100vh] lg:h-[calc(100vh-5rem)] flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -24,27 +24,25 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
-      {/* Floating Elements removed */}
-
       {/* Readability Overlay */}
       <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/50" />
 
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-20 max-w-7xl mx-auto text-center py-16 sm:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-8"
+          className="space-y-6 sm:space-y-8 lg:space-y-10"
         >
           {/* Launch Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-white font-montserrat font-medium"
+            className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-white font-montserrat font-medium text-sm sm:text-base"
           >
-            <Calendar size={16} />
-                            <span>Lancement septembre 2025</span>
+            <Calendar size={16} className="flex-shrink-0" />
+            <span className="whitespace-nowrap">Lancement septembre 2025</span>
           </motion.div>
 
           {/* Main Title (Image) */}
@@ -52,7 +50,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex justify-center"
+            className="flex justify-center px-2"
           >
             <span className="sr-only">PKBA</span>
             <Image
@@ -61,7 +59,7 @@ const Hero = () => {
               width={1100}
               height={320}
               priority
-              className="w-[70%] max-w-[900px] h-auto"
+              className="w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] max-w-[900px] h-auto"
             />
           </motion.div>
 
@@ -70,7 +68,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl lg:text-3xl font-montserrat font-medium text-white/90 max-w-4xl mx-auto"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-medium text-white/90 max-w-4xl mx-auto px-4"
           >
             Parkour Bassin d'Arcachon
           </motion.p>
@@ -80,7 +78,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-xl font-montserrat text-white/80 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl font-montserrat text-white/80 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
           >
             Découvrez l'art du déplacement dans un cadre sécurisé et professionnel. 
             Rejoignez notre communauté de passionnés au cœur du Bassin d'Arcachon.
@@ -91,21 +89,21 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-6 sm:pt-8 px-4"
           >
             <Link
               href="/inscription"
-              className="group bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-lg font-montserrat font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2"
+              className="group bg-white text-primary hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2 w-full sm:w-auto justify-center"
             >
               <span>Rejoindre le club</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
             </Link>
             
             <Link
               href="/boutique"
-              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-lg font-montserrat font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={20} className="flex-shrink-0" />
               <span>Boutique</span>
             </Link>
           </motion.div>
@@ -118,7 +116,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

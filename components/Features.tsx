@@ -44,25 +44,25 @@ const Features = () => {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
             Nos atouts
           </h2>
-          <p className="text-xl font-montserrat text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
             Découvrez ce qui fait la force de PKBA et pourquoi nous sommes le choix idéal 
             pour votre progression en parkour.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -72,16 +72,16 @@ const Features = () => {
               viewport={{ once: true }}
               className="group relative"
             >
-              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-                <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${feature.color} group-hover:scale-110 transition-transform duration-200`}>
-                    <feature.icon size={24} />
+              <div className="bg-white rounded-xl p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center ${feature.color} group-hover:scale-110 transition-transform duration-200 flex-shrink-0`}>
+                    <feature.icon size={20} className="sm:w-6 sm:h-6" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg sm:text-xl font-cheddar font-bold text-gray-900 mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 font-montserrat leading-relaxed">
+                    <p className="text-sm sm:text-base text-gray-600 font-montserrat leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -97,7 +97,7 @@ const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 lg:p-12 text-white"
+          className="mt-16 sm:mt-20 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 sm:p-8 lg:p-12 text-white"
         >
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-cheddar font-bold mb-4">

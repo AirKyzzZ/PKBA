@@ -5,7 +5,7 @@ import CTA from '@/components/CTA'
 
 export default function Home() {
   return (
-    <div className="pt-0 lg:pt-20">
+    <div className="min-h-screen">
       <Hero />
       <Mission />
       <Features />

@@ -6,7 +6,7 @@ import { ArrowRight, Calendar, ShoppingBag, Users } from 'lucide-react'
 
 const CTA = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -18,18 +18,18 @@ const CTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12"
         >
-                      <h2 className="text-4xl md:text-5xl font-cheddar font-bold text-white mb-6">
-              Prêt à rejoindre PKBA ?
-            </h2>
-          <p className="text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-white mb-4 sm:mb-6">
+            Prêt à rejoindre PKBA ?
+          </h2>
+          <p className="text-lg sm:text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
             Ne manquez pas l'opportunité de faire partie de cette aventure exceptionnelle. 
             Les préinscriptions pour la saison 2025/2026 sont maintenant ouvertes !
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
           {[
             {
               icon: Users,
