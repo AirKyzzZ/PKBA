@@ -24,6 +24,7 @@ const CheckoutForm = ({
   const [isProcessing, setIsProcessing] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [showManualProceed, setShowManualProceed] = useState(false)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -141,10 +142,10 @@ const CheckoutForm = ({
         
         await sendOrderNotification(orderData)
         
-        // Call success callback
+        // Show manual proceed button after a short delay
         setTimeout(() => {
-          onSuccess()
-        }, 3000)
+          setShowManualProceed(true)
+        }, 2000)
       }
     } catch (error) {
       setError('Une erreur est survenue. Veuillez réessayer.')
@@ -161,13 +162,45 @@ const CheckoutForm = ({
         animate={{ opacity: 1, scale: 1 }}
         className="text-center py-8"
       >
-        <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-cheddar font-bold text-gray-900 mb-2">
+        <CheckCircle size={80} className="text-green-500 mx-auto mb-6" />
+        <h3 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
           Commande confirmée !
         </h3>
-        <p className="text-gray-600 font-montserrat">
+        <p className="text-lg text-gray-600 font-montserrat mb-6">
           Votre commande a été traitée avec succès. Vous recevrez un email de confirmation dans quelques minutes.
         </p>
+        
+        {/* Order Summary */}
+        <div className="bg-green-50 rounded-lg p-6 mb-6 max-w-md mx-auto">
+          <h4 className="font-cheddar font-bold text-green-900 mb-3">Récapitulatif</h4>
+          <div className="space-y-2 text-sm text-green-800 font-montserrat">
+            <div className="flex justify-between">
+              <span>Articles:</span>
+              <span>{items.length} T-shirt{items.length > 1 ? 's' : ''}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Total:</span>
+              <span className="font-bold">{total.toFixed(2)}€</span>
+            </div>
+          </div>
+        </div>
+
+        {showManualProceed ? (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            onClick={onSuccess}
+            className="bg-primary hover:bg-secondary text-white px-8 py-3 rounded-lg font-montserrat font-semibold transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2 mx-auto"
+          >
+            <CheckCircle size={20} />
+            <span>Continuer vers la page de confirmation</span>
+          </motion.button>
+        ) : (
+          <div className="flex items-center justify-center space-x-2 text-gray-500">
+            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <span className="font-montserrat text-sm">Préparation de votre confirmation...</span>
+          </div>
+        )}
       </motion.div>
     )
   }
