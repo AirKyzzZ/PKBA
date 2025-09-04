@@ -33,8 +33,8 @@ const trainingSessions: TrainingSession[] = [
   { id: '6', day: 'Mercredi', time: '19h-20h30', ageGroup: '12 ans et + (2013 et +)', group: 'G2', type: 'loisir', location: 'À définir' },
   
   // Vendredi
-  { id: '7', day: 'Vendredi', time: '17h-18h30', ageGroup: 'Performance', group: 'Perf petit', type: 'performance', location: 'À définir' },
-  { id: '8', day: 'Vendredi', time: '18h30-20h', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
+  { id: '7', day: 'Vendredi', time: '17h30-19h', ageGroup: 'Performance', group: 'Perf petit', type: 'performance', location: 'À définir' },
+  { id: '8', day: 'Vendredi', time: '19h-20h30', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
   
   // Samedi
   { id: '9', day: 'Samedi', time: '13h-14h30', ageGroup: '8-12 ans (2017-2014)', group: 'G1', type: 'loisir', location: 'À définir' },
