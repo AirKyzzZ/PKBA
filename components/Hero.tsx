@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Calendar, ShoppingBag } from 'lucide-react'
+import { ArrowRight, Calendar, ShoppingBag, Clock, Euro } from 'lucide-react'
 
 const Hero = () => {
   return (
@@ -97,6 +97,14 @@ const Hero = () => {
             >
               <span>Rejoindre le club</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+            </Link>
+            
+            <Link
+              href="/horaires"
+              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
+            >
+              <Clock size={20} className="flex-shrink-0" />
+              <span>Horaires & Tarifs</span>
             </Link>
             
             <Link

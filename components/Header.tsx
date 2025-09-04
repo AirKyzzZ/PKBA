@@ -25,6 +25,7 @@ const Header = () => {
 
   const navItems = [
     { name: 'Accueil', href: '/' },
+    { name: 'Horaires & Tarifs', href: '/horaires' },
     { name: 'Boutique', href: '/boutique' },
             { name: 'Préinscription', href: '/inscription' },
     { name: 'Actualités', href: '/actualites' },
@@ -64,7 +65,7 @@ const Header = () => {
     <header
       className={`fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${basePositionClasses} ${desktopScrolledPositionClasses} ${containerWidthClasses} ${headerBgClasses}`}
     >
-      <div className="px-3 sm:px-4 sm:px-5 lg:px-6">
+      <div className="px-3 sm:px-5 lg:px-6">
         <div className={`flex justify-between items-center transition-all duration-500 ${containerHeightClasses}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">

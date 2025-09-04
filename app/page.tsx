@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import Mission from '@/components/Mission'
 import Features from '@/components/Features'
+import ScheduleHighlight from '@/components/ScheduleHighlight'
 import CTA from '@/components/CTA'
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Features />
+      <ScheduleHighlight />
       <CTA />
     </div>
   )
