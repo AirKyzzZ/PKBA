@@ -61,8 +61,8 @@ const InscriptionPage = () => {
   const [isDrawing, setIsDrawing] = useState(false)
 
   const adhesionTypes = [
-    { value: 'ancien', label: 'Ancien adhérent' },
-    { value: 'nouveau', label: 'Nouvel adhérent' },
+    { value: 'ancien', label: 'Ancien Adhérent' },
+    { value: 'nouveau', label: 'Nouvel Adhérent' },
     { value: 'autre_club', label: 'En provenance d\'un autre club' }
   ]
 
@@ -465,7 +465,7 @@ const InscriptionPage = () => {
                     </div>
                   ))}
                   
-                  {formData.adhesionType.includes('autre_club') && (
+                  {formData.adhesionType.includes('En provenance d\'un autre club') && (
                     <div className="mt-3">
                       <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
                         Nom du club d'origine
