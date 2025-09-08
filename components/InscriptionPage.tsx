@@ -357,20 +357,86 @@ const InscriptionPage = () => {
         </div>
       </section>
 
-      {/* Registration Form */}
+      {/* Message d'information - Préinscriptions fermées */}
+      <section className="py-16 bg-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-white rounded-xl shadow-lg p-8 text-center"
+          >
+            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <AlertCircle size={32} className="text-orange-600" />
+            </div>
+            <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
+              Préinscriptions Fermées
+            </h2>
+            <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
+              Tous les groupes pour la saison 2025/2026 sont actuellement au complet. 
+              Nous ne pouvons plus accepter de nouvelles préinscriptions pour cette année.
+            </p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-cheddar font-semibold text-blue-900 mb-3">
+                Que faire maintenant ?
+              </h3>
+              <div className="space-y-2 text-left font-montserrat text-blue-800">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Les préinscriptions pourraient rouvrir si des places se libèrent</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Suivez nos actualités pour être informé des prochaines ouvertures</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Contactez-nous si vous avez des questions spécifiques</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="bg-primary hover:bg-secondary text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Mail size={20} />
+                <span>Nous contacter</span>
+              </a>
+              <a
+                href="/actualites"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Calendar size={20} />
+                <span>Voir nos actualités</span>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Registration Form - Désactivé */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-xl shadow-lg p-8"
+            className="bg-gray-100 rounded-xl shadow-lg p-8 opacity-60"
           >
-            <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4 text-center">
               Formulaire de préinscription
             </h2>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-8">
+              <div className="flex items-center space-x-2">
+                <AlertCircle size={20} className="text-orange-600" />
+                <p className="text-orange-800 font-montserrat font-medium">
+                  Ce formulaire est temporairement désactivé car tous les groupes sont complets pour cette saison.
+                </p>
+              </div>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'none' }}>
               {/* Informations Personnelles */}
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
