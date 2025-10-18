@@ -37,9 +37,9 @@ const trainingSessions: TrainingSession[] = [
   { id: '8', day: 'Vendredi', time: '19h-20h30', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
   
   // Samedi
-  { id: '9', day: 'Samedi', time: '13h-14h30', ageGroup: '8-12 ans (2017-2014)', group: 'G1', type: 'loisir', location: 'À définir' },
-  { id: '10', day: 'Samedi', time: '14h30-15h30', ageGroup: '6-8 ans (2018-2019)', group: 'G2', type: 'loisir', location: 'À définir' },
-  { id: '11', day: 'Samedi', time: '15h30-17h', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
+  { id: '9', day: 'Samedi', time: '13h30-15h', ageGroup: '8-12 ans (2017-2014)', group: 'G1', type: 'loisir', location: 'À définir' },
+  { id: '10', day: 'Samedi', time: '15h-16h', ageGroup: '6-8 ans (2018-2019)', group: 'G2', type: 'loisir', location: 'À définir' },
+  { id: '11', day: 'Samedi', time: '16h-17h30', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
 ]
 
 const pricing: Pricing[] = [
