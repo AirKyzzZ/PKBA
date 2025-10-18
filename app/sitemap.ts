@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { articles } from '@/content/articles'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
@@ -35,6 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.8,
     },
+    // Article URLs
+    ...articles.map((a) => ({
+      url: `${baseUrl}/actualites/${a.slug}`,
+      lastModified: new Date(a.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
     {
       url: `${baseUrl}/contact`,
       lastModified: currentDate,

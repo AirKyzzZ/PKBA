@@ -1,13 +1,40 @@
 import Script from 'next/script'
 
 interface StructuredDataProps {
-  type: 'organization' | 'sportsOrganization' | 'product' | 'event' | 'localBusiness' | 'localSportsOrganization'
+  type: 'organization' | 'sportsOrganization' | 'product' | 'event' | 'localBusiness' | 'localSportsOrganization' | 'article'
   data: any
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
   const getStructuredData = () => {
     switch (type) {
+      case 'article':
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: data.title,
+          description: data.description,
+          image: data.image,
+          author: data.author || {
+            '@type': 'Organization',
+            name: 'PKBA - Parkour Bassin d\'Arcachon',
+          },
+          datePublished: data.datePublished,
+          dateModified: data.dateModified || data.datePublished,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': data.url,
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'PKBA - Parkour Bassin d\'Arcachon',
+            logo: {
+              '@type': 'ImageObject',
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/transparent_full.png`,
+            },
+          },
+          ...data.extra,
+        }
       case 'organization':
         return {
           '@context': 'https://schema.org',
