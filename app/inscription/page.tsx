@@ -2,12 +2,12 @@ import InscriptionPage from '@/components/InscriptionPage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Préinscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
-  description: 'Préinscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de préinscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
-  keywords: 'préinscription parkour, club PKBA, saison 2025/2026, cours parkour Arcachon, adhésion association, encadrement professionnel',
+  title: 'Stage de Parkour - Vacances de Noël 2024 | PKBA Bassin d\'Arcachon',
+  description: 'Inscrivez-vous au stage de parkour pendant les vacances de Noël 2024 ! 4 jours de pratique intensive (22-23 & 29-30 décembre). Groupes adaptés par âge, encadrement professionnel. Places limitées.',
+  keywords: 'stage parkour, vacances Noël 2024, stage sportif décembre, parkour Arcachon, activité vacances enfants, stage parkour Noël',
   openGraph: {
-    title: 'Préinscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
-    description: 'Préinscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de préinscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
+    title: 'Stage de Parkour - Vacances de Noël 2024 | PKBA Bassin d\'Arcachon',
+    description: 'Inscrivez-vous au stage de parkour pendant les vacances de Noël 2024 ! 4 jours de pratique intensive (22-23 & 29-30 décembre). Groupes adaptés par âge, encadrement professionnel.',
     url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
     siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
     type: 'website',
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Préinscription PKBA - Saison 2025/2026 | Club de Parkour Bassin d\'Arcachon',
-    description: 'Préinscrivez-vous au club de parkour PKBA pour la saison 2025/2026. Formulaire de préinscription sécurisé avec informations de base et autorisation parentale. Encadrement professionnel garanti.',
+    title: 'Stage de Parkour - Vacances de Noël 2024 | PKBA',
+    description: 'Stage de parkour intensif pendant les vacances de Noël. 4 jours d\'entraînement : 22-23 & 29-30 décembre 2024. Inscriptions ouvertes !',
   },
   alternates: {
     canonical: '/inscription',
@@ -32,13 +32,13 @@ export default function Inscription() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Préinscription Saison 2025/2026 - PKBA',
-            description: 'Préinscription au club de parkour PKBA pour la saison 2025/2026',
+            name: 'Stage de Parkour - Vacances de Noël 2024 - PKBA',
+            description: 'Inscription au stage de parkour PKBA pendant les vacances de Noël 2024',
             url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
                           mainEntity: {
                 '@type': 'Form',
-                name: 'Formulaire de Préinscription PKBA',
-                description: 'Formulaire de préinscription pour rejoindre le club de parkour PKBA',
+                name: 'Formulaire d\'Inscription Stage de Noël PKBA',
+                description: 'Formulaire d\'inscription pour le stage de parkour des vacances de Noël 2024',
               url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
             },
             breadcrumb: {
@@ -53,7 +53,7 @@ export default function Inscription() {
                 {
                   '@type': 'ListItem',
                   position: 2,
-                  name: 'Préinscription',
+                  name: 'Inscription Stage',
                   item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
                 },
               ],

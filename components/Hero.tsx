@@ -34,15 +34,15 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6 sm:space-y-8 lg:space-y-10"
         >
-          {/* Launch Badge */}
+          {/* Stage de Noël Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-white font-montserrat font-medium text-sm sm:text-base"
+            className="inline-flex items-center space-x-2 bg-red-600/90 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-white font-montserrat font-bold text-sm sm:text-base shadow-lg animate-pulse"
           >
-            <Calendar size={16} className="flex-shrink-0" />
-            <span className="whitespace-nowrap">Lancement septembre 2025</span>
+            <Calendar size={18} className="flex-shrink-0" />
+            <span className="whitespace-nowrap">🎄 Stage de Noël - Inscriptions ouvertes !</span>
           </motion.div>
 
           {/* Main Title (Image) */}
@@ -78,10 +78,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-base sm:text-lg md:text-xl font-montserrat text-white/80 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
+            className="text-base sm:text-lg md:text-xl font-montserrat text-white/90 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
           >
-            Découvrez l'art du déplacement dans un cadre sécurisé et professionnel. 
-            Rejoignez notre communauté de passionnés au cœur du Bassin d'Arcachon.
+            ⭐ Stage intensif pendant les vacances de Noël : 22-23 & 29-30 décembre 2024<br/>
+            Groupes adaptés par âge • Encadrement professionnel • Places limitées
           </motion.p>
 
           {/* CTA Buttons */}
@@ -93,9 +93,10 @@ const Hero = () => {
           >
             <Link
               href="/inscription"
-              className="group bg-white text-primary hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2 w-full sm:w-auto justify-center"
+              className="group bg-red-600 text-white hover:bg-red-700 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
             >
-              <span>Rejoindre le club</span>
+              <Calendar size={20} className="flex-shrink-0" />
+              <span>S'inscrire au stage de Noël</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
             </Link>
             

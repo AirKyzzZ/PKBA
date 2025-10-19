@@ -6,16 +6,16 @@ import { Clock, Euro, MapPin, Users, Trophy, ArrowRight, Calendar } from 'lucide
 
 const ScheduleHighlight = () => {
   const quickStats = [
-    { icon: Clock, label: 'Horaires', value: '4 jours/semaine', color: 'text-blue-600' },
-    { icon: Users, label: 'Groupes', value: 'Par âge & niveau', color: 'text-green-600' },
-    { icon: Calendar, label: 'Saison', value: '2025/2026', color: 'text-purple-600' },
-    { icon: Euro, label: 'Tarifs', value: 'À partir de 250€', color: 'text-orange-600' }
+    { icon: Calendar, label: 'Dates', value: '22-23 & 29-30 déc.', color: 'text-red-600' },
+    { icon: Clock, label: 'Durée', value: '4 jours de stage', color: 'text-blue-600' },
+    { icon: Users, label: 'Groupes', value: '3 groupes d\'âge', color: 'text-green-600' },
+    { icon: Trophy, label: 'Places', value: 'Limitées !', color: 'text-orange-600' }
   ]
 
   const featuredSessions = [
-    { day: 'Mercredi', time: '13h-20h30', groups: 'Tous âges', type: 'loisir' },
-    { day: 'Samedi', time: '13h30-17h', groups: '6-8 ans + Perf', type: 'mixte' },
-    { day: 'Mardi/Vendredi', time: '17h-20h30', groups: 'Performance', type: 'performance' }
+    { day: 'Moins de 12 ans', time: '10h30-12h30', groups: '22-23 & 29-30 déc.', type: 'loisir' },
+    { day: 'Plus de 12 ans', time: '14h-16h', groups: '22-23 & 29-30 déc.', type: 'mixte' },
+    { day: 'Groupe Compétition', time: '16h-18h', groups: '22-23 & 29-30 déc.', type: 'performance' }
   ]
 
   return (
@@ -29,10 +29,10 @@ const ScheduleHighlight = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
-            Horaires & Tarifs
+            🎄 Stage de Noël 2024
           </h2>
                      <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
-             Découvrez nos créneaux d'entraînement et nos tarifs transparents pour la saison 2025/2026. Lieux d'entraînement à définir.
+             Profitez des vacances de Noël pour un stage intensif de parkour ! 4 jours d'entraînement avec groupes adaptés par âge et niveau.
            </p>
         </motion.div>
 
@@ -80,7 +80,7 @@ const ScheduleHighlight = () => {
                 <Calendar className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-2xl font-cheddar font-bold text-gray-900">
-                Créneaux Populaires
+                Horaires du Stage
               </h3>
             </div>
             
@@ -134,55 +134,62 @@ const ScheduleHighlight = () => {
             className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                <Euro className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+                <Trophy className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-2xl font-cheddar font-bold text-gray-900">
-                Tarifs Transparents
+                Avantages du Stage
               </h3>
             </div>
             
             <div className="space-y-4 mb-6">
-              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                <div>
-                  <div className="font-semibold text-gray-900">6-8 ans</div>
-                  <div className="text-sm text-gray-600">1h par semaine</div>
+              <div className="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <div className="font-semibold text-gray-900">4 jours intensifs</div>
+                    <div className="text-sm text-gray-600 mt-1">Progression rapide pendant les vacances</div>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-green-600">250€</div>
               </div>
               
-              <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                <div>
-                  <div className="font-semibold text-gray-900">8-12 ans</div>
-                  <div className="text-sm text-gray-600">1h30 par semaine</div>
+              <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Coach professionnel</div>
+                    <div className="text-sm text-gray-600 mt-1">Encadrement diplômé et expérimenté</div>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-blue-600">265€</div>
               </div>
               
-              <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-                <div>
-                  <div className="font-semibold text-gray-900">Performance</div>
-                  <div className="text-sm text-gray-600">2-3 séances/semaine</div>
+              <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Groupes adaptés</div>
+                    <div className="text-sm text-gray-600 mt-1">Par âge et niveau pour un meilleur apprentissage</div>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-red-600">365€</div>
               </div>
-            </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-6">
-              <h4 className="font-semibold text-gray-900 mb-2">Tout inclus :</h4>
-              <div className="text-sm text-gray-600 space-y-1">
-                <div>• Assurance (17,19€)</div>
-                <div>• Part FFGYM (26,50€)</div>
-                <div>• Part comité régional (17€)</div>
-                <div>• Part comité départemental (4,50€)</div>
+              <div className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Activité vacances</div>
+                    <div className="text-sm text-gray-600 mt-1">Une façon sportive et fun d'occuper les vacances</div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <Link
-              href="/horaires"
-              className="group w-full bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-montserrat font-semibold text-center transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              href="/inscription"
+              className="group w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >
-              <span>Voir tous les horaires</span>
+              <Calendar size={20} />
+              <span>S'inscrire au stage</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </motion.div>
@@ -198,23 +205,23 @@ const ScheduleHighlight = () => {
         >
           <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
             <h3 className="text-2xl md:text-3xl font-cheddar font-bold mb-4">
-              Prêt à commencer votre aventure ?
+              Inscrivez-vous au stage de Noël !
             </h3>
             <p className="text-lg mb-6 opacity-90">
-              Rejoignez PKBA et découvrez le parkour dans un cadre sécurisé et professionnel
+              4 jours de parkour intensif pendant les vacances - Places limitées, inscrivez-vous rapidement !
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/inscription"
-                className="bg-white text-primary px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105"
+                className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105 shadow-lg"
               >
-                S'inscrire maintenant
+                S'inscrire au stage
               </Link>
               <Link
-                href="/horaires"
+                href="/contact"
                 className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary transition-colors duration-200"
               >
-                Voir les horaires complets
+                Nous contacter
               </Link>
             </div>
           </div>

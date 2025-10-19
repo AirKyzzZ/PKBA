@@ -21,22 +21,22 @@ const CTA = () => {
           className="text-center mb-10 sm:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-white mb-4 sm:mb-6">
-            Prêt à rejoindre PKBA ?
+            🎄 Stage de Noël 2024 - Places limitées !
           </h2>
           <p className="text-lg sm:text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
-            Ne manquez pas l'opportunité de faire partie de cette aventure exceptionnelle. 
-            Les préinscriptions pour la saison 2025/2026 sont maintenant ouvertes !
+            Ne manquez pas cette opportunité unique pendant les vacances ! 
+            Inscrivez-vous dès maintenant au stage intensif de parkour : 22-23 & 29-30 décembre 2024
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
           {[
             {
-              icon: Users,
-              title: 'Rejoindre le Club',
-              description: 'Préinscription pour la saison 2025/2026',
+              icon: Calendar,
+              title: 'S\'inscrire au Stage',
+              description: 'Stage de Noël : 22-23 & 29-30 décembre',
               href: '/inscription',
-              color: 'bg-primary hover:bg-secondary',
+              color: 'bg-red-600 hover:bg-red-700',
               delay: 0.2,
               type: 'primary'
             },
@@ -50,10 +50,10 @@ const CTA = () => {
               type: 'white'
             },
             {
-              icon: Calendar,
-              title: 'Découvrir le Planning',
-              description: 'Horaires et lieux d\'entraînement',
-              href: '/actualites',
+              icon: Users,
+              title: 'Infos Pratiques',
+              description: 'Horaires et groupes du stage',
+              href: '/inscription',
               color: 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary',
               delay: 0.6,
               type: 'transparent'
@@ -126,41 +126,41 @@ const CTA = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-cheddar font-bold text-white mb-4">
-                Questions fréquentes
+                Informations du Stage
               </h3>
               <div className="space-y-4 font-montserrat text-gray-300">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
-                    <strong>Quel âge pour commencer ?</strong>
-                    <p className="text-sm mt-1">À partir de 6 ans avec autorisation parentale</p>
+                    <strong>Dates du stage</strong>
+                    <p className="text-sm mt-1">22-23 décembre & 29-30 décembre 2024</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
-                    <strong>Équipement nécessaire ?</strong>
-                    <p className="text-sm mt-1">Tenue sportive confortable, nous fournissons le reste</p>
+                    <strong>Horaires adaptés</strong>
+                    <p className="text-sm mt-1">10h30-12h30 (-12 ans) • 14h-16h (+12 ans) • 16h-18h (compétition)</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
-                    <strong>Niveau requis ?</strong>
-                    <p className="text-sm mt-1">Tous niveaux acceptés, groupes adaptés</p>
+                    <strong>Encadrement professionnel</strong>
+                    <p className="text-sm mt-1">Coach diplômé et expérimenté pour tous les groupes</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-primary rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-red-600 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 animate-pulse">
                 <Calendar size={40} className="text-white" />
               </div>
               <h4 className="text-xl font-cheddar font-bold text-white mb-2">
-                Lancement Septembre 2025
+                Stage Vacances de Noël 2024
               </h4>
               <p className="font-montserrat text-gray-300">
-                Inscrivez-vous dès maintenant pour être parmi les premiers !
+                Places limitées - Inscrivez-vous rapidement !
               </p>
             </div>
           </div>

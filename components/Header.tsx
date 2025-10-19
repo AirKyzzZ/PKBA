@@ -124,9 +124,9 @@ const Header = () => {
             </Link>
             <Link
               href="/inscription"
-              className="bg-primary hover:bg-secondary text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-medium transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
+              className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-sm sm:text-base shadow-md animate-pulse"
             >
-              Rejoindre le club
+              Stage de Noël 🎄
             </Link>
           </div>
 
@@ -187,9 +187,9 @@ const Header = () => {
               <Link
                 href="/inscription"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-semibold transition-all duration-200 text-base"
+                className="block w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
               >
-                Rejoindre le club
+                🎄 S'inscrire au stage de Noël
               </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a

@@ -68,24 +68,24 @@ const InscriptionPage = () => {
 
   const benefits = [
     {
+      icon: Calendar,
+      title: '4 jours de stage',
+      description: '22-23 décembre & 29-30 décembre 2024'
+    },
+    {
       icon: Users,
-      title: 'Groupes de niveaux',
-      description: 'Entraînements adaptés à votre progression'
+      title: 'Groupes par âge',
+      description: '-12 ans, +12 ans et groupe compétition'
+    },
+    {
+      icon: Clock,
+      title: 'Horaires adaptés',
+      description: '10h30-12h, 14h-16h ou 16h-18h selon l\'âge'
     },
     {
       icon: Award,
       title: 'Coach professionnel',
       description: 'Encadrement par un coach diplômé et expérimenté'
-    },
-    {
-      icon: Clock,
-      title: 'Horaires flexibles',
-      description: 'Séances en semaine et week-end'
-    },
-    {
-      icon: Shield,
-      title: 'Sécurité garantie',
-      description: 'Équipements et méthodes sécurisées'
     }
   ]
 
@@ -277,28 +277,28 @@ const InscriptionPage = () => {
           >
             <CheckCircle size={64} className="text-green-500 mx-auto mb-6" />
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4">
-              Préinscription Confirmée !
+              Inscription au Stage Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre préinscription a été enregistrée avec succès dans notre base de données. 
-              Nous vous contacterons dans les plus brefs délais pour confirmer les détails.
+              Votre inscription au stage de Noël 2024 a été enregistrée avec succès. 
+              Nous vous contacterons dans les plus brefs délais pour confirmer les détails et les modalités de paiement.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
               <h3 className="text-lg font-cheddar font-bold text-gray-900 mb-4">
-                Prochaines étapes
+                Informations du Stage
               </h3>
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Rendez-vous pour visite médicale</span>
+                  <span>Dates : 22-23 & 29-30 décembre 2024</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Test de découverte du sport</span>
+                  <span>Horaires selon l'âge et le groupe</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Validation finale et inscription définitive</span>
+                  <span>Confirmation et infos pratiques par email</span>
                 </div>
               </div>
             </div>
@@ -320,11 +320,11 @@ const InscriptionPage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Préinscription Saison 2025/2026
+              Stage de Parkour - Vacances de Noël 2024
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
-              Rejoignez PKBA et faites partie de notre communauté de passionnés de parkour. 
-              Préinscriptions ouvertes pour tous les niveaux !
+              Inscrivez-vous au stage de parkour pendant les vacances de Noël ! 
+              4 jours de pratique intensive : 22-23 décembre & 29-30 décembre
             </p>
           </motion.div>
         </div>
@@ -357,7 +357,7 @@ const InscriptionPage = () => {
         </div>
       </section>
 
-      {/* Message d'information - Préinscriptions fermées */}
+      {/* Message d'information - Stage de Noël */}
       <section className="py-16 bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -366,77 +366,109 @@ const InscriptionPage = () => {
             transition={{ duration: 0.8 }}
             className="bg-white rounded-xl shadow-lg p-8 text-center"
           >
-            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <AlertCircle size={32} className="text-orange-600" />
+            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Calendar size={32} className="text-primary" />
             </div>
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
-              Préinscriptions Fermées
+              Stage de Noël 2024 - Inscriptions Ouvertes !
             </h2>
             <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
-              Tous les groupes pour la saison 2025/2026 sont actuellement au complet. 
-              Nous ne pouvons plus accepter de nouvelles préinscriptions pour cette année.
+              Profitez des vacances de Noël pour découvrir ou progresser en parkour ! 
+              4 jours de stage intensif avec notre coach diplômé.
             </p>
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-cheddar font-semibold text-gray-900 mb-4">
+                Planning du Stage
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-montserrat">
+                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <Calendar size={20} className="text-primary" />
+                    <strong className="text-gray-900">Dates</strong>
+                  </div>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <div>• 22 et 23 décembre 2024</div>
+                    <div>• 29 et 30 décembre 2024</div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <Clock size={20} className="text-primary" />
+                    <strong className="text-gray-900">Horaires</strong>
+                  </div>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <div>• 10h30-12h30 : Moins de 12 ans</div>
+                    <div>• 14h-16h : Plus de 12 ans</div>
+                    <div>• 16h-18h : Groupe compétition</div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-cheddar font-semibold text-blue-900 mb-3">
-                Que faire maintenant ?
+                Pourquoi participer ?
               </h3>
               <div className="space-y-2 text-left font-montserrat text-blue-800">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Les préinscriptions pourraient rouvrir si des places se libèrent</span>
+                  <span>Progressez rapidement pendant les vacances</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Suivez nos actualités pour être informé des prochaines ouvertures</span>
+                  <span>Encadrement professionnel par coach diplômé</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Contactez-nous si vous avez des questions spécifiques</span>
+                  <span>Groupes adaptés à chaque âge et niveau</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Activité sportive pendant les vacances</span>
                 </div>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/contact"
+                href="#formulaire"
                 className="bg-primary hover:bg-secondary text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <CheckCircle size={20} />
+                <span>S'inscrire au stage</span>
+              </a>
+              <a
+                href="/contact"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
                 <Mail size={20} />
                 <span>Nous contacter</span>
-              </a>
-              <a
-                href="/actualites"
-                className="bg-gray-600 hover:bg-gray-700 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
-              >
-                <Calendar size={20} />
-                <span>Voir nos actualités</span>
               </a>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Registration Form - Désactivé */}
-      <section className="py-16">
+      {/* Registration Form */}
+      <section className="py-16" id="formulaire">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-gray-100 rounded-xl shadow-lg p-8 opacity-60"
+            className="bg-white rounded-xl shadow-lg p-8"
           >
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4 text-center">
-              Formulaire de préinscription
+              Formulaire d'inscription au stage
             </h2>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-8">
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 mb-8">
               <div className="flex items-center space-x-2">
-                <AlertCircle size={20} className="text-orange-600" />
-                <p className="text-orange-800 font-montserrat font-medium">
-                  Ce formulaire est temporairement désactivé car tous les groupes sont complets pour cette saison.
+                <CheckCircle size={20} className="text-primary" />
+                <p className="text-gray-800 font-montserrat font-medium">
+                  Inscrivez-vous dès maintenant au stage de Noël 2024 ! Places limitées.
                 </p>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'none' }}>
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* Informations Personnelles */}
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
@@ -962,7 +994,7 @@ const InscriptionPage = () => {
                         ? 'Âge minimum 6 ans requis' 
                         : !formData.signature 
                           ? 'Signature requise' 
-                          : "Envoyer la préinscription"
+                          : "S'inscrire au stage"
                       }
                     </span>
                   </>
