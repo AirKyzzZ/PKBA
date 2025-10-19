@@ -150,6 +150,13 @@ const CTA = () => {
                     <p className="text-sm mt-1">Coach diplômé et expérimenté pour tous les groupes</p>
                   </div>
                 </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <strong>Stage payant</strong>
+                    <p className="text-sm mt-1">Tarif à confirmer - Détails communiqués prochainement</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="text-center">

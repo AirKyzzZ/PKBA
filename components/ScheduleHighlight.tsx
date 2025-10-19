@@ -184,6 +184,15 @@ const ScheduleHighlight = () => {
               </div>
             </div>
 
+            <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6">
+              <div className="flex items-center justify-center space-x-2">
+                <Euro size={20} className="text-orange-600" />
+                <p className="text-orange-900 font-montserrat font-semibold">
+                  Stage payant - Tarif à confirmer prochainement
+                </p>
+              </div>
+            </div>
+
             <Link
               href="/inscription"
               className="group w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"

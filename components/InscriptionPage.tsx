@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool } from 'lucide-react'
+import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro } from 'lucide-react'
 
 const InscriptionPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -376,6 +376,11 @@ const InscriptionPage = () => {
               Profitez des vacances de Noël pour découvrir ou progresser en parkour ! 
               4 jours de stage intensif avec notre coach diplômé.
             </p>
+            <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
+              <p className="text-orange-900 font-montserrat font-semibold text-center">
+                💰 Stage payant - Tarif à confirmer prochainement
+              </p>
+            </div>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-cheddar font-semibold text-gray-900 mb-4">
                 Planning du Stage
@@ -402,6 +407,15 @@ const InscriptionPage = () => {
                     <div>• 16h-18h : Groupe compétition</div>
                   </div>
                 </div>
+              </div>
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-4">
+                <div className="flex items-center space-x-2 mb-2">
+                  <Euro size={20} className="text-orange-600" />
+                  <strong className="text-gray-900">Tarif</strong>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Stage payant - Tarif à confirmer et communiqué prochainement
+                </p>
               </div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
