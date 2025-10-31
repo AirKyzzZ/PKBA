@@ -185,11 +185,17 @@ const ScheduleHighlight = () => {
             </div>
 
             <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6">
-              <div className="flex items-center justify-center space-x-2">
-                <Euro size={20} className="text-orange-600" />
-                <p className="text-orange-900 font-montserrat font-semibold">
-                  Stage payant - Tarif à confirmer prochainement
-                </p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Euro size={20} className="text-orange-600" />
+                  <p className="text-orange-900 font-montserrat font-semibold">
+                    Stage payant
+                  </p>
+                </div>
+                <div className="text-sm text-orange-900 space-y-1 text-center">
+                  <p><strong>Non licenciés :</strong> 15€/séance • Pack 4 séances : 10€</p>
+                  <p><strong>Licenciés :</strong> 10€/séance</p>
+                </div>
               </div>
             </div>
 

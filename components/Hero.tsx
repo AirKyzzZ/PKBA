@@ -81,7 +81,7 @@ const Hero = () => {
             className="text-base sm:text-lg md:text-xl font-montserrat text-white/90 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
           >
             ⭐ Stage intensif pendant les vacances de Noël : 22-23 & 29-30 décembre 2024<br/>
-            Groupes adaptés par âge • Encadrement professionnel • Stage payant (tarif à venir)
+            Groupes adaptés par âge • Encadrement professionnel • Tarifs : 15€/séance (non licenciés) ou 10€/séance (licenciés)
           </motion.p>
 
           {/* CTA Buttons */}

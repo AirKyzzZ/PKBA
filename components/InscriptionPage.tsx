@@ -378,7 +378,7 @@ const InscriptionPage = () => {
             </p>
             <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
               <p className="text-orange-900 font-montserrat font-semibold text-center">
-                💰 Stage payant - Tarif à confirmer prochainement
+                💰 Stage payant : 15€/séance (non licenciés) • 10€/séance (licenciés) • Pack 4 séances : 10€ (non licenciés)
               </p>
             </div>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
@@ -413,9 +413,10 @@ const InscriptionPage = () => {
                   <Euro size={20} className="text-orange-600" />
                   <strong className="text-gray-900">Tarif</strong>
                 </div>
-                <p className="text-sm text-gray-600">
-                  Stage payant - Tarif à confirmer et communiqué prochainement
-                </p>
+                <div className="text-sm text-gray-600 space-y-2">
+                  <p><strong>Non licenciés :</strong> 15€/séance • Pack 4 séances : 10€</p>
+                  <p><strong>Licenciés :</strong> 10€/séance</p>
+                </div>
               </div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">

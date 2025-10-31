@@ -154,7 +154,7 @@ const CTA = () => {
                   <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Stage payant</strong>
-                    <p className="text-sm mt-1">Tarif à confirmer - Détails communiqués prochainement</p>
+                    <p className="text-sm mt-1">15€/séance (non licenciés) • 10€/séance (licenciés) • Pack 4 séances : 10€ (non licenciés)</p>
                   </div>
                 </div>
               </div>

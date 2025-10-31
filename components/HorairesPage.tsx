@@ -21,6 +21,14 @@ interface Pricing {
   type: 'loisir' | 'performance'
 }
 
+interface StagePricing {
+  title: string
+  description: string
+  pricePerSession: number
+  pricePack?: number
+  packDescription?: string
+}
+
 const trainingSessions: TrainingSession[] = [
   // Mardi
   { id: '1', day: 'Mardi', time: '18h30-20h30', ageGroup: 'Sélection', group: 'Perf grand et petit', type: 'performance', location: 'À définir' },
@@ -57,6 +65,21 @@ const includedInPrice = [
   { item: 'Part FFGYM', price: 26.50 },
   { item: 'Part comité régional', price: 17 },
   { item: 'Part comité départemental', price: 4.50 }
+]
+
+const stagePricing: StagePricing[] = [
+  { 
+    title: 'Non licenciés', 
+    description: 'Tarif à la séance',
+    pricePerSession: 15,
+    pricePack: 10,
+    packDescription: 'Les 4 séances'
+  },
+  { 
+    title: 'Licenciés', 
+    description: 'Tarif à la séance',
+    pricePerSession: 10
+  }
 ]
 
 export default function HorairesPage() {
@@ -428,6 +451,81 @@ export default function HorairesPage() {
                 </p>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stage Pricing Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Tarifs des Stages
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Tarifs pour les stages et séances ponctuelles
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+              {stagePricing.map((stage, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl shadow-md border border-blue-200 bg-gradient-to-r from-blue-50 to-blue-100 p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="mb-4">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
+                      {stage.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4">
+                      {stage.description}
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+                        <div>
+                          <span className="text-sm sm:text-base text-gray-700 font-medium">À la séance</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Euro className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                          <span className="text-xl sm:text-2xl font-bold text-primary">
+                            {stage.pricePerSession}
+                          </span>
+                          <span className="text-sm sm:text-base text-gray-500">€</span>
+                        </div>
+                      </div>
+
+                      {stage.pricePack && stage.packDescription && (
+                        <div className="flex items-center justify-between bg-white rounded-lg p-3 sm:p-4 shadow-sm border-2 border-primary">
+                          <div>
+                            <span className="text-sm sm:text-base text-gray-700 font-medium">{stage.packDescription}</span>
+                            <span className="ml-2 text-xs text-gray-500">(tarif réduit)</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Euro className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                            <span className="text-xl sm:text-2xl font-bold text-primary">
+                              {stage.pricePack}
+                            </span>
+                            <span className="text-sm sm:text-base text-gray-500">€</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
