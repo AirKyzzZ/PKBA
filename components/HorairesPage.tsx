@@ -73,7 +73,7 @@ const stagePricing: StagePricing[] = [
     description: 'Tarif à la séance',
     pricePerSession: 15,
     pricePack: 10,
-    packDescription: 'Les 4 séances'
+    packDescription: 'Pour les 4 séances'
   },
   { 
     title: 'Licenciés', 
