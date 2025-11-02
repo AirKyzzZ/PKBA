@@ -29,7 +29,7 @@ const ScheduleHighlight = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
-            🎄 Stage de Noël 2024
+            🎄 Stage de Noël 2025
           </h2>
                      <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
              Profitez des vacances de Noël pour un stage intensif de parkour ! 4 jours d'entraînement avec groupes adaptés par âge et niveau.

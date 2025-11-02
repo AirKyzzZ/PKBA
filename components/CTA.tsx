@@ -21,11 +21,11 @@ const CTA = () => {
           className="text-center mb-10 sm:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-white mb-4 sm:mb-6">
-            🎄 Stage de Noël 2024 - Places limitées !
+            🎄 Stage de Noël 2025 - Places limitées !
           </h2>
           <p className="text-lg sm:text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
             Ne manquez pas cette opportunité unique pendant les vacances ! 
-            Inscrivez-vous dès maintenant au stage intensif de parkour : 22-23 & 29-30 décembre 2024
+            Inscrivez-vous dès maintenant au stage intensif de parkour : 22-23 & 29-30 décembre 2025
           </p>
         </motion.div>
 
@@ -133,7 +133,7 @@ const CTA = () => {
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Dates du stage</strong>
-                    <p className="text-sm mt-1">22-23 décembre & 29-30 décembre 2024</p>
+                    <p className="text-sm mt-1">22-23 décembre & 29-30 décembre 2025</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -164,7 +164,7 @@ const CTA = () => {
                 <Calendar size={40} className="text-white" />
               </div>
               <h4 className="text-xl font-cheddar font-bold text-white mb-2">
-                Stage Vacances de Noël 2024
+                Stage Vacances de Noël 2025
               </h4>
               <p className="font-montserrat text-gray-300">
                 Places limitées - Inscrivez-vous rapidement !

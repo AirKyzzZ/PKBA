@@ -70,7 +70,7 @@ const InscriptionPage = () => {
     {
       icon: Calendar,
       title: '4 jours de stage',
-      description: '22-23 décembre & 29-30 décembre 2024'
+      description: '22-23 décembre & 29-30 décembre 2025'
     },
     {
       icon: Users,
@@ -280,7 +280,7 @@ const InscriptionPage = () => {
               Inscription au Stage Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription au stage de Noël 2024 a été enregistrée avec succès. 
+              Votre inscription au stage de Noël 2025 a été enregistrée avec succès. 
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails et les modalités de paiement.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -290,7 +290,7 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Dates : 22-23 & 29-30 décembre 2024</span>
+                  <span>Dates : 22-23 & 29-30 décembre 2025</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -320,7 +320,7 @@ const InscriptionPage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Stage de Parkour - Vacances de Noël 2024
+              Stage de Parkour - Vacances de Noël 2025
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
               Inscrivez-vous au stage de parkour pendant les vacances de Noël ! 
@@ -370,7 +370,7 @@ const InscriptionPage = () => {
               <Calendar size={32} className="text-primary" />
             </div>
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
-              Stage de Noël 2024 - Inscriptions Ouvertes !
+              Stage de Noël 2025 - Inscriptions Ouvertes !
             </h2>
             <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
               Profitez des vacances de Noël pour découvrir ou progresser en parkour ! 
@@ -392,8 +392,8 @@ const InscriptionPage = () => {
                     <strong className="text-gray-900">Dates</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <div>• 22 et 23 décembre 2024</div>
-                    <div>• 29 et 30 décembre 2024</div>
+                    <div>• 22 et 23 décembre 2025</div>
+                    <div>• 29 et 30 décembre 2025</div>
                   </div>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-gray-200">
@@ -478,7 +478,7 @@ const InscriptionPage = () => {
               <div className="flex items-center space-x-2">
                 <CheckCircle size={20} className="text-primary" />
                 <p className="text-gray-800 font-montserrat font-medium">
-                  Inscrivez-vous dès maintenant au stage de Noël 2024 ! Places limitées.
+                  Inscrivez-vous dès maintenant au stage de Noël 2025 ! Places limitées.
                 </p>
               </div>
             </div>

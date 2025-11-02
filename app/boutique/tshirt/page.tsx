@@ -35,7 +35,7 @@ const TshirtPage = () => {
   }
 
   const product = {
-    id: 'pkba-tshirt-2024',
+    id: 'pkba-tshirt-2025',
     name: 'T-shirt Officiel PKBA',
     price: 19.99, // Reverted to original price
     description: 'T-shirt officiel du club PKBA, design exclusif haute qualité pour les performances sportives et le confort. Parfait pour afficher fièrement vos couleurs et faire partie de l\'équipe.',
