@@ -86,17 +86,19 @@ const CheckoutPage = () => {
                 {items.map((item, index) => (
                   <div key={index} className="p-6">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span className="text-gray-500 font-montserrat text-sm">
-                          T-shirt
-                        </span>
+                      <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-cheddar font-bold text-gray-900">
                           {item.name}
                         </h3>
                         <p className="text-sm text-gray-600 font-montserrat">
-                          Couleur: {item.color === 'white' ? 'Blanc' : 'Noir'} | 
+                          Couleur: {item.color === 'white' ? 'Blanc' : item.color === 'black' ? 'Noir' : item.color} | 
                           Taille: {item.size}
                           {item.customization && ` | Personnalisation: ${item.customization}`}
                         </p>
@@ -167,7 +169,7 @@ const CheckoutPage = () => {
                 </h3>
               </div>
               <ul className="space-y-2 text-blue-800 text-sm font-montserrat">
-                <li>• Livraison en 5-8 jours ouvrés</li>
+                <li>• Livraison en 8-10 jours ouvrés</li>
                 <li>• Frais de livraison: 4.99€ (obligatoire)</li>
                 <li>• Suivi de commande par email</li>
                 <li>• Retours acceptés sous 30 jours</li>
@@ -192,8 +194,8 @@ const CheckoutPage = () => {
                   items={items}
                   total={total}
                   onSuccess={() => {
+                    // Just clear the cart, no redirection
                     clearCart()
-                    router.push('/checkout/success')
                   }}
                   onError={(error) => {
                     console.error('Payment error:', error)

@@ -14,7 +14,7 @@ interface Product {
   colors: string[]
   sizes: string[]
   customization: boolean
-  available?: boolean
+  available: boolean
 }
 
 interface ProductCardProps {
@@ -26,7 +26,8 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+      onClick={onSelect}
+      className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer"
     >
       {/* Product Image */}
       <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
@@ -97,7 +98,7 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
           <div className="flex items-center space-x-2">
             <Ruler size={16} className="text-gray-400" />
             <span className="text-sm font-montserrat text-gray-600">
-              Tailles: {product.sizes.join(', ')}
+              Tailles: {product.sizes.slice(0, 6).join(', ')}{product.sizes.length > 6 ? '...' : ''}
             </span>
           </div>
         </div>
@@ -112,19 +113,18 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
         )}
 
         {/* CTA Button */}
-        <button
-          onClick={onSelect}
+        <div
           className={`w-full font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform group-hover:scale-105 flex items-center justify-center space-x-2 ${
-            product.available !== false
+            product.available
               ? 'bg-primary hover:bg-secondary text-white'
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
         >
           <ShoppingCart size={20} />
           <span>
-            {product.available !== false ? 'Acheter maintenant' : 'Bientôt disponible'}
+            {product.available ? 'Acheter maintenant' : 'Bientôt disponible'}
           </span>
-        </button>
+        </div>
       </div>
     </motion.div>
   )

@@ -49,7 +49,7 @@ const SuccessPage = () => {
                   <Truck size={20} className="text-primary" />
                   <div>
                     <h3 className="font-cheddar font-bold text-gray-900">Livraison</h3>
-                    <p className="text-gray-600 font-montserrat">Livraison en 5-8 jours ouvrés</p>
+                    <p className="text-gray-600 font-montserrat">Livraison en 8-10 jours ouvrés</p>
                   </div>
                 </div>
               </div>
@@ -81,7 +81,7 @@ const SuccessPage = () => {
               <p>• Vous recevrez un email de confirmation avec les détails de votre commande</p>
               <p>• Votre T-shirt sera personnalisé selon vos spécifications</p>
               <p>• Vous recevrez un email de suivi dès l'expédition</p>
-              <p>• Livraison à votre adresse en 5-8 jours ouvrés</p>
+              <p>• Livraison à votre adresse en 8-10 jours ouvrés</p>
             </div>
           </div>
 
