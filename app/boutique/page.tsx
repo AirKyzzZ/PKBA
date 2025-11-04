@@ -42,7 +42,7 @@ export default function Boutique() {
             {
               '@type': 'Offer',
               name: 'Sweat à capuche PKBA',
-              price: '39.99',
+              price: '49.99',
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
               seller: {
@@ -53,7 +53,7 @@ export default function Boutique() {
             {
               '@type': 'Offer',
               name: 'Short athlétique PKBA',
-              price: '29.99',
+              price: '34.99',
               priceCurrency: 'EUR',
               availability: 'https://schema.org/InStock',
               seller: {

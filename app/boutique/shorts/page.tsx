@@ -19,7 +19,7 @@ const ShortsPage = () => {
   const product = {
     id: 'pkba-shorts-2025',
     name: 'Short athlétique PKBA',
-    price: 29.99,
+    price: 34.99,
     description: 'Le short officiel du club PKBA, spécialement conçu pour la performance. Offrant une liberté de mouvement maximale, il est parfait pour vos entraînements de parkour les plus intenses sur le Bassin d\'Arcachon. Tissu technique respirant et séchage rapide pour rester au top de votre forme. Affichez fièrement vos couleurs pendant vos sessions !',
     features: [
       '91% polyester recyclé, 9% élasthanne',

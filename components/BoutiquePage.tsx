@@ -37,8 +37,8 @@ const BoutiquePage = () => {
     {
       id: 2,
       name: 'Sweat à capuche PKBA',
-      price: 39.99,
-      originalPrice: 39.99,
+      price: 49.99,
+      originalPrice: 49.99,
       image: '/images/mockups/hoodie/front-black.png',
       description: 'Le sweat à capuche officiel PKBA, parfait pour vos entraînements et vos moments de détente. Confort absolu et style unique pour représenter fièrement votre club.',
       features: ['Design exclusif PKBA', 'Confort optimal toute saison', '100% coton extérieur', 'Idéal entraînement et quotidien'],
@@ -50,8 +50,8 @@ const BoutiquePage = () => {
     {
       id: 3,
       name: 'Short athlétique PKBA',
-      price: 29.99,
-      originalPrice: 29.99,
+      price: 34.99,
+      originalPrice: 34.99,
       image: '/images/mockups/shorts/shorts-front.png',
       description: 'Le short officiel PKBA conçu pour la performance. Liberté de mouvement maximale pour vos entraînements de parkour les plus intenses sur le Bassin d\'Arcachon.',
       features: ['Design exclusif PKBA', 'Polyester recyclé écoresponsable', 'Séchage ultra-rapide', 'Parfait pour le parkour'],

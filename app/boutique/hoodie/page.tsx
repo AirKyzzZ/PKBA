@@ -19,7 +19,7 @@ const HoodiePage = () => {
   const product = {
     id: 'pkba-hoodie-2025',
     name: 'Sweat à capuche PKBA',
-    price: 39.99,
+    price: 49.99,
     description: 'Le sweat à capuche officiel du club PKBA, conçu pour allier confort et style. Parfait pour vos échauffements, vos entraînements et vos moments de détente après les sessions de parkour. Représentez fièrement votre club avec ce design exclusif qui incarne l\'esprit PKBA et la passion du parkour sur le Bassin d\'Arcachon.',
     features: [
       '65% coton filé à l\'anneau, 35% polyester',
