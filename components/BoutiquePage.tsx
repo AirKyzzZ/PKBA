@@ -43,7 +43,7 @@ const BoutiquePage = () => {
       description: 'Le sweat à capuche officiel PKBA, parfait pour vos entraînements et vos moments de détente. Confort absolu et style unique pour représenter fièrement votre club.',
       features: ['Design exclusif PKBA', 'Confort optimal toute saison', '100% coton extérieur', 'Idéal entraînement et quotidien'],
       colors: ['Noir', 'Blanc'],
-      sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
+      sizes: ['4', '6', '8', '10', '12', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
       customization: false,
       available: true
     },

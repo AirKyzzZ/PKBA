@@ -34,12 +34,19 @@ const HoodiePage = () => {
       { name: 'white', label: 'Blanc', hex: '#FFFFFF' }
     ],
     sizes: [
-      { value: 'S', label: 'S - Small' },
-      { value: 'M', label: 'M - Medium' },
-      { value: 'L', label: 'L - Large' },
-      { value: 'XL', label: 'XL - Extra Large' },
-      { value: '2XL', label: '2XL - Double Extra Large' },
-      { value: '3XL', label: '3XL - Triple Extra Large' }
+      // Tailles enfants
+      { value: '4', label: '4 ans', isChild: true },
+      { value: '6', label: '6 ans', isChild: true },
+      { value: '8', label: '8 ans', isChild: true },
+      { value: '10', label: '10 ans', isChild: true },
+      { value: '12', label: '12 ans', isChild: true },
+      // Tailles adultes
+      { value: 'S', label: 'S - Small', isChild: false },
+      { value: 'M', label: 'M - Medium', isChild: false },
+      { value: 'L', label: 'L - Large', isChild: false },
+      { value: 'XL', label: 'XL - Extra Large', isChild: false },
+      { value: '2XL', label: '2XL - Double Extra Large', isChild: false },
+      { value: '3XL', label: '3XL - Triple Extra Large', isChild: false }
     ]
   }
 
@@ -63,12 +70,19 @@ const HoodiePage = () => {
   ]
 
   const sizeGuide = [
-    { size: 'S', chest: '86-91', length: '66', shoulders: '43' },
-    { size: 'M', chest: '91-96', length: '68', shoulders: '45' },
-    { size: 'L', chest: '96-101', length: '70', shoulders: '47' },
-    { size: 'XL', chest: '101-106', length: '72', shoulders: '49' },
-    { size: '2XL', chest: '106-111', length: '74', shoulders: '51' },
-    { size: '3XL', chest: '111-116', length: '76', shoulders: '53' }
+    // Tailles enfants
+    { size: '4', chest: '56-60', length: '40', shoulders: '26', isChild: true },
+    { size: '6', chest: '60-64', length: '44', shoulders: '28', isChild: true },
+    { size: '8', chest: '64-68', length: '48', shoulders: '30', isChild: true },
+    { size: '10', chest: '68-72', length: '52', shoulders: '32', isChild: true },
+    { size: '12', chest: '72-76', length: '56', shoulders: '34', isChild: true },
+    // Tailles adultes
+    { size: 'S', chest: '86-91', length: '66', shoulders: '43', isChild: false },
+    { size: 'M', chest: '91-96', length: '68', shoulders: '45', isChild: false },
+    { size: 'L', chest: '96-101', length: '70', shoulders: '47', isChild: false },
+    { size: 'XL', chest: '101-106', length: '72', shoulders: '49', isChild: false },
+    { size: '2XL', chest: '106-111', length: '74', shoulders: '51', isChild: false },
+    { size: '3XL', chest: '111-116', length: '76', shoulders: '53', isChild: false }
   ]
 
   const handleAddToCart = () => {
@@ -184,22 +198,48 @@ const HoodiePage = () => {
             <div>
               <h3 className="text-lg font-cheddar font-bold mb-3 text-gray-900">Taille</h3>
               
-              <div className="grid grid-cols-3 gap-3">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size.value}
-                    onClick={() => setSelectedSize(size.value)}
-                    className={`py-3 px-4 rounded-lg border-2 transition-all duration-200 font-montserrat ${
-                      selectedSize === size.value
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-gray-300 hover:border-gray-400 bg-white text-gray-700'
-                    }`}
-                  >
-                    <div className="text-center">
-                      <div className="font-medium">{size.value}</div>
-                    </div>
-                  </button>
-                ))}
+              {/* Children's Sizes */}
+              <div className="mb-4">
+                <p className="text-sm font-montserrat text-gray-600 mb-2">Tailles enfants</p>
+                <div className="grid grid-cols-5 gap-2">
+                  {product.sizes.filter(size => size.isChild).map((size) => (
+                    <button
+                      key={size.value}
+                      onClick={() => setSelectedSize(size.value)}
+                      className={`py-2 px-3 rounded-lg border-2 transition-all duration-200 font-montserrat text-sm ${
+                        selectedSize === size.value
+                          ? 'border-primary bg-primary text-white'
+                          : 'border-gray-300 hover:border-gray-400 bg-white text-gray-700'
+                      }`}
+                    >
+                      <div className="text-center">
+                        <div className="font-medium">{size.label}</div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Adult Sizes */}
+              <div>
+                <p className="text-sm font-montserrat text-gray-600 mb-2">Tailles adultes</p>
+                <div className="grid grid-cols-3 gap-3">
+                  {product.sizes.filter(size => !size.isChild).map((size) => (
+                    <button
+                      key={size.value}
+                      onClick={() => setSelectedSize(size.value)}
+                      className={`py-3 px-4 rounded-lg border-2 transition-all duration-200 font-montserrat ${
+                        selectedSize === size.value
+                          ? 'border-primary bg-primary text-white'
+                          : 'border-gray-300 hover:border-gray-400 bg-white text-gray-700'
+                      }`}
+                    >
+                      <div className="text-center">
+                        <div className="font-medium">{size.value}</div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -293,44 +333,97 @@ const HoodiePage = () => {
             Guide des Tailles
           </h2>
           
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Taille
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Poitrine (cm)
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Longueur (cm)
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Épaules (cm)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {sizeGuide.map((size) => (
-                    <tr key={size.size}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {size.size}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {size.chest}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {size.length}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {size.shoulders}
-                      </td>
+          {/* Children's Sizes Table */}
+          <div className="mb-8">
+            <h3 className="text-xl font-cheddar font-bold mb-4 text-gray-900">
+              Tailles Enfants
+            </h3>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Taille (ans)
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Poitrine (cm)
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Longueur (cm)
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Épaules (cm)
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {sizeGuide.filter(size => size.isChild).map((size) => (
+                      <tr key={size.size}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {size.size} ans
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.chest}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.length}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.shoulders}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* Adult Sizes Table */}
+          <div>
+            <h3 className="text-xl font-cheddar font-bold mb-4 text-gray-900">
+              Tailles Adultes
+            </h3>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Taille
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Poitrine (cm)
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Longueur (cm)
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Épaules (cm)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {sizeGuide.filter(size => !size.isChild).map((size) => (
+                      <tr key={size.size}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {size.size}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.chest}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.length}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {size.shoulders}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </motion.div>
