@@ -76,6 +76,29 @@ const CheckoutForm = ({
     }
   }
 
+  const sendOrderConfirmationEmail = async (orderData: any) => {
+    try {
+      const response = await fetch('/api/send-order-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        console.error('Error sending confirmation email:', errorData)
+        // Don't throw error - email failure shouldn't block the success flow
+      } else {
+        console.log('Order confirmation email sent successfully')
+      }
+    } catch (error) {
+      console.error('Error sending confirmation email:', error)
+      // Don't throw error - email failure shouldn't block the success flow
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -133,7 +156,7 @@ const CheckoutForm = ({
         setIsSuccess(true)
         setPaymentIntentId(paymentIntent.id)
         
-        // Send order notification
+        // Prepare order data
         const orderData = {
           paymentIntentId: paymentIntent.id,
           items: items,
@@ -141,7 +164,11 @@ const CheckoutForm = ({
           customer: formData
         }
         
+        // Send order notification to admin (Formspree)
         await sendOrderNotification(orderData)
+        
+        // Send confirmation email to customer
+        await sendOrderConfirmationEmail(orderData)
         
         // Clear cart immediately after successful payment
         onSuccess()
@@ -236,6 +263,29 @@ const CheckoutForm = ({
           </div>
         </div>
 
+        {/* Email Confirmation Notice */}
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300 rounded-xl p-6 mb-6">
+          <div className="flex items-start space-x-4">
+            <div className="flex-shrink-0">
+              <Mail size={32} className="text-green-600" />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-xl font-cheddar font-bold text-green-900 mb-2">
+                ✉️ Email de confirmation envoyé !
+              </h4>
+              <p className="text-green-800 font-montserrat mb-2">
+                Un email de confirmation détaillé avec tous les détails de votre commande a été envoyé à :
+              </p>
+              <p className="text-green-900 font-montserrat font-bold text-lg">
+                📧 {formData.email}
+              </p>
+              <p className="text-green-700 font-montserrat text-sm mt-2">
+                Vérifiez votre boîte de réception (et vos spams si nécessaire). L'email contient tous les détails de votre commande.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Next Steps */}
         <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-6">
           <h4 className="text-xl font-cheddar font-bold text-blue-900 mb-4 flex items-center">
@@ -245,7 +295,7 @@ const CheckoutForm = ({
           <div className="space-y-3 text-blue-900 font-montserrat">
             <div className="flex items-start space-x-3">
               <CheckCircle size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
-              <p>Vous recevrez un <strong>email de confirmation</strong> dans les prochaines minutes à <strong>{formData.email}</strong></p>
+              <p>Un <strong>email de confirmation HTML</strong> avec tous les détails a été envoyé à <strong>{formData.email}</strong></p>
             </div>
             <div className="flex items-start space-x-3">
               <CheckCircle size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />

@@ -67,7 +67,7 @@ L'accent est mis sur l'encadrement professionnel, la progression et la sécurit�
 - **Langage**: TypeScript
 - **UI**: Tailwind CSS, Framer Motion, Lucide Icons
 - **Paiements**: Stripe (`stripe` SDK Node et `@stripe/react-stripe-js`)
-- **Emails**: EmailJS (@emailjs/browser)
+- **Emails**: EmailJS (@emailjs/browser) pour les dons, Resend pour les confirmations de commande
 - **Formulaires**: Formspree
 - **Base de données**: Airtable (gestion des inscriptions et adhérents)
 - **Authentification**: Système d'authentification admin personnalisé
@@ -114,6 +114,10 @@ NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
 
+# Configuration Resend (pour les emails de confirmation de commande)
+RESEND_API_KEY=re_your_resend_api_key
+RESEND_FROM_EMAIL=noreply@your-domain.com
+
 # Configuration Formspree
 NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_formspree_contact_form_id
 NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_formspree_registration_form_id
@@ -156,6 +160,8 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_key
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+RESEND_API_KEY=re_your_resend_api_key
+RESEND_FROM_EMAIL=noreply@your-domain.com
 NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID=your_formspree_contact_form_id
 NEXT_PUBLIC_FORMSPREE_REGISTRATION_FORM_ID=your_formspree_registration_form_id
 NEXT_PUBLIC_FORMSPREE_ORDER_FORM_ID=your_formspree_order_form_id
@@ -298,11 +304,13 @@ PKBA/
 
 - **Checkout boutique** (`components/CheckoutForm.tsx`)
   - Crée un PaymentIntent via `/api/create-payment-intent`, puis confirme le paiement côté client via Stripe Elements.
-  - Envoie une notification de commande à Formspree après succès.
+  - Envoie une notification de commande à Formspree après succès (pour l'administrateur).
+  - **Nouveau**: Envoie un email de confirmation HTML formaté au client via Resend (`/api/send-order-confirmation`).
+  - Affiche un message de succès détaillé sur la page avec tous les détails de la commande.
 
 - **Formulaire de don** (`components/DonationForm.tsx`)
   - Signature manuscrite sur canvas (obligatoire), création de PaymentIntent via `/api/create-donation-intent` puis confirmation Stripe.
-  - Envoi d’un reçu/confirmation via EmailJS.
+  - Envoi d'un reçu/confirmation via EmailJS.
 
 ### Bonnes pratiques Stripe
 
