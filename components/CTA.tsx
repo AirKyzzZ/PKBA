@@ -21,11 +21,11 @@ const CTA = () => {
           className="text-center mb-10 sm:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-white mb-4 sm:mb-6">
-            🎄 Stage de Noël 2025 - Places limitées !
+            ❄️ Stage de Février 2026 - Places limitées !
           </h2>
           <p className="text-lg sm:text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
             Ne manquez pas cette opportunité unique pendant les vacances ! 
-            Inscrivez-vous dès maintenant au stage intensif de parkour : 22-23 & 29-30 décembre 2025
+            Inscrivez-vous dès maintenant au stage intensif de parkour : vacances de février 2026 (Zone Bordeaux : 7-23 février)
           </p>
         </motion.div>
 
@@ -34,9 +34,9 @@ const CTA = () => {
             {
               icon: Calendar,
               title: 'S\'inscrire au Stage',
-              description: 'Stage de Noël : 22-23 & 29-30 décembre',
+              description: 'Stage de Février : 7-23 février 2026',
               href: '/inscription',
-              color: 'bg-red-600 hover:bg-red-700',
+              color: 'bg-blue-600 hover:bg-blue-700',
               delay: 0.2,
               type: 'primary'
             },
@@ -133,18 +133,25 @@ const CTA = () => {
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Dates du stage</strong>
-                    <p className="text-sm mt-1">22-23 décembre & 29-30 décembre 2025</p>
+                    <p className="text-sm mt-1">Vacances de février 2026 (Zone Bordeaux : 7-23 février)</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <strong>Jours de cours</strong>
+                    <p className="text-sm mt-1">Lundi, Mardi, Jeudi, Vendredi</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Horaires adaptés</strong>
-                    <p className="text-sm mt-1">10h30-12h30 (-12 ans) • 14h-16h (+12 ans) • 16h-18h (compétition)</p>
+                    <p className="text-sm mt-1">14h-16h (-12 ans) • 16h-18h (+12 ans)</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <strong>Encadrement professionnel</strong>
                     <p className="text-sm mt-1">Coach diplômé et expérimenté pour tous les groupes</p>
@@ -160,11 +167,11 @@ const CTA = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-red-600 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 animate-pulse">
+              <div className="bg-blue-600 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 animate-pulse">
                 <Calendar size={40} className="text-white" />
               </div>
               <h4 className="text-xl font-cheddar font-bold text-white mb-2">
-                Stage Vacances de Noël 2025
+                Stage Vacances de Février 2026
               </h4>
               <p className="font-montserrat text-gray-300">
                 Places limitées - Inscrivez-vous rapidement !

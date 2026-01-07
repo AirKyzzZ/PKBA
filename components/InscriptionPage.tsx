@@ -69,18 +69,18 @@ const InscriptionPage = () => {
   const benefits = [
     {
       icon: Calendar,
-      title: '4 jours de stage',
-      description: '22-23 décembre & 29-30 décembre 2025'
+      title: '2 semaines de stage',
+      description: 'Vacances de février 2026 (7-23 février)'
     },
     {
       icon: Users,
       title: 'Groupes par âge',
-      description: '-12 ans, +12 ans et groupe compétition'
+      description: '-12 ans et +12 ans'
     },
     {
       icon: Clock,
       title: 'Horaires adaptés',
-      description: '10h30-12h, 14h-16h ou 16h-18h selon l\'âge'
+      description: '14h-16h (-12 ans) ou 16h-18h (+12 ans)'
     },
     {
       icon: Award,
@@ -280,7 +280,7 @@ const InscriptionPage = () => {
               Inscription au Stage Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription au stage de Noël 2025 a été enregistrée avec succès. 
+              Votre inscription au stage de Février 2026 a été enregistrée avec succès. 
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails et les modalités de paiement.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -290,11 +290,11 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Dates : 22-23 & 29-30 décembre 2025</span>
+                  <span>Dates : Vacances de février 2026 (7-23 février)</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Horaires selon l'âge et le groupe</span>
+                  <span>Jours : Lundi, Mardi, Jeudi, Vendredi</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -320,11 +320,11 @@ const InscriptionPage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Stage de Parkour - Vacances de Noël 2025
+              Stage de Parkour - Vacances de Février 2026
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
-              Inscrivez-vous au stage de parkour pendant les vacances de Noël ! 
-              4 jours de pratique intensive : 22-23 décembre & 29-30 décembre
+              Inscrivez-vous au stage de parkour pendant les vacances de février ! 
+              Cours les Lundi/Mardi/Jeudi/Vendredi du 7 au 23 février 2026 (Zone Bordeaux)
             </p>
           </motion.div>
         </div>
@@ -357,7 +357,7 @@ const InscriptionPage = () => {
         </div>
       </section>
 
-      {/* Message d'information - Stage de Noël */}
+      {/* Message d'information - Stage de Février */}
       <section className="py-16 bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -370,15 +370,15 @@ const InscriptionPage = () => {
               <Calendar size={32} className="text-primary" />
             </div>
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
-              Stage de Noël 2025 - Inscriptions Ouvertes !
+              Stage de Février 2026 - Inscriptions Ouvertes !
             </h2>
             <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
-              Profitez des vacances de Noël pour découvrir ou progresser en parkour ! 
-              4 jours de stage intensif avec notre coach diplômé.
+              Profitez des vacances de février pour découvrir ou progresser en parkour ! 
+              Stage intensif les Lundi/Mardi/Jeudi/Vendredi avec notre coach diplômé.
             </p>
             <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
               <p className="text-orange-900 font-montserrat font-semibold text-center">
-                💰 Stage payant : 15€/séance (non licenciés) • 10€/séance (licenciés) • Pack 4 séances : 10€/séance (non licenciés)
+                💰 Stage payant : 15€/séance (non licenciés) • 10€/séance (licenciés)
               </p>
             </div>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
@@ -389,11 +389,12 @@ const InscriptionPage = () => {
                 <div className="bg-white rounded-lg p-4 border border-gray-200">
                   <div className="flex items-center space-x-2 mb-3">
                     <Calendar size={20} className="text-primary" />
-                    <strong className="text-gray-900">Dates</strong>
+                    <strong className="text-gray-900">Période</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <div>• 22 et 23 décembre 2025</div>
-                    <div>• 29 et 30 décembre 2025</div>
+                    <div>• Vacances de février 2026</div>
+                    <div>• Zone Bordeaux : 7-23 février</div>
+                    <div>• Jours : Lundi, Mardi, Jeudi, Vendredi</div>
                   </div>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-gray-200">
@@ -402,9 +403,8 @@ const InscriptionPage = () => {
                     <strong className="text-gray-900">Horaires</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <div>• 10h30-12h30 : Moins de 12 ans</div>
-                    <div>• 14h-16h : Plus de 12 ans</div>
-                    <div>• 16h-18h : Groupe compétition</div>
+                    <div>• 14h-16h : Moins de 12 ans</div>
+                    <div>• 16h-18h : Plus de 12 ans</div>
                   </div>
                 </div>
               </div>
@@ -414,7 +414,7 @@ const InscriptionPage = () => {
                   <strong className="text-gray-900">Tarif</strong>
                 </div>
                 <div className="text-sm text-gray-600 space-y-2">
-                  <p><strong>Non licenciés :</strong> 15€/séance • Pack 4 séances : 10€</p>
+                  <p><strong>Non licenciés :</strong> 15€/séance</p>
                   <p><strong>Licenciés :</strong> 10€/séance</p>
                 </div>
               </div>
@@ -478,7 +478,7 @@ const InscriptionPage = () => {
               <div className="flex items-center space-x-2">
                 <CheckCircle size={20} className="text-primary" />
                 <p className="text-gray-800 font-montserrat font-medium">
-                  Inscrivez-vous dès maintenant au stage de Noël 2025 ! Places limitées.
+                  Inscrivez-vous dès maintenant au stage de Février 2026 ! Places limitées.
                 </p>
               </div>
             </div>

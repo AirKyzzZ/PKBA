@@ -6,16 +6,15 @@ import { Clock, Euro, MapPin, Users, Trophy, ArrowRight, Calendar } from 'lucide
 
 const ScheduleHighlight = () => {
   const quickStats = [
-    { icon: Calendar, label: 'Dates', value: '22-23 & 29-30 déc.', color: 'text-red-600' },
-    { icon: Clock, label: 'Durée', value: '4 jours de stage', color: 'text-blue-600' },
-    { icon: Users, label: 'Groupes', value: '3 groupes d\'âge', color: 'text-green-600' },
+    { icon: Calendar, label: 'Dates', value: '7-23 février 2026', color: 'text-blue-600' },
+    { icon: Clock, label: 'Jours', value: 'Lun/Mar/Jeu/Ven', color: 'text-blue-600' },
+    { icon: Users, label: 'Groupes', value: '2 groupes d\'âge', color: 'text-green-600' },
     { icon: Trophy, label: 'Places', value: 'Limitées !', color: 'text-orange-600' }
   ]
 
   const featuredSessions = [
-    { day: 'Moins de 12 ans', time: '10h30-12h30', groups: '22-23 & 29-30 déc.', type: 'loisir' },
-    { day: 'Plus de 12 ans', time: '14h-16h', groups: '22-23 & 29-30 déc.', type: 'mixte' },
-    { day: 'Groupe Compétition', time: '16h-18h', groups: '22-23 & 29-30 déc.', type: 'performance' }
+    { day: 'Moins de 12 ans', time: '14h-16h', groups: 'Lun/Mar/Jeu/Ven', type: 'loisir' },
+    { day: 'Plus de 12 ans', time: '16h-18h', groups: 'Lun/Mar/Jeu/Ven', type: 'mixte' }
   ]
 
   return (
@@ -29,10 +28,10 @@ const ScheduleHighlight = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
-            🎄 Stage de Noël 2025
+            ❄️ Stage de Février 2026
           </h2>
                      <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
-             Profitez des vacances de Noël pour un stage intensif de parkour ! 4 jours d'entraînement avec groupes adaptés par âge et niveau.
+             Profitez des vacances de février pour un stage intensif de parkour ! Cours les lundis, mardis, jeudis et vendredis avec groupes adaptés par âge.
            </p>
         </motion.div>
 
@@ -147,7 +146,7 @@ const ScheduleHighlight = () => {
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
-                    <div className="font-semibold text-gray-900">4 jours intensifs</div>
+                    <div className="font-semibold text-gray-900">2 semaines de stage</div>
                     <div className="text-sm text-gray-600 mt-1">Progression rapide pendant les vacances</div>
                   </div>
                 </div>
@@ -220,10 +219,10 @@ const ScheduleHighlight = () => {
         >
           <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
             <h3 className="text-2xl md:text-3xl font-cheddar font-bold mb-4">
-              Inscrivez-vous au stage de Noël !
+              Inscrivez-vous au stage de Février !
             </h3>
             <p className="text-lg mb-6 opacity-90">
-              4 jours de parkour intensif pendant les vacances - Places limitées, inscrivez-vous rapidement !
+              Stage de parkour pendant les vacances de février - Places limitées, inscrivez-vous rapidement !
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
