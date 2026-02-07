@@ -27,6 +27,9 @@ pnpm-debug.log*
 .turbo
 .eslintcache
 
+# TypeScript build info
+*.tsbuildinfo
+
 # OS / Editor
 .DS_Store
 Thumbs.db
