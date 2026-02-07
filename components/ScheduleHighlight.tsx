@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Clock, Euro, MapPin, Users, Trophy, ArrowRight, Calendar } from 'lucide-react'
+import { Clock, Euro, Users, Trophy, ArrowRight, Calendar } from 'lucide-react'
 
 const ScheduleHighlight = () => {
   const quickStats = [
-    { icon: Calendar, label: 'Dates', value: '7-23 février 2026', color: 'text-blue-600' },
-    { icon: Clock, label: 'Jours', value: 'Lun/Mar/Jeu/Ven', color: 'text-blue-600' },
-    { icon: Users, label: 'Groupes', value: '2 groupes d\'âge', color: 'text-green-600' },
-    { icon: Trophy, label: 'Places', value: 'Limitées !', color: 'text-orange-600' }
+    { icon: Calendar, label: 'Dates', value: '7-23 février 2026' },
+    { icon: Clock, label: 'Jours', value: 'Lun/Mar/Jeu/Ven' },
+    { icon: Users, label: 'Groupes', value: '2 groupes d\'âge' },
+    { icon: Trophy, label: 'Places', value: 'Limitées !' }
   ]
 
   const featuredSessions = [
@@ -18,7 +18,7 @@ const ScheduleHighlight = () => {
   ]
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-16 bg-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -28,11 +28,11 @@ const ScheduleHighlight = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
-            ❄️ Stage de Février 2026
+            Stage de Février 2026
           </h2>
-                     <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
-             Profitez des vacances de février pour un stage intensif de parkour ! Cours les lundis, mardis, jeudis et vendredis avec groupes adaptés par âge.
-           </p>
+          <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
+            Profitez des vacances de février pour un stage intensif de parkour ! Cours les lundis, mardis, jeudis et vendredis avec groupes adaptés par âge.
+          </p>
         </motion.div>
 
         {/* Quick Stats */}
@@ -50,15 +50,15 @@ const ScheduleHighlight = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
+              className="bg-white rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-gray-100"
             >
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 rounded-lg bg-gray-100 flex items-center justify-center ${stat.color}`}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <stat.icon size={20} className="sm:w-6 sm:h-6" />
               </div>
               <div className="text-lg sm:text-xl font-cheddar font-bold text-gray-900 mb-1">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-600 font-montserrat">
+              <div className="text-sm text-gray-500 font-montserrat">
                 {stat.label}
               </div>
             </motion.div>
@@ -72,7 +72,7 @@ const ScheduleHighlight = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg"
+            className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
@@ -82,7 +82,7 @@ const ScheduleHighlight = () => {
                 Horaires du Stage
               </h3>
             </div>
-            
+
             <div className="space-y-4">
               {featuredSessions.map((session, index) => (
                 <motion.div
@@ -92,23 +92,19 @@ const ScheduleHighlight = () => {
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   viewport={{ once: true }}
                   className={`p-4 rounded-lg border-l-4 ${
-                    session.type === 'performance' 
-                      ? 'border-red-500 bg-red-50' 
-                      : session.type === 'loisir'
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-blue-500 bg-blue-50'
+                    session.type === 'loisir'
+                      ? 'border-primary bg-primary/5'
+                      : 'border-secondary bg-secondary/5'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">{session.day}</h4>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      session.type === 'performance' 
-                        ? 'bg-red-100 text-red-700' 
-                        : session.type === 'loisir'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-blue-100 text-blue-700'
+                      session.type === 'loisir'
+                        ? 'bg-primary/10 text-primary'
+                        : 'bg-secondary/10 text-secondary'
                     }`}>
-                      {session.type === 'performance' ? 'Performance' : session.type === 'loisir' ? 'Loisirs' : 'Mixte'}
+                      {session.type === 'loisir' ? 'Loisirs' : 'Mixte'}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -124,13 +120,13 @@ const ScheduleHighlight = () => {
             </div>
           </motion.div>
 
-          {/* Pricing Preview */}
+          {/* Pricing & Benefits */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg"
+            className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
@@ -140,67 +136,40 @@ const ScheduleHighlight = () => {
                 Avantages du Stage
               </h3>
             </div>
-            
-            <div className="space-y-4 mb-6">
-              <div className="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">2 semaines de stage</div>
-                    <div className="text-sm text-gray-600 mt-1">Progression rapide pendant les vacances</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Coach professionnel</div>
-                    <div className="text-sm text-gray-600 mt-1">Encadrement diplômé et expérimenté</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Groupes adaptés</div>
-                    <div className="text-sm text-gray-600 mt-1">Par âge et niveau pour un meilleur apprentissage</div>
-                  </div>
-                </div>
-              </div>
 
-              <div className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
+            <div className="space-y-3 mb-6">
+              {[
+                { text: '2 semaines de stage', sub: 'Progression rapide pendant les vacances' },
+                { text: 'Coach professionnel', sub: 'Encadrement diplômé et expérimenté' },
+                { text: 'Groupes adaptés', sub: 'Par âge et niveau pour un meilleur apprentissage' },
+                { text: 'Activité vacances', sub: 'Une façon sportive et fun d\'occuper les vacances' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                   <div>
-                    <div className="font-semibold text-gray-900">Activité vacances</div>
-                    <div className="text-sm text-gray-600 mt-1">Une façon sportive et fun d'occuper les vacances</div>
+                    <div className="font-semibold text-gray-900 text-sm">{item.text}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{item.sub}</div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
 
-            <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6">
-              <div className="space-y-2">
-                <div className="flex items-center justify-center space-x-2 mb-2">
-                  <Euro size={20} className="text-orange-600" />
-                  <p className="text-orange-900 font-montserrat font-semibold">
-                    Stage payant
-                  </p>
-                </div>
-                <div className="text-sm text-orange-900 space-y-1 text-center">
-                  <p><strong>Non licenciés :</strong> 15€/séance • Pack 4 séances : 10€</p>
-                  <p><strong>Licenciés :</strong> 10€/séance</p>
-                </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+              <div className="flex items-center justify-center space-x-2 mb-2">
+                <Euro size={18} className="text-amber-600" />
+                <p className="text-amber-900 font-montserrat font-semibold text-sm">
+                  Tarifs du stage
+                </p>
+              </div>
+              <div className="text-sm text-amber-800 space-y-1 text-center">
+                <p><strong>Non licenciés :</strong> 15€/séance · Pack 4 séances : 10€</p>
+                <p><strong>Licenciés :</strong> 10€/séance</p>
               </div>
             </div>
 
             <Link
               href="/inscription"
-              className="group w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
+              className="group w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-2 shadow-md"
             >
               <Calendar size={20} />
               <span>S'inscrire au stage</span>
@@ -208,38 +177,6 @@ const ScheduleHighlight = () => {
             </Link>
           </motion.div>
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl md:text-3xl font-cheddar font-bold mb-4">
-              Inscrivez-vous au stage de Février !
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Stage de parkour pendant les vacances de février - Places limitées, inscrivez-vous rapidement !
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/inscription"
-                className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105 shadow-lg"
-              >
-                S'inscrire au stage
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary transition-colors duration-200"
-              >
-                Nous contacter
-              </Link>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

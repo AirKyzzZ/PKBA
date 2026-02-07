@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar, ShoppingBag, Clock, Euro } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-[85vh] lg:min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -19,35 +19,35 @@ const Hero = () => {
           className="object-cover"
         />
       </div>
-      {/* Background Pattern (subtle, behind overlay) */}
-      <div className="absolute inset-0 opacity-10 z-0">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-      </div>
 
       {/* Readability Overlay */}
-      <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/50" />
+      <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/55" />
 
       <div className="relative z-20 max-w-7xl mx-auto text-center py-16 sm:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 sm:space-y-8 lg:space-y-10"
+          className="space-y-5 sm:space-y-6 lg:space-y-8"
         >
-          {/* Stage de Février Badge */}
+          {/* Stage Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center space-x-2 bg-blue-600/90 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-white font-montserrat font-bold text-sm sm:text-base shadow-lg animate-pulse"
           >
-            <Calendar size={18} className="flex-shrink-0" />
-            <span className="whitespace-nowrap">
-              ❄️ Stage de Février - Inscriptions ouvertes !
-            </span>
+            <Link
+              href="/inscription"
+              className="inline-flex items-center space-x-2 bg-red-600/90 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 text-white font-montserrat font-semibold text-sm shadow-lg hover:bg-red-600 transition-colors duration-200"
+            >
+              <Calendar size={16} className="flex-shrink-0" />
+              <span className="whitespace-nowrap">
+                Stage de Février — Inscriptions ouvertes
+              </span>
+            </Link>
           </motion.div>
 
-          {/* Main Title (Image) */}
+          {/* Main Title (Brand Logo) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ const Hero = () => {
               width={1100}
               height={320}
               priority
-              className="w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] max-w-[900px] h-auto"
+              className="w-[75%] sm:w-[65%] md:w-[55%] lg:w-[50%] max-w-[700px] h-auto"
             />
           </motion.div>
 
@@ -70,7 +70,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-medium text-white/90 max-w-4xl mx-auto px-4"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-white max-w-4xl mx-auto tracking-tight"
           >
             Parkour Bassin d'Arcachon
           </motion.p>
@@ -80,13 +80,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-base sm:text-lg md:text-xl font-montserrat text-white/90 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
+            className="text-base sm:text-lg font-montserrat text-white/80 max-w-2xl mx-auto leading-relaxed px-4"
           >
-            ⭐ Stage intensif pendant les vacances de février 2026 (Zone
-            Bordeaux : 7-23 février)
-            <br />
-            Lun/Mar/Jeu/Ven • 14h-16h (-12 ans) • 16h-18h (+12 ans) • 15€/séance
-            (non licenciés) ou 10€/séance (licenciés)
+            Club associatif de parkour avec encadrement professionnel.
+            <br className="hidden sm:block" />
+            Tous niveaux, à partir de 6 ans.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -94,34 +92,26 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-6 sm:pt-8 px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6 px-4"
           >
             <Link
               href="/inscription"
-              className="group bg-blue-600 text-white hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
+              className="group bg-red-600 text-white hover:bg-red-700 px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-montserrat font-bold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
             >
-              <Calendar size={20} className="flex-shrink-0" />
-              <span>S'inscrire au stage de Février</span>
+              <Calendar size={22} className="flex-shrink-0" />
+              <span>S'inscrire au stage</span>
               <ArrowRight
-                size={20}
+                size={22}
                 className="group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0"
               />
             </Link>
 
             <Link
               href="/horaires"
-              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
+              className="group bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-gray-900 px-6 py-3.5 rounded-xl font-montserrat font-semibold text-base transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
             >
-              <Clock size={20} className="flex-shrink-0" />
+              <Clock size={18} className="flex-shrink-0" />
               <span>Horaires & Tarifs</span>
-            </Link>
-
-            <Link
-              href="/boutique"
-              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-montserrat font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
-            >
-              <ShoppingBag size={20} className="flex-shrink-0" />
-              <span>Boutique</span>
             </Link>
           </motion.div>
         </motion.div>

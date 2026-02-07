@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Calendar, ShoppingBag, Users } from 'lucide-react'
+import { ArrowRight, Calendar, ShoppingBag, Mail } from 'lucide-react'
 
 const CTA = () => {
   return (
@@ -21,44 +21,43 @@ const CTA = () => {
           className="text-center mb-10 sm:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-white mb-4 sm:mb-6">
-            ❄️ Stage de Février 2026 - Places limitées !
+            Prêt à nous rejoindre ?
           </h2>
-          <p className="text-lg sm:text-xl font-montserrat text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
-            Ne manquez pas cette opportunité unique pendant les vacances ! 
-            Inscrivez-vous dès maintenant au stage intensif de parkour : vacances de février 2026 (Zone Bordeaux : 7-23 février)
+          <p className="text-lg sm:text-xl font-montserrat text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
+            Que vous soyez débutant ou confirmé, il y a une place pour vous chez PKBA.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {[
             {
               icon: Calendar,
-              title: 'S\'inscrire au Stage',
-              description: 'Stage de Février : 7-23 février 2026',
+              title: 'S\'inscrire',
+              description: 'Stage de Février ou saison régulière',
               href: '/inscription',
-              color: 'bg-blue-600 hover:bg-blue-700',
-              delay: 0.2,
-              type: 'primary'
+              style: 'bg-red-600 hover:bg-red-700 text-white',
+              iconStyle: 'text-white',
+              delay: 0.2
             },
             {
               icon: ShoppingBag,
-              title: 'Boutique Officielle',
+              title: 'Boutique',
               description: 'T-shirts et goodies PKBA',
               href: '/boutique',
-              color: 'bg-white text-primary hover:bg-gray-100',
-              delay: 0.4,
-              type: 'white'
+              style: 'bg-white hover:bg-gray-50 text-gray-900',
+              iconStyle: 'text-primary',
+              delay: 0.4
             },
             {
-              icon: Users,
-              title: 'Infos Pratiques',
-              description: 'Horaires et groupes du stage',
-              href: '/inscription',
-              color: 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary',
-              delay: 0.6,
-              type: 'transparent'
+              icon: Mail,
+              title: 'Contact',
+              description: 'Une question ? Écrivez-nous',
+              href: '/contact',
+              style: 'bg-white/10 border border-white/20 text-white hover:bg-white/20',
+              iconStyle: 'text-white',
+              delay: 0.6
             }
-          ].map((action, index) => (
+          ].map((action) => (
             <motion.div
               key={action.title}
               initial={{ opacity: 0, y: 30 }}
@@ -69,43 +68,19 @@ const CTA = () => {
             >
               <Link
                 href={action.href}
-                className={`block p-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl ${action.color}`}
+                className={`block p-6 sm:p-8 rounded-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl ${action.style}`}
               >
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-200">
-                    <action.icon size={32} className={
-                      action.type === 'white' 
-                        ? 'text-primary group-hover:text-primary' 
-                        : action.type === 'primary'
-                        ? 'text-white group-hover:text-white'
-                        : 'text-white group-hover:text-primary'
-                    } />
+                <div className="text-center space-y-3">
+                  <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-200">
+                    <action.icon size={28} className={action.iconStyle} />
                   </div>
-                  <h3 className={`text-2xl font-cheddar font-bold ${
-                    action.type === 'white' 
-                      ? 'text-primary group-hover:text-primary' 
-                      : action.type === 'primary'
-                      ? 'text-white group-hover:text-white'
-                      : 'text-white group-hover:text-primary'
-                  }`}>
+                  <h3 className="text-2xl font-cheddar font-bold">
                     {action.title}
                   </h3>
-                  <p className={`font-montserrat text-sm opacity-90 ${
-                    action.type === 'white' 
-                      ? 'text-primary group-hover:text-primary' 
-                      : action.type === 'primary'
-                      ? 'text-white group-hover:text-white'
-                      : 'text-white group-hover:text-primary'
-                  }`}>
+                  <p className="font-montserrat text-sm opacity-80">
                     {action.description}
                   </p>
-                  <div className={`flex items-center justify-center space-x-2 text-sm font-montserrat font-medium ${
-                    action.type === 'white' 
-                      ? 'text-primary group-hover:text-primary' 
-                      : action.type === 'primary'
-                      ? 'text-white group-hover:text-white'
-                      : 'text-white group-hover:text-primary'
-                  }`}>
+                  <div className="flex items-center justify-center space-x-2 text-sm font-montserrat font-medium opacity-70">
                     <span>En savoir plus</span>
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </div>
@@ -114,74 +89,9 @@ const CTA = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-cheddar font-bold text-white mb-4">
-                Informations du Stage
-              </h3>
-              <div className="space-y-4 font-montserrat text-gray-300">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <strong>Dates du stage</strong>
-                    <p className="text-sm mt-1">Vacances de février 2026 (Zone Bordeaux : 7-23 février)</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <strong>Jours de cours</strong>
-                    <p className="text-sm mt-1">Lundi, Mardi, Jeudi, Vendredi</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <strong>Horaires adaptés</strong>
-                    <p className="text-sm mt-1">14h-16h (-12 ans) • 16h-18h (+12 ans)</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <strong>Encadrement professionnel</strong>
-                    <p className="text-sm mt-1">Coach diplômé et expérimenté pour tous les groupes</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <strong>Stage payant</strong>
-                    <p className="text-sm mt-1">15€/séance (non licenciés) • 10€/séance (licenciés) • Pack 4 séances : 10€ (non licenciés)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="bg-blue-600 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 animate-pulse">
-                <Calendar size={40} className="text-white" />
-              </div>
-              <h4 className="text-xl font-cheddar font-bold text-white mb-2">
-                Stage Vacances de Février 2026
-              </h4>
-              <p className="font-montserrat text-gray-300">
-                Places limitées - Inscrivez-vous rapidement !
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
 }
 
-export default CTA 
+export default CTA
