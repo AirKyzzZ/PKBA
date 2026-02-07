@@ -177,9 +177,10 @@ export async function POST(request: NextRequest) {
                'Règlement intérieur accepté': formData.termsAccepted,
         'Signature': formData.signature,
         'Date d\'inscription': formData.signatureDate,
-        // Note: These values must exist in your Airtable base as Single Select options
-        'Statut': 'En attente', // Options: 'En attente', 'Validée', 'Refusée'
-        'Certificat médical': 'Non vérifié' // Options: 'Non vérifié', 'Vérifié', 'Manquant'
+        'Statut': 'En attente',
+        'Certificat médical': 'Non vérifié',
+        'Type d\'inscription': 'Stage Vacances Février 2026',
+        'Nombre de séances': Math.min(8, Math.max(1, Math.floor(Number(formData.numberOfSessions) || 1)))
       }
     }
 

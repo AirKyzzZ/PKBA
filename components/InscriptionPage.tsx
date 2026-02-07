@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro } from 'lucide-react'
+import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, Hash } from 'lucide-react'
 
 const InscriptionPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,6 +52,9 @@ const InscriptionPage = () => {
     imageRights: false,
     termsAccepted: false,
     
+    // Nombre de séances (stage)
+    numberOfSessions: 1,
+
     // Signature
     signature: '',
     signatureDate: ''
@@ -241,6 +244,7 @@ const InscriptionPage = () => {
           gender: '',
           adhesionType: [] as string[],
           otherClub: '',
+          numberOfSessions: 1,
           address: '',
           postalCode: '',
           city: '',
@@ -593,6 +597,50 @@ const InscriptionPage = () => {
                       />
                     </div>
                   )}
+                </div>
+              </div>
+
+              {/* Nombre de séances */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <Hash className="mr-2" />
+                  Nombre de séances souhaitées
+                </h3>
+                <p className="text-sm text-gray-600 font-montserrat mb-4">
+                  Le stage se déroule les Lundi, Mardi, Jeudi et Vendredi (8 séances max sur 2 semaines). Choisissez le nombre de séances auxquelles vous souhaitez participer.
+                </p>
+                <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-4">
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, numberOfSessions: n }))}
+                      className={`py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-200 border-2 ${
+                        formData.numberOfSessions === n
+                          ? 'bg-primary text-white border-primary shadow-md scale-105'
+                          : 'bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary'
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Euro size={18} className="text-amber-600" />
+                    <p className="text-amber-900 font-montserrat font-semibold text-sm">
+                      Estimation tarifaire
+                    </p>
+                  </div>
+                  <div className="text-sm text-amber-800 font-montserrat space-y-1">
+                    <p>
+                      <strong>Non licenciés :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 15€ = <strong>{formData.numberOfSessions * 15}€</strong>
+                    </p>
+                    <p>
+                      <strong>Licenciés :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 10€ = <strong>{formData.numberOfSessions * 10}€</strong>
+                    </p>
+                    <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>
+                  </div>
                 </div>
               </div>
 

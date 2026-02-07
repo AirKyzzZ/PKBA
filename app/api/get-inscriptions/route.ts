@@ -37,7 +37,9 @@ const formatRecord = (record: any) => ({
     'Signature': record.fields['Signature'] || '',
     'Date d\'inscription': record.fields['Date d\'inscription'] || '',
     'Statut': record.fields['Statut'] || 'En attente',
-    'Certificat médical': record.fields['Certificat médical'] || 'Non vérifié'
+    'Certificat médical': record.fields['Certificat médical'] || 'Non vérifié',
+    'Type d\'inscription': record.fields['Type d\'inscription'] || '',
+    'Nombre de séances': record.fields['Nombre de séances'] || null
   }
 })
 

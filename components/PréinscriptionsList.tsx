@@ -58,6 +58,8 @@ interface Préinscription {
     'Date d\'inscription': string
     'Statut': string
     'Certificat médical': string
+    'Type d\'inscription'?: string
+    'Nombre de séances'?: number | null
   }
 }
 
@@ -69,6 +71,7 @@ const PréinscriptionsList = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [medicalFilter, setMedicalFilter] = useState('')
+  const [typeFilter, setTypeFilter] = useState('')
   const [selectedInscription, setSelectedInscription] = useState<Préinscription | null>(null)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const [refreshing, setRefreshing] = useState(false)
@@ -89,7 +92,7 @@ const PréinscriptionsList = () => {
 
   useEffect(() => {
     filterInscriptions()
-  }, [inscriptions, searchTerm, statusFilter, medicalFilter])
+  }, [inscriptions, searchTerm, statusFilter, medicalFilter, typeFilter])
 
   
   
@@ -183,8 +186,15 @@ const PréinscriptionsList = () => {
 
     // Medical filter
     if (medicalFilter) {
-      filtered = filtered.filter(inscription => 
+      filtered = filtered.filter(inscription =>
         inscription.fields['Certificat médical'] === medicalFilter
+      )
+    }
+
+    // Type d'inscription filter
+    if (typeFilter) {
+      filtered = filtered.filter(inscription =>
+        inscription.fields['Type d\'inscription'] === typeFilter
       )
     }
 
@@ -301,7 +311,7 @@ const PréinscriptionsList = () => {
       'Responsable 2 - Civilité', 'Responsable 2 - Nom', 'Responsable 2 - Prénom', 'Responsable 2 - Téléphone', 'Responsable 2 - Email',
       'Contact d\'urgence - Nom', 'Contact d\'urgence - Téléphone',
       'Droit à l\'image', 'Règlement intérieur accepté', 'Signature', 'Date d\'inscription',
-      'Statut', 'Certificat médical'
+      'Statut', 'Certificat médical', 'Type d\'inscription', 'Nombre de séances'
     ]
 
     const csvContent = [
@@ -335,7 +345,9 @@ const PréinscriptionsList = () => {
         inscription.fields['Signature'] || '',
         inscription.fields['Date d\'inscription'] || '',
         inscription.fields['Statut'] || '',
-        inscription.fields['Certificat médical'] || ''
+        inscription.fields['Certificat médical'] || '',
+        inscription.fields['Type d\'inscription'] || '',
+        inscription.fields['Nombre de séances'] || ''
       ].join(','))
     ].join('\n')
 
@@ -425,7 +437,7 @@ const PréinscriptionsList = () => {
 
         {/* Filters */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -436,6 +448,20 @@ const PréinscriptionsList = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               />
+            </div>
+
+            {/* Type d'inscription Filter */}
+            <div>
+              <select
+                value={typeFilter}
+                onChange={(e) => setTypeFilter(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="">Tous les types</option>
+                <option value="Saison 2025/2026">Saison 2025/2026</option>
+                <option value="Stage Vacances Hiver 2025">Stage Hiver 2025</option>
+                <option value="Stage Vacances Février 2026">Stage Février 2026</option>
+              </select>
             </div>
 
             {/* Status Filter */}
@@ -491,6 +517,12 @@ const PréinscriptionsList = () => {
                     Âge
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Type
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Séances
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Statut
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -540,6 +572,33 @@ const PréinscriptionsList = () => {
                       {calculateAge(inscription.fields['Date de naissance'])}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
+                      {inscription.fields['Type d\'inscription'] ? (
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                          inscription.fields['Type d\'inscription'] === 'Saison 2025/2026'
+                            ? 'bg-blue-100 text-blue-800'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025'
+                              ? 'bg-purple-100 text-purple-800'
+                              : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026'
+                                ? 'bg-orange-100 text-orange-800'
+                                : 'bg-gray-100 text-gray-800'
+                        }`}>
+                          {inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025' ? 'Hiver'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026' ? 'Février'
+                            : inscription.fields['Type d\'inscription']}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-gray-400">—</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {inscription.fields['Nombre de séances'] ? (
+                        <span className="font-medium">{inscription.fields['Nombre de séances']}</span>
+                      ) : (
+                        <span className="text-gray-400">—</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(inscription.fields['Statut'])}`}>
                         {inscription.fields['Statut'] || 'Non défini'}
                       </span>
@@ -573,7 +632,7 @@ const PréinscriptionsList = () => {
             <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">Aucune préinscription trouvée</h3>
             <p className="text-gray-500">
-              {searchTerm || statusFilter || medicalFilter 
+              {searchTerm || statusFilter || medicalFilter || typeFilter
                 ? 'Essayez de modifier vos critères de recherche.'
                 : 'Aucune préinscription n\'a encore été soumise.'
               }
@@ -672,9 +731,21 @@ const PréinscriptionsList = () => {
                       </h3>
                       <div className="space-y-3">
                         <div>
-                          <label className="text-sm font-medium text-gray-500">Type</label>
+                          <label className="text-sm font-medium text-gray-500">Type d'adhésion</label>
                           <p className="text-gray-900">{selectedInscription.fields['Type d\'adhésion'] || 'Non renseigné'}</p>
                         </div>
+                        <div>
+                          <label className="text-sm font-medium text-gray-500">Type d'inscription</label>
+                          <p className="text-gray-900">
+                            {selectedInscription.fields['Type d\'inscription'] || 'Non renseigné'}
+                          </p>
+                        </div>
+                        {selectedInscription.fields['Nombre de séances'] && (
+                          <div>
+                            <label className="text-sm font-medium text-gray-500">Nombre de séances</label>
+                            <p className="text-gray-900">{selectedInscription.fields['Nombre de séances']} séance(s)</p>
+                          </div>
+                        )}
                         {selectedInscription.fields['Club d\'origine'] && (
                           <div>
                             <label className="text-sm font-medium text-gray-500">Club d'origine</label>

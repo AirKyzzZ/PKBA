@@ -105,7 +105,9 @@ exports.handler = async (event, context) => {
        'Règlement intérieur accepté': body.termsAccepted || false,
        'Signature': body.signature || '',
        'Date d\'inscription': new Date().toISOString().split('T')[0],
-       'Statut': 'En attente'
+       'Statut': 'En attente',
+       'Type d\'inscription': 'Stage Vacances Février 2026',
+       'Nombre de séances': Math.min(8, Math.max(1, Math.floor(Number(body.numberOfSessions) || 1)))
      };
 
      // Only add legal guardian fields if they have actual values (for minors)
