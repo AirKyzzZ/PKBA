@@ -86,7 +86,3 @@
 # Compression et optimisation (Désactivé pour Next.js car déjà géré par Next)
 [build.processing]
   skip_processing = true
-
-# Désactivation du scan des secrets car il génère trop de faux positifs sur des variables publiques (URLs, IDs de formulaires publics)
-[secrets_scanning]
-  enabled = false
