@@ -1,7 +1,0 @@
-# Handle static site routing
-/*    /index.html   200
-
-# Handle static assets
-/images/* /images/:splat 200
-/fonts/* /fonts/:splat 200
-/_next/* /_next/:splat 200

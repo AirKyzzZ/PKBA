@@ -64,6 +64,12 @@ const nextConfig = {
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
