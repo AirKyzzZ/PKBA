@@ -259,6 +259,7 @@ const ContactPage = () => {
                     <option value="Préinscription">Préinscription au club</option>
                     <option value="Boutique">Question boutique</option>
                     <option value="Entraînement">Planning d'entraînement</option>
+                    <option value="Anniversaire">Anniversaire parkour</option>
                     <option value="Partenariat">Partenariat</option>
                     <option value="Autre">Autre</option>
                   </select>

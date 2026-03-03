@@ -2,19 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Clock, Euro, Users, Trophy, ArrowRight, Calendar } from 'lucide-react'
+import { Clock, Euro, Users, Trophy, ArrowRight, Calendar, Sun, Zap } from 'lucide-react'
 
 const ScheduleHighlight = () => {
   const quickStats = [
-    { icon: Calendar, label: 'Dates', value: '7-23 février 2026' },
-    { icon: Clock, label: 'Jours', value: 'Lun/Mar/Jeu/Ven' },
-    { icon: Users, label: 'Groupes', value: '2 groupes d\'âge' },
-    { icon: Trophy, label: 'Places', value: 'Limitées !' }
-  ]
-
-  const featuredSessions = [
-    { day: 'Moins de 12 ans', time: '14h-16h', groups: 'Lun/Mar/Jeu/Ven', type: 'loisir' },
-    { day: 'Plus de 12 ans', time: '16h-18h', groups: 'Lun/Mar/Jeu/Ven', type: 'mixte' }
+    { icon: Calendar, label: 'Dates', value: '14-25 avril 2026' },
+    { icon: Clock, label: 'Jours', value: 'Lundi au Vendredi' },
+    { icon: Users, label: 'Places', value: '20 places (Formule 1)' },
+    { icon: Sun, label: 'Âge', value: 'À partir de 6 ans' }
   ]
 
   return (
@@ -28,10 +23,10 @@ const ScheduleHighlight = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-cheddar font-bold text-gray-900 mb-4 sm:mb-6">
-            Stage de Février 2026
+            Stage d'Avril 2026
           </h2>
           <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto px-4">
-            Profitez des vacances de février pour un stage intensif de parkour ! Cours les lundis, mardis, jeudis et vendredis avec groupes adaptés par âge.
+            Profitez des vacances de printemps pour un stage de parkour ! Deux formules au choix pour s'adapter à tous, à partir de 6 ans.
           </p>
         </motion.div>
 
@@ -66,7 +61,7 @@ const ScheduleHighlight = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Featured Sessions */}
+          {/* Formule 1 - Journée */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -76,51 +71,61 @@ const ScheduleHighlight = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-white" />
+                <Sun className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-cheddar font-bold text-gray-900">
-                Horaires du Stage
-              </h3>
+              <div>
+                <h3 className="text-2xl font-cheddar font-bold text-gray-900">
+                  Formule 1 — Journée
+                </h3>
+                <span className="text-sm font-montserrat text-primary font-semibold">Stage complet</span>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              {featuredSessions.map((session, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`p-4 rounded-lg border-l-4 ${
-                    session.type === 'loisir'
-                      ? 'border-primary bg-primary/5'
-                      : 'border-secondary bg-secondary/5'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-gray-900">{session.day}</h4>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      session.type === 'loisir'
-                        ? 'bg-primary/10 text-primary'
-                        : 'bg-secondary/10 text-secondary'
-                    }`}>
-                      {session.type === 'loisir' ? 'Loisirs' : 'Mixte'}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span>{session.time}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-                    <Users className="w-4 h-4" />
-                    <span>{session.groups}</span>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="space-y-3 mb-6">
+              <div className="p-4 rounded-lg border-l-4 border-primary bg-primary/5">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-semibold text-gray-900">Lundi au Vendredi</h4>
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                    20 places
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Clock className="w-4 h-4" />
+                  <span>10h - 16h</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                  <Users className="w-4 h-4" />
+                  <span>À partir de 6 ans</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2 mb-6 text-sm font-montserrat text-gray-600">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Pique-nique à ramener par l'enfant</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Goûter offert par le club</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Encadrement professionnel toute la journée</span>
+              </div>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="flex items-center justify-center space-x-2">
+                <Euro size={20} className="text-amber-600" />
+                <p className="text-amber-900 font-montserrat font-bold text-lg">
+                  30€ / jour
+                </p>
+              </div>
             </div>
           </motion.div>
 
-          {/* Pricing & Benefits */}
+          {/* Formule 2 - Après-midi court */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -129,54 +134,79 @@ const ScheduleHighlight = () => {
             className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                <Trophy className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                <Zap className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-cheddar font-bold text-gray-900">
-                Avantages du Stage
-              </h3>
+              <div>
+                <h3 className="text-2xl font-cheddar font-bold text-gray-900">
+                  Formule 2 — Après-midi
+                </h3>
+                <span className="text-sm font-montserrat text-primary font-semibold">Pratique courte</span>
+              </div>
             </div>
 
             <div className="space-y-3 mb-6">
-              {[
-                { text: '2 semaines de stage', sub: 'Progression rapide pendant les vacances' },
-                { text: 'Coach professionnel', sub: 'Encadrement diplômé et expérimenté' },
-                { text: 'Groupes adaptés', sub: 'Par âge et niveau pour un meilleur apprentissage' },
-                { text: 'Activité vacances', sub: 'Une façon sportive et fun d\'occuper les vacances' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                  <div>
-                    <div className="font-semibold text-gray-900 text-sm">{item.text}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">{item.sub}</div>
-                  </div>
+              <div className="p-4 rounded-lg border-l-4 border-primary bg-primary/5">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-semibold text-gray-900">Lundi au Vendredi</h4>
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                    Tous niveaux
+                  </span>
                 </div>
-              ))}
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Clock className="w-4 h-4" />
+                  <span>16h - 18h</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                  <Users className="w-4 h-4" />
+                  <span>À partir de 6 ans</span>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-              <div className="flex items-center justify-center space-x-2 mb-2">
-                <Euro size={18} className="text-amber-600" />
-                <p className="text-amber-900 font-montserrat font-semibold text-sm">
-                  Tarifs du stage
+            <div className="space-y-2 mb-6 text-sm font-montserrat text-gray-600">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Idéal pour découvrir le parkour</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Pour ceux qui préfèrent une séance courte</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span>Encadrement professionnel</span>
+              </div>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="flex items-center justify-center space-x-2">
+                <Euro size={20} className="text-amber-600" />
+                <p className="text-amber-900 font-montserrat font-bold text-lg">
+                  15€ / séance
                 </p>
               </div>
-              <div className="text-sm text-amber-800 space-y-1 text-center">
-                <p><strong>Non licenciés :</strong> 15€/séance · Pack 4 séances : 10€</p>
-                <p><strong>Licenciés :</strong> 10€/séance</p>
-              </div>
             </div>
-
-            <Link
-              href="/inscription"
-              className="group w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-2 shadow-md"
-            >
-              <Calendar size={20} />
-              <span>S'inscrire au stage</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </Link>
           </motion.div>
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          viewport={{ once: true }}
+          className="text-center mt-10"
+        >
+          <Link
+            href="/inscription"
+            className="group inline-flex items-center space-x-2 bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl font-montserrat font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-md"
+          >
+            <Calendar size={22} />
+            <span>S'inscrire au stage</span>
+            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-200" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

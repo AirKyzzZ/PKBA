@@ -4,6 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  color-scheme: light;
+}
+
 /* Font fallback - using Montserrat as primary font */
 * {
   box-sizing: border-box;
@@ -57,11 +64,6 @@ a {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -127,12 +129,6 @@ html {
     @apply bg-accent/50 text-gray-900;
     color-scheme: light;
     caret-color: #000000;
-  }
-
-  /* Button-style form elements (for size/color selection) */
-  button[type='button'],
-  button[type='submit'] {
-    @apply text-white;
   }
 
   input[type='text']:focus,
@@ -237,8 +233,3 @@ select:-webkit-autofill:focus {
   caret-color: #424242;
 }
 
-/* Button-style form elements (for size/color selection) */
-button[type='button'],
-button[type='submit'] {
-  @apply text-white;
-}

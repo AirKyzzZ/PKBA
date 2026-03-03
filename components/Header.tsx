@@ -1,16 +1,25 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Instagram, ShoppingCart } from 'lucide-react'
+import { Menu, X, Instagram, ShoppingCart, ChevronDown } from 'lucide-react'
 import { useCart } from './CartContext'
+
+type NavItem = {
+  name: string
+  href?: string
+  children?: { name: string; href: string }[]
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [openMobileAccordion, setOpenMobileAccordion] = useState<string | null>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const { getTotalItems } = useCart()
 
@@ -23,11 +32,30 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const navItems: NavItem[] = [
     { name: 'Accueil', href: '/' },
     { name: 'Horaires & Tarifs', href: '/horaires' },
+    {
+      name: 'Le Club',
+      children: [
+        { name: 'Planning', href: '/planning' },
+        { name: 'Anniversaires', href: '/anniversaires' },
+        { name: 'Covoiturage', href: '/covoiturage' },
+      ],
+    },
     { name: 'Boutique', href: '/boutique' },
-            { name: 'Préinscription', href: '/inscription' },
+    { name: 'Préinscription', href: '/inscription' },
     { name: 'Actualités', href: '/actualites' },
     { name: 'Nous Soutenir', href: '/donations' },
     { name: 'Contact', href: '/contact' },
@@ -82,23 +110,66 @@ const Header = () => {
                 PKBA
               </h1>
               <p className="text-xs text-gray-600 font-montserrat">
-                Parkour Bassin d'Arcachon
+                Parkour Bassin d&apos;Arcachon
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden lg:flex items-center ${desktopNavSpacing} transition-all duration-300`}>
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
-              </Link>
-            ))}
+          <nav ref={dropdownRef} className={`hidden lg:flex items-center ${desktopNavSpacing} transition-all duration-300`}>
+            {navItems.map((item) =>
+              item.children ? (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(item.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    className="flex items-center space-x-1 text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group"
+                    onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                  >
+                    <span>{item.name}</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`}
+                    />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                  </button>
+
+                  <AnimatePresence>
+                    {openDropdown === item.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg ring-1 ring-black/5 py-2 z-50"
+                      >
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary font-montserrat font-medium transition-colors duration-150"
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href!}
+                  className="text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Social Links & CTA */}
@@ -124,9 +195,9 @@ const Header = () => {
             </Link>
             <Link
               href="/inscription"
-              className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-sm sm:text-base shadow-md"
+              className="bg-primary hover:bg-secondary text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-sm sm:text-base shadow-md"
             >
-              Stage de Février ❄️
+              Stage d&apos;Avril 🌸
             </Link>
           </div>
 
@@ -174,22 +245,65 @@ const Header = () => {
             className="lg:hidden bg-white border-t border-gray-200"
           >
             <div className="px-4 py-6 space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-gray-700 hover:text-primary font-montserrat font-medium py-2 transition-colors duration-200 text-base"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.children ? (
+                  <div key={item.name}>
+                    <button
+                      onClick={() =>
+                        setOpenMobileAccordion(
+                          openMobileAccordion === item.name ? null : item.name
+                        )
+                      }
+                      className="flex items-center justify-between w-full text-gray-700 hover:text-primary font-montserrat font-medium py-2 transition-colors duration-200 text-base"
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform duration-200 ${openMobileAccordion === item.name ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {openMobileAccordion === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-4 space-y-2 pb-2">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.name}
+                                href={child.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block text-gray-600 hover:text-primary font-montserrat font-medium py-1.5 transition-colors duration-200 text-sm"
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href!}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-gray-700 hover:text-primary font-montserrat font-medium py-2 transition-colors duration-200 text-base"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
               <Link
                 href="/inscription"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
+                className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
               >
-                ❄️ S'inscrire au stage de Février
+                🌸 S&apos;inscrire au stage d&apos;Avril
               </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a
@@ -210,4 +324,4 @@ const Header = () => {
   )
 }
 
-export default Header 
+export default Header

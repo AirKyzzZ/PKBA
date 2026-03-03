@@ -73,17 +73,17 @@ const InscriptionPage = () => {
     {
       icon: Calendar,
       title: '2 semaines de stage',
-      description: 'Vacances de février 2026 (7-23 février)'
+      description: 'Vacances de printemps 2026 (14-25 avril)'
     },
     {
       icon: Users,
-      title: 'Groupes par âge',
-      description: '-12 ans et +12 ans'
+      title: '2 formules au choix',
+      description: 'Journée complète ou séance courte'
     },
     {
       icon: Clock,
-      title: 'Horaires adaptés',
-      description: '14h-16h (-12 ans) ou 16h-18h (+12 ans)'
+      title: 'Horaires flexibles',
+      description: '10h-16h (Formule 1) ou 16h-18h (Formule 2)'
     },
     {
       icon: Award,
@@ -284,7 +284,7 @@ const InscriptionPage = () => {
               Inscription au Stage Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription au stage de Février 2026 a été enregistrée avec succès. 
+              Votre inscription au stage d'Avril 2026 a été enregistrée avec succès.
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails et les modalités de paiement.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -294,11 +294,15 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Dates : Vacances de février 2026 (7-23 février)</span>
+                  <span>Dates : Vacances de printemps 2026 (14-25 avril)</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Jours : Lundi, Mardi, Jeudi, Vendredi</span>
+                  <span>Jours : Lundi au Vendredi</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Pour toute question : 06 60 14 71 44 (David)</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -324,11 +328,11 @@ const InscriptionPage = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Stage de Parkour - Vacances de Février 2026
+              Stage de Parkour - Vacances d'Avril 2026
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
-              Inscrivez-vous au stage de parkour pendant les vacances de février ! 
-              Cours les Lundi/Mardi/Jeudi/Vendredi du 7 au 23 février 2026 (Zone Bordeaux)
+              Inscrivez-vous au stage de parkour pendant les vacances de printemps !
+              Du 14 au 25 avril 2026, deux formules au choix pour tous à partir de 6 ans.
             </p>
           </motion.div>
         </div>
@@ -374,53 +378,57 @@ const InscriptionPage = () => {
               <Calendar size={32} className="text-primary" />
             </div>
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
-              Stage de Février 2026 - Inscriptions Ouvertes !
+              Stage d'Avril 2026 - Inscriptions Ouvertes !
             </h2>
             <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
-              Profitez des vacances de février pour découvrir ou progresser en parkour ! 
-              Stage intensif les Lundi/Mardi/Jeudi/Vendredi avec notre coach diplômé.
+              Profitez des vacances de printemps pour découvrir ou progresser en parkour !
+              Deux formules au choix, du lundi au vendredi, à partir de 6 ans.
             </p>
-            <div className="bg-orange-50 border border-orange-300 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
-              <p className="text-orange-900 font-montserrat font-semibold text-center">
-                💰 Stage payant : 15€/séance (non licenciés) • 10€/séance (licenciés)
-              </p>
-            </div>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-cheddar font-semibold text-gray-900 mb-4">
-                Planning du Stage
+                Les 2 Formules
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-montserrat">
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="bg-white rounded-lg p-4 border border-red-200">
                   <div className="flex items-center space-x-2 mb-3">
-                    <Calendar size={20} className="text-primary" />
-                    <strong className="text-gray-900">Période</strong>
+                    <Calendar size={20} className="text-red-600" />
+                    <strong className="text-gray-900">Formule 1 — Journée</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <div>• Vacances de février 2026</div>
-                    <div>• Zone Bordeaux : 7-23 février</div>
-                    <div>• Jours : Lundi, Mardi, Jeudi, Vendredi</div>
+                    <div>• Lundi au Vendredi, 10h - 16h</div>
+                    <div>• Pique-nique à ramener</div>
+                    <div>• Goûter offert par le club</div>
+                    <div>• 20 places disponibles</div>
+                    <div>• À partir de 6 ans</div>
+                  </div>
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
+                    <p className="text-amber-900 font-semibold text-center">30€ / jour</p>
                   </div>
                 </div>
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="bg-white rounded-lg p-4 border border-primary/30">
                   <div className="flex items-center space-x-2 mb-3">
                     <Clock size={20} className="text-primary" />
-                    <strong className="text-gray-900">Horaires</strong>
+                    <strong className="text-gray-900">Formule 2 — Après-midi</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <div>• 14h-16h : Moins de 12 ans</div>
-                    <div>• 16h-18h : Plus de 12 ans</div>
+                    <div>• Lundi au Vendredi, 16h - 18h</div>
+                    <div>• Séance courte de parkour</div>
+                    <div>• Idéal pour découvrir</div>
+                    <div>• À partir de 6 ans</div>
+                  </div>
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
+                    <p className="text-amber-900 font-semibold text-center">15€ / séance</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
                 <div className="flex items-center space-x-2 mb-2">
-                  <Euro size={20} className="text-orange-600" />
-                  <strong className="text-gray-900">Tarif</strong>
+                  <Phone size={20} className="text-green-600" />
+                  <strong className="text-gray-900">Contact</strong>
                 </div>
-                <div className="text-sm text-gray-600 space-y-2">
-                  <p><strong>Non licenciés :</strong> 15€/séance</p>
-                  <p><strong>Licenciés :</strong> 10€/séance</p>
-                </div>
+                <p className="text-sm text-gray-600">
+                  Pour toute question sur le stage, contactez David au <strong>06 60 14 71 44</strong>
+                </p>
               </div>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
@@ -482,7 +490,7 @@ const InscriptionPage = () => {
               <div className="flex items-center space-x-2">
                 <CheckCircle size={20} className="text-primary" />
                 <p className="text-gray-800 font-montserrat font-medium">
-                  Inscrivez-vous dès maintenant au stage de Février 2026 ! Places limitées.
+                  Inscrivez-vous dès maintenant au stage d'Avril 2026 ! Places limitées.
                 </p>
               </div>
             </div>
@@ -607,10 +615,10 @@ const InscriptionPage = () => {
                   Nombre de séances souhaitées
                 </h3>
                 <p className="text-sm text-gray-600 font-montserrat mb-4">
-                  Le stage se déroule les Lundi, Mardi, Jeudi et Vendredi (8 séances max sur 2 semaines). Choisissez le nombre de séances auxquelles vous souhaitez participer.
+                  Le stage se déroule du lundi au vendredi (10 jours max sur 2 semaines). Choisissez le nombre de jours souhaités.
                 </p>
-                <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-4">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 mb-4">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
                     <button
                       key={n}
                       type="button"
@@ -634,10 +642,10 @@ const InscriptionPage = () => {
                   </div>
                   <div className="text-sm text-amber-800 font-montserrat space-y-1">
                     <p>
-                      <strong>Non licenciés :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 15€ = <strong>{formData.numberOfSessions * 15}€</strong>
+                      <strong>Formule 1 (Journée) :</strong> {formData.numberOfSessions} jour{formData.numberOfSessions > 1 ? 's' : ''} × 30€ = <strong>{formData.numberOfSessions * 30}€</strong>
                     </p>
                     <p>
-                      <strong>Licenciés :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 10€ = <strong>{formData.numberOfSessions * 10}€</strong>
+                      <strong>Formule 2 (Après-midi) :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 15€ = <strong>{formData.numberOfSessions * 15}€</strong>
                     </p>
                     <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>
                   </div>

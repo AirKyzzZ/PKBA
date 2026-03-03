@@ -14,6 +14,56 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: 3,
+    slug: 'reportage-france-3-pkba-parkour-bassin-arcachon',
+    title: 'PKBA sur France 3 : le Parkour Bassin d\'Arcachon à l\'honneur',
+    excerpt:
+      "France 3 Nouvelle-Aquitaine a consacré un reportage au club PKBA, mettant en lumière la dynamique du parkour sur le Bassin d'Arcachon. Découvrez le reportage complet.",
+    content: `
+      <p class="mb-6">Le club <strong>PKBA - Parkour Bassin d'Arcachon</strong> a eu l'honneur d'être mis en lumière par <strong>France 3 Nouvelle-Aquitaine</strong>. Ce reportage témoigne de la reconnaissance grandissante du parkour comme discipline sportive à part entière et de la place que PKBA a su se faire sur le territoire du Bassin d'Arcachon.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Le reportage</h2>
+
+      <p class="mb-6">Découvrez le reportage complet de France 3 ci-dessous :</p>
+
+      <div class="relative w-full mb-8" style="padding-bottom: 56.25%;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Pkow2GmHfCk"
+          title="Reportage France 3 - PKBA Parkour Bassin d'Arcachon"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="absolute top-0 left-0 w-full h-full rounded-xl"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un club en pleine croissance</h2>
+
+      <p class="mb-6">Ce passage sur France 3 illustre le travail accompli depuis la création du club. Avec plus de <strong>65 adhérents</strong>, une pédagogie adaptée à tous les âges et un encadrement professionnel, PKBA s'impose comme une référence du parkour en Nouvelle-Aquitaine.</p>
+
+      <p class="mb-6">Le reportage met en avant les valeurs qui font la force du club : <strong>l'accessibilité, la sécurité, la progression et l'esprit de communauté</strong>. Des enfants aux adultes, chacun trouve sa place et progresse à son rythme sous l'œil bienveillant d'éducateurs diplômés.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Le parkour, bien plus qu'un sport</h2>
+
+      <p class="mb-6">Comme le montre le reportage, le parkour tel que pratiqué à PKBA dépasse la simple activité physique. C'est une discipline qui développe la <strong>confiance en soi, la gestion du risque, la créativité</strong> et le dépassement personnel. Chaque obstacle devient une opportunité d'apprentissage.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg mt-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "Merci à France 3 Nouvelle-Aquitaine pour ce beau reportage qui met en lumière notre passion et notre engagement pour le parkour sur le Bassin d'Arcachon !"
+        </p>
+      </div>
+
+      <p class="mb-6 mt-8">Envie de découvrir le parkour ? <strong>Rejoignez-nous</strong> pour un cours d'essai et vivez l'expérience PKBA ! 🚀</p>
+    `,
+    category: 'médias',
+    date: '2026-01-15',
+    author: 'Équipe PKBA',
+    readTime: '3 min',
+    image: '/images/hero_background.webp',
+    featured: true,
+  },
+  {
     id: 2,
     slug: 'bilan-premier-mois-pkba-60-adherents-septembre-2025',
     title: 'Un Premier Mois Exceptionnel : PKBA Décolle avec 60 Adhérents',

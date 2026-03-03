@@ -38,11 +38,11 @@ const Hero = () => {
           >
             <Link
               href="/inscription"
-              className="inline-flex items-center space-x-2 bg-red-600/90 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 text-white font-montserrat font-semibold text-sm shadow-lg hover:bg-red-600 transition-colors duration-200"
+              className="inline-flex items-center space-x-2 bg-primary/90 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 text-white font-montserrat font-semibold text-sm shadow-lg hover:bg-primary transition-colors duration-200"
             >
               <Calendar size={16} className="flex-shrink-0" />
               <span className="whitespace-nowrap">
-                Stage de Février — Inscriptions ouvertes
+                Stage d'Avril — Inscriptions ouvertes
               </span>
             </Link>
           </motion.div>
@@ -96,7 +96,7 @@ const Hero = () => {
           >
             <Link
               href="/inscription"
-              className="group bg-red-600 text-white hover:bg-red-700 px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-montserrat font-bold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
+              className="group bg-primary text-white hover:bg-secondary px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-montserrat font-bold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
             >
               <Calendar size={22} className="flex-shrink-0" />
               <span>S'inscrire au stage</span>

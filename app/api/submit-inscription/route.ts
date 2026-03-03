@@ -179,8 +179,8 @@ export async function POST(request: NextRequest) {
         'Date d\'inscription': formData.signatureDate,
         'Statut': 'En attente',
         'Certificat médical': 'Non vérifié',
-        'Type d\'inscription': 'Stage Vacances Février 2026',
-        'Nombre de séances': Math.min(8, Math.max(1, Math.floor(Number(formData.numberOfSessions) || 1)))
+        'Type d\'inscription': 'Stage Vacances Avril 2026',
+        'Nombre de séances': Math.min(10, Math.max(1, Math.floor(Number(formData.numberOfSessions) || 1)))
       }
     }
 
