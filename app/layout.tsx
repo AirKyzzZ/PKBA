@@ -20,7 +20,12 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    (() => {
+      const url = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+      return url.startsWith('http') ? url : `https://${url}`
+    })()
+  ),
   alternates: {
     canonical: '/',
   },
