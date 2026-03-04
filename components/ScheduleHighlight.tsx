@@ -9,7 +9,7 @@ const ScheduleHighlight = () => {
     { icon: Calendar, label: 'Dates', value: '14-25 avril 2026' },
     { icon: Clock, label: 'Jours', value: 'Lundi au Vendredi' },
     { icon: Users, label: 'Places', value: '20 places (Formule 1)' },
-    { icon: Sun, label: 'Âge', value: 'À partir de 6 ans' }
+    { icon: Sun, label: 'Âge', value: 'À partir de 8 ans' }
   ]
 
   return (
@@ -95,7 +95,7 @@ const ScheduleHighlight = () => {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
                   <Users className="w-4 h-4" />
-                  <span>À partir de 6 ans</span>
+                  <span>À partir de 8 ans</span>
                 </div>
               </div>
             </div>

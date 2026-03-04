@@ -399,7 +399,7 @@ const InscriptionPage = () => {
                     <div>• Pique-nique à ramener</div>
                     <div>• Goûter offert par le club</div>
                     <div>• 20 places disponibles</div>
-                    <div>• À partir de 6 ans</div>
+                    <div>• À partir de 8 ans</div>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
                     <p className="text-amber-900 font-semibold text-center">30€ / jour</p>
