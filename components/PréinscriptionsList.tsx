@@ -60,6 +60,7 @@ interface Préinscription {
     'Certificat médical': string
     'Type d\'inscription'?: string
     'Nombre de séances'?: number | null
+    'Jours sélectionnés'?: string | null
   }
 }
 
@@ -311,7 +312,7 @@ const PréinscriptionsList = () => {
       'Responsable 2 - Civilité', 'Responsable 2 - Nom', 'Responsable 2 - Prénom', 'Responsable 2 - Téléphone', 'Responsable 2 - Email',
       'Contact d\'urgence - Nom', 'Contact d\'urgence - Téléphone',
       'Droit à l\'image', 'Règlement intérieur accepté', 'Signature', 'Date d\'inscription',
-      'Statut', 'Certificat médical', 'Type d\'inscription', 'Nombre de séances'
+      'Statut', 'Certificat médical', 'Type d\'inscription', 'Nombre de séances', 'Jours sélectionnés'
     ]
 
     const csvContent = [
@@ -347,7 +348,8 @@ const PréinscriptionsList = () => {
         inscription.fields['Statut'] || '',
         inscription.fields['Certificat médical'] || '',
         inscription.fields['Type d\'inscription'] || '',
-        inscription.fields['Nombre de séances'] || ''
+        inscription.fields['Nombre de séances'] || '',
+        `"${(inscription.fields['Jours sélectionnés'] || '').replace(/"/g, '""')}"`
       ].join(','))
     ].join('\n')
 
@@ -461,6 +463,7 @@ const PréinscriptionsList = () => {
                 <option value="Saison 2025/2026">Saison 2025/2026</option>
                 <option value="Stage Vacances Hiver 2025">Stage Hiver 2025</option>
                 <option value="Stage Vacances Février 2026">Stage Février 2026</option>
+                <option value="Stage Vacances Avril 2026">Stage Avril 2026</option>
               </select>
             </div>
 
@@ -520,7 +523,7 @@ const PréinscriptionsList = () => {
                     Type
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Séances
+                    Jours
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Statut
@@ -580,20 +583,27 @@ const PréinscriptionsList = () => {
                               ? 'bg-purple-100 text-purple-800'
                               : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026'
                                 ? 'bg-orange-100 text-orange-800'
-                                : 'bg-gray-100 text-gray-800'
+                                : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026'
+                                  ? 'bg-green-100 text-green-800'
+                                  : 'bg-gray-100 text-gray-800'
                         }`}>
                           {inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025' ? 'Hiver'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026' ? 'Février'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026' ? 'Avril'
                             : inscription.fields['Type d\'inscription']}
                         </span>
                       ) : (
                         <span className="text-xs text-gray-400">—</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {inscription.fields['Nombre de séances'] ? (
-                        <span className="font-medium">{inscription.fields['Nombre de séances']}</span>
+                    <td className="px-6 py-4 text-sm text-gray-900 max-w-[200px]">
+                      {inscription.fields['Jours sélectionnés'] ? (
+                        <span className="font-medium text-xs" title={inscription.fields['Jours sélectionnés']}>
+                          {inscription.fields['Nombre de séances']}j — {inscription.fields['Jours sélectionnés']}
+                        </span>
+                      ) : inscription.fields['Nombre de séances'] ? (
+                        <span className="font-medium">{inscription.fields['Nombre de séances']} séance(s)</span>
                       ) : (
                         <span className="text-gray-400">—</span>
                       )}
@@ -740,12 +750,17 @@ const PréinscriptionsList = () => {
                             {selectedInscription.fields['Type d\'inscription'] || 'Non renseigné'}
                           </p>
                         </div>
-                        {selectedInscription.fields['Nombre de séances'] && (
+                        {selectedInscription.fields['Jours sélectionnés'] ? (
+                          <div>
+                            <label className="text-sm font-medium text-gray-500">Jours sélectionnés ({selectedInscription.fields['Nombre de séances']} jour{(selectedInscription.fields['Nombre de séances'] || 0) > 1 ? 's' : ''})</label>
+                            <p className="text-gray-900">{selectedInscription.fields['Jours sélectionnés']}</p>
+                          </div>
+                        ) : selectedInscription.fields['Nombre de séances'] ? (
                           <div>
                             <label className="text-sm font-medium text-gray-500">Nombre de séances</label>
                             <p className="text-gray-900">{selectedInscription.fields['Nombre de séances']} séance(s)</p>
                           </div>
-                        )}
+                        ) : null}
                         {selectedInscription.fields['Club d\'origine'] && (
                           <div>
                             <label className="text-sm font-medium text-gray-500">Club d'origine</label>

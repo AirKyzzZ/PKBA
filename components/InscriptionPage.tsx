@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, Hash } from 'lucide-react'
+import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
 
 const InscriptionPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,8 +52,8 @@ const InscriptionPage = () => {
     imageRights: false,
     termsAccepted: false,
     
-    // Nombre de séances (stage)
-    numberOfSessions: 1,
+    // Jours sélectionnés (stage)
+    selectedDates: [] as string[],
 
     // Signature
     signature: '',
@@ -73,7 +73,7 @@ const InscriptionPage = () => {
     {
       icon: Calendar,
       title: '2 semaines de stage',
-      description: 'Vacances de printemps 2026 (14-25 avril)'
+      description: 'Vacances de printemps 2026 (6-17 avril)'
     },
     {
       icon: Users,
@@ -91,6 +91,68 @@ const InscriptionPage = () => {
       description: 'Encadrement par un coach diplômé et expérimenté'
     }
   ]
+
+  // Dates du stage : 6-17 avril 2026 (lundi au vendredi, 2 semaines)
+  const stageDates = {
+    week1: [
+      { date: '2026-04-06', label: 'Lun 6 avril' },
+      { date: '2026-04-07', label: 'Mar 7 avril' },
+      { date: '2026-04-08', label: 'Mer 8 avril' },
+      { date: '2026-04-09', label: 'Jeu 9 avril' },
+      { date: '2026-04-10', label: 'Ven 10 avril' },
+    ],
+    week2: [
+      { date: '2026-04-13', label: 'Lun 13 avril' },
+      { date: '2026-04-14', label: 'Mar 14 avril' },
+      { date: '2026-04-15', label: 'Mer 15 avril' },
+      { date: '2026-04-16', label: 'Jeu 16 avril' },
+      { date: '2026-04-17', label: 'Ven 17 avril' },
+    ],
+  }
+
+  const week1Dates = stageDates.week1.map(d => d.date)
+  const week2Dates = stageDates.week2.map(d => d.date)
+
+  const isFullWeek = (weekDates: string[]) =>
+    weekDates.every(d => formData.selectedDates.includes(d))
+
+  const toggleDate = (date: string) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedDates: prev.selectedDates.includes(date)
+        ? prev.selectedDates.filter(d => d !== date)
+        : [...prev.selectedDates, date]
+    }))
+  }
+
+  const toggleWeek = (weekDates: string[]) => {
+    const allSelected = weekDates.every(d => formData.selectedDates.includes(d))
+    setFormData(prev => ({
+      ...prev,
+      selectedDates: allSelected
+        ? prev.selectedDates.filter(d => !weekDates.includes(d))
+        : Array.from(new Set([...prev.selectedDates, ...weekDates]))
+    }))
+  }
+
+  const calculatePricing = () => {
+    const selected = formData.selectedDates
+    if (selected.length === 0) return { f1: 0, f2: 0 }
+
+    const week1Full = isFullWeek(week1Dates)
+    const week2Full = isFullWeek(week2Dates)
+
+    const week1Selected = selected.filter(d => week1Dates.includes(d))
+    const week2Selected = selected.filter(d => week2Dates.includes(d))
+
+    const f1Week1 = week1Full ? 100 : week1Selected.length * 25
+    const f1Week2 = week2Full ? 100 : week2Selected.length * 25
+    const f1Total = f1Week1 + f1Week2
+
+    const f2Total = selected.length * 15
+
+    return { f1: f1Total, f2: f2Total }
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -244,7 +306,7 @@ const InscriptionPage = () => {
           gender: '',
           adhesionType: [] as string[],
           otherClub: '',
-          numberOfSessions: 1,
+          selectedDates: [] as string[],
           address: '',
           postalCode: '',
           city: '',
@@ -294,7 +356,7 @@ const InscriptionPage = () => {
               <div className="space-y-3 text-left font-montserrat text-gray-600">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Dates : Vacances de printemps 2026 (14-25 avril)</span>
+                  <span>Dates : Vacances de printemps 2026 (6-17 avril)</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -332,7 +394,7 @@ const InscriptionPage = () => {
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
               Inscrivez-vous au stage de parkour pendant les vacances de printemps !
-              Du 14 au 25 avril 2026, deux formules au choix pour tous à partir de 6 ans.
+              Du 6 au 17 avril 2026, deux formules au choix pour tous à partir de 6 ans.
             </p>
           </motion.div>
         </div>
@@ -402,7 +464,7 @@ const InscriptionPage = () => {
                     <div>• À partir de 8 ans</div>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
-                    <p className="text-amber-900 font-semibold text-center">30€ / jour</p>
+                    <p className="text-amber-900 font-semibold text-center">25€ / jour — 100€ / semaine</p>
                   </div>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-primary/30">
@@ -608,48 +670,107 @@ const InscriptionPage = () => {
                 </div>
               </div>
 
-              {/* Nombre de séances */}
+              {/* Jours souhaités */}
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
-                  <Hash className="mr-2" />
-                  Nombre de séances souhaitées
+                  <CalendarDays className="mr-2" />
+                  Jours souhaités
                 </h3>
                 <p className="text-sm text-gray-600 font-montserrat mb-4">
-                  Le stage se déroule du lundi au vendredi (10 jours max sur 2 semaines). Choisissez le nombre de jours souhaités.
+                  Sélectionnez les jours où vous souhaitez participer au stage. Vous pouvez choisir des jours individuels ou des semaines complètes.
                 </p>
-                <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 mb-4">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+
+                {/* Semaine 1 */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-montserrat font-semibold text-gray-700">Semaine 1 (6-10 avril)</p>
                     <button
-                      key={n}
                       type="button"
-                      onClick={() => setFormData(prev => ({ ...prev, numberOfSessions: n }))}
-                      className={`py-3 rounded-lg font-montserrat font-bold text-center transition-all duration-200 border-2 ${
-                        formData.numberOfSessions === n
-                          ? 'bg-primary text-white border-primary shadow-md scale-105'
-                          : 'bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary'
+                      onClick={() => toggleWeek(week1Dates)}
+                      className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
+                        isFullWeek(week1Dates)
+                          ? 'bg-primary text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
                       }`}
                     >
-                      {n}
+                      {isFullWeek(week1Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
                     </button>
-                  ))}
-                </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Euro size={18} className="text-amber-600" />
-                    <p className="text-amber-900 font-montserrat font-semibold text-sm">
-                      Estimation tarifaire
-                    </p>
                   </div>
-                  <div className="text-sm text-amber-800 font-montserrat space-y-1">
-                    <p>
-                      <strong>Formule 1 (Journée) :</strong> {formData.numberOfSessions} jour{formData.numberOfSessions > 1 ? 's' : ''} × 30€ = <strong>{formData.numberOfSessions * 30}€</strong>
-                    </p>
-                    <p>
-                      <strong>Formule 2 (Après-midi) :</strong> {formData.numberOfSessions} séance{formData.numberOfSessions > 1 ? 's' : ''} × 15€ = <strong>{formData.numberOfSessions * 15}€</strong>
-                    </p>
-                    <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {stageDates.week1.map((day) => (
+                      <button
+                        key={day.date}
+                        type="button"
+                        onClick={() => toggleDate(day.date)}
+                        className={`py-3 px-2 rounded-lg font-montserrat text-sm text-center transition-all duration-200 border-2 ${
+                          formData.selectedDates.includes(day.date)
+                            ? 'bg-primary text-white border-primary shadow-md'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary'
+                        }`}
+                      >
+                        {day.label}
+                      </button>
+                    ))}
                   </div>
                 </div>
+
+                {/* Semaine 2 */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-montserrat font-semibold text-gray-700">Semaine 2 (13-17 avril)</p>
+                    <button
+                      type="button"
+                      onClick={() => toggleWeek(week2Dates)}
+                      className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
+                        isFullWeek(week2Dates)
+                          ? 'bg-primary text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
+                      }`}
+                    >
+                      {isFullWeek(week2Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {stageDates.week2.map((day) => (
+                      <button
+                        key={day.date}
+                        type="button"
+                        onClick={() => toggleDate(day.date)}
+                        className={`py-3 px-2 rounded-lg font-montserrat text-sm text-center transition-all duration-200 border-2 ${
+                          formData.selectedDates.includes(day.date)
+                            ? 'bg-primary text-white border-primary shadow-md'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary'
+                        }`}
+                      >
+                        {day.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Estimation tarifaire */}
+                {formData.selectedDates.length > 0 && (
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Euro size={18} className="text-amber-600" />
+                      <p className="text-amber-900 font-montserrat font-semibold text-sm">
+                        Estimation tarifaire ({formData.selectedDates.length} jour{formData.selectedDates.length > 1 ? 's' : ''})
+                      </p>
+                    </div>
+                    <div className="text-sm text-amber-800 font-montserrat space-y-1">
+                      <p>
+                        <strong>Formule 1 (Journée) :</strong> <strong>{calculatePricing().f1}€</strong>
+                        {(isFullWeek(week1Dates) || isFullWeek(week2Dates)) && (
+                          <span className="text-xs ml-1 text-green-700">(tarif semaine appliqué)</span>
+                        )}
+                      </p>
+                      <p>
+                        <strong>Formule 2 (Après-midi) :</strong> {formData.selectedDates.length} × 15€ = <strong>{calculatePricing().f2}€</strong>
+                      </p>
+                      <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Adresse */}

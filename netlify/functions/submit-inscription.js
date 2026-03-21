@@ -106,8 +106,13 @@ exports.handler = async (event, context) => {
        'Signature': body.signature || '',
        'Date d\'inscription': new Date().toISOString().split('T')[0],
        'Statut': 'En attente',
-       'Type d\'inscription': 'Stage Vacances Février 2026',
-       'Nombre de séances': Math.min(8, Math.max(1, Math.floor(Number(body.numberOfSessions) || 1)))
+       'Type d\'inscription': 'Stage Vacances Avril 2026',
+       'Nombre de séances': Array.isArray(body.selectedDates) ? body.selectedDates.length : 0,
+       'Jours sélectionnés': Array.isArray(body.selectedDates) ? body.selectedDates.sort().map(d => {
+         const date = new Date(d + 'T12:00:00');
+         const days = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+         return `${days[date.getDay()]} ${date.getDate()}/${String(date.getMonth() + 1).padStart(2, '0')}`;
+       }).join(', ') : ''
      };
 
      // Only add legal guardian fields if they have actual values (for minors)
@@ -173,7 +178,7 @@ exports.handler = async (event, context) => {
       {
         fields: fieldsToCreate
       }
-    ]);
+    ], { typecast: true });
 
     console.log('Record created successfully:', record[0].id);
 
