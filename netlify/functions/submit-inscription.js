@@ -107,6 +107,7 @@ exports.handler = async (event, context) => {
        'Date d\'inscription': new Date().toISOString().split('T')[0],
        'Statut': 'En attente',
        'Type d\'inscription': 'Stage Vacances Avril 2026',
+       'Formule': body.selectedFormule === 'formule1' ? 'Formule 1 — Journée (Confirmé)' : 'Formule 2 — Après-midi (Débutant)',
        'Nombre de séances': Array.isArray(body.selectedDates) ? body.selectedDates.length : 0,
        'Jours sélectionnés': Array.isArray(body.selectedDates) ? body.selectedDates.sort().map(d => {
          const date = new Date(d + 'T12:00:00');

@@ -6,7 +6,7 @@ import { Clock, Euro, Users, Trophy, ArrowRight, Calendar, Sun, Zap } from 'luci
 
 const ScheduleHighlight = () => {
   const quickStats = [
-    { icon: Calendar, label: 'Dates', value: '14-25 avril 2026' },
+    { icon: Calendar, label: 'Dates', value: '6-17 avril 2026' },
     { icon: Clock, label: 'Jours', value: 'Lundi au Vendredi' },
     { icon: Users, label: 'Places', value: '20 places (Formule 1)' },
     { icon: Sun, label: 'Âge', value: 'À partir de 8 ans' }
@@ -77,7 +77,7 @@ const ScheduleHighlight = () => {
                 <h3 className="text-2xl font-cheddar font-bold text-gray-900">
                   Formule 1 — Journée
                 </h3>
-                <span className="text-sm font-montserrat text-primary font-semibold">Stage complet</span>
+                <span className="text-sm font-montserrat text-primary font-semibold">Niveau confirmé</span>
               </div>
             </div>
 
@@ -85,8 +85,8 @@ const ScheduleHighlight = () => {
               <div className="p-4 rounded-lg border-l-4 border-primary bg-primary/5">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">Lundi au Vendredi</h4>
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                    20 places
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                    Confirmé · 20 places
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -119,7 +119,7 @@ const ScheduleHighlight = () => {
               <div className="flex items-center justify-center space-x-2">
                 <Euro size={20} className="text-amber-600" />
                 <p className="text-amber-900 font-montserrat font-bold text-lg">
-                  30€ / jour
+                  25€ / jour — 100€ / semaine
                 </p>
               </div>
             </div>
@@ -141,7 +141,7 @@ const ScheduleHighlight = () => {
                 <h3 className="text-2xl font-cheddar font-bold text-gray-900">
                   Formule 2 — Après-midi
                 </h3>
-                <span className="text-sm font-montserrat text-primary font-semibold">Pratique courte</span>
+                <span className="text-sm font-montserrat text-primary font-semibold">Découverte / Débutant</span>
               </div>
             </div>
 
@@ -150,7 +150,7 @@ const ScheduleHighlight = () => {
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">Lundi au Vendredi</h4>
                   <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                    Tous niveaux
+                    Débutant
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">

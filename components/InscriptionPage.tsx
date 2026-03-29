@@ -52,6 +52,9 @@ const InscriptionPage = () => {
     imageRights: false,
     termsAccepted: false,
     
+    // Formule choisie
+    selectedFormule: '' as '' | 'formule1' | 'formule2',
+
     // Jours sélectionnés (stage)
     selectedDates: [] as string[],
 
@@ -276,7 +279,8 @@ const InscriptionPage = () => {
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
       age -= 1
     }
-    return age < 6
+    const minAge = formData.selectedFormule === 'formule1' ? 8 : 6
+    return age < minAge
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -306,6 +310,7 @@ const InscriptionPage = () => {
           gender: '',
           adhesionType: [] as string[],
           otherClub: '',
+          selectedFormule: '' as '' | 'formule1' | 'formule2',
           selectedDates: [] as string[],
           address: '',
           postalCode: '',
@@ -458,6 +463,7 @@ const InscriptionPage = () => {
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div>• Lundi au Vendredi, 10h - 16h</div>
+                    <div>• <strong className="text-red-600">Niveau confirmé</strong></div>
                     <div>• Pique-nique à ramener</div>
                     <div>• Goûter offert par le club</div>
                     <div>• 20 places disponibles</div>
@@ -474,6 +480,7 @@ const InscriptionPage = () => {
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div>• Lundi au Vendredi, 16h - 18h</div>
+                    <div>• <strong className="text-primary">Découverte / Débutant</strong></div>
                     <div>• Séance courte de parkour</div>
                     <div>• Idéal pour découvrir</div>
                     <div>• À partir de 6 ans</div>
@@ -670,7 +677,64 @@ const InscriptionPage = () => {
                 </div>
               </div>
 
+              {/* Choix de la formule */}
+              <div>
+                <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
+                  <Award className="mr-2" />
+                  Choix de la formule <span className="text-red-500 ml-1">*</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, selectedFormule: 'formule1', selectedDates: [] }))}
+                    className={`p-5 rounded-xl border-2 text-left transition-all duration-200 ${
+                      formData.selectedFormule === 'formule1'
+                        ? 'border-red-500 bg-red-50 shadow-md'
+                        : 'border-gray-200 bg-white hover:border-red-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <strong className="text-gray-900 font-montserrat">Formule 1 — Journée</strong>
+                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">Confirmé</span>
+                    </div>
+                    <div className="space-y-1 text-sm text-gray-600 font-montserrat">
+                      <p>Lundi au Vendredi, 10h - 16h</p>
+                      <p>À partir de 8 ans · 20 places</p>
+                      <p className="font-semibold text-amber-900 mt-2">25€ / jour — 100€ / semaine</p>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, selectedFormule: 'formule2', selectedDates: [] }))}
+                    className={`p-5 rounded-xl border-2 text-left transition-all duration-200 ${
+                      formData.selectedFormule === 'formule2'
+                        ? 'border-primary bg-primary/5 shadow-md'
+                        : 'border-gray-200 bg-white hover:border-primary/50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <strong className="text-gray-900 font-montserrat">Formule 2 — Après-midi</strong>
+                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">Débutant</span>
+                    </div>
+                    <div className="space-y-1 text-sm text-gray-600 font-montserrat">
+                      <p>Lundi au Vendredi, 16h - 18h</p>
+                      <p>À partir de 6 ans · Découverte / Débutant</p>
+                      <p className="font-semibold text-amber-900 mt-2">15€ / séance</p>
+                    </div>
+                  </button>
+                </div>
+                {isTooYoung() && formData.selectedFormule && (
+                  <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-3 flex items-center space-x-2">
+                    <AlertCircle size={18} className="text-red-500 flex-shrink-0" />
+                    <p className="text-sm text-red-700 font-montserrat">
+                      L'enfant n'a pas l'âge minimum requis pour cette formule ({formData.selectedFormule === 'formule1' ? '8 ans' : '6 ans'}).
+                    </p>
+                  </div>
+                )}
+              </div>
+
               {/* Jours souhaités */}
+              {formData.selectedFormule && (
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
                   <CalendarDays className="mr-2" />
@@ -684,17 +748,19 @@ const InscriptionPage = () => {
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-montserrat font-semibold text-gray-700">Semaine 1 (6-10 avril)</p>
-                    <button
-                      type="button"
-                      onClick={() => toggleWeek(week1Dates)}
-                      className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
-                        isFullWeek(week1Dates)
-                          ? 'bg-primary text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
-                      }`}
-                    >
-                      {isFullWeek(week1Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
-                    </button>
+                    {formData.selectedFormule === 'formule1' && (
+                      <button
+                        type="button"
+                        onClick={() => toggleWeek(week1Dates)}
+                        className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
+                          isFullWeek(week1Dates)
+                            ? 'bg-primary text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
+                        }`}
+                      >
+                        {isFullWeek(week1Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
+                      </button>
+                    )}
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                     {stageDates.week1.map((day) => (
@@ -718,17 +784,19 @@ const InscriptionPage = () => {
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-montserrat font-semibold text-gray-700">Semaine 2 (13-17 avril)</p>
-                    <button
-                      type="button"
-                      onClick={() => toggleWeek(week2Dates)}
-                      className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
-                        isFullWeek(week2Dates)
-                          ? 'bg-primary text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
-                      }`}
-                    >
-                      {isFullWeek(week2Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
-                    </button>
+                    {formData.selectedFormule === 'formule1' && (
+                      <button
+                        type="button"
+                        onClick={() => toggleWeek(week2Dates)}
+                        className={`text-xs font-montserrat font-medium px-3 py-1 rounded-full transition-all duration-200 ${
+                          isFullWeek(week2Dates)
+                            ? 'bg-primary text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
+                        }`}
+                      >
+                        {isFullWeek(week2Dates) ? '✓ Semaine complète (100€)' : 'Toute la semaine (100€)'}
+                      </button>
+                    )}
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                     {stageDates.week2.map((day) => (
@@ -758,20 +826,25 @@ const InscriptionPage = () => {
                       </p>
                     </div>
                     <div className="text-sm text-amber-800 font-montserrat space-y-1">
-                      <p>
-                        <strong>Formule 1 (Journée) :</strong> <strong>{calculatePricing().f1}€</strong>
-                        {(isFullWeek(week1Dates) || isFullWeek(week2Dates)) && (
-                          <span className="text-xs ml-1 text-green-700">(tarif semaine appliqué)</span>
-                        )}
-                      </p>
-                      <p>
-                        <strong>Formule 2 (Après-midi) :</strong> {formData.selectedDates.length} × 15€ = <strong>{calculatePricing().f2}€</strong>
-                      </p>
+                      {formData.selectedFormule === 'formule1' && (
+                        <p>
+                          <strong>Formule 1 (Journée) :</strong> <strong>{calculatePricing().f1}€</strong>
+                          {(isFullWeek(week1Dates) || isFullWeek(week2Dates)) && (
+                            <span className="text-xs ml-1 text-green-700">(tarif semaine appliqué)</span>
+                          )}
+                        </p>
+                      )}
+                      {formData.selectedFormule === 'formule2' && (
+                        <p>
+                          <strong>Formule 2 (Après-midi) :</strong> {formData.selectedDates.length} × 15€ = <strong>{calculatePricing().f2}€</strong>
+                        </p>
+                      )}
                       <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>
                     </div>
                   </div>
                 )}
               </div>
+              )}
 
               {/* Adresse */}
               <div>

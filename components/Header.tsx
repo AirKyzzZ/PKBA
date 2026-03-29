@@ -87,7 +87,7 @@ const Header = () => {
   const brandInfoVisibility = isScrolled ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden' : ''
 
   // Desktop nav spacing only
-  const desktopNavSpacing = isScrolled ? 'lg:space-x-6' : 'lg:space-x-8'
+  const desktopNavSpacing = isScrolled ? 'lg:space-x-3 xl:space-x-6' : 'lg:space-x-4 xl:space-x-8'
 
   return (
     <header
@@ -126,7 +126,7 @@ const Header = () => {
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
-                    className="flex items-center space-x-1 text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group"
+                    className="flex items-center space-x-1 text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group text-sm xl:text-base"
                     onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
                   >
                     <span>{item.name}</span>
@@ -163,7 +163,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href!}
-                  className="text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group"
+                  className="text-gray-700 hover:text-primary font-montserrat font-medium transition-colors duration-200 relative group text-sm xl:text-base whitespace-nowrap"
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
@@ -195,7 +195,7 @@ const Header = () => {
             </Link>
             <Link
               href="/inscription"
-              className="bg-primary hover:bg-secondary text-white px-4 sm:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-sm sm:text-base shadow-md"
+              className="bg-primary hover:bg-secondary text-white px-3 xl:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-xs xl:text-sm shadow-md whitespace-nowrap"
             >
               Stage d&apos;Avril 🌸
             </Link>
