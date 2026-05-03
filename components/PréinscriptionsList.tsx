@@ -464,6 +464,8 @@ const PréinscriptionsList = () => {
                 <option value="Stage Vacances Hiver 2025">Stage Hiver 2025</option>
                 <option value="Stage Vacances Février 2026">Stage Février 2026</option>
                 <option value="Stage Vacances Avril 2026">Stage Avril 2026</option>
+                <option value="Stage Vacances Juillet 2026">Stage Juillet 2026</option>
+                <option value="Stage Vacances Août 2026">Stage Août 2026</option>
               </select>
             </div>
 
@@ -585,12 +587,18 @@ const PréinscriptionsList = () => {
                                 ? 'bg-orange-100 text-orange-800'
                                 : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026'
                                   ? 'bg-green-100 text-green-800'
-                                  : 'bg-gray-100 text-gray-800'
+                                  : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026'
+                                    ? 'bg-yellow-100 text-yellow-800'
+                                    : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026'
+                                      ? 'bg-amber-100 text-amber-800'
+                                      : 'bg-gray-100 text-gray-800'
                         }`}>
                           {inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025' ? 'Hiver'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026' ? 'Février'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026' ? 'Avril'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026' ? 'Juillet'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026' ? 'Août'
                             : inscription.fields['Type d\'inscription']}
                         </span>
                       ) : (

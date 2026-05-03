@@ -14,6 +14,69 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: 4,
+    slug: 'nouveau-local-gujan-mestras-circuit-national-rennes-pkba',
+    title: 'Nouveau local à Gujan-Mestras et trois podiums à l\'étape de Rennes',
+    excerpt:
+      "Le club PKBA vit une saison qui s'accélère. En avril 2026, nous avons emménagé dans notre tout premier local fixe à Gujan-Mestras, un hangar de 200 m² entièrement aménagé. Et le mois précédent, nos traceurs sont rentrés de Rennes avec trois podiums sur la 3e étape du Circuit National de Parkour. Retour sur ces moments forts.",
+    content: `
+      <p class="mb-6">Cette saison restera comme une étape charnière dans l'histoire du <strong>Parkour Bassin d'Arcachon</strong>. En quelques mois, le club a franchi deux caps majeurs : un <strong>premier local fixe</strong> à Gujan-Mestras, et une vraie reconnaissance sur la scène nationale avec <strong>trois podiums à Rennes</strong> sur l'étape 3 du Circuit National de Parkour. Deux belles aventures qu'on avait envie de partager.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un local rien que pour nous, à Gujan-Mestras</h2>
+
+      <p class="mb-6">Depuis <strong>avril 2026</strong>, PKBA dispose enfin de son propre lieu d'entraînement, au 4 Av. de L'actipôle à Gujan-Mestras. <strong>200 m² dans un beau hangar</strong>, avec parking, accueil aménagé, toilettes, et surtout du matériel pensé pour notre discipline : trampolines, parcours techniques, et des <strong>modules dernier cri signés <a href="https://brickparkour.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Brick Parkour</a></strong>, l'une des références du secteur. Et même une PlayStation pour décompresser entre deux sessions.</p>
+
+      <p class="mb-6">Disposer de notre propre salle, c'est un changement complet. Plus besoin de plier et déplier le matériel à chaque cours, plus de contraintes horaires liées au partage d'une salle, nos modules et nos équipements de sécurité sont désormais <strong>installés à demeure</strong> et pensés pour la pratique du parkour.</p>
+
+      <p class="mb-6">Concrètement, cela nous permet d'offrir aux athlètes un cadre stable et progressif. Les parcours peuvent évoluer entre chaque séance, les défis sont plus ambitieux, et les coachs gagnent un temps précieux pour se concentrer sur ce qui compte vraiment : <strong>la pédagogie, la sécurité et la progression</strong> de chaque pratiquant. C'est aussi un endroit chaleureux pour souder la communauté du club, où les traceurs se croisent, partagent leurs idées et encouragent les plus jeunes.</p>
+
+      <p class="mb-6">Ce local représente bien plus qu'un simple changement d'adresse, c'est l'aboutissement d'un travail collectif (bénévoles, parents, coachs) et le point de départ de nouvelles ambitions. Stages de vacances, anniversaires, privatisations, séminaires d'entreprise, beaucoup de projets deviennent enfin possibles dans ce nouvel espace.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "Avoir notre propre salle, c'est offrir aux athlètes un cadre digne de ce qu'ils méritent et permettre au club de viser plus haut sur le long terme."
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Trois podiums à Rennes, sur le Circuit National</h2>
+
+      <p class="mb-6">Les 14 et 15 mars 2026, Rennes accueillait la <strong>3e étape du Circuit National de Parkour</strong>, qui rassemblait les meilleurs traceurs et traceuses de France en Parkour Speed et Parkour Freestyle. Une <strong>quinzaine d'athlètes PKBA</strong> ont fait le déplacement, accompagnés par l'équipe technique. Après une première sortie compétitive à Thouars les 6 et 7 décembre 2025, c'était l'occasion de confirmer la dynamique du groupe au plus haut niveau national.</p>
+
+      <p class="mb-6">Et le résultat est au rendez-vous : <strong>trois podiums</strong> ramenés sur le Bassin, dans trois catégories différentes.</p>
+
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Les podiums PKBA à Rennes</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li>🥇 <strong>Antoine Duverger</strong>, 1er en Parkour Freestyle 18 ans et plus hommes (performance) avec 69.400</li>
+          <li>🥈 <strong>Tilio Ferreira</strong>, 2e en Parkour Freestyle 15-17 ans hommes élite avec 69.800</li>
+          <li>🥉 <strong>Esaya Kety</strong>, 3e en Parkour Speed 12-14 ans hommes (performance) en 24.080</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Une <strong>victoire pour Antoine</strong> chez les seniors, un <strong>argent pour Tilio</strong> dans une catégorie élite particulièrement relevée, et un <strong>bronze pour Esaya</strong> chez les plus jeunes : trois générations du club représentées sur trois podiums, c'est exactement le signal qu'on espérait. Le travail réalisé à l'entraînement paie, et la profondeur du groupe se confirme.</p>
+
+      <p class="mb-6">Au-delà des médailles, ce déplacement a aussi été une grande leçon pour tous. Découvrir un nouveau spot, échanger avec les meilleurs clubs français, observer les enchaînements des traceurs élites, et apprendre à gérer la pression d'une compétition nationale : autant de moments qui font grandir un athlète. Et la maturité dont ont fait preuve nos jeunes nous a impressionnés.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Cap sur la finale de Bourges</h2>
+
+      <p class="mb-6">La saison n'est pas terminée, et la suite s'annonce intense. Après les étapes du Circuit National, place à la <strong>finale nationale, qui se tiendra à Bourges les 13 et 14 juin 2026</strong>. Plusieurs de nos traceurs ont validé leur ticket et iront défendre les couleurs du Bassin d'Arcachon face aux meilleurs de la discipline.</p>
+
+      <p class="mb-6">L'objectif est clair : continuer à <strong>progresser, prendre du plaisir et représenter le club</strong> au plus haut niveau. Quel que soit le résultat, ce rendez-vous sera une nouvelle marche dans la construction d'une vraie culture compétitive à PKBA. Et croyez-nous, on a hâte d'y être.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Une dynamique qui s'accélère</h2>
+
+      <p class="mb-6">Local fixe en avril, podiums à Rennes en mars : ce sont deux <strong>jalons majeurs</strong> qui ouvrent une nouvelle phase pour PKBA. Désormais, on peut planifier sereinement les stages d'été (juillet et août), préparer le gala de fin d'année du 27 juin, accueillir des évènements privés dans notre salle, et continuer à viser haut sur la scène nationale.</p>
+
+      <p class="mb-6">À tous les athlètes, parents, partenaires et amis du club : <strong>merci</strong>. Sans vous, rien de tout cela ne serait possible. Et à ceux qui hésitent encore à pousser la porte du parkour, c'est le bon moment pour nous rejoindre. Venez essayer, on a (enfin !) la place pour vous accueillir comme il se doit. 🚀</p>
+    `,
+    category: 'club',
+    date: '2026-05-03',
+    author: 'Équipe PKBA',
+    readTime: '5 min',
+    image: '/images/blog-open-rennes-local.jpg',
+    featured: true,
+  },
+  {
     id: 3,
     slug: 'reportage-france-3-pkba-parkour-bassin-arcachon',
     title: 'PKBA sur France 3 : le Parkour Bassin d\'Arcachon à l\'honneur',

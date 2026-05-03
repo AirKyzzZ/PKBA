@@ -2,12 +2,12 @@ import InscriptionPage from '@/components/InscriptionPage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Stage de Parkour - Vacances d\'Avril 2026 | PKBA Bassin d\'Arcachon',
-  description: 'Inscrivez-vous au stage de parkour pendant les vacances d\'avril 2026 ! Du 14 au 25 avril, 2 formules au choix : journée (10h-16h, 30€) ou après-midi (16h-18h, 15€). À partir de 6 ans.',
-  keywords: 'stage parkour, vacances avril 2026, stage sportif printemps, parkour Arcachon, activité vacances enfants, stage parkour printemps',
+  title: 'Stages de Parkour - Été 2026 (Juillet & Août) | PKBA Bassin d\'Arcachon',
+  description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions de juillet (6 au 16) et août (17 au 28), 2 formules au choix : journée (10h-16h, 25€/jour) ou découverte (16h-17h30, 15€). À partir de 6 ans.',
+  keywords: 'stage parkour, vacances été 2026, stage juillet 2026, stage août 2026, parkour Arcachon, parkour Gujan-Mestras, activité vacances enfants, stage parkour été',
   openGraph: {
-    title: 'Stage de Parkour - Vacances d\'Avril 2026 | PKBA Bassin d\'Arcachon',
-    description: 'Inscrivez-vous au stage de parkour pendant les vacances d\'avril 2026 ! Du 14 au 25 avril, 2 formules au choix. Encadrement professionnel.',
+    title: 'Stages de Parkour - Été 2026 | PKBA Bassin d\'Arcachon',
+    description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions juillet et août, 2 formules au choix. Encadrement professionnel à Gujan-Mestras.',
     url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
     siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
     type: 'website',
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stage de Parkour - Vacances d\'Avril 2026 | PKBA',
-    description: 'Stage de parkour pendant les vacances de printemps. Du 14 au 25 avril 2026, 2 formules au choix. Inscriptions ouvertes !',
+    title: 'Stages de Parkour - Été 2026 | PKBA',
+    description: 'Stages de parkour pendant les vacances d\'été. Sessions juillet et août 2026, 2 formules au choix. Inscriptions ouvertes !',
   },
   alternates: {
     canonical: '/inscription',
@@ -32,13 +32,13 @@ export default function Inscription() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Stage de Parkour - Vacances d\'Avril 2026 - PKBA',
-            description: 'Inscription au stage de parkour PKBA pendant les vacances d\'avril 2026',
+            name: 'Stages de Parkour - Été 2026 - PKBA',
+            description: 'Inscription aux stages de parkour PKBA pendant les vacances d\'été 2026',
             url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
-                          mainEntity: {
-                '@type': 'Form',
-                name: 'Formulaire d\'Inscription Stage d\'Avril PKBA',
-                description: 'Formulaire d\'inscription pour le stage de parkour des vacances d\'avril 2026',
+            mainEntity: {
+              '@type': 'Form',
+              name: 'Formulaire d\'Inscription Stages d\'Été PKBA',
+              description: 'Formulaire d\'inscription pour les stages de parkour des vacances d\'été 2026',
               url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
             },
             breadcrumb: {
@@ -53,7 +53,7 @@ export default function Inscription() {
                 {
                   '@type': 'ListItem',
                   position: 2,
-                  name: 'Inscription Stage',
+                  name: 'Inscription Stages',
                   item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
                 },
               ],

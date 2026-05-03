@@ -42,7 +42,7 @@ const Hero = () => {
             >
               <Calendar size={16} className="flex-shrink-0" />
               <span className="whitespace-nowrap">
-                Stage d'Avril — Inscriptions ouvertes
+                Stages d'Été — Inscriptions ouvertes
               </span>
             </Link>
           </motion.div>

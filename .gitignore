@@ -49,3 +49,6 @@ coverage
 tmp/
 temp/
 .mcp.json
+
+# Flyers / design work (local only)
+flyers/

@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Phone, Mail, MapPin, Instagram, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, Instagram, Clock, Send, CheckCircle, AlertCircle, Navigation, Star } from 'lucide-react'
+import { CLUB } from '@/content/club'
 
 const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -40,9 +41,9 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: 'Localisation',
-      value: 'Bassin d\'Arcachon',
-      href: '#',
-      description: 'Bassin d\'Arcachon, France'
+      value: `${CLUB.address.street}, ${CLUB.address.city}`,
+      href: CLUB.google.mapsUrl,
+      description: `À ${CLUB.travelTime.arcachon} d'Arcachon`
     }
   ]
 
@@ -187,8 +188,8 @@ const ContactPage = () => {
                 </h3>
                 <a
                   href={info.href}
-                  target={info.title === 'Instagram' ? '_blank' : undefined}
-                  rel={info.title === 'Instagram' ? 'noopener noreferrer' : undefined}
+                  target={info.title === 'Instagram' || info.title === 'Localisation' ? '_blank' : undefined}
+                  rel={info.title === 'Instagram' || info.title === 'Localisation' ? 'noopener noreferrer' : undefined}
                   className="text-primary hover:text-secondary font-montserrat font-medium transition-colors duration-200"
                 >
                   {info.value}
@@ -377,8 +378,77 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Map Section */}
+      <section className="pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-5">
+              <div className="lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-cheddar font-bold text-gray-900 mb-3">
+                    Venez nous voir
+                  </h2>
+                  <p className="font-montserrat text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Notre local est situé à Gujan-Mestras, à seulement {CLUB.travelTime.arcachon} d'Arcachon et {CLUB.travelTime.laTeste} de La Teste.
+                  </p>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <MapPin size={20} className="text-primary mt-1 flex-shrink-0" />
+                  <p className="font-montserrat text-gray-700">
+                    {CLUB.address.street}
+                    <br />
+                    {CLUB.address.postalCode} {CLUB.address.city}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={CLUB.google.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center space-x-2 bg-primary hover:bg-secondary text-white font-montserrat font-semibold px-5 py-3 rounded-lg transition-all duration-200 transform hover:scale-105"
+                  >
+                    <Navigation size={18} />
+                    <span>Itinéraire</span>
+                  </a>
+                  <a
+                    href={CLUB.google.reviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center space-x-2 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-montserrat font-semibold px-5 py-3 rounded-lg transition-all duration-200 transform hover:scale-105"
+                  >
+                    <Star size={18} />
+                    <span>Laisser un avis</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="lg:col-span-3 h-[300px] sm:h-[400px] lg:h-[460px]">
+                <iframe
+                  title="Localisation PKBA - 4 Av. de L'actipôle, Gujan-Mestras"
+                  src={CLUB.google.embedSrc}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }
 
-export default ContactPage 
+export default ContactPage

@@ -179,7 +179,13 @@ export async function POST(request: NextRequest) {
         'Date d\'inscription': formData.signatureDate,
         'Statut': 'En attente',
         'Certificat médical': 'Non vérifié',
-        'Type d\'inscription': 'Stage Vacances Avril 2026',
+        'Type d\'inscription': (() => {
+          const map: Record<string, string> = {
+            'juillet-2026': 'Stage Vacances Juillet 2026',
+            'aout-2026': 'Stage Vacances Août 2026',
+          }
+          return map[formData.selectedStage] || 'Stage Vacances Juillet 2026'
+        })(),
         'Nombre de séances': Math.min(10, Math.max(1, Math.floor(Number(formData.numberOfSessions) || 1)))
       }
     }
@@ -190,7 +196,8 @@ export async function POST(request: NextRequest) {
     )
     
     const finalAirtableData = {
-      fields: cleanFields
+      fields: cleanFields,
+      typecast: true,
     }
 
     // Envoi vers Airtable

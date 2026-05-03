@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react'
+import { FcGoogle } from 'react-icons/fc'
+import { CLUB } from '@/content/club'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -28,14 +30,24 @@ const Footer = () => {
             <p className="text-gray-400 font-montserrat text-xs">
               Affilié à la Fédération française de gymnastique (FFG)
             </p>
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-4">
               <a
                 href="https://instagram.com/parkourbassindarcachon"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram PKBA"
                 className="text-gray-400 hover:text-primary transition-colors duration-200"
               >
                 <Instagram size={20} />
+              </a>
+              <a
+                href={CLUB.google.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Page Google Business PKBA"
+                className="bg-white rounded-full p-1 hover:scale-110 transition-transform duration-200"
+              >
+                <FcGoogle size={18} />
               </a>
             </div>
           </div>
@@ -75,6 +87,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/privatisation" className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm">
+                  Privatisation
+                </Link>
+              </li>
+              <li>
                 <Link href="/covoiturage" className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm">
                   Covoiturage
                 </Link>
@@ -109,12 +126,18 @@ const Footer = () => {
                   {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
                 </a>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin size={16} className="text-primary" />
-                <span className="text-gray-300 font-montserrat text-sm">
-                  Bassin d'Arcachon
+              <a
+                href={CLUB.google.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start space-x-3 group"
+              >
+                <MapPin size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                <span className="text-gray-300 group-hover:text-primary transition-colors duration-200 font-montserrat text-sm leading-relaxed">
+                  {CLUB.address.street}<br />
+                  {CLUB.address.postalCode} {CLUB.address.city}
                 </span>
-              </div>
+              </a>
             </div>
           </div>
 

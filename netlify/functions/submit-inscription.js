@@ -46,6 +46,13 @@ exports.handler = async (event, context) => {
 
     const body = JSON.parse(event.body);
     console.log('Received form data:', JSON.stringify(body, null, 2));
+
+    // Map selectedStage id → Airtable singleSelect value (whitelist)
+    const STAGE_AIRTABLE_TYPES = {
+      'juillet-2026': 'Stage Vacances Juillet 2026',
+      'aout-2026': 'Stage Vacances Août 2026',
+    };
+    const stageType = STAGE_AIRTABLE_TYPES[body.selectedStage] || 'Stage Vacances Juillet 2026';
     
     // Validate required fields based on actual form structure
     const requiredFields = [
@@ -106,8 +113,8 @@ exports.handler = async (event, context) => {
        'Signature': body.signature || '',
        'Date d\'inscription': new Date().toISOString().split('T')[0],
        'Statut': 'En attente',
-       'Type d\'inscription': 'Stage Vacances Avril 2026',
-       'Formule': body.selectedFormule === 'formule1' ? 'Formule 1 — Journée (Confirmé)' : 'Formule 2 — Après-midi (Débutant)',
+       'Type d\'inscription': stageType,
+       'Formule': body.selectedFormule === 'formule1' ? 'Formule 1 — Journée (Licenciés/Initiés)' : 'Formule 2 — Découverte',
        'Nombre de séances': Array.isArray(body.selectedDates) ? body.selectedDates.length : 0,
        'Jours sélectionnés': Array.isArray(body.selectedDates) ? body.selectedDates.sort().map(d => {
          const date = new Date(d + 'T12:00:00');

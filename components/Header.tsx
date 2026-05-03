@@ -51,6 +51,7 @@ const Header = () => {
       children: [
         { name: 'Planning', href: '/planning' },
         { name: 'Anniversaires', href: '/anniversaires' },
+        { name: 'Privatisation', href: '/privatisation' },
         { name: 'Covoiturage', href: '/covoiturage' },
       ],
     },
@@ -197,7 +198,7 @@ const Header = () => {
               href="/inscription"
               className="bg-primary hover:bg-secondary text-white px-3 xl:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-xs xl:text-sm shadow-md whitespace-nowrap"
             >
-              Stage d&apos;Avril 🌸
+              Stages d&apos;Été ☀️
             </Link>
           </div>
 
@@ -303,7 +304,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
               >
-                🌸 S&apos;inscrire au stage d&apos;Avril
+                ☀️ S&apos;inscrire aux stages d&apos;Été
               </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a

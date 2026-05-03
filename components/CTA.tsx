@@ -33,7 +33,7 @@ const CTA = () => {
             {
               icon: Calendar,
               title: 'S\'inscrire',
-              description: 'Stage d\'Avril ou saison régulière',
+              description: 'Stages d\'Été ou saison régulière',
               href: '/inscription',
               style: 'bg-primary hover:bg-secondary text-white',
               iconStyle: 'text-white',
