@@ -16,11 +16,11 @@ export const articles: Article[] = [
   {
     id: 4,
     slug: 'nouveau-local-gujan-mestras-circuit-national-rennes-pkba',
-    title: 'Nouveau local à Gujan-Mestras et trois podiums à l\'étape de Rennes',
+    title: 'Nouveau local à Gujan-Mestras et cinq podiums à l\'étape de Rennes',
     excerpt:
-      "Le club PKBA vit une saison qui s'accélère. En avril 2026, nous avons emménagé dans notre tout premier local fixe à Gujan-Mestras, un hangar de 200 m² entièrement aménagé. Et le mois précédent, nos traceurs sont rentrés de Rennes avec trois podiums sur la 3e étape du Circuit National de Parkour. Retour sur ces moments forts.",
+      "Le club PKBA vit une saison qui s'accélère. En avril 2026, nous avons emménagé dans notre tout premier local fixe à Gujan-Mestras, un hangar de 200 m² entièrement aménagé. Et le mois précédent, nos traceurs sont rentrés de Rennes avec cinq podiums sur la 3e étape du Circuit National de Parkour. Retour sur ces moments forts.",
     content: `
-      <p class="mb-6">Cette saison restera comme une étape charnière dans l'histoire du <strong>Parkour Bassin d'Arcachon</strong>. En quelques mois, le club a franchi deux caps majeurs : un <strong>premier local fixe</strong> à Gujan-Mestras, et une vraie reconnaissance sur la scène nationale avec <strong>trois podiums à Rennes</strong> sur l'étape 3 du Circuit National de Parkour. Deux belles aventures qu'on avait envie de partager.</p>
+      <p class="mb-6">Cette saison restera comme une étape charnière dans l'histoire du <strong>Parkour Bassin d'Arcachon</strong>. En quelques mois, le club a franchi deux caps majeurs : un <strong>premier local fixe</strong> à Gujan-Mestras, et une vraie reconnaissance sur la scène nationale avec <strong>cinq podiums à Rennes</strong> sur l'étape 3 du Circuit National de Parkour. Deux belles aventures qu'on avait envie de partager.</p>
 
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un local rien que pour nous, à Gujan-Mestras</h2>
 
@@ -38,22 +38,24 @@ export const articles: Article[] = [
         </p>
       </div>
 
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Trois podiums à Rennes, sur le Circuit National</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Cinq podiums à Rennes, sur le Circuit National</h2>
 
       <p class="mb-6">Les 14 et 15 mars 2026, Rennes accueillait la <strong>3e étape du Circuit National de Parkour</strong>, qui rassemblait les meilleurs traceurs et traceuses de France en Parkour Speed et Parkour Freestyle. Une <strong>quinzaine d'athlètes PKBA</strong> ont fait le déplacement, accompagnés par l'équipe technique. Après une première sortie compétitive à Thouars les 6 et 7 décembre 2025, c'était l'occasion de confirmer la dynamique du groupe au plus haut niveau national.</p>
 
-      <p class="mb-6">Et le résultat est au rendez-vous : <strong>trois podiums</strong> ramenés sur le Bassin, dans trois catégories différentes.</p>
+      <p class="mb-6">Et le résultat est au rendez-vous : <strong>cinq podiums</strong> ramenés sur le Bassin, dans cinq catégories différentes.</p>
 
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Les podiums PKBA à Rennes</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
           <li>🥇 <strong>Antoine Duverger</strong>, 1er en Parkour Freestyle 18 ans et plus hommes (performance) avec 69.400</li>
+          <li>🥇 <strong>Milan</strong>, 1er en Parkour Freestyle 15-17 ans hommes fédérale</li>
           <li>🥈 <strong>Tilio Ferreira</strong>, 2e en Parkour Freestyle 15-17 ans hommes élite avec 69.800</li>
           <li>🥉 <strong>Esaya Kety</strong>, 3e en Parkour Speed 12-14 ans hommes (performance) en 24.080</li>
+          <li>🥉 <strong>Julian</strong>, 3e en Parkour Speed 10-12 ans hommes fédérale</li>
         </ul>
       </div>
 
-      <p class="mb-6">Une <strong>victoire pour Antoine</strong> chez les seniors, un <strong>argent pour Tilio</strong> dans une catégorie élite particulièrement relevée, et un <strong>bronze pour Esaya</strong> chez les plus jeunes : trois générations du club représentées sur trois podiums, c'est exactement le signal qu'on espérait. Le travail réalisé à l'entraînement paie, et la profondeur du groupe se confirme.</p>
+      <p class="mb-6">Deux <strong>victoires</strong> (Antoine chez les seniors, Milan en 15-17 fédérale), un <strong>argent pour Tilio</strong> dans une catégorie élite particulièrement relevée, et deux <strong>bronzes</strong> (Esaya en Speed 12-14, Julian en Speed 10-12 fédérale) chez les plus jeunes : plusieurs générations du club représentées sur cinq podiums, c'est exactement le signal qu'on espérait. Le travail réalisé à l'entraînement paie, et la profondeur du groupe se confirme.</p>
 
       <p class="mb-6">Au-delà des médailles, ce déplacement a aussi été une grande leçon pour tous. Découvrir un nouveau spot, échanger avec les meilleurs clubs français, observer les enchaînements des traceurs élites, et apprendre à gérer la pression d'une compétition nationale : autant de moments qui font grandir un athlète. Et la maturité dont ont fait preuve nos jeunes nous a impressionnés.</p>
 
