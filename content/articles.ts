@@ -48,10 +48,10 @@ export const articles: Article[] = [
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Les podiums PKBA à Rennes</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
           <li>🥇 <strong>Antoine Duverger</strong>, 1er en Parkour Freestyle 18 ans et plus hommes (performance) avec 69.400</li>
-          <li>🥇 <strong>Milan</strong>, 1er en Parkour Freestyle 15-17 ans hommes fédérale</li>
+          <li>🥇 <strong>Milan Terrade-Prior</strong>, 1er en Parkour Freestyle 15-17 ans hommes fédérale</li>
           <li>🥈 <strong>Tilio Ferreira</strong>, 2e en Parkour Freestyle 15-17 ans hommes élite avec 69.800</li>
           <li>🥉 <strong>Esaya Kety</strong>, 3e en Parkour Speed 12-14 ans hommes (performance) en 24.080</li>
-          <li>🥉 <strong>Julian</strong>, 3e en Parkour Speed 10-12 ans hommes fédérale</li>
+          <li>🥉 <strong>Julian Quattrocchi</strong>, 3e en Parkour Speed 10-12 ans hommes fédérale</li>
         </ul>
       </div>
 
