@@ -78,10 +78,6 @@
   to = "/inscription"
   status = 301
 
-# Configuration des fonctions
-[functions]
-  directory = "netlify/functions"
-
 # Compression et optimisation (Désactivé pour Next.js car déjà géré par Next)
 [build.processing]
   skip_processing = true

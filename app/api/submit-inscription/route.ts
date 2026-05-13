@@ -1,251 +1,241 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { STAGES, type StageId } from '@/content/stages'
 
-// Configuration Airtable
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || 'Inscriptions'
 
+const VALID_GENDERS = ['Masculin', 'Féminin', 'Autre'] as const
+const VALID_GUARDIAN_TITLES = ['Mme', 'Mr'] as const
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+const SIGNATURE_MAX_LEN = 200_000
+const STATUS_PENDING = 'En attente'
+const MEDICAL_DEFAULT = 'Non vérifié'
+
+type LegalGuardian = {
+  title?: string
+  lastName?: string
+  firstName?: string
+  phone?: string
+  email?: string
+}
+
+type EmergencyContact = {
+  name?: string
+  phone?: string
+}
+
+type InscriptionPayload = {
+  selectedStage?: string
+  firstName?: string
+  lastName?: string
+  birthDate?: string
+  gender?: string
+  adhesionType?: string[]
+  otherClub?: string
+  address?: string
+  postalCode?: string
+  city?: string
+  phone?: string
+  email?: string
+  legalGuardian1?: LegalGuardian
+  legalGuardian2?: LegalGuardian
+  emergencyContact?: EmergencyContact
+  imageRights?: boolean
+  termsAccepted?: boolean
+  selectedDates?: string[]
+  signature?: string
+  signatureDate?: string
+}
+
+const fail = (message: string, status = 400) =>
+  NextResponse.json({ success: false, message }, { status })
+
+const isNonEmpty = (v: unknown): v is string =>
+  typeof v === 'string' && v.trim().length > 0
+
+const parseIsoDate = (value: string): Date | null => {
+  if (!ISO_DATE_RE.test(value)) return null
+  const d = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(d.getTime())) return null
+  const roundtrip = d.toISOString().slice(0, 10)
+  return roundtrip === value ? d : null
+}
+
+const formatDaysSelected = (dates: string[]): string => {
+  const dayNames = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+  return [...dates]
+    .sort()
+    .map((iso) => {
+      const d = new Date(`${iso}T12:00:00Z`)
+      const dd = String(d.getUTCDate())
+      const mm = String(d.getUTCMonth() + 1).padStart(2, '0')
+      return `${dayNames[d.getUTCDay()]} ${dd}/${mm}`
+    })
+    .join(', ')
+}
+
+const computeIsMinor = (birth: Date): boolean => {
+  const today = new Date()
+  const todayUtc = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
+  const eighteenthBirthday = new Date(
+    Date.UTC(birth.getUTCFullYear() + 18, birth.getUTCMonth(), birth.getUTCDate()),
+  )
+  return todayUtc < eighteenthBirthday
+}
+
+const collectGuardianFields = (
+  guardian: LegalGuardian,
+  prefix: 'Responsable 1' | 'Responsable 2',
+): Record<string, string> => {
+  const out: Record<string, string> = {}
+  if (isNonEmpty(guardian.title) && VALID_GUARDIAN_TITLES.includes(guardian.title.trim() as typeof VALID_GUARDIAN_TITLES[number])) {
+    out[`${prefix} - Civilité`] = guardian.title.trim()
+  }
+  if (isNonEmpty(guardian.lastName)) out[`${prefix} - Nom`] = guardian.lastName.trim()
+  if (isNonEmpty(guardian.firstName)) out[`${prefix} - Prénom`] = guardian.firstName.trim()
+  if (isNonEmpty(guardian.phone)) out[`${prefix} - Téléphone`] = guardian.phone.trim()
+  if (isNonEmpty(guardian.email)) out[`${prefix} - Email`] = guardian.email.trim()
+  return out
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.json()
-
-    
-
-    // Validation des données requises
-    if (!formData.firstName || !formData.lastName || !formData.birthDate || !formData.gender) {
-      return NextResponse.json(
-        { message: 'Informations personnelles manquantes' },
-        { status: 400 }
-      )
-    }
-
-    // Validation que les champs ne sont pas des chaînes vides
-    if (formData.firstName.trim() === '' || formData.lastName.trim() === '' || formData.birthDate.trim() === '') {
-      return NextResponse.json(
-        { message: 'Informations personnelles incomplètes' },
-        { status: 400 }
-      )
-    }
-
-    if (!formData.address || !formData.postalCode || !formData.city || !formData.phone || !formData.email) {
-      return NextResponse.json(
-        { message: 'Adresse et coordonnées manquantes' },
-        { status: 400 }
-      )
-    }
-
-    // Validation que les champs d'adresse ne sont pas des chaînes vides
-    if (formData.address.trim() === '' || formData.postalCode.trim() === '' || formData.city.trim() === '' || formData.phone.trim() === '' || formData.email.trim() === '') {
-      return NextResponse.json(
-        { message: 'Adresse et coordonnées incomplètes' },
-        { status: 400 }
-      )
-    }
-
-    if (!formData.emergencyContact.name || !formData.emergencyContact.phone) {
-      return NextResponse.json(
-        { message: 'Contact d\'urgence manquant' },
-        { status: 400 }
-      )
-    }
-
-    // Validation que les champs de contact d'urgence ne sont pas des chaînes vides
-    if (formData.emergencyContact.name.trim() === '' || formData.emergencyContact.phone.trim() === '') {
-      return NextResponse.json(
-        { message: 'Contact d\'urgence incomplet' },
-        { status: 400 }
-      )
-    }
-
-    if (!formData.signature || !formData.signatureDate) {
-      return NextResponse.json(
-        { message: 'Signature et date requises' },
-        { status: 400 }
-      )
-    }
-
-    // Validation que les champs de signature ne sont pas des chaînes vides
-    if (formData.signature.trim() === '' || formData.signatureDate.trim() === '') {
-      return NextResponse.json(
-        { message: 'Signature et date incomplètes' },
-        { status: 400 }
-      )
-    }
-
-    if (!formData.imageRights || !formData.termsAccepted) {
-      return NextResponse.json(
-        { message: 'Consentements requis' },
-        { status: 400 }
-      )
-    }
-
-    // Validation que les consentements sont des booléens
-    if (typeof formData.imageRights !== 'boolean' || typeof formData.termsAccepted !== 'boolean') {
-      return NextResponse.json(
-        { message: 'Consentements invalides' },
-        { status: 400 }
-      )
-    }
-
-    // Validation des champs de sélection
-    if (!formData.gender || formData.gender.trim() === '') {
-      return NextResponse.json(
-        { message: 'Sexe requis' },
-        { status: 400 }
-      )
-    }
-
-    // Validation des valeurs de sexe
-    const validGenders = ['Masculin', 'Féminin', 'Autre']
-    if (!validGenders.includes(formData.gender)) {
-      return NextResponse.json(
-        { message: 'Valeur de sexe invalide' },
-        { status: 400 }
-      )
-    }
-
-    if (!formData.adhesionType || formData.adhesionType.length === 0) {
-      return NextResponse.json(
-        { message: 'Type d\'adhésion requis' },
-        { status: 400 }
-      )
-    }
-
-    // Vérification supplémentaire pour éviter les valeurs vides
-    const validAdhesionTypes = formData.adhesionType.filter((type: string) => 
-      type && type.trim() !== '' && type !== 'undefined' && type !== 'null'
-    )
-    
-    if (validAdhesionTypes.length === 0) {
-      return NextResponse.json(
-        { message: 'Type d\'adhésion invalide' },
-        { status: 400 }
-      )
-    }
-
-    // Vérification de l'âge
-    const birthDate = new Date(formData.birthDate)
-    const today = new Date()
-    const age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-    const isMinor = age < 18 || (age === 18 && monthDiff < 0)
-
-    if (isMinor) {
-      if (!formData.legalGuardian1.lastName || !formData.legalGuardian1.firstName || !formData.legalGuardian1.phone) {
-        return NextResponse.json(
-          { message: 'Informations du responsable légal 1 manquantes' },
-          { status: 400 }
-        )
-      }
-      
-      // Validation que les champs du responsable légal ne sont pas des chaînes vides
-      if (formData.legalGuardian1.lastName.trim() === '' || formData.legalGuardian1.firstName.trim() === '' || formData.legalGuardian1.phone.trim() === '') {
-        return NextResponse.json(
-          { message: 'Informations du responsable légal 1 incomplètes' },
-          { status: 400 }
-        )
-      }
-    }
-
-    // Préparation des données pour Airtable
-    const airtableData = {
-      fields: {
-        'Nom': formData.lastName,
-        'Prénom': formData.firstName,
-        'Date de naissance': formData.birthDate,
-        'Sexe': formData.gender,
-        'Type d\'adhésion': validAdhesionTypes,
-        'Club d\'origine': formData.otherClub && formData.otherClub.trim() !== '' ? formData.otherClub : undefined,
-        'Adresse': formData.address,
-        'Code postal': formData.postalCode,
-        'Ville': formData.city,
-        'Téléphone': formData.phone,
-        'Email': formData.email,
-        'Responsable 1 - Civilité': formData.legalGuardian1.title && formData.legalGuardian1.title.trim() !== '' ? formData.legalGuardian1.title : undefined,
-        'Responsable 1 - Nom': formData.legalGuardian1.lastName && formData.legalGuardian1.lastName.trim() !== '' ? formData.legalGuardian1.lastName : undefined,
-        'Responsable 1 - Prénom': formData.legalGuardian1.firstName && formData.legalGuardian1.firstName.trim() !== '' ? formData.legalGuardian1.firstName : undefined,
-        'Responsable 1 - Téléphone': formData.legalGuardian1.phone && formData.legalGuardian1.phone.trim() !== '' ? formData.legalGuardian1.phone : undefined,
-        'Responsable 1 - Email': formData.legalGuardian1.email && formData.legalGuardian1.email.trim() !== '' ? formData.legalGuardian1.email : undefined,
-        'Responsable 2 - Civilité': formData.legalGuardian2.title && formData.legalGuardian2.title.trim() !== '' ? formData.legalGuardian2.title : undefined,
-        'Responsable 2 - Nom': formData.legalGuardian2.lastName && formData.legalGuardian2.lastName.trim() !== '' ? formData.legalGuardian2.lastName : undefined,
-        'Responsable 2 - Prénom': formData.legalGuardian2.firstName && formData.legalGuardian2.firstName.trim() !== '' ? formData.legalGuardian2.firstName : undefined,
-        'Responsable 2 - Téléphone': formData.legalGuardian2.phone && formData.legalGuardian2.phone.trim() !== '' ? formData.legalGuardian2.phone : undefined,
-        'Responsable 2 - Email': formData.legalGuardian2.email && formData.legalGuardian2.email.trim() !== '' ? formData.legalGuardian2.email : undefined,
-        'Contact d\'urgence - Nom': formData.emergencyContact.name,
-        'Contact d\'urgence - Téléphone': formData.emergencyContact.phone,
-                       'Droit à l\'image': formData.imageRights,
-               'Règlement intérieur accepté': formData.termsAccepted,
-        'Signature': formData.signature,
-        'Date d\'inscription': formData.signatureDate,
-        'Statut': 'En attente',
-        'Certificat médical': 'Non vérifié',
-        'Type d\'inscription': (() => {
-          const map: Record<string, string> = {
-            'juillet-2026': 'Stage Vacances Juillet 2026',
-            'aout-2026': 'Stage Vacances Août 2026',
-          }
-          return map[formData.selectedStage] || 'Stage Vacances Juillet 2026'
-        })(),
-        'Nombre de séances': Math.min(10, Math.max(1, Math.floor(Number(formData.numberOfSessions) || 1)))
-      }
-    }
-
-    // Filtrer les champs undefined avant l'envoi
-    const cleanFields = Object.fromEntries(
-      Object.entries(airtableData.fields).filter(([_, value]) => value !== undefined)
-    )
-    
-    const finalAirtableData = {
-      fields: cleanFields,
-      typecast: true,
-    }
-
-    // Envoi vers Airtable
     if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
       console.error('Configuration Airtable manquante')
-      return NextResponse.json(
-        { message: 'Configuration serveur manquante' },
-        { status: 500 }
-      )
+      return fail('Configuration serveur manquante', 500)
     }
 
-    const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`,
+    const body = (await request.json()) as InscriptionPayload
+
+    if (!isNonEmpty(body.firstName) || !isNonEmpty(body.lastName)) {
+      return fail('Informations personnelles incomplètes')
+    }
+
+    if (!isNonEmpty(body.birthDate)) return fail('Date de naissance requise')
+    const birth = parseIsoDate(body.birthDate)
+    if (!birth) return fail('Date de naissance invalide')
+
+    if (!isNonEmpty(body.gender) || !VALID_GENDERS.includes(body.gender as typeof VALID_GENDERS[number])) {
+      return fail('Sexe requis')
+    }
+
+    if (
+      !isNonEmpty(body.address) ||
+      !isNonEmpty(body.postalCode) ||
+      !isNonEmpty(body.city) ||
+      !isNonEmpty(body.phone) ||
+      !isNonEmpty(body.email)
+    ) {
+      return fail('Adresse et coordonnées incomplètes')
+    }
+
+    const emergency = body.emergencyContact
+    if (!emergency || !isNonEmpty(emergency.name) || !isNonEmpty(emergency.phone)) {
+      return fail("Contact d'urgence incomplet")
+    }
+
+    if (typeof body.imageRights !== 'boolean') return fail("Consentement droit à l'image invalide")
+    if (body.termsAccepted !== true) return fail('Acceptation du règlement intérieur requise')
+
+    const adhesionTypes = (body.adhesionType ?? []).filter(
+      (t): t is string => typeof t === 'string' && t.trim() !== '' && t !== 'undefined' && t !== 'null',
+    )
+    if (adhesionTypes.length === 0) {
+      return fail("Type d'adhésion requis")
+    }
+
+    if (!isNonEmpty(body.selectedStage) || !Object.hasOwn(STAGES, body.selectedStage)) {
+      return fail('Stage invalide ou manquant')
+    }
+    const stage = STAGES[body.selectedStage as StageId]
+    const validStageDates = new Set(stage.days.map((d) => d.date))
+
+    const selectedDates = Array.isArray(body.selectedDates)
+      ? Array.from(new Set(body.selectedDates.filter((d): d is string => isNonEmpty(d) && validStageDates.has(d))))
+      : []
+    if (selectedDates.length === 0) {
+      return fail('Au moins une journée doit être sélectionnée')
+    }
+
+    const guardian1 = body.legalGuardian1 ?? {}
+    const guardian2 = body.legalGuardian2 ?? {}
+    if (computeIsMinor(birth)) {
+      if (!isNonEmpty(guardian1.firstName) || !isNonEmpty(guardian1.lastName) || !isNonEmpty(guardian1.phone)) {
+        return fail('Informations du responsable légal 1 incomplètes')
+      }
+    }
+
+    if (!isNonEmpty(body.signature) || body.signature.length > SIGNATURE_MAX_LEN) {
+      return fail('Signature manquante ou invalide')
+    }
+
+    const signatureDate = isNonEmpty(body.signatureDate)
+      ? body.signatureDate.slice(0, 10)
+      : new Date().toISOString().slice(0, 10)
+    if (!ISO_DATE_RE.test(signatureDate)) {
+      return fail("Date d'inscription invalide")
+    }
+
+    const fields: Record<string, unknown> = {
+      Nom: body.lastName.trim(),
+      Prénom: body.firstName.trim(),
+      'Date de naissance': body.birthDate,
+      Sexe: body.gender,
+      "Type d'adhésion": adhesionTypes,
+      Adresse: body.address.trim(),
+      'Code postal': body.postalCode.trim(),
+      Ville: body.city.trim(),
+      Téléphone: body.phone.trim(),
+      Email: body.email.trim(),
+      "Contact d'urgence - Nom": emergency.name!.trim(),
+      "Contact d'urgence - Téléphone": emergency.phone!.trim(),
+      "Droit à l'image": body.imageRights,
+      'Règlement intérieur accepté': true,
+      Signature: body.signature,
+      "Date d'inscription": signatureDate,
+      Statut: STATUS_PENDING,
+      'Certificat médical': MEDICAL_DEFAULT,
+      "Type d'inscription": stage.airtableType,
+      'Nombre de séances': selectedDates.length,
+      'Jours sélectionnés': formatDaysSelected(selectedDates),
+      ...collectGuardianFields(guardian1, 'Responsable 1'),
+      ...collectGuardianFields(guardian2, 'Responsable 2'),
+    }
+
+    if (isNonEmpty(body.otherClub)) {
+      fields["Club d'origine"] = body.otherClub.trim()
+    }
+
+    const airtableResponse = await fetch(
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(finalAirtableData)
-      }
+        body: JSON.stringify({ fields, typecast: true }),
+      },
     )
 
-    if (!response.ok) {
-      const errorData = await response.json()
-      console.error('Erreur Airtable:', errorData)
-      return NextResponse.json(
-        { message: 'Erreur lors de l\'enregistrement en base de données' },
-        { status: 500 }
-      )
+    if (!airtableResponse.ok) {
+      const errorData = await airtableResponse.json().catch(() => ({}))
+      console.error('Erreur Airtable:', airtableResponse.status, errorData)
+      return fail("Erreur lors de l'enregistrement en base de données", 500)
     }
 
-    const result = await response.json()
-    console.log('Inscription enregistrée avec succès:', result.id)
-
+    const result = await airtableResponse.json()
     return NextResponse.json(
-      { 
+      {
+        success: true,
         message: 'Inscription enregistrée avec succès',
-        recordId: result.id 
+        id: result.id,
       },
-      { status: 200 }
+      { status: 200 },
     )
-
   } catch (error) {
-    console.error('Erreur lors du traitement de l\'inscription:', error)
-    return NextResponse.json(
-      { message: 'Erreur interne du serveur' },
-      { status: 500 }
-    )
+    console.error("Erreur lors du traitement de l'inscription:", error)
+    return fail('Erreur interne du serveur', 500)
   }
 }

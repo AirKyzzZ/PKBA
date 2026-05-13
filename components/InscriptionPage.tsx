@@ -299,7 +299,7 @@ const InscriptionPage = () => {
 
     try {
       // Envoi vers Airtable via API
-      const response = await fetch('/.netlify/functions/submit-inscription', {
+      const response = await fetch('/api/submit-inscription/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
