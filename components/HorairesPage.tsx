@@ -51,11 +51,11 @@ const trainingSessions: TrainingSession[] = [
 ]
 
 const pricing: Pricing[] = [
-  { ageGroup: '6-8 ans', sessions: '1 x 1h', price: 250, type: 'loisir' },
-  { ageGroup: '8-12 ans', sessions: '1 x 1h30', price: 265, type: 'loisir' },
-  { ageGroup: '12 ans et +', sessions: '1 x 1h30', price: 265, type: 'loisir' },
-  { ageGroup: 'Performance – 12 ans', sessions: '2 ou 3 x 1h30', price: 365, type: 'performance' },
-  { ageGroup: 'Performance 12 ans et +', sessions: '2 ou 3 x 1h30', price: 365, type: 'performance' },
+  { ageGroup: '6-8 ans', sessions: '1 x 1h', price: XXX, type: 'loisir' },
+  { ageGroup: '8-12 ans', sessions: '1 x 1h30', price: XXX, type: 'loisir' },
+  { ageGroup: '12 ans et +', sessions: '1 x 1h30', price: XXX, type: 'loisir' },
+  { ageGroup: 'Performance – 12 ans', sessions: '2 ou 3 x 1h30', price: XXX, type: 'performance' },
+  { ageGroup: 'Performance 12 ans et +', sessions: '2 ou 3 x 1h30', price: XXX, type: 'performance' },
 ]
 
 
