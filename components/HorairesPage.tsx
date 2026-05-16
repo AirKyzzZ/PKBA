@@ -14,13 +14,6 @@ interface TrainingSession {
   location: string
 }
 
-interface Pricing {
-  ageGroup: string
-  sessions: string
-  price: number
-  type: 'loisir' | 'performance'
-}
-
 interface StagePricing {
   title: string
   description: string
@@ -49,16 +42,6 @@ const trainingSessions: TrainingSession[] = [
   { id: '10', day: 'Samedi', time: '15h-16h', ageGroup: '6-8 ans (2018-2019)', group: 'G2', type: 'loisir', location: 'À définir' },
   { id: '11', day: 'Samedi', time: '16h-17h30', ageGroup: 'Performance', group: 'Perf grand', type: 'performance', location: 'À définir' },
 ]
-
-const pricing: Pricing[] = [
-  { ageGroup: '6-8 ans', sessions: '1 x 1h', price: XXX, type: 'loisir' },
-  { ageGroup: '8-12 ans', sessions: '1 x 1h30', price: XXX, type: 'loisir' },
-  { ageGroup: '12 ans et +', sessions: '1 x 1h30', price: XXX, type: 'loisir' },
-  { ageGroup: 'Performance – 12 ans', sessions: '2 ou 3 x 1h30', price: XXX, type: 'performance' },
-  { ageGroup: 'Performance 12 ans et +', sessions: '2 ou 3 x 1h30', price: XXX, type: 'performance' },
-]
-
-
 
 const includedInPrice = [
   { item: 'Assurance', price: 17.19 },
@@ -386,46 +369,6 @@ export default function HorairesPage() {
           </motion.div>
 
           <div className="max-w-4xl mx-auto px-4">
-            <div className="grid gap-4 sm:gap-6">
-              {pricing.map((price, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`rounded-xl shadow-md border p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 ${
-                    price.type === 'performance' 
-                      ? 'border-red-200 bg-gradient-to-r from-red-50 to-red-100' 
-                      : 'border-green-200 bg-gradient-to-r from-green-50 to-green-100'
-                  }`}
-                >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${getGroupColor(price.type)}`}>
-                          {getGroupIcon(price.type)}
-                          {price.type === 'performance' ? 'Performance' : 'Loisirs'}
-                        </span>
-                      </div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
-                        {price.ageGroup}
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600">{price.sessions} par semaine</p>
-                    </div>
-                    
-                    <div className="flex items-center gap-2">
-                      <Euro className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                      <span className="text-2xl sm:text-3xl font-bold text-primary">
-                        {price.price}
-                      </span>
-                      <span className="text-sm sm:text-base text-gray-500">€/an</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
             {/* Included in Price */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
