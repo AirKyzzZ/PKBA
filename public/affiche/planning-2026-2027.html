@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PKBA · Planning prévisionnel 2026 / 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue: #006AFF;
+    --blue-deep: #0b2a6b;
+    --cream: #F4F2E7;
+    --ink: #14202e;
+    --muted: #5b6b7d;
+    --loisir: #16a34a;
+    --prepa: #f59e0b;
+    --compet: #dc2626;
+    --anniv: #64748b;
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: #dfe3ea;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ---- Controls (never part of the exported poster) ---- */
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    flex-wrap: wrap;
+  }
+  .controls button {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .controls button:hover { transform: translateY(-1px); }
+  .btn-png { background: var(--blue); color: #fff; box-shadow: 0 4px 14px rgba(0,106,255,.35); }
+  .btn-pdf { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.12); border: 1px solid #e2e6ee; }
+  .controls .hint { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+  /* ---- Preview stage (scales poster to fit screen) ---- */
+  .stage-wrap { width: 100%; display: flex; justify-content: center; padding: 28px 0 60px; }
+  .stage { transform-origin: top center; }
+
+  /* Chromeless export mode (?export=1): artboard alone, for pixel-exact capture */
+  body.export-mode { background: var(--cream); }
+  body.export-mode .controls { display: none; }
+  body.export-mode .stage-wrap { padding: 0; height: auto; }
+
+  /* ---- The poster artboard: exact Instagram portrait 1080 x 1350 ---- */
+  .artboard {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    background:
+      radial-gradient(120% 80% at 100% 0%, #ffffff 0%, var(--cream) 55%) ,
+      var(--cream);
+    overflow: hidden;
+    padding: 46px 46px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .watermark {
+    position: absolute;
+    right: -120px;
+    bottom: -90px;
+    width: 720px;
+    opacity: .045;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .artboard > *:not(.watermark) { position: relative; z-index: 1; }
+
+  /* ---- Header ---- */
+  .head {
+    background: #fff;
+    border-radius: 26px;
+    box-shadow: 0 10px 30px rgba(11,42,107,.08);
+    padding: 16px 32px;
+    display: grid;
+    grid-template-columns: 150px 1fr 168px;
+    align-items: center;
+    gap: 18px;
+  }
+  .head__logo { display: flex; align-items: center; }
+  .head__logo img { display: block; }
+  .logo-pkba { height: 88px; width: auto; }
+  .logo-ffg { height: 98px; width: auto; justify-self: end; margin-left: auto; }
+  .head__title { text-align: center; }
+  .kicker {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: rgba(0,106,255,.08);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .title {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: .98;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .title b { color: var(--blue); }
+  .subtitle {
+    margin-top: 8px;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: .01em;
+  }
+
+  /* ---- Schedule ---- */
+  .grid {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .day {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    flex: 1 1 auto;
+  }
+  .day__label {
+    flex: 0 0 142px;
+    background: linear-gradient(160deg, var(--blue) 0%, #0a57d6 100%);
+    color: #fff;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 16px rgba(0,106,255,.22);
+  }
+  .day__slots {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: center;
+  }
+  .slot {
+    flex: 0 1 274px;
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid #eef0f4;
+    border-left: 6px solid var(--cat, var(--blue));
+    box-shadow: 0 4px 12px rgba(20,32,46,.05);
+    padding: 8px 13px;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slot__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 3px;
+  }
+  .slot__time { font-size: 18px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #fff;
+    background: var(--cat, var(--blue));
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .slot__group { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+  .slot__meta { margin-top: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .slot__coach { font-size: 14px; font-weight: 600; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+  .slot__coach svg { width: 14px; height: 14px; opacity: .7; }
+  .slot__sel {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cat);
+    background: rgba(15,23,42,.05);
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+  }
+
+  /* ---- Legend + selection note ---- */
+  .legend {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 11px 20px;
+    box-shadow: 0 6px 18px rgba(11,42,107,.06);
+  }
+  .legend__keys { display: flex; gap: 18px; flex-wrap: wrap; }
+  .key { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--ink); }
+  .key i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+  .key small { font-weight: 600; color: var(--muted); }
+  .note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #b91c1c;
+    background: linear-gradient(90deg, rgba(245,158,11,.14), rgba(220,38,38,.14));
+    border: 1px solid rgba(220,38,38,.25);
+    padding: 9px 16px;
+    border-radius: 12px;
+    text-align: right;
+  }
+  .note svg { width: 18px; height: 18px; flex: 0 0 auto; }
+
+  /* ---- Footer ---- */
+  .foot {
+    margin: 12px -46px 0;
+    background: linear-gradient(120deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #fff;
+    padding: 14px 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .foot__cta { max-width: 560px; }
+  .foot__cta h3 { font-size: 21px; font-weight: 900; line-height: 1.05; margin-bottom: 2px; }
+  .foot__cta p { font-size: 14px; font-weight: 500; opacity: .9; }
+  .foot__info { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
+  .foot__info span { display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; }
+  .foot__info svg { width: 16px; height: 16px; opacity: .85; flex: 0 0 auto; }
+  .qr {
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+    flex: 0 0 auto;
+  }
+  .qr #qrcode { width: 150px; height: 150px; }
+  .qr #qrcode img, .qr #qrcode canvas { display: block; border-radius: 4px; }
+  .qr small { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--blue-deep); letter-spacing: .02em; }
+
+  /* ---- Print: one clean A4 portrait page ---- */
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    html, body { margin: 0; background: #fff; }
+    .controls { display: none !important; }
+    .stage-wrap { padding: 0 !important; height: auto !important; }
+    .stage { transform: none !important; }
+    /* zoom scales the layout box too (Chrome/Safari/Edge), so the 1080px design
+       lands on a single A4 page: 1080px -> ~210mm. */
+    .artboard { zoom: .735; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="controls" data-html2canvas-ignore>
+    <button class="btn-png" onclick="exportPNG()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Télécharger PNG (Insta 1080×1350)
+    </button>
+    <button class="btn-pdf" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Imprimer / PDF A4
+    </button>
+    <span class="hint">Aperçu adapté à l'écran, l'export reste en pleine résolution.</span>
+  </div>
+
+  <div class="stage-wrap">
+    <div class="stage">
+      <div class="artboard" id="artboard">
+        <img class="watermark" src="../images/transparent_full.png" alt="" aria-hidden="true" />
+
+        <header class="head">
+          <div class="head__logo">
+            <img class="logo-pkba" src="../images/transparent_full.png" alt="PKBA" />
+          </div>
+          <div class="head__title">
+            <span class="kicker">Planning prévisionnel</span>
+            <div class="title">SAISON <b>2026 / 2027</b></div>
+            <div class="subtitle">Parkour Bassin d'Arcachon · Gujan-Mestras</div>
+          </div>
+          <div class="head__logo">
+            <img class="logo-ffg" src="../images/ffgym-logo.jpg" alt="Fédération Française de Gymnastique" />
+          </div>
+        </header>
+
+        <main class="grid" id="grid"><!-- days injected here --></main>
+
+        <section class="legend">
+          <div class="legend__keys" id="legendKeys"><!-- keys injected --></div>
+          <div class="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Prépa compét &amp; Compétition : sur sélection, pas ouvert aux nouveaux.</span>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <div class="foot__cta">
+            <h3>Préinscriptions ouvertes</h3>
+            <p>Rejoins le club pour la saison 2026 / 2027.</p>
+            <div class="foot__info">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>4 Av. de l'Actipôle, Gujan-Mestras</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 60 14 71 44 (David)</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>pkba.vertiflow.fr</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@parkourbassindarcachon</span>
+            </div>
+          </div>
+          <div class="qr">
+            <div id="qrcode"></div>
+            <small>Tous les horaires</small>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="html2canvas.min.js"></script>
+  <script src="qrcode.min.js"></script>
+  <script>
+    const CATEGORIES = {
+      loisir: { label: 'Loisir',       color: '#16a34a', open: true  },
+      prepa:  { label: 'Prépa compét', color: '#f59e0b', open: false },
+      compet: { label: 'Compétition',  color: '#dc2626', open: false },
+      anniv:  { label: 'Anniversaire / cours privés', tag: 'Anniversaire', color: '#64748b', open: true  },
+    };
+
+    const SCHEDULE = [
+      { day: 'Lundi', slots: [
+        { time: '18h30 / 20h00', group: 'Prépa compét +12 ans', coach: 'Victor', cat: 'prepa' },
+      ]},
+      { day: 'Mardi', slots: [
+        { time: '17h00 / 18h30', group: 'Prépa compét 8/12 ans', coach: 'David', cat: 'prepa' },
+        { time: '18h30 / 20h00', group: 'Compétition',           coach: 'David', cat: 'compet' },
+      ]},
+      { day: 'Mercredi', slots: [
+        { time: '11h00 / 11h45', group: 'Loisir 3/5 ans',   coach: 'David',          cat: 'loisir' },
+        { time: '13h00 / 14h00', group: 'Loisir 6/8 ans',   coach: 'Antoine',        cat: 'loisir' },
+        { time: '14h00 / 15h30', group: 'Loisir 8/12 ans',  coach: 'Antoine',        cat: 'loisir' },
+        { time: '15h30 / 17h30', group: 'Compétition',      coach: 'David',          cat: 'compet' },
+        { time: '17h30 / 19h00', group: 'Loisir +12 ans',   coach: 'Victor/Antoine', cat: 'loisir' },
+      ]},
+      { day: 'Jeudi', slots: [
+        { time: '17h00 / 18h30', group: 'Prépa compét 8/12 ans', coach: 'David', cat: 'prepa' },
+        { time: '18h30 / 20h00', group: 'Prépa compét +12 ans',  coach: 'David', cat: 'prepa' },
+      ]},
+      { day: 'Vendredi', slots: [
+        { time: '17h30 / 19h30', group: 'Compétition', coach: 'David', cat: 'compet' },
+      ]},
+      { day: 'Samedi', slots: [
+        { time: '13h00 / 15h00', group: 'Anniversaire / cours privés', coach: 'David', cat: 'anniv' },
+        { time: '15h00 / 17h00', group: 'Anniversaire / cours privés', coach: 'David', cat: 'anniv' },
+      ]},
+    ];
+
+    const userIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+    function renderGrid() {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = SCHEDULE.map(({ day, slots }) => {
+        const cards = slots.map((s) => {
+          const c = CATEGORIES[s.cat];
+          const sel = c.open ? '' : '<span class="slot__sel">sur sélection</span>';
+          return `
+            <div class="slot" style="--cat:${c.color}">
+              <div class="slot__top">
+                <span class="slot__time">${s.time}</span>
+                <span class="tag">${c.tag || c.label}</span>
+              </div>
+              <div class="slot__group">${s.group}</div>
+              <div class="slot__meta">
+                <span class="slot__coach">${userIcon}${s.coach}</span>
+                ${sel}
+              </div>
+            </div>`;
+        }).join('');
+        return `<div class="day"><div class="day__label">${day}</div><div class="day__slots">${cards}</div></div>`;
+      }).join('');
+    }
+
+    function renderLegend() {
+      const wrap = document.getElementById('legendKeys');
+      wrap.innerHTML = Object.values(CATEGORIES).map((c) =>
+        `<span class="key"><i style="background:${c.color}"></i>${c.label}${c.open && c.label === 'Loisir' ? ' <small>ouvert à tous</small>' : ''}</span>`
+      ).join('');
+    }
+
+    function renderQR() {
+      try {
+        new QRCode(document.getElementById('qrcode'), {
+          text: 'https://pkba.vertiflow.fr/horaires',
+          width: 150, height: 150,
+          colorDark: '#0b2a6b', colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M,
+        });
+      } catch (e) { /* QR lib offline, footer still fine */ }
+    }
+
+    const EXPORT = new URLSearchParams(location.search).has('export');
+    if (EXPORT) document.body.classList.add('export-mode');
+
+    function fitToScreen() {
+      if (EXPORT) return;
+      const stage = document.querySelector('.stage');
+      const scale = Math.min(1, (window.innerWidth - 48) / 1080);
+      stage.style.transform = `scale(${scale})`;
+      document.querySelector('.stage-wrap').style.height = (1350 * scale + 88) + 'px';
+    }
+
+    async function exportPNG() {
+      const stage = document.querySelector('.stage');
+      const wrap = document.querySelector('.stage-wrap');
+      const prevT = stage.style.transform, prevH = wrap.style.height;
+      stage.style.transform = 'scale(1)';
+      wrap.style.height = '1350px';
+      try {
+        const canvas = await html2canvas(document.getElementById('artboard'), {
+          width: 1080, height: 1350, scale: 2, useCORS: true, backgroundColor: '#F4F2E7',
+        });
+        const a = document.createElement('a');
+        a.download = 'PKBA-planning-2026-2027.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      } catch (e) {
+        alert('Export PNG impossible (connexion requise). Tu peux aussi faire une capture d\'écran.');
+      } finally {
+        stage.style.transform = prevT;
+        wrap.style.height = prevH;
+        fitToScreen();
+      }
+    }
+
+    renderGrid();
+    renderLegend();
+    renderQR();
+    fitToScreen();
+    window.addEventListener('resize', fitToScreen);
+  </script>
+</body>
+</html>
