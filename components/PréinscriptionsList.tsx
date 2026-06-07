@@ -460,6 +460,7 @@ const PréinscriptionsList = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               >
                 <option value="">Tous les types</option>
+                <option value="Saison 2026/2027">Saison 2026/2027</option>
                 <option value="Saison 2025/2026">Saison 2025/2026</option>
                 <option value="Stage Vacances Hiver 2025">Stage Hiver 2025</option>
                 <option value="Stage Vacances Février 2026">Stage Février 2026</option>
@@ -579,7 +580,9 @@ const PréinscriptionsList = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       {inscription.fields['Type d\'inscription'] ? (
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          inscription.fields['Type d\'inscription'] === 'Saison 2025/2026'
+                          inscription.fields['Type d\'inscription'] === 'Saison 2026/2027'
+                            ? 'bg-indigo-100 text-indigo-800'
+                            : inscription.fields['Type d\'inscription'] === 'Saison 2025/2026'
                             ? 'bg-blue-100 text-blue-800'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025'
                               ? 'bg-purple-100 text-purple-800'
@@ -593,7 +596,8 @@ const PréinscriptionsList = () => {
                                       ? 'bg-amber-100 text-amber-800'
                                       : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
+                          {inscription.fields['Type d\'inscription'] === 'Saison 2026/2027' ? 'Saison 26/27'
+                            : inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025' ? 'Hiver'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026' ? 'Février'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026' ? 'Avril'
@@ -608,7 +612,7 @@ const PréinscriptionsList = () => {
                     <td className="px-6 py-4 text-sm text-gray-900 max-w-[200px]">
                       {inscription.fields['Jours sélectionnés'] ? (
                         <span className="font-medium text-xs" title={inscription.fields['Jours sélectionnés']}>
-                          {inscription.fields['Nombre de séances']}j — {inscription.fields['Jours sélectionnés']}
+                          {inscription.fields['Nombre de séances'] ? `${inscription.fields['Nombre de séances']}j · ` : ''}{inscription.fields['Jours sélectionnés']}
                         </span>
                       ) : inscription.fields['Nombre de séances'] ? (
                         <span className="font-medium">{inscription.fields['Nombre de séances']} séance(s)</span>

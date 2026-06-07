@@ -1,22 +1,24 @@
-import InscriptionPage from '@/components/InscriptionPage'
+import { PreinscriptionPage } from '@/components/PreinscriptionPage'
 import { Metadata } from 'next'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
 export const metadata: Metadata = {
-  title: 'Stages de Parkour - Été 2026 (Juillet & Août) | PKBA Bassin d\'Arcachon',
-  description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions de juillet (6 au 16) et août (17 au 28), 2 formules au choix : journée (10h-16h, 25€/jour) ou découverte (16h-17h30, 15€). À partir de 6 ans.',
-  keywords: 'stage parkour, vacances été 2026, stage juillet 2026, stage août 2026, parkour Arcachon, parkour Gujan-Mestras, activité vacances enfants, stage parkour été',
+  title: 'Préinscription saison 2026/2027 | PKBA Parkour Bassin d\'Arcachon',
+  description: 'Préinscrivez votre enfant pour la saison 2026/2027 au PKBA. Cours loisir dès 3 ans, prépa compétition et compétition sur sélection. Horaires et tarifs prévisionnels, préinscription rapide et sans engagement à Gujan-Mestras.',
+  keywords: 'préinscription parkour, saison 2026 2027, inscription club parkour, parkour Gujan-Mestras, parkour Bassin d\'Arcachon, cours parkour enfant, tarifs parkour, horaires parkour',
   openGraph: {
-    title: 'Stages de Parkour - Été 2026 | PKBA Bassin d\'Arcachon',
-    description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions juillet et août, 2 formules au choix. Encadrement professionnel à Gujan-Mestras.',
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+    title: 'Préinscription saison 2026/2027 | PKBA',
+    description: 'Réservez votre place pour la saison 2026/2027 au club de parkour du Bassin d\'Arcachon. Horaires et tarifs prévisionnels, préinscription rapide et sans engagement.',
+    url: `${siteUrl}/inscription`,
     siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
     type: 'website',
     locale: 'fr_FR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stages de Parkour - Été 2026 | PKBA',
-    description: 'Stages de parkour pendant les vacances d\'été. Sessions juillet et août 2026, 2 formules au choix. Inscriptions ouvertes !',
+    title: 'Préinscription saison 2026/2027 | PKBA',
+    description: 'Réservez votre place pour la saison prochaine au club de parkour du Bassin d\'Arcachon. Préinscription rapide et sans engagement.',
   },
   alternates: {
     canonical: '/inscription',
@@ -32,14 +34,14 @@ export default function Inscription() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Stages de Parkour - Été 2026 - PKBA',
-            description: 'Inscription aux stages de parkour PKBA pendant les vacances d\'été 2026',
-            url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+            name: 'Préinscription saison 2026/2027 - PKBA',
+            description: 'Préinscription pour la saison 2026/2027 au club de parkour PKBA',
+            url: `${siteUrl}/inscription`,
             mainEntity: {
               '@type': 'Form',
-              name: 'Formulaire d\'Inscription Stages d\'Été PKBA',
-              description: 'Formulaire d\'inscription pour les stages de parkour des vacances d\'été 2026',
-              url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+              name: 'Formulaire de préinscription PKBA',
+              description: 'Formulaire de préinscription pour la saison 2026/2027',
+              url: `${siteUrl}/inscription`,
             },
             breadcrumb: {
               '@type': 'BreadcrumbList',
@@ -48,20 +50,20 @@ export default function Inscription() {
                   '@type': 'ListItem',
                   position: 1,
                   name: 'Accueil',
-                  item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/`,
+                  item: `${siteUrl}/`,
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
-                  name: 'Inscription Stages',
-                  item: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/inscription`,
+                  name: 'Préinscription',
+                  item: `${siteUrl}/inscription`,
                 },
               ],
             },
           }),
         }}
       />
-      <InscriptionPage />
+      <PreinscriptionPage />
     </>
   )
-} 
+}

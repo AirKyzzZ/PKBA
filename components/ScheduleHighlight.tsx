@@ -226,7 +226,7 @@ const ScheduleHighlight = () => {
           className="text-center mt-10"
         >
           <Link
-            href="/inscription"
+            href="/stage"
             className="group inline-flex items-center space-x-2 bg-primary hover:bg-secondary text-white px-8 py-4 rounded-xl font-montserrat font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-md"
           >
             <Calendar size={22} />

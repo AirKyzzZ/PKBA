@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
       return fail("Type d'adhésion requis")
     }
 
-    if (!isNonEmpty(body.selectedStage) || !Object.hasOwn(STAGES, body.selectedStage)) {
+    if (!isNonEmpty(body.selectedStage) || !Object.prototype.hasOwnProperty.call(STAGES, body.selectedStage)) {
       return fail('Stage invalide ou manquant')
     }
     const stage = STAGES[body.selectedStage as StageId]

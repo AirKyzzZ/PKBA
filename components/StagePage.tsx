@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
 import { STAGES, STAGE_ORDER, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById } from '@/content/stages'
 
-const InscriptionPage = () => {
+const StagePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -1298,4 +1298,4 @@ const InscriptionPage = () => {
   )
 }
 
-export default InscriptionPage 
+export default StagePage

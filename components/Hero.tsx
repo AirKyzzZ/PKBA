@@ -37,7 +37,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Link
-              href="/inscription"
+              href="/stage"
               className="inline-flex items-center space-x-2 bg-primary/90 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 text-white font-montserrat font-semibold text-sm shadow-lg hover:bg-primary transition-colors duration-200"
             >
               <Calendar size={16} className="flex-shrink-0" />
@@ -95,7 +95,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6 px-4"
           >
             <Link
-              href="/inscription"
+              href="/stage"
               className="group bg-primary text-white hover:bg-secondary px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-montserrat font-bold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2 w-full sm:w-auto justify-center shadow-lg"
             >
               <Calendar size={22} className="flex-shrink-0" />

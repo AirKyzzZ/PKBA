@@ -31,7 +31,7 @@ export const events: ClubEvent[] = [
     time: 'Formule 1 : 10h-16h / Formule 2 : 16h-17h30',
     location: '4 Av. de L\'actipôle, Gujan-Mestras',
     description: 'Stage de parkour pendant les vacances d\'été (1ère session). Du lundi au jeudi, deux formules au choix : journée complète (25€/jour) pour licenciés/initiés, ou séance découverte (15€) pour non-licenciés.',
-    link: '/inscription',
+    link: '/stage',
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ export const events: ClubEvent[] = [
     time: 'Formule 1 : 10h-16h / Formule 2 : 16h-17h30',
     location: '4 Av. de L\'actipôle, Gujan-Mestras',
     description: 'Stage de parkour pendant les vacances d\'été (2nde session). Du lundi au vendredi, deux formules au choix : journée complète (25€/jour ou 100€/semaine) pour licenciés/initiés, ou séance découverte (15€) pour non-licenciés.',
-    link: '/inscription',
+    link: '/stage',
   },
   {
     id: 3,

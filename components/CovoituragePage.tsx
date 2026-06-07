@@ -79,7 +79,7 @@ const CovoituragePage = () => {
     }
 
     try {
-      const response = await fetch('/api/submit-covoiturage', {
+      const response = await fetch('/api/submit-covoiturage/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

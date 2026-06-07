@@ -120,10 +120,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-primary" />
                 <a 
-                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`} 
+                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}`} 
                   className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
                 >
-                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
+                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}
                 </a>
               </div>
               <a

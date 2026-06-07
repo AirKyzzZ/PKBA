@@ -50,8 +50,10 @@ const Header = () => {
       name: 'Le Club',
       children: [
         { name: 'Planning', href: '/planning' },
+        { name: 'Stage été', href: '/stage' },
         { name: 'Anniversaires', href: '/anniversaires' },
         { name: 'Privatisation', href: '/privatisation' },
+        { name: 'Cours privé', href: '/cours-prive' },
         { name: 'Covoiturage', href: '/covoiturage' },
       ],
     },
@@ -195,7 +197,7 @@ const Header = () => {
               )}
             </Link>
             <Link
-              href="/inscription"
+              href="/stage"
               className="bg-primary hover:bg-secondary text-white px-3 xl:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-xs xl:text-sm shadow-md whitespace-nowrap"
             >
               Stages d&apos;Été ☀️
@@ -300,7 +302,7 @@ const Header = () => {
                 )
               )}
               <Link
-                href="/inscription"
+                href="/stage"
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
               >

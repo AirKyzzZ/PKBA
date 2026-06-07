@@ -365,7 +365,7 @@ const ContactPage = () => {
                 </h3>
                 <p className="font-montserrat text-white/90 mb-4">
                   Prêt à faire partie de notre communauté ? 
-                  Les préinscriptions pour la saison 2025/2026 sont ouvertes !
+                  Les préinscriptions pour la saison 2026/2027 sont ouvertes !
                 </p>
                 <a
                   href="/inscription"
