@@ -14,6 +14,83 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: 5,
+    slug: 'championnat-france-parkour-bourges-podiums-gala-pkba',
+    title: 'Championnat de France à Bourges : quatre podiums pour clôturer la saison',
+    excerpt:
+      "Les 13 et 14 juin, nos traceurs étaient à Bourges pour la finale du Championnat de France de Parkour. Ils en reviennent avec quatre podiums, dont un tout premier podium par équipe. Retour sur ce week-end, et rendez-vous le 27 juin pour le gala de fin d'année du club.",
+    content: `
+      <p class="mb-6">La saison 2025-2026 du <strong>Parkour Bassin d'Arcachon</strong> se referme en beauté. Les <strong>13 et 14 juin 2026</strong>, une dizaine de nos traceurs étaient à <strong>Bourges</strong> pour la finale nationale, le <strong>Championnat de France de Parkour</strong>, face à environ 200 athlètes venus de toute la France. Ils en sont revenus avec <strong>quatre podiums</strong>, dont un tout premier podium par équipe. Retour sur ce week-end, et rendez-vous le 27 juin pour clôturer la saison tous ensemble au gala du club.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un week-end au sommet, à Bourges</h2>
+
+      <p class="mb-6">Après une première sortie à Thouars en décembre 2025, puis les cinq podiums de l'étape de Rennes en mars, ce déplacement à Bourges, c'était l'aboutissement d'une saison entière de travail. La finale réunissait le <strong>gratin du parkour français</strong> en Parkour Speed et en Parkour Freestyle, et nos jeunes y ont défendu les couleurs du Bassin d'Arcachon avec un sang-froid impressionnant.</p>
+
+      <p class="mb-6">Sur un plateau aussi relevé, chaque place se mérite. Et nos traceurs ont répondu présents, avec quatre podiums ramenés sur le Bassin.</p>
+
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Les podiums PKBA à Bourges</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li>🥈 <strong>Antoine Duverger</strong>, 2e en Parkour Freestyle 18 ans et plus hommes (performance)</li>
+          <li>🥉 <strong>Esaya Kety</strong>, 3e en Parkour Speed 12-14 ans hommes (performance)</li>
+          <li>🥉 <strong>Tilio Ferreira</strong>, 3e en Parkour Freestyle 15-17 ans hommes élite</li>
+          <li>🥉 <strong>Antoine Duverger, Milan Terrade-Prior et Esaya Kety</strong>, 3e de la nouvelle finale Freestyle par équipe</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Une belle <strong>médaille d'argent pour Antoine</strong> chez les plus de 18 ans, et deux <strong>bronzes</strong> avec Esaya en Speed et Tilio dans une catégorie élite particulièrement disputée. Cerise sur le gâteau, le Championnat inaugurait cette année une <strong>épreuve Freestyle par équipe</strong>, et le trio Antoine, Milan et Esaya est monté sur la 3e marche pour ce tout premier format collectif. Voir le club représenté à la fois en individuel et en équipe, c'est exactement la dynamique qu'on construit depuis nos débuts.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Toute l'équipe au rendez-vous</h2>
+
+      <p class="mb-6">Un podium ne dit jamais tout d'une compétition. Derrière les médailles, <strong>tout le groupe a tiré son niveau vers le haut</strong> et signé de belles places en finale nationale.</p>
+
+      <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Les autres résultats PKBA</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Esaya Kety</strong>, 4e en Parkour Freestyle 12-14 ans hommes (performance)</li>
+          <li><strong>Noann Le Borgne</strong>, 9e en Parkour Freestyle 12-14 ans hommes (performance)</li>
+          <li><strong>Viktor Terrou</strong>, 9e en Parkour Freestyle 18 ans et plus hommes (fédéral)</li>
+          <li><strong>Arthur Tisserand</strong>, 9e et <strong>Matéo Colantuano</strong>, 11e en Parkour Freestyle 12-14 ans hommes (fédéral)</li>
+          <li><strong>Julian Quattrocchi</strong>, 11e et <strong>Mathys Puyo Shumann</strong>, 12e en Parkour Speed 10-11 ans hommes (fédéral)</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Se qualifier pour une finale de Championnat de France et y tenir son rang face aux meilleurs Français, à 10, 12 ou 15 ans, c'est déjà une réussite en soi. <strong>Bravo à eux</strong>, et merci aux familles et aux coachs qui ont fait le déplacement jusqu'à Bourges pour les encourager.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "Pour notre toute première saison, on est passés des premiers entraînements à une finale de Championnat de France avec des podiums individuels et par équipe. C'est toute la progression du club qui se lit dans ces résultats."
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">On clôture la saison ensemble : gala et tombola le 27 juin</h2>
+
+      <p class="mb-6">Quoi de mieux qu'un grand moment de fête pour refermer cette saison ? Le <strong>samedi 27 juin, de 18h à 20h</strong>, on vous attend au <strong>local du club</strong> (4 Av. de L'actipôle, Gujan-Mestras) pour le <strong>gala de fin d'année du PKBA</strong>. Démonstrations, mise à l'honneur de nos compétiteurs et un moment convivial pour toute la communauté du club.</p>
+
+      <p class="mb-6">La soirée est <strong>ouverte à tous, athlètes, familles et grand public, et l'entrée est gratuite</strong>. Une <strong>grande tombola</strong> sera organisée au profit du club, avec des <strong>tickets à 3€</strong> et de superbes lots à gagner.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🎟️ La tombola du gala</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li>🪂 Le gros lot : un <strong>saut en parachute</strong>, offert par <strong>Vertical T'Air</strong></li>
+          <li>⛺ Un séjour au <strong>camping Huttopia</strong></li>
+          <li>🍽️ Des <strong>bons restaurants</strong>, des <strong>paniers gourmands</strong> et de nombreux autres lots</li>
+        </ul>
+        <p class="mt-3 text-gray-800 font-montserrat">Tickets à <strong>3€</strong>.</p>
+      </div>
+
+      <p class="mb-6">Compétitions, premier local, reportage France 3, et maintenant un gala pour réunir tout le monde : la saison aura été <strong>intense et pleine de fierté</strong>. Merci à nos traceurs, à leurs familles, à nos coachs et à nos partenaires d'en faire partie.</p>
+
+      <p class="mb-6">On vous donne rendez-vous le <strong>27 juin</strong> pour fêter tout ça comme il se doit. Et si l'envie de vous lancer dans le parkour vous titille, c'est le moment idéal pour venir pousser la porte du club. 🚀</p>
+    `,
+    category: 'bilan',
+    date: '2026-06-18',
+    author: 'Équipe PKBA',
+    readTime: '5 min',
+    image: '/images/bourges-championnat-france-pkba.jpg',
+    featured: true,
+  },
+  {
     id: 4,
     slug: 'nouveau-local-gujan-mestras-circuit-national-rennes-pkba',
     title: 'Nouveau local à Gujan-Mestras et cinq podiums à l\'étape de Rennes',
