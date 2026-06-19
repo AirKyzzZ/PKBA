@@ -34,11 +34,11 @@ export const articles: Article[] = [
           <li>🥈 <strong>Antoine Duverger</strong>, 2e en Parkour Freestyle 18 ans et plus hommes (performance)</li>
           <li>🥉 <strong>Esaya Kety</strong>, 3e en Parkour Speed 12-14 ans hommes (performance)</li>
           <li>🥉 <strong>Tilio Ferreira</strong>, 3e en Parkour Freestyle 15-17 ans hommes élite</li>
-          <li>🥉 <strong>Antoine Duverger, Milan Terrade-Prior et Esaya Kety</strong>, 3e de la nouvelle finale Freestyle par équipe</li>
+          <li>🥉 <strong>Antoine Duverger, Tilio Ferreira et Esaya Kety</strong>, 3e de la nouvelle finale Freestyle par équipe</li>
         </ul>
       </div>
 
-      <p class="mb-6">Une belle <strong>médaille d'argent pour Antoine</strong> chez les plus de 18 ans, et deux <strong>bronzes</strong> avec Esaya en Speed et Tilio dans une catégorie élite particulièrement disputée. Cerise sur le gâteau, le Championnat inaugurait cette année une <strong>épreuve Freestyle par équipe</strong>, et le trio Antoine, Milan et Esaya est monté sur la 3e marche pour ce tout premier format collectif. Voir le club représenté à la fois en individuel et en équipe, c'est exactement la dynamique qu'on construit depuis nos débuts.</p>
+      <p class="mb-6">Une belle <strong>médaille d'argent pour Antoine</strong> chez les plus de 18 ans, et deux <strong>bronzes</strong> avec Esaya en Speed et Tilio dans une catégorie élite particulièrement disputée. Cerise sur le gâteau, le Championnat inaugurait cette année une <strong>épreuve Freestyle par équipe</strong>, et le trio Antoine, Tilio et Esaya est monté sur la 3e marche pour ce tout premier format collectif. Voir le club représenté à la fois en individuel et en équipe, c'est exactement la dynamique qu'on construit depuis nos débuts.</p>
 
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Toute l'équipe au rendez-vous</h2>
 
