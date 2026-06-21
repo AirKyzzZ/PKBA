@@ -111,7 +111,7 @@ const Mission = () => {
               </h4>
               <p className="font-montserrat text-white/90 leading-relaxed text-sm sm:text-base">
                 Rejoignez-nous dès septembre 2025 pour une saison exceptionnelle ! 
-                Préinscriptions ouvertes pour tous les niveaux, à partir de 6 ans (avec autorisation parentale pour les mineurs).
+                Préinscriptions ouvertes pour tous les niveaux, à partir de 3 ans (avec autorisation parentale pour les mineurs).
               </p>
             </div>
           </div>

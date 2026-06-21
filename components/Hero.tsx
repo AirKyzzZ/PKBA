@@ -84,7 +84,7 @@ const Hero = () => {
           >
             Club associatif de parkour avec encadrement professionnel.
             <br className="hidden sm:block" />
-            Tous niveaux, à partir de 6 ans.
+            Tous niveaux, à partir de 3 ans.
           </motion.p>
 
           {/* CTA Buttons */}

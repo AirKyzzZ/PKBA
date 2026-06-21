@@ -10,7 +10,7 @@ const ReglementInterieurPage = () => {
       icon: Users,
       title: 'Adhésion et Inscription',
       content: [
-        'L\'adhésion est ouverte à toute personne âgée d\'au moins 6 ans',
+        'L\'adhésion est ouverte à toute personne âgée d\'au moins 3 ans',
         'Un certificat médical de non-contre-indication à la pratique du parkour est obligatoire',
         'L\'inscription se fait sur présentation d\'une pièce d\'identité et du certificat médical',
         'Les mineurs doivent fournir une autorisation parentale signée',
