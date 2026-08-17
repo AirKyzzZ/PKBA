@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Privatisation salle PKBA, coachs sportifs</title>
+<link rel="stylesheet" href="../_system/tokens.css">
+<link rel="stylesheet" href="../_system/base.css">
+<style>
+  .band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: var(--pk-blue);
+  }
+
+  .band-top { top: 0; height: 150px; }
+  .band-top-rule { top: 150px; height: 8px; background: var(--pk-ink); }
+  .band-bottom { bottom: 0; height: 250px; }
+  .band-bottom-rule { bottom: 250px; height: 8px; background: var(--pk-ink); }
+
+  .head {
+    position: relative;
+    z-index: 10;
+    height: 150px;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .head-id { display: flex; align-items: center; gap: 20px; }
+
+  .mark {
+    width: 92px;
+    height: 92px;
+    background: var(--pk-cream);
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mark img { width: 100%; height: 100%; object-fit: contain; }
+
+  .head-name {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 0.9;
+    color: var(--pk-white);
+    letter-spacing: 0.02em;
+  }
+
+  .head-sub {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--pk-white);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .head-fed {
+    background: var(--pk-cream);
+    padding: 9px 13px;
+    display: flex;
+    align-items: center;
+  }
+
+  .head-fed img { height: 48px; width: auto; object-fit: contain; }
+
+  .body-area {
+    position: relative;
+    z-index: 10;
+    padding: 18px 48px 0;
+  }
+
+  .eyebrow-blue {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pk-blue);
+    margin-bottom: 6px;
+  }
+
+  .kicker {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 84px;
+    line-height: 0.82;
+    text-transform: uppercase;
+    color: var(--pk-ink);
+    letter-spacing: 0.005em;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .hero-num {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .hero-num-big {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 250px;
+    line-height: 1;
+    color: var(--pk-blue);
+    letter-spacing: -0.035em;
+    margin: 0 0 -28px;
+  }
+
+  .hero-num-unit {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--pk-ink);
+    margin-top: 26px;
+  }
+
+  .hero-place {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 62px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--pk-ink);
+    letter-spacing: 0.005em;
+  }
+
+  .sticker {
+    justify-self: center;
+    transform: rotate(-8deg);
+    background: var(--pk-ink);
+    padding: 20px 28px 24px;
+    text-align: center;
+    box-shadow: 15px 15px 0 var(--pk-blue);
+  }
+
+  .sticker-small {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pk-cream);
+    opacity: 0.75;
+  }
+
+  .sticker-big {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 90px;
+    line-height: 0.82;
+    text-transform: uppercase;
+    color: var(--pk-white);
+    margin-top: 6px;
+  }
+
+  .slots {
+    margin-top: 24px;
+    border-top: 8px solid var(--pk-ink);
+    padding-top: 20px;
+  }
+
+  .slots-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .slots-title {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 58px;
+    text-transform: uppercase;
+    color: var(--pk-ink);
+    line-height: 1;
+  }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 2px solid var(--pk-ink-12);
+  }
+
+  .row:last-of-type { border-bottom: 0; }
+
+  .row-day {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 60px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--pk-ink);
+  }
+
+  .row-slot {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--pk-blue);
+  }
+
+  .note {
+    margin-top: 14px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--pk-ink-60);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .foot {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    padding: 0 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .foot-label {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pk-cream);
+    opacity: 0.85;
+  }
+
+  .foot-phone {
+    font-family: var(--pk-display);
+    font-weight: 900;
+    font-size: 116px;
+    line-height: 1;
+    color: var(--pk-white);
+    letter-spacing: 0.01em;
+    margin-top: -2px;
+  }
+
+  .foot-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 4px solid rgba(255, 255, 255, 0.5);
+    padding-top: 12px;
+  }
+
+  .foot-place {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--pk-white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .foot-tarif {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pk-blue);
+    background: var(--pk-cream);
+    padding: 9px 16px;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas fmt-ig-post grain">
+    <div class="band band-top"></div>
+    <div class="band band-top-rule"></div>
+    <div class="band band-bottom"></div>
+    <div class="band band-bottom-rule"></div>
+
+    <header class="head">
+      <div class="head-id">
+        <div class="mark"><img src="../_system/assets/pkba-logo.png" alt="PKBA"></div>
+        <div>
+          <p class="head-name">PKBA</p>
+          <p class="head-sub">Parkour Bassin d&rsquo;Arcachon</p>
+        </div>
+      </div>
+      <div class="head-fed"><img src="../_system/assets/ffgym-logo.jpg" alt="FFGym"></div>
+    </header>
+
+    <div class="body-area">
+      <p class="eyebrow-blue">Coachs &amp; &eacute;ducateurs sportifs</p>
+      <h1 class="kicker">Une salle<br>pour vos s&eacute;ances</h1>
+
+      <div class="hero">
+        <div>
+          <div class="hero-num">
+            <span class="hero-num-big">200</span>
+            <span class="hero-num-unit">M&sup2;</span>
+          </div>
+          <p class="hero-place">&agrave; Gujan-Mestras</p>
+        </div>
+        <div class="sticker">
+          <p class="sticker-small">Sur place</p>
+          <p class="sticker-big">Mat&eacute;riel<br>inclus</p>
+        </div>
+      </div>
+
+      <section class="slots">
+        <div class="slots-head">
+          <h2 class="slots-title">Cr&eacute;neaux libres</h2>
+        </div>
+
+        <div class="row">
+          <span class="row-day">Lun. au ven.</span>
+          <span class="row-slot">En journ&eacute;e</span>
+        </div>
+        <div class="row">
+          <span class="row-day">Samedi</span>
+          <span class="row-slot">Le matin</span>
+        </div>
+        <div class="row">
+          <span class="row-day">Dimanche</span>
+          <span class="row-slot">Toute la journ&eacute;e</span>
+        </div>
+
+        <p class="note">Modules &middot; trampolines &middot; vestiaires &middot; parking</p>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <div>
+        <p class="foot-label">Tarif et cr&eacute;neaux sur demande</p>
+        <p class="foot-phone">06 60 14 71 44</p>
+      </div>
+      <div class="foot-cta">
+        <span class="foot-place">4 av. de l&rsquo;Actip&ocirc;le, Gujan-Mestras</span>
+        <span class="foot-tarif">Nous appeler</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
