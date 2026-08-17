@@ -14,7 +14,7 @@ module.exports = {
         background: '#FFFFFF',
       },
       fontFamily: {
-        'cheddar': ['Cheddar Gothic Stencil', 'sans-serif'],
+        'cheddar': ['Cheddar Gothic Stencil', 'Big Shoulders Stencil Display', 'sans-serif'],
         'montserrat': ['Montserrat', 'sans-serif'],
       },
       animation: {

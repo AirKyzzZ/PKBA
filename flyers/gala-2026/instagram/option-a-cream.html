@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Gala PKBA 2026 — Instagram</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&family=Big+Shoulders+Stencil+Display:wght@600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #F4F2E7; }
+  body { font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; }
+  .stencil { font-family: 'Big Shoulders Stencil Display', sans-serif; font-weight: 800; letter-spacing: 0.01em; line-height: 0.85; }
+  .stencil-alt { font-family: 'Stardos Stencil', sans-serif; font-weight: 700; letter-spacing: 0.04em; }
+  .ig {
+    width: 1080px; height: 1080px;
+    position: relative; overflow: hidden;
+  }
+  .grain {
+    background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="ig bg-[#F4F2E7] grain text-[#0A0A0A]">
+
+    <!-- Top blue band (full width, simpler than diagonal) -->
+    <div class="absolute top-0 left-0 right-0 h-[130px] bg-[#006AFF] z-0"></div>
+    <div class="absolute top-[130px] left-0 right-0 h-[8px] bg-[#0A0A0A] z-0"></div>
+
+    <!-- HEADER over the band -->
+    <header class="relative z-10 pt-7 px-14 flex items-center justify-between h-[130px]">
+      <div class="flex items-center gap-4">
+        <div class="w-[88px] h-[88px] bg-[#F4F2E7] rounded-full p-2 flex items-center justify-center shadow-md">
+          <img src="../assets/pkba-logo.png" alt="PKBA" class="w-full h-full object-contain" />
+        </div>
+        <div>
+          <p class="stencil-alt text-[18px] tracking-[0.25em] text-white leading-tight">PKBA</p>
+          <p class="text-[12px] text-white/95 font-light tracking-[0.2em] leading-tight">PARKOUR BASSIN D'ARCACHON</p>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="stencil-alt text-[14px] tracking-[0.4em] text-white">PRÉSENTE</p>
+      </div>
+    </header>
+
+    <!-- TITLE -->
+    <section class="relative z-10 px-14 pt-10">
+      <h1 class="stencil text-[#006AFF] text-[160px]">GALA</h1>
+      <h2 class="stencil text-[#0A0A0A] text-[56px] -mt-2">DE FIN D'ANNÉE</h2>
+      <div class="flex items-baseline gap-3 mt-2">
+        <span class="text-[22px] font-bold tracking-[0.3em] text-[#006AFF]">&amp;</span>
+        <h3 class="stencil text-[#0A0A0A] text-[100px]">TOMBOLA</h3>
+      </div>
+    </section>
+
+    <!-- DATE / LIEU -->
+    <section class="relative z-10 mx-14 mt-6 border-y-[3px] border-[#0A0A0A] py-3 flex items-center justify-between">
+      <div>
+        <p class="text-[12px] uppercase tracking-[0.3em] text-[#006AFF] font-bold mb-1">Quand</p>
+        <p class="stencil-alt text-[24px] text-[#0A0A0A] leading-tight">SAM. 27 JUIN 2026</p>
+        <p class="text-[16px] font-bold text-[#0A0A0A]">à 18h00</p>
+      </div>
+      <div class="w-px h-14 bg-[#0A0A0A]/30"></div>
+      <div class="text-right">
+        <p class="text-[12px] uppercase tracking-[0.3em] text-[#006AFF] font-bold mb-1">Où</p>
+        <p class="stencil-alt text-[20px] text-[#0A0A0A] leading-tight">HANGAR PKBA</p>
+        <p class="text-[13px] text-[#0A0A0A]/80 leading-tight">5 av. de l'Actipole — Gujan-Mestras</p>
+      </div>
+    </section>
+
+    <!-- À GAGNER -->
+    <section class="relative z-10 px-14 mt-5">
+      <div class="flex items-baseline justify-between mb-3">
+        <h4 class="stencil text-[#006AFF] text-[36px]">À GAGNER</h4>
+        <p class="text-[12px] text-[#0A0A0A]/60 italic">de nombreux lots</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-x-5 gap-y-2">
+        <!-- Saut parachute -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#006AFF] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="0.5"><path d="M12 2C6.5 2 2 6 2 11h2.5C5 8 8 6.5 12 6.5S19 8 19.5 11H22C22 6 17.5 2 12 2zm-7 10 3 6h2l-1.2-4.5L12 14l3.2-.5L14 18h2l3-6c-2 .5-4.7 1-7 1s-5-.5-7-1z"/></svg>
+          </div>
+          <div class="flex-1">
+            <p class="stencil-alt text-[17px] text-[#0A0A0A] leading-tight">SAUT EN PARACHUTE</p>
+            <p class="text-[11px] text-[#0A0A0A]/65 leading-tight">par Vertical T'Air</p>
+          </div>
+        </div>
+
+        <!-- Camping Huttopia -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#006AFF] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 3 2 21h20L12 3zm0 4.5L18.5 19h-13L12 7.5z"/></svg>
+          </div>
+          <div class="flex-1">
+            <p class="stencil-alt text-[17px] text-[#0A0A0A] leading-tight">2 NUITS HUTTOPIA</p>
+            <p class="text-[11px] text-[#0A0A0A]/65 leading-tight">Camping Arcachon</p>
+          </div>
+        </div>
+
+        <!-- Resto -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11 9V2H9v7H7V2H5v9c0 1.66 1.34 3 3 3v8h2v-8c1.66 0 3-1.34 3-3V2h-2v7zm5-7v9h2v9h2V2h-4z"/></svg>
+          </div>
+          <p class="stencil-alt text-[16px] text-[#0A0A0A] leading-tight">INVITATIONS RESTO</p>
+        </div>
+
+        <!-- Paniers gourmands -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M5.5 21h13l1.5-9H4l1.5 9zM12 2 8 8h8l-4-6zM3 10v1h18v-1H3z"/></svg>
+          </div>
+          <p class="stencil-alt text-[16px] text-[#0A0A0A] leading-tight">PANIERS GOURMANDS</p>
+        </div>
+
+        <!-- Manucure -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2c-1.5 0-2.5 1-2.5 2.5V12c0 .5-.3 1-1 1s-1-.5-1-1V8H5v4c0 1.5 1 2.5 2.5 2.5h.5V21c0 .5.5 1 1 1h6c.5 0 1-.5 1-1v-6.5h.5c1.5 0 2.5-1 2.5-2.5V8h-2.5v4c0 .5-.3 1-1 1s-1-.5-1-1V4.5C14.5 3 13.5 2 12 2z"/></svg>
+          </div>
+          <p class="stencil-alt text-[16px] text-[#0A0A0A] leading-tight">SOINS MANUCURE</p>
+        </div>
+
+        <!-- Plus -->
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full border-[3px] border-dashed border-[#0A0A0A]/40 flex items-center justify-center">
+            <span class="text-[18px] text-[#0A0A0A]/60 font-bold">+</span>
+          </div>
+          <p class="text-[12px] text-[#0A0A0A]/75 italic font-medium leading-tight">…et bien d'autres surprises</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative z-10 mx-14 mt-5 bg-[#006AFF] text-white py-3.5 px-7 flex items-center justify-between rounded-sm shadow-lg">
+      <div>
+        <p class="stencil-alt text-[12px] tracking-[0.3em] opacity-90">TICKET TOMBOLA</p>
+        <p class="stencil text-[60px] leading-none">3€</p>
+      </div>
+      <div class="text-right text-[13px] leading-tight max-w-[400px]">
+        <p class="font-bold uppercase tracking-wider mb-1 text-[13px]">Où acheter</p>
+        <p class="opacity-95 text-[13px]">Auprès des traceurs<br/>ou directement au hangar du club</p>
+      </div>
+    </section>
+
+    <!-- FOOTER (normal flow, sits below CTA) -->
+    <footer style="margin-top:30px; padding:0 56px;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
+        <div>
+          <p style="font-family:'Stardos Stencil',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:0.3em; color:rgba(10,10,10,0.6); margin:0 0 8px 0;">Avec le soutien de</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="background:white; padding:6px 12px; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.06);">
+              <img src="../assets/verticaltair-logo.png" alt="Vertical T'Air" style="height:26px; display:block;" />
+            </div>
+            <div style="background:white; padding:6px 12px; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.06);">
+              <img src="../assets/huttopia-logo.png" alt="Huttopia" style="height:26px; display:block;" />
+            </div>
+          </div>
+        </div>
+        <div style="text-align:right; font-size:12px; color:rgba(10,10,10,0.7); line-height:1.3;">
+          <p style="margin:0; font-weight:700; color:#006AFF; font-size:14px;">@parkourbassindarcachon</p>
+          <p style="margin:0;">pkba.vertiflow.fr</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

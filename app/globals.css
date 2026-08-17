@@ -4,6 +4,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Big Shoulders Stencil Display';
+  src: url('/fonts/big-shoulders-stencil.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
@@ -11,7 +19,6 @@
   color-scheme: light;
 }
 
-/* Font fallback - using Montserrat as primary font */
 * {
   box-sizing: border-box;
   padding: 0;

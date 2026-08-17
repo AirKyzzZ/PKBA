@@ -1,0 +1,63 @@
+{
+  "iterationGoal": "Take the previous generated image and add subtle but clearly readable parkour training modules to the scene, so the viewer instantly understands this is a 'parkour summer stage at the beach' — not just a kid leaping at the beach. Keep everything else exactly as it was: same character, outfit, pose direction, style, color palette, lighting, sky, sun, umbrella, beach chair, basket with baguette, striped towel, sand dune, lagoon, pier, seagulls.",
+
+  "changesToApply": {
+    "newElement_1": {
+      "name": "Wooden parkour vault box",
+      "description": "A solid cube-shaped plywood vault box (parkour module), roughly 70cm tall, made of warm light pine wood with a slightly darker wood top, a single thin coral red (#FF6B6B) accent stripe along the top edge",
+      "placement": "Centered on the wooden boardwalk in the foreground, directly underneath the leaping child — the child is clearly jumping OVER this box in a parkour vault move",
+      "perspective": "Slight three-quarter view, sitting flat on the boardwalk planks, casting one soft navy cell-shaded shadow on the wood"
+    },
+    "newElement_2": {
+      "name": "Stack of soft foam training blocks",
+      "description": "Two stacked rectangular gym foam blocks (parkour training props), top block electric blue (#006AFF), bottom block warm yellow (#FFD23F), clean flat cartoon shapes with bold navy outlines",
+      "placement": "On the sandy dune area to the left of the umbrella, half-resting on the sand as if casually set up for training",
+      "size": "Small secondary element, clearly smaller than the umbrella"
+    },
+    "newElement_3": {
+      "name": "Low parkour rail",
+      "description": "A short horizontal metal bar (~60cm long, ~50cm tall) on two simple white posts, like a mini gymnastics balance bar, painted PKBA electric blue (#006AFF)",
+      "placement": "Far right of the boardwalk near the water edge, partly behind the leaping child, secondary visual element",
+      "size": "Small enough not to distract from the main vault action"
+    },
+    "characterAdjustment": {
+      "pose": "Refine the leap so the child is unambiguously vaulting OVER the new wooden parkour box: legs tucked or split with one leg leading the other, body angled forward across the box, arms outstretched for balance, hands free (not touching the box)",
+      "motionLines": "Keep 3-5 short curved white motion lines, but place them so they wrap around the parkour box, reinforcing the vault motion direction"
+    }
+  },
+
+  "keepIdentical": [
+    "Character face, hair, skin tone, smile, eye direction",
+    "Outfit: electric blue PKBA t-shirt with small white 'PKBA' chest detail, warm yellow shorts, white sneakers with coral stripes",
+    "Wooden boardwalk plank perspective and texture",
+    "Red-and-white striped beach umbrella position",
+    "Yellow and coral striped beach chair on the sand",
+    "Wicker beach basket with baguette on the boardwalk",
+    "Striped rainbow beach towel on the boardwalk",
+    "Sand dune with green dune grass tufts and small pebbles",
+    "Calm pale turquoise lagoon water with gentle ripples",
+    "Pale blue sky (#A8D8FF) with fluffy white clouds",
+    "Large yellow cartoon sun upper-left with simple straight rays",
+    "Two small white V-shaped seagulls in the sky",
+    "Flat cartoon style with bold navy outlines and single soft cell-shading",
+    "Restricted color palette (#006AFF blue, #FFD23F yellow, #FF6B6B coral, #A8D8FF sky, #F4E9D0 sand, white, navy outlines)",
+    "Square 1:1 framing, full-bleed, no white frame, no border"
+  ],
+
+  "avoid": [
+    "Metallic scaffolding or industrial heavy gym equipment that feels out of place at the beach",
+    "Concrete urban parkour walls (keep modules light, summery, family-friendly)",
+    "Adding any additional characters, adults, or other kids",
+    "Making the parkour elements bigger than the beach umbrella — they must remain secondary so the summer setting still dominates",
+    "Sport branding logos other than the existing small white 'PKBA' on the t-shirt",
+    "Changing the character's style, age, or expression",
+    "Adding text, labels, captions, signs, watermarks",
+    "Heavy or dark shadows that would dim the bright summer mood",
+    "Changing the camera angle or composition framing",
+    "Replacing the beach scene with a gym or urban setting"
+  ],
+
+  "technical": {
+    "format": "Square 1:1 PNG, 2048x2048 resolution, full-bleed, sharp clean edges, no compression artifacts"
+  }
+}

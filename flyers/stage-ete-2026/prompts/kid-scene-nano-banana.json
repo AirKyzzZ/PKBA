@@ -1,0 +1,62 @@
+{
+  "subject": {
+    "description": "A single happy, gender-neutral cartoon child around 9 years old performing a confident horizontal parkour leap (long jump / flying vault), arms outstretched for balance, one leg tucked, the other extending forward, body angled diagonally as if soaring through the air",
+    "appearance": "Light tan skin, short tousled brown hair blown back by motion, joyful big smile, bright eyes looking forward with excitement",
+    "outfit": "Bright electric blue (#006AFF) athletic t-shirt with a small white stencil 'PKBA' detail on the chest, warm yellow (#FFD23F) athletic shorts, clean white sneakers with subtle coral-red (#FF6B6B) stripes",
+    "proportions": "Slightly chunky stylized cartoon proportions — big expressive head, energetic limbs, kid-friendly anatomy. Keep style consistent with a previous reference: clean flat cartoon, bold navy outlines."
+  },
+  "scene": {
+    "setting": "A bright sunny summer day on the French Atlantic coast (Bassin d'Arcachon vibe). The child is mid-leap above a weathered wooden beach pier / boardwalk, with a sandy dune on one side and calm turquoise lagoon water on the other",
+    "foreground": "Wooden plank boardwalk seen in slight diagonal perspective. A red-and-white striped beach umbrella tilted to the left, a colorful striped beach towel folded on the planks, a small wicker beach basket with a baguette poking out as a subtle French seaside detail",
+    "midground": "Soft yellow sand dune with tufts of green dune grass, a few smooth round pebbles, one open beach chair in yellow and coral facing the water",
+    "background": "Calm pale turquoise lagoon water with very gentle ripples, soft sandy shoreline in the distance, fluffy white cumulus clouds in a vibrant pale sky blue (#A8D8FF) sky, a large warm yellow (#FFD23F) flat cartoon sun in the upper-left with simple straight rays, two tiny stylized seagulls (white V-shapes) gliding in the sky"
+  },
+  "style": {
+    "type": "Modern flat cartoon illustration",
+    "lineWork": "Bold clean dark navy (#0A1F4D) outlines, consistent moderate weight, slightly thicker on the main character for emphasis",
+    "shading": "Single soft cell-shaded shadow layer per element, no gradients, no painterly textures, no 3D rendering",
+    "references": "Contemporary children's book illustration, modern editorial flat illustration, Dribbble-style flat character art, warm and wholesome",
+    "exclusions": "NOT photorealistic, NOT 3D rendered, NOT anime, NOT painterly, NOT watercolor, NOT pixel art, NOT sketchy"
+  },
+  "composition": {
+    "framing": "Square 1:1 aspect ratio, full-bleed scene with no white border, no frame, no margin",
+    "subjectPlacement": "Child is the dominant focal point, centered horizontally and vertically, sized to occupy roughly 55% of the canvas diagonal, leaping diagonally from lower-left to upper-right",
+    "depth": "Clear foreground / midground / background separation through scale and atmospheric perspective (background slightly desaturated)",
+    "motionLines": "3 to 5 short curved white motion lines trailing behind the child's limbs to reinforce speed and direction of the leap"
+  },
+  "colorPalette": {
+    "primary": "#006AFF electric blue (t-shirt, water accents)",
+    "secondary": "#FFD23F warm yellow (shorts, sun, beach chair, sand highlights)",
+    "accent": "#FF6B6B coral red (umbrella stripes, shoe stripes, towel stripes)",
+    "skyAndSand": "#A8D8FF soft pale sky blue and #F4E9D0 warm sand cream",
+    "neutral": "#FFFFFF white (clouds, motion lines, sneakers) and #0A1F4D dark navy (outlines, deep shadows)",
+    "rule": "Limit total colors to this restricted palette plus natural light skin tones — no neon, no muddy tones, no extra colors"
+  },
+  "lighting": {
+    "type": "Bright midday summer sunlight, single warm directional light source coming from the upper-left",
+    "mood": "Cheerful, joyful, full of vacation energy, totally safe and inviting for families"
+  },
+  "mood": {
+    "feeling": "Carefree summer vacation joy meets sporty adventure, designed to make parents instantly feel parkour is fun, safe, and an obvious holiday activity for their kids",
+    "tone": "Wholesome, family-friendly, energetic, sunny, optimistic, French Atlantic seaside"
+  },
+  "technical": {
+    "format": "Square 1:1 PNG, 2048x2048 resolution, sharp clean edges, no compression artifacts",
+    "usage": "Will be placed as the central hero illustration on a printed A5 flyer and a 1080x1080 Instagram post for a parkour club aimed at tourist families visiting the Bassin d'Arcachon"
+  },
+  "avoid": [
+    "Photorealism or 3D rendering",
+    "Anime or manga style",
+    "Dark, moody, stormy or anxiety-inducing tones",
+    "Weapons, fearful expressions, aggressive or risky-looking poses",
+    "Adult bystanders or any other characters",
+    "More than one child",
+    "Recognizable real brand logos other than the small white 'PKBA' chest detail",
+    "Text, captions, watermarks, signatures, speech bubbles",
+    "Cluttered busy backgrounds with too many props",
+    "Crashing waves, surf, stormy weather, dramatic skies",
+    "Cars, roads, buildings, or urban elements",
+    "Realistic skin texture, freckles in excess, facial wrinkles",
+    "White frame, polaroid border, sticker outline around the image"
+  ]
+}

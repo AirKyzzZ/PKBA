@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'PK Display';
+  src: url('./fonts/big-shoulders-stencil.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'PK Body';
+  src: url('./fonts/montserrat.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --pk-blue: #006aff;
+  --pk-blue-deep: #127bcb;
+  --pk-cream: #f4f2e7;
+  --pk-ink: #0a0a0a;
+  --pk-white: #ffffff;
+
+  --pk-ink-60: rgba(10, 10, 10, 0.6);
+  --pk-ink-30: rgba(10, 10, 10, 0.3);
+  --pk-ink-12: rgba(10, 10, 10, 0.12);
+  --pk-white-85: rgba(255, 255, 255, 0.85);
+
+  --pk-display: 'PK Display', 'Big Shoulders Stencil Display', sans-serif;
+  --pk-body: 'PK Body', 'Montserrat', sans-serif;
+
+  --pk-rule: 6px;
+  --pk-rule-thin: 3px;
+  --pk-gutter: 64px;
+
+  --pk-track-wide: 0.28em;
+  --pk-track-tight: 0.01em;
+}

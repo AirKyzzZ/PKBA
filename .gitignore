@@ -50,6 +50,8 @@ tmp/
 temp/
 .mcp.json
 
-# Flyers / design work (local only)
-flyers/
+# Flyers : sources versionnees, exports ignores
+flyers/*/exports/
+flyers/_system/fonts/*.ttf
+flyers/_system/fonts/*.otf
 .playwright-mcp/
