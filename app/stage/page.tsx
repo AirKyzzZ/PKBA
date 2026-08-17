@@ -1,24 +1,38 @@
 import StagePage from '@/components/StagePage'
 import { Metadata } from 'next'
+import { getUpcomingStages, FORMULES } from '@/content/stages'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkba.vertiflow.fr'
+
+const upcoming = getUpcomingStages()
+const periods = upcoming.map((stage) => stage.period).join(', ')
+const hasStage = upcoming.length > 0
+
+const title = hasStage
+  ? `Stages de Parkour ${upcoming.map((s) => s.monthLabel).join(' et ')} | PKBA Bassin d'Arcachon`
+  : "Stages de Parkour pendant les vacances | PKBA Bassin d'Arcachon"
+
+const description = hasStage
+  ? `Inscrivez-vous aux stages de parkour du PKBA. ${periods}. Deux formules au choix : journée complète (${FORMULES[1].time}, ${FORMULES[1].pricePerDay}€/jour) ou séance découverte (${FORMULES[2].time}, ${FORMULES[2].pricePerDay}€). À partir de 6 ans, à Gujan-Mestras.`
+  : "Le club PKBA organise des stages de parkour pendant les vacances scolaires à Gujan-Mestras, à partir de 6 ans. Les dates du prochain stage seront annoncées prochainement."
 
 export const metadata: Metadata = {
-  title: 'Stages de Parkour - Été 2026 (Juillet & Août) | PKBA Bassin d\'Arcachon',
-  description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions de juillet (6 au 16) et août (17 au 28), 2 formules au choix : journée (10h-16h, 25€/jour) ou découverte (16h-17h30, 15€). À partir de 6 ans.',
-  keywords: 'stage parkour, vacances été 2026, stage juillet 2026, stage août 2026, parkour Arcachon, parkour Gujan-Mestras, activité vacances enfants, stage parkour été',
+  title,
+  description,
+  keywords:
+    "stage parkour, stage vacances scolaires, parkour Arcachon, parkour Gujan-Mestras, activité vacances enfants, stage parkour Bassin d'Arcachon",
   openGraph: {
-    title: 'Stages de Parkour - Été 2026 | PKBA Bassin d\'Arcachon',
-    description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions juillet et août, 2 formules au choix. Encadrement bénévole diplômé à Gujan-Mestras.',
+    title,
+    description,
     url: `${siteUrl}/stage`,
-    siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
+    siteName: "PKBA - Club de Parkour Bassin d'Arcachon",
     type: 'website',
     locale: 'fr_FR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stages de Parkour - Été 2026 | PKBA',
-    description: 'Stages de parkour pendant les vacances d\'été. Sessions juillet et août 2026, 2 formules au choix. Inscriptions ouvertes !',
+    title,
+    description,
   },
   alternates: {
     canonical: '/stage',
@@ -34,15 +48,9 @@ export default function Stage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Stages de Parkour - Été 2026 - PKBA',
-            description: 'Inscription aux stages de parkour PKBA pendant les vacances d\'été 2026',
+            name: title,
+            description,
             url: `${siteUrl}/stage`,
-            mainEntity: {
-              '@type': 'Form',
-              name: 'Formulaire d\'Inscription Stages d\'Été PKBA',
-              description: 'Formulaire d\'inscription pour les stages de parkour des vacances d\'été 2026',
-              url: `${siteUrl}/stage`,
-            },
             breadcrumb: {
               '@type': 'BreadcrumbList',
               itemListElement: [
@@ -55,15 +63,15 @@ export default function Stage() {
                 {
                   '@type': 'ListItem',
                   position: 2,
-                  name: 'Stages d\'Été',
+                  name: 'Stages',
                   item: `${siteUrl}/stage`,
                 },
               ],
             },
-          }),
+          }).replace(/</g, '\\u003c'),
         }}
       />
-      <StagePage />
+      <StagePage initialStageIds={upcoming.map((stage) => stage.id)} />
     </>
   )
 }

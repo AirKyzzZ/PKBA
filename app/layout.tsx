@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
+import { getUpcomingStages } from '@/content/stages'
 import Footer from '@/components/Footer'
 import { CartProvider } from '@/components/CartContext'
 import StructuredData from '@/components/StructuredData'
@@ -115,7 +116,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <CartProvider>
           <div className="min-h-screen flex flex-col">
-            <Header />
+            <Header initialStageIds={getUpcomingStages().map((stage) => stage.id)} />
             <main className="flex-grow">
               {children}
             </main>

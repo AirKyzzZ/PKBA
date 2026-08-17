@@ -27,7 +27,7 @@ const FORMULE_2_TIME = '16h-17h30'
 export const FORMULES = {
   1: {
     id: 1 as const,
-    label: 'Formule 1 — Licenciés / Initiés',
+    label: 'Formule 1 : Licenciés / Initiés',
     shortLabel: 'Formule 1',
     time: FORMULE_1_TIME,
     audience: 'Licenciés ou initiés au parkour',
@@ -38,7 +38,7 @@ export const FORMULES = {
   },
   2: {
     id: 2 as const,
-    label: 'Formule 2 — Découverte',
+    label: 'Formule 2 : Découverte',
     shortLabel: 'Formule 2',
     time: FORMULE_2_TIME,
     audience: 'Non-licenciés / découverte',
@@ -117,9 +117,22 @@ export const STAGE_ORDER: StageId[] = ['juillet-2026', 'aout-2026']
 
 export const DEFAULT_STAGE_ID: StageId = 'juillet-2026'
 
+export const getStageFirstDay = (stage: StageConfig): string => stage.days[0].date
+
+export const getStageLastDay = (stage: StageConfig): string =>
+  stage.days[stage.days.length - 1].date
+
+export const today = (): string => new Date().toISOString().slice(0, 10)
+
+export function getUpcomingStages(reference: string = today()): StageConfig[] {
+  return STAGE_ORDER.map((id) => STAGES[id])
+    .filter((stage) => getStageLastDay(stage) >= reference)
+    .sort((a, b) => getStageFirstDay(a).localeCompare(getStageFirstDay(b)))
+}
+
 export const getStageById = (id: string | null | undefined): StageConfig => {
   if (id && id in STAGES) return STAGES[id as StageId]
-  return STAGES[DEFAULT_STAGE_ID]
+  return getUpcomingStages()[0] ?? STAGES[STAGE_ORDER[STAGE_ORDER.length - 1]]
 }
 
 export const ALL_AIRTABLE_TYPES: readonly string[] = STAGE_ORDER.map(

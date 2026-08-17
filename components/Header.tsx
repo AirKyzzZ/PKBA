@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Instagram, ShoppingCart, ChevronDown } from 'lucide-react'
 import { useCart } from './CartContext'
+import type { StageId } from '@/content/stages'
+import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
 
 type NavItem = {
   name: string
@@ -14,7 +16,12 @@ type NavItem = {
   children?: { name: string; href: string }[]
 }
 
-const Header = () => {
+const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
+  const hasUpcomingStage = useUpcomingStageIds(initialStageIds).length > 0
+  const cta = hasUpcomingStage
+    ? { href: '/stage', desktop: 'Stages ☀️', mobile: "☀️ S'inscrire aux stages" }
+    : { href: '/inscription', desktop: 'Préinscription', mobile: 'Préinscription 2026/2027' }
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -197,10 +204,10 @@ const Header = () => {
               )}
             </Link>
             <Link
-              href="/stage"
+              href={cta.href}
               className="bg-primary hover:bg-secondary text-white px-3 xl:px-6 py-2 rounded-lg font-montserrat font-bold transition-all duration-200 transform hover:scale-105 text-xs xl:text-sm shadow-md whitespace-nowrap"
             >
-              Stages d&apos;Été ☀️
+              {cta.desktop}
             </Link>
           </div>
 
@@ -302,11 +309,11 @@ const Header = () => {
                 )
               )}
               <Link
-                href="/stage"
+                href={cta.href}
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg text-center font-montserrat font-bold transition-all duration-200 text-base shadow-md"
               >
-                ☀️ S&apos;inscrire aux stages d&apos;Été
+                {cta.mobile}
               </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a

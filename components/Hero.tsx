@@ -4,8 +4,15 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+import type { StageId } from "@/content/stages";
+import { useUpcomingStageIds } from "@/lib/use-upcoming-stages";
 
-const Hero = () => {
+const Hero = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
+  const hasUpcomingStage = useUpcomingStageIds(initialStageIds).length > 0;
+  const badge = hasUpcomingStage
+    ? { href: "/stage", label: "Stage de parkour, inscriptions ouvertes" }
+    : { href: "/inscription", label: "Reprise le 7 septembre, préinscriptions ouvertes" };
+
   return (
     <section className="relative min-h-[85vh] lg:min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background Image */}
@@ -37,13 +44,11 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Link
-              href="/stage"
+              href={badge.href}
               className="inline-flex items-center space-x-2 bg-primary/90 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 text-white font-montserrat font-semibold text-sm shadow-lg hover:bg-primary transition-colors duration-200"
             >
               <Calendar size={16} className="flex-shrink-0" />
-              <span className="whitespace-nowrap">
-                Stages d'Été — Inscriptions ouvertes
-              </span>
+              <span className="whitespace-nowrap">{badge.label}</span>
             </Link>
           </motion.div>
 

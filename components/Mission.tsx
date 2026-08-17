@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Shield, TrendingUp, Heart } from 'lucide-react'
+import { SEASON_LABEL } from '@/content/schedule'
 
 const Mission = () => {
   const missionPoints = [
@@ -107,11 +108,12 @@ const Mission = () => {
             </div>
             <div className="bg-gradient-to-br from-primary to-secondary rounded-lg p-6 sm:p-8 text-white">
               <h4 className="text-xl sm:text-2xl font-cheddar font-bold mb-4">
-                Saison 2025/2026
+                Saison {SEASON_LABEL}
               </h4>
               <p className="font-montserrat text-white/90 leading-relaxed text-sm sm:text-base">
-                Rejoignez-nous dès septembre 2025 pour une saison exceptionnelle ! 
-                Préinscriptions ouvertes pour tous les niveaux, à partir de 3 ans (avec autorisation parentale pour les mineurs).
+                Reprise des cours le lundi 7 septembre 2026. Préinscriptions ouvertes pour tous les
+                niveaux, à partir de 3 ans, avec autorisation parentale pour les mineurs. Première
+                séance offerte, sans engagement.
               </p>
             </div>
           </div>

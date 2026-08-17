@@ -3,16 +3,21 @@
 import { useState, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
-import { STAGES, STAGE_ORDER, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById } from '@/content/stages'
+import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById } from '@/content/stages'
+import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
+import Link from 'next/link'
 
-const StagePage = () => {
+const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
-  const [submittedStageId, setSubmittedStageId] = useState<StageId>(DEFAULT_STAGE_ID)
+  const upcomingIds = useUpcomingStageIds(initialStageIds)
+  const [submittedStageId, setSubmittedStageId] = useState<StageId>(
+    initialStageIds[0] ?? DEFAULT_STAGE_ID,
+  )
   const [formData, setFormData] = useState({
     // Stage choisi
-    selectedStage: DEFAULT_STAGE_ID as StageId,
+    selectedStage: (initialStageIds[0] ?? DEFAULT_STAGE_ID) as StageId,
 
     // Informations personnelles
     firstName: '',
@@ -312,7 +317,7 @@ const StagePage = () => {
         setIsSuccess(true)
         // Reset form ONLY after successful submission
         setFormData({
-          selectedStage: DEFAULT_STAGE_ID,
+          selectedStage: upcomingIds[0] ?? DEFAULT_STAGE_ID,
           firstName: '',
           lastName: '',
           birthDate: '',
@@ -344,6 +349,39 @@ const StagePage = () => {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (upcomingIds.length === 0) {
+    return (
+      <div className="pt-16 lg:pt-20 min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="max-w-xl w-full bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10 text-center">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CalendarDays className="w-8 h-8 text-primary" />
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-cheddar font-bold text-gray-900 mb-4">
+            Aucun stage ouvert pour le moment
+          </h1>
+          <p className="font-montserrat text-gray-600 mb-8">
+            Le club organise des stages de parkour pendant les vacances scolaires. Les dates du
+            prochain stage seront annoncées sur cette page et sur le calendrier du club.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/inscription"
+              className="inline-flex items-center justify-center bg-primary hover:bg-secondary text-white font-montserrat font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
+            >
+              Préinscription à l&apos;année
+            </Link>
+            <Link
+              href="/planning"
+              className="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-gray-900 font-montserrat font-semibold px-6 py-3 rounded-lg border border-gray-200 transition-colors duration-200"
+            >
+              Voir le calendrier
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   if (isSuccess) {
@@ -694,7 +732,7 @@ const StagePage = () => {
                   Choix de la session <span className="text-red-500 ml-1">*</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {STAGE_ORDER.map((stageId) => {
+                  {upcomingIds.map((stageId) => {
                     const stage = STAGES[stageId]
                     const isActive = formData.selectedStage === stageId
                     return (

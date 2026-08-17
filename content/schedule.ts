@@ -21,6 +21,8 @@ export type CategoryConfig = {
 
 export const SEASON_LABEL = '2026 / 2027'
 
+export const SEASON_START = '2026-09-07'
+
 export const SCHEDULE_CATEGORIES: Record<ScheduleCategory, CategoryConfig> = {
   loisir: { label: 'Loisir', color: '#16a34a', selection: false, note: 'ouvert à tous' },
   prepa: { label: 'Prépa compét', color: '#f59e0b', selection: true },
