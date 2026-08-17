@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Calendar, MapPin, Clock, ArrowRight, Filter } from 'lucide-react'
-import { events, eventTypeConfig, getUpcomingEvents } from '@/content/events'
+import { eventTypeConfig, getUpcomingEvents } from '@/content/events'
 import type { EventType, ClubEvent } from '@/content/events'
 
 function formatDate(dateStr: string): string {
@@ -35,12 +35,13 @@ function groupByMonth(evts: ClubEvent[]): Record<string, ClubEvent[]> {
 const PlanningPage = () => {
   const [activeFilter, setActiveFilter] = useState<EventType | 'all'>('all')
 
-  const allTypes: EventType[] = ['stage', 'competition', 'entrainement', 'sortie', 'autre']
+  const allTypes: EventType[] = ['stage', 'competition', 'entrainement', 'sortie', 'gala', 'autre']
   const upcomingEvents = getUpcomingEvents(3)
+  const visibleEvents = getUpcomingEvents()
 
   const filteredEvents = activeFilter === 'all'
-    ? events
-    : events.filter((e) => e.type === activeFilter)
+    ? visibleEvents
+    : visibleEvents.filter((e) => e.type === activeFilter)
 
   const sortedEvents = [...filteredEvents].sort((a, b) => a.startDate.localeCompare(b.startDate))
   const groupedEvents = groupByMonth(sortedEvents)
@@ -102,7 +103,7 @@ const PlanningPage = () => {
                           <Calendar size={14} className="flex-shrink-0" />
                           <span>
                             {formatDate(evt.startDate)}
-                            {evt.endDate && ` — ${formatDate(evt.endDate)}`}
+                            {evt.endDate && ` au ${formatDate(evt.endDate)}`}
                           </span>
                         </div>
                         {evt.time && (
@@ -222,7 +223,7 @@ const PlanningPage = () => {
                                   <Calendar size={12} />
                                   <span>
                                     {formatDate(evt.startDate)}
-                                    {evt.endDate && ` — ${formatDate(evt.endDate)}`}
+                                    {evt.endDate && ` au ${formatDate(evt.endDate)}`}
                                   </span>
                                 </span>
                                 {evt.time && (
