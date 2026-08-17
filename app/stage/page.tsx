@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: 'stage parkour, vacances été 2026, stage juillet 2026, stage août 2026, parkour Arcachon, parkour Gujan-Mestras, activité vacances enfants, stage parkour été',
   openGraph: {
     title: 'Stages de Parkour - Été 2026 | PKBA Bassin d\'Arcachon',
-    description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions juillet et août, 2 formules au choix. Encadrement professionnel à Gujan-Mestras.',
+    description: 'Inscrivez-vous aux stages de parkour des vacances d\'été 2026 ! Sessions juillet et août, 2 formules au choix. Encadrement bénévole diplômé à Gujan-Mestras.',
     url: `${siteUrl}/stage`,
     siteName: 'PKBA - Club de Parkour Bassin d\'Arcachon',
     type: 'website',

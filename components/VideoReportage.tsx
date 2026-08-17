@@ -83,7 +83,7 @@ const VideoReportage = () => {
             <div className="flex flex-wrap gap-3">
               <span className="inline-flex items-center space-x-1.5 bg-primary/10 rounded-full px-3 py-1.5 text-primary font-montserrat text-sm font-medium">
                 <Users size={14} className="flex-shrink-0" />
-                <span>65 adhérents</span>
+                <span>66 adhérents</span>
               </span>
               <span className="inline-flex items-center space-x-1.5 bg-red-50 rounded-full px-3 py-1.5 text-red-600 font-montserrat text-sm font-medium">
                 <Medal size={14} className="flex-shrink-0" />

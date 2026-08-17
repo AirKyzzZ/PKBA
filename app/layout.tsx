@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'PKBA - Parkour Bassin d\'Arcachon | Club de Parkour Associatif',
-      description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité. Préinscriptions ouvertes pour la saison 2025/2026. Découvrez nos cours, événements et boutique officielle.',
+      description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité. Préinscriptions ouvertes pour la saison 2026/2027. Découvrez nos cours, événements et boutique officielle.',
   keywords: 'parkour, Arcachon, Bassin d\'Arcachon, sport, encadrement, sécurité, progression, club associatif, cours parkour, événements parkour, boutique PKBA',
   authors: [{ name: 'PKBA - Parkour Bassin d\'Arcachon' }],
   creator: 'PKBA - Parkour Bassin d\'Arcachon',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'PKBA - Parkour Bassin d\'Arcachon | Club de Parkour Associatif',
-    description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité. Préinscriptions ouvertes pour la saison 2025/2026.',
+    description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité. Préinscriptions ouvertes pour la saison 2026/2027.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     siteName: 'PKBA - Parkour Bassin d\'Arcachon',
     images: [
@@ -56,10 +56,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'PKBA - Parkour Bassin d\'Arcachon | Club de Parkour Associatif',
-    description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité.',
+    description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité.',
     images: ['/images/text_white.png'],
-    site: '@pkba_arcachon',
-    creator: '@pkba_arcachon',
   },
   robots: {
     index: true,

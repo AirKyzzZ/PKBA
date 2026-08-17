@@ -25,7 +25,7 @@ const Footer = () => {
             </div>
             <p className="text-gray-300 font-montserrat text-sm">
               Club de parkour associatif du Bassin d'Arcachon. 
-              Encadrement professionnel, progression et sécurité.
+              Encadrement diplômé, progression et sécurité.
             </p>
             <p className="text-gray-400 font-montserrat text-xs">
               Affilié à la Fédération française de gymnastique (FFG)

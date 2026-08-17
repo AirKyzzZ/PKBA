@@ -22,8 +22,8 @@ const Features = () => {
     },
     {
       icon: Award,
-      title: 'Coach Professionnel',
-      description: 'Encadrement par un coach diplômé et expérimenté en parkour.',
+      title: 'Coach Diplômé',
+      description: 'Encadrement par un coach bénévole diplômé et expérimenté en parkour.',
     },
     {
       icon: Calendar,
@@ -105,9 +105,9 @@ const Features = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { number: '3', label: 'Niveaux' },
-              { number: '12+', label: 'Heures/semaine' },
-              { number: '4', label: 'Jours/semaine' },
-              { number: '65', label: 'Adhérents' }
+              { number: '16+', label: 'Heures/semaine' },
+              { number: '5', label: 'Jours/semaine' },
+              { number: '66', label: 'Adhérents' }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}

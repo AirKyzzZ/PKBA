@@ -106,7 +106,7 @@ const StagePage = () => {
     },
     {
       icon: Award,
-      title: 'Coach professionnel',
+      title: 'Coach diplômé',
       description: 'Encadrement par un coach diplômé et expérimenté'
     }
   ], [currentStage])
@@ -521,7 +521,7 @@ const StagePage = () => {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Encadrement professionnel par coach diplômé</span>
+                  <span>Encadrement par un coach bénévole diplômé</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>

@@ -82,7 +82,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-base sm:text-lg font-montserrat text-white/80 max-w-2xl mx-auto leading-relaxed px-4"
           >
-            Club associatif de parkour avec encadrement professionnel.
+            Club associatif de parkour avec encadrement bénévole diplômé.
             <br className="hidden sm:block" />
             Tous niveaux, à partir de 3 ans.
           </motion.p>

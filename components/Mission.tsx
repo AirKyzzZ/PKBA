@@ -8,7 +8,7 @@ const Mission = () => {
     {
       icon: Shield,
       title: 'Sécurité',
-      description: 'Encadrement professionnel et équipements adaptés pour une pratique en toute sécurité.',
+      description: 'Encadrement diplômé et équipements adaptés pour une pratique en toute sécurité.',
       color: 'text-green-600'
     },
     {
@@ -39,7 +39,7 @@ const Mission = () => {
             Notre mission
           </h2>
           <p className="text-lg sm:text-xl font-montserrat text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-            Promouvoir la pratique du parkour au Bassin d'Arcachon avec un encadrement professionnel, 
+            Promouvoir la pratique du parkour au Bassin d'Arcachon avec un encadrement diplômé, 
             en privilégiant le plaisir, la progression et la sécurité de tous nos adhérents.
           </p>
         </motion.div>
@@ -85,7 +85,7 @@ const Mission = () => {
               <ul className="space-y-2 sm:space-y-3 font-montserrat text-gray-600 text-sm sm:text-base">
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Coach professionnel diplômé et expérimenté</span>
+                  <span>Coach bénévole diplômé et expérimenté</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>

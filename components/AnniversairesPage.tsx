@@ -128,7 +128,7 @@ const AnniversairesPage = () => {
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
               Offrez à votre enfant un anniversaire unique et sportif !
-              Animations parkour encadrées par nos coachs professionnels, à partir de 6 ans.
+              Animations parkour encadrées par nos coachs bénévoles diplômés, à partir de 6 ans.
             </p>
           </motion.div>
         </div>

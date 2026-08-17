@@ -41,7 +41,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'SportsOrganization',
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           alternateName: ['PKBA', 'Parkour Bassin d\'Arcachon', 'Club Parkour Arcachon', 'Club Parkour La Teste'],
-          description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité. Cours, événements et compétitions de parkour.',
+          description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité. Cours, événements et compétitions de parkour.',
           url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/full_white.png`,
           image: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/text_white.png`,
@@ -60,8 +60,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             areaServed: 'FR',
           },
           sameAs: [
-            'https://www.facebook.com/pkba.arcachon',
-            'https://www.instagram.com/pkba.arcachon',
+            'https://www.instagram.com/parkourbassindarcachon',
           ],
           foundingDate: '2025',
           sport: 'Parkour',
@@ -83,7 +82,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 itemOffered: {
                   '@type': 'Service',
                   name: 'Cours de Parkour',
-                  description: 'Cours de parkour encadrés par des professionnels',
+                  description: 'Cours de parkour encadrés par des coachs bénévoles diplômés',
                 },
               },
               {
@@ -106,7 +105,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@id': `${process.env.NEXT_PUBLIC_SITE_URL}/#organization`,
           name: 'PKBA - Parkour Bassin d\'Arcachon',
           alternateName: ['PKBA', 'Parkour Bassin d\'Arcachon', 'Club Parkour Arcachon', 'Club Parkour La Teste'],
-          description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement professionnel, progression et sécurité.',
+          description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité.',
           url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
           telephone: '+33 6 60 14 71 44',
           email: 'parkourBA33@gmail.com',
@@ -248,7 +247,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@context': 'https://schema.org',
           '@type': 'SportsEvent',
           name: data.name || 'Cours de Parkour PKBA',
-          description: data.description || 'Cours de parkour encadrés par des professionnels du club PKBA',
+          description: data.description || 'Cours de parkour encadrés par des coachs bénévoles diplômés du club PKBA',
           organizer: {
             '@type': 'Organization',
             name: 'PKBA - Parkour Bassin d\'Arcachon',
