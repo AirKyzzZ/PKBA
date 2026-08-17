@@ -14,7 +14,7 @@ export const SEASON_TARIFS: TarifRow[] = [
   { group: 'Loisirs +8 ans', duration: '1h30 / semaine', price: 350 },
   { group: 'Pré-compét', duration: '2 x 1h30 / semaine', price: 400 },
   { group: 'Perf Petits', duration: '2 x 2h / semaine', price: 420 },
-  { group: 'Perf Grands', duration: '3 x 2h / semaine', price: 450 },
+  { group: 'Perf Grands', duration: '1h30 + 2 x 2h / semaine', price: 450 },
 ]
 
 export type IncludedFee = {
