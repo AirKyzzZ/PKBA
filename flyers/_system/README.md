@@ -43,8 +43,8 @@ Squelette minimal :
 | `fmt-a5` | 148 x 210 mm | Flyer imprimé |
 | `fmt-a4` | 210 x 297 mm | Affiche imprimée |
 
-`render.sh` lit la classe dans le HTML pour connaître les dimensions, il n'y a rien à passer en
-argument.
+`render.mjs` lit la classe dans le HTML pour connaître les dimensions, il n'y a rien à passer en
+argument. Grâce aux unités `cqh`, un même HTML peut sortir dans plusieurs formats.
 
 ## Rendre
 
@@ -55,7 +55,7 @@ node flyers/_system/render.mjs rentree-2026-2027 print      # PDF seulement
 node flyers/_system/render.mjs                              # liste les slugs
 ```
 
-Tout fichier `instagram*.html` sort en PNG, tout fichier `print*.html` sort en PDF. Pour proposer
+Tout fichier `instagram*.html` sort en JPEG qualité 88, tout fichier `print*.html` sort en PDF. Pour proposer
 deux pistes, nommer `instagram-a.html` et `instagram-b.html`, les deux seront rendues.
 
 ## Direction artistique
@@ -71,7 +71,7 @@ deux pistes, nommer `instagram-a.html` et `instagram-b.html`, les deux seront re
    tableau. C'est ce qui donne l'air construit plutôt que décoré.
 5. **Le grain**, discret, pour éviter l'aplat numérique parfait.
 
-Palette, dans `tokens.css` : bleu `#006AFF`, bleu profond `#127bcb`, crème `#F4F2E7`, encre
+Palette, héritée de `tailwind.config.js` du site : bleu `#006AFF`, bleu profond `#127bcb`, crème `#F4F2E7`, encre
 `#0A0A0A`.
 
 Toujours présents : logo PKBA et logo FFGym en haut, adresse et lien de préinscription en bas.
@@ -90,4 +90,4 @@ tous deux insuffisants sous 66 px. Encre sur crème donne 17,63:1 et passe parto
 
 **Les polices sont locales**, dans `fonts/`. Ne pas revenir à Google Fonts par CDN : le rendu
 devient dépendant du réseau et non déterministe. Pour ajouter une police, récupérer le woff2 du
-sous-ensemble latin et le déclarer dans `tokens.css`.
+sous-ensemble latin et le déclarer dans `flyers.css`.
