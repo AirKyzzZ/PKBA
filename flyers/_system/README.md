@@ -49,10 +49,10 @@ argument.
 ## Rendre
 
 ```
-./flyers/_system/render.sh rentree-2026-2027            # tout
-./flyers/_system/render.sh rentree-2026-2027 instagram  # PNG seulement
-./flyers/_system/render.sh rentree-2026-2027 print      # PDF seulement
-./flyers/_system/render.sh                              # liste les slugs
+node flyers/_system/render.mjs rentree-2026-2027            # tout
+node flyers/_system/render.mjs rentree-2026-2027 instagram  # JPEG seulement
+node flyers/_system/render.mjs rentree-2026-2027 print      # PDF seulement
+node flyers/_system/render.mjs                              # liste les slugs
 ```
 
 Tout fichier `instagram*.html` sort en PNG, tout fichier `print*.html` sort en PDF. Pour proposer
@@ -78,12 +78,15 @@ Toujours présents : logo PKBA et logo FFGym en haut, adresse et lien de préins
 
 ## Pièges connus
 
-**Les grands glyphes débordent de leur boîte.** Avec un `line-height` inférieur à 1, un titre à
-200px et plus dépasse verticalement et recouvre la ligne du dessus. Mettre `line-height: 1` puis
-resserrer avec des marges négatives, plutôt que d'écraser le `line-height`.
+**Ne pas écraser le `line-height` pour resserrer un titre.** Utiliser `.trim`, qui applique
+`text-box-trim`, et qui supprime l'espace au dessus des capitales sans faire déborder le glyphe.
 
-**Vérifier chaque rendu à l'œil.** Un débordement ne produit aucune erreur, juste une affiche
-cassée. Ouvrir le PNG après chaque rendu.
+**Le débordement est détecté automatiquement.** Le renderer mesure `.fit-zone`, corrige un petit
+débordement par `zoom` et lève une erreur au delà de 60 px. Il vérifie aussi le plancher de 30 px,
+les ratios de contraste WCAG couple par couple, et le poids du fichier.
+
+**Le bleu ne porte jamais de petit texte.** Bleu sur crème donne 4,15:1 et bleu sur encre 4,25:1,
+tous deux insuffisants sous 66 px. Encre sur crème donne 17,63:1 et passe partout.
 
 **Les polices sont locales**, dans `fonts/`. Ne pas revenir à Google Fonts par CDN : le rendu
 devient dépendant du réseau et non déterministe. Pour ajouter une police, récupérer le woff2 du

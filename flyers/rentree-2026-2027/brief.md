@@ -28,7 +28,7 @@ les reporter ici puis relancer le rendu.
 ## Rendu
 
 ```
-./flyers/_system/render.sh rentree-2026-2027
+node flyers/_system/render.mjs rentree-2026-2027
 ```
 
 ## Légende proposée
