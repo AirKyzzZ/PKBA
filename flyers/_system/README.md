@@ -8,18 +8,20 @@ et de garder une identité cohérente d'une affiche à l'autre.
 
 ```
 flyers/
-  _system/            <- ne pas dupliquer, tout part d'ici
-    tokens.css        couleurs, polices, épaisseurs de filets
-    base.css          reset, formats de canevas, utilitaires
-    fonts/            polices auto-hébergées
-    assets/           logos partagés PKBA et FFGym
-    render.sh         le seul script de rendu
+  _system/              <- ne pas dupliquer, tout part d'ici
+    tailwind.config.js  hérite des tokens du site via presets
+    flyers.css          @font-face, formats de canevas, composants
+    out.css             généré au rendu, ignoré par git
+    fonts/              polices auto-hébergées
+    assets/             logos partagés PKBA et FFGym
+    photos/             photos du club converties depuis les RAW
+    render.mjs          le seul script de rendu, Playwright
   mon-affiche/
-    brief.md          objectif, contenu, livrables, légende
-    instagram.html    visuel réseaux
-    print.html        visuel imprimable, optionnel
-    assets/           images propres à cette affiche
-    exports/          sorties, générées
+    brief.md            objectif, contenu, livrables, légende
+    instagram.html      visuel réseaux
+    print.html          visuel imprimable, optionnel
+    assets/             images propres à cette affiche
+    exports/            sorties, générées
 ```
 
 Partir de `flyers/rentree-2026-2027/instagram.html`, qui sert de référence.
@@ -27,12 +29,17 @@ Partir de `flyers/rentree-2026-2027/instagram.html`, qui sert de référence.
 Squelette minimal :
 
 ```html
-<link rel="stylesheet" href="../_system/tokens.css">
-<link rel="stylesheet" href="../_system/base.css">
+<link rel="stylesheet" href="../_system/out.css">
 ...
-<div class="canvas fmt-ig-post grain">...</div>
+<div class="canvas fmt-ig-post">
+  <header>...</header>
+  <div><!-- photo --></div>
+  <section><div class="fit-zone">...</div></section>
+</div>
 ```
 
+Le canevas est une grille `auto 1fr auto`. Tout contenu variable va dans `.fit-zone`, seule zone
+dont le débordement est mesuré par le renderer.
 ## Formats disponibles
 
 | Classe | Dimensions | Usage |
