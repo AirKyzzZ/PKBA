@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'PK Display';
+  src: url('./fonts/big-shoulders-stencil.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'PK Body';
+  src: url('./fonts/montserrat.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #d8d8d0;
+  }
+
+  body {
+    font-family: 'PK Body', sans-serif;
+    color: #0a0a0a;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+}
+
+@layer components {
+  .canvas {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #f4f2e7;
+    container-type: size;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .fmt-ig-post {
+    width: 1080px;
+    height: 1350px;
+  }
+
+  .fmt-ig-square {
+    width: 1080px;
+    height: 1080px;
+  }
+
+  .fmt-ig-story {
+    width: 1080px;
+    height: 1920px;
+  }
+
+  .fmt-a5 {
+    width: 148mm;
+    height: 210mm;
+  }
+
+  .fmt-a4 {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .fit-zone {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .trim {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+
+  .safe {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .display {
+    font-family: 'PK Display', sans-serif;
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-family: 'PK Body', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .photo-bw {
+    filter: grayscale(1) contrast(1.14) brightness(0.96);
+  }
+
+  .photo-duotone {
+    filter: grayscale(1) contrast(1.2);
+  }
+
+  .duotone-tint {
+    mix-blend-mode: screen;
+    background: #006aff;
+  }
+
+  .scrim-bottom {
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.94) 0%,
+      rgba(10, 10, 10, 0.86) 34%,
+      rgba(10, 10, 10, 0.35) 68%,
+      rgba(10, 10, 10, 0) 100%
+    );
+  }
+}

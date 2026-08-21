@@ -55,3 +55,4 @@ flyers/*/exports/
 flyers/_system/fonts/*.ttf
 flyers/_system/fonts/*.otf
 .playwright-mcp/
+flyers/_system/out.css

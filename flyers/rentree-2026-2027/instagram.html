@@ -3,376 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Rentrée PKBA 2026/2027</title>
-<link rel="stylesheet" href="../_system/tokens.css">
-<link rel="stylesheet" href="../_system/base.css">
-<style>
-  .band {
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: var(--pk-blue);
-  }
-
-  .band-top { top: 0; height: 150px; }
-  .band-top-rule { top: 150px; height: 8px; background: var(--pk-ink); }
-  .band-bottom { bottom: 0; height: 226px; }
-  .band-bottom-rule { bottom: 226px; height: 8px; background: var(--pk-ink); }
-
-  .head {
-    position: relative;
-    z-index: 10;
-    height: 150px;
-    padding: 0 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .head-id { display: flex; align-items: center; gap: 20px; }
-
-  .mark {
-    width: 92px;
-    height: 92px;
-    background: var(--pk-cream);
-    border-radius: 50%;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mark img { width: 100%; height: 100%; object-fit: contain; }
-
-  .head-name {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 54px;
-    line-height: 0.9;
-    color: var(--pk-white);
-    letter-spacing: 0.02em;
-  }
-
-  .head-sub {
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--pk-white);
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  .head-fed {
-    background: var(--pk-cream);
-    padding: 9px 13px;
-    display: flex;
-    align-items: center;
-  }
-
-  .head-fed img { height: 48px; width: auto; object-fit: contain; }
-
-  .body-area {
-    position: relative;
-    z-index: 10;
-    padding: 18px 48px 0;
-  }
-
-  .eyebrow-blue {
-    font-size: 27px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--pk-blue);
-    margin-bottom: 6px;
-  }
-
-  .kicker {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 84px;
-    line-height: 0.82;
-    text-transform: uppercase;
-    color: var(--pk-ink);
-    letter-spacing: 0.005em;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 4px;
-    margin-top: 4px;
-  }
-
-  .hero-day {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 1;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--pk-ink);
-  }
-
-  .hero-num {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 272px;
-    line-height: 1;
-    color: var(--pk-blue);
-    letter-spacing: -0.03em;
-    margin: 0 0 -34px;
-  }
-
-  .hero-month {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 70px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--pk-ink);
-    letter-spacing: 0.005em;
-  }
-
-  .sticker {
-    justify-self: center;
-    transform: rotate(-8deg);
-    background: var(--pk-ink);
-    padding: 20px 26px 24px;
-    text-align: center;
-    box-shadow: 15px 15px 0 var(--pk-blue);
-  }
-
-  .sticker-small {
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--pk-cream);
-    opacity: 0.75;
-  }
-
-  .sticker-big {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 92px;
-    line-height: 0.82;
-    text-transform: uppercase;
-    color: var(--pk-white);
-    margin-top: 6px;
-  }
-
-  .groups {
-    margin-top: 14px;
-    border-top: 8px solid var(--pk-ink);
-    padding-top: 14px;
-  }
-
-  .groups-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 6px;
-  }
-
-  .groups-title {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 58px;
-    text-transform: uppercase;
-    color: var(--pk-ink);
-    line-height: 1;
-  }
-
-  .groups-day {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 44px;
-    letter-spacing: 0.04em;
-    color: var(--pk-blue);
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  .row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 6px 0;
-    border-bottom: 2px solid var(--pk-ink-12);
-  }
-
-  .row:last-of-type { border-bottom: 0; }
-
-  .row-group {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 56px;
-    text-transform: uppercase;
-    line-height: 1;
-    color: var(--pk-ink);
-  }
-
-  .row-time {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 56px;
-    line-height: 1;
-    color: var(--pk-blue);
-  }
-
-  .note {
-    margin-top: 6px;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--pk-ink-60);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .foot {
-    position: absolute;
-    z-index: 10;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 226px;
-    padding: 0 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 14px;
-  }
-
-  .foot-line {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-  }
-
-  .foot-tag {
-    font-family: var(--pk-display);
-    font-weight: 900;
-    font-size: 78px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--pk-white);
-  }
-
-  .foot-sep {
-    width: 4px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.55);
-  }
-
-  .foot-place {
-    font-size: 27px;
-    font-weight: 800;
-    color: var(--pk-white);
-    line-height: 1.25;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .foot-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    border-top: 4px solid rgba(255, 255, 255, 0.5);
-    padding-top: 12px;
-  }
-
-  .foot-url {
-    font-size: 34px;
-    font-weight: 800;
-    color: var(--pk-white);
-  }
-
-  .foot-bio {
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--pk-blue);
-    background: var(--pk-cream);
-    padding: 9px 16px;
-    white-space: nowrap;
-  }
-</style>
+<link rel="stylesheet" href="../_system/out.css">
 </head>
 <body>
-  <div class="canvas fmt-ig-post grain">
-    <div class="band band-top"></div>
-    <div class="band band-top-rule"></div>
-    <div class="band band-bottom"></div>
-    <div class="band band-bottom-rule"></div>
+  <div class="canvas fmt-ig-post">
 
-    <header class="head">
-      <div class="head-id">
-        <div class="mark"><img src="../_system/assets/pkba-logo.png" alt="PKBA"></div>
-        <div>
-          <p class="head-name">PKBA</p>
-          <p class="head-sub">Parkour Bassin d&rsquo;Arcachon</p>
+    <header class="bg-ink flex items-center justify-between safe h-[132px]">
+      <div class="flex items-center gap-5">
+        <div class="w-[76px] h-[76px] rounded-full bg-cream p-[7px] flex items-center justify-center">
+          <img src="../_system/assets/pkba-logo.png" alt="PKBA" class="w-full h-full object-contain">
         </div>
+        <p class="display trim text-cream text-[46px]">PKBA</p>
       </div>
-      <div class="head-fed"><img src="../_system/assets/ffgym-logo.jpg" alt="FFGym"></div>
+      <p class="eyebrow text-cream text-[30px]">Saison 2026 / 2027</p>
     </header>
 
-    <div class="body-area">
-      <p class="eyebrow-blue">Saison 2026 / 2027</p>
-      <h1 class="kicker">Reprise<br>des cours</h1>
-
-      <div class="hero">
-        <div>
-          <p class="hero-day">Lundi</p>
-          <p class="hero-num">7</p>
-          <p class="hero-month">Septembre</p>
-        </div>
-        <div class="sticker">
-          <p class="sticker-small">Sans engagement</p>
-          <p class="sticker-big">1<sup>re</sup> s&eacute;ance<br>offerte</p>
-        </div>
-      </div>
-
-      <section class="groups">
-        <div class="groups-head">
-          <h2 class="groups-title">Groupes loisir</h2>
-          <p class="groups-day">Mercredi</p>
-        </div>
-
-        <div class="row">
-          <span class="row-group">3 &ndash; 5 ans</span>
-          <span class="row-time">11h00</span>
-        </div>
-        <div class="row">
-          <span class="row-group">6 &ndash; 8 ans</span>
-          <span class="row-time">13h00</span>
-        </div>
-        <div class="row">
-          <span class="row-group">8 &ndash; 12 ans</span>
-          <span class="row-time">14h00</span>
-        </div>
-        <div class="row">
-          <span class="row-group">+ 12 ans</span>
-          <span class="row-time">17h30</span>
-        </div>
-
-        <p class="note">Pr&eacute;pa comp&eacute;t. et comp&eacute;tition : sur s&eacute;lection</p>
-      </section>
+    <div class="relative overflow-hidden">
+      <img src="../_system/photos/IMG_4919.jpg" alt=""
+           class="absolute inset-0 w-full h-full object-cover photo-bw">
+      <div class="absolute inset-0 bg-primary opacity-20 mix-blend-screen"></div>
+      <div class="absolute left-0 right-0 bottom-0 h-[3px] bg-ink"></div>
     </div>
 
-    <footer class="foot">
-      <div class="foot-line">
-        <span class="foot-tag">D&egrave;s 3 ans</span>
-        <span class="foot-sep"></span>
-        <span class="foot-place">4 av. de l&rsquo;Actip&ocirc;le<br>Gujan-Mestras</span>
+    <section class="bg-ink safe pt-[46px] pb-[52px]">
+      <div class="fit-zone">
+        <div class="w-[130px] h-[9px] bg-primary mb-[22px]"></div>
+        <p class="eyebrow text-cream text-[46px] mb-[18px]">Ouvert &agrave; tous d&egrave;s 3 ans</p>
+
+        <h1 class="display trim text-cream text-[156px] leading-[0.86] mb-[26px]">
+          Reprise<br>lundi 7 sept.
+        </h1>
+
+        <p class="text-cream text-[46px] font-semibold leading-[1.25] mb-[38px]">
+          Cours loisir le mercredi,<br>de 11h &agrave; 19h.
+        </p>
+
+        <div class="flex items-center justify-center gap-[24px] bg-primary h-[132px] w-full">
+          <span class="display trim text-white text-[84px]">Pr&eacute;inscription</span>
+          <span class="eyebrow text-white text-[32px]">Lien en bio</span>
+        </div>
       </div>
-      <div class="foot-cta">
-        <span class="foot-url">pkba.vertiflow.fr/inscription</span>
-        <span class="foot-bio">Lien en bio</span>
-      </div>
-    </footer>
+    </section>
+
   </div>
 </body>
 </html>
