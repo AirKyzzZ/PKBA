@@ -11,7 +11,8 @@ Demandé par le coach le 17 août 2026, à sortir au plus vite.
 ## Contenu
 
 - Reprise le **lundi 7 septembre 2026**
-- Groupes loisir, tous le mercredi : 3-5 ans 11h00, 6-8 ans 13h00, 8-12 ans 14h00, +12 ans 17h30
+- Groupes loisir le mercredi : 3-5 ans 11h00, 6-8 ans 13h00, 8-12 ans 14h00, +12 ans 17h30
+- Nouveau groupe loisir 9-12 ans le lundi à 17h00, le groupe du mercredi étant complet
 - Prépa compétition et Compétition sur sélection
 - **Première séance offerte**, sans engagement, c'est l'accroche
 - Dès 3 ans, 4 av. de l'Actipôle à Gujan-Mestras
@@ -35,11 +36,12 @@ node flyers/_system/render.mjs rentree-2026-2027
 
 > 🔵 La saison 2026/2027 démarre le lundi 7 septembre.
 >
-> Les cours loisir ont lieu le mercredi, et c'est ouvert à tous dès 3 ans, sans niveau requis :
-> - 3-5 ans à 11h00
-> - 6-8 ans à 13h00
-> - 8-12 ans à 14h00
-> - +12 ans à 17h30
+> Les cours loisir sont ouverts à tous dès 3 ans, sans niveau requis :
+> - 3-5 ans, le mercredi à 11h00
+> - 6-8 ans, le mercredi à 13h00
+> - 8-12 ans, le mercredi à 14h00
+> - 9-12 ans, le lundi à 17h00, nouveau créneau
+> - +12 ans, le mercredi à 17h30
 >
 > Prépa compétition et Compétition se font sur sélection.
 >
