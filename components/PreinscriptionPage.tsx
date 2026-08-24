@@ -150,7 +150,7 @@ const PreinscriptionPage = () => {
             Horaires et tarifs {SEASON_LABEL}
           </h2>
           <p className="text-gray-600 font-montserrat mb-6">
-            Le planning prévisionnel des entraînements et les tarifs de la saison sont détaillés sur
+            Le planning des entraînements et les tarifs de la saison sont détaillés sur
             la page dédiée.
           </p>
           <Link

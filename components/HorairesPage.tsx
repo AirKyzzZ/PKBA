@@ -21,7 +21,7 @@ export default function HorairesPage() {
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">Horaires &amp; Tarifs</h1>
             <p className="text-xl md:text-2xl font-montserrat mb-8 opacity-90">
-              Le planning et les tarifs prévisionnels pour la saison {SEASON_LABEL}.
+              Le planning et les tarifs de la saison {SEASON_LABEL}.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base font-montserrat">
               <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2">
@@ -59,7 +59,7 @@ export default function HorairesPage() {
               Planning des entraînements
             </h2>
             <p className="text-lg text-gray-600 font-montserrat max-w-2xl mx-auto">
-              Planning prévisionnel, susceptible d&apos;évoluer d&apos;ici la rentrée.
+              Reprise des cours le lundi 7 septembre 2026.
             </p>
           </motion.div>
           <WeeklySchedule />

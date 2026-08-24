@@ -1,5 +1,5 @@
 export const TARIFS_SEASON = '2026 / 2027'
-export const TARIFS_PROVISIONAL = true
+export const TARIFS_PROVISIONAL = false
 export const TARIFS_DISCLAIMER = 'Tarifs prévisionnels, susceptibles d\'évoluer.'
 
 export type TarifRow = {
