@@ -95,6 +95,28 @@ les ratios de contraste WCAG couple par couple, et le poids du fichier.
 **Le bleu ne porte jamais de petit texte.** Bleu sur crème donne 4,15:1 et bleu sur encre 4,25:1,
 tous deux insuffisants sous 66 px. Encre sur crème donne 17,63:1 et passe partout.
 
+**Un fichier `print*.html` doit déclarer son `@page`.** Le renderer appelle `page.pdf()` avec
+`preferCSSPageSize`, et `flyers.css` ne fixe que la taille du `div.canvas`, pas celle de la page
+PDF. Sans `<style>@page { size: A4 portrait; margin: 0; }</style>` dans le `head`, le PDF sort au
+format Letter avec l'affiche calée en haut à gauche. La valeur doit suivre la classe `fmt-`.
+
+**Le contrôle de contraste ignore l'alpha.** Il lit `getComputedStyle().color` et n'en garde que
+les trois premiers nombres, donc `text-cream/80` est mesuré comme du crème plein. Une opacité
+basse sur un petit texte passe le contrôle sans être lisible. À vérifier à l'œil.
+
+**Les seuils du contrôle suivent le format, ne pas les remettre en dur.** Ce sont les seuils
+WCAG, plancher de lisibilité à 10,7 px vus, texte large à 18 pt, texte large gras à 14 pt,
+multipliés par le rapport entre le canevas et la taille à laquelle on le regarde. Un canevas
+Instagram de 1080 px vu sur un téléphone de 390 px donne un facteur 2,77, d'où les 30, 66 et
+51 px d'origine. Un format en millimètres se regarde à l'échelle 1, donc le plancher y tombe à
+11 px, soit 8 pt. C'est pour ça qu'un A5 accepte une vraie typographie de flyer alors qu'une
+affiche Instagram non.
+
+**Un QR code réduit par le navigateur devient illisible.** Chrome lisse l'image en la
+redimensionnant et mange les modules, et le code cesse d'être décodable bien avant d'avoir l'air
+flou à l'œil. Lui mettre la classe `.qr`, qui applique `image-rendering: pixelated`. Le contrôle
+automatique ne regarde pas les QR codes : les relire avec un téléphone sur l'export final.
+
 **Les polices sont locales**, dans `fonts/`. Ne pas revenir à Google Fonts par CDN : le rendu
 devient dépendant du réseau et non déterministe. Pour ajouter une police, récupérer le woff2 du
 sous-ensemble latin et le déclarer dans `flyers.css`.

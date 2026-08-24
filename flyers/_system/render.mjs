@@ -8,9 +8,11 @@ const SYSTEM = dirname(fileURLToPath(import.meta.url))
 const FLYERS = dirname(SYSTEM)
 const ROOT = dirname(FLYERS)
 
-const MIN_ANY = 30
-const MIN_SECONDARY = 44
-const MIN_LARGE_FOR_BLUE = 66
+const SEEN_FLOOR = 10.7
+const WCAG_LARGE = 24
+const WCAG_LARGE_BOLD = 18.67
+const PHONE_VIEWPORT = 390
+const PRINT_FORMATS = ['fmt-a4', 'fmt-a5']
 const MAX_BYTES = 1_500_000
 
 const slug = process.argv[2]
@@ -73,7 +75,13 @@ async function autoFit(page, label) {
 
 async function audit(page, label) {
   const found = await page.evaluate(
-    ({ MIN_ANY, MIN_LARGE_FOR_BLUE }) => {
+    ({ SEEN_FLOOR, WCAG_LARGE, WCAG_LARGE_BOLD, PHONE_VIEWPORT, PRINT_FORMATS }) => {
+      const canvas = document.querySelector('.canvas')
+      const fmt = (canvas.className.match(/fmt-[\w-]+/) ?? [''])[0]
+      const scale = PRINT_FORMATS.includes(fmt) ? 1 : canvas.getBoundingClientRect().width / PHONE_VIEWPORT
+      const floor = SEEN_FLOOR * scale
+      const large = WCAG_LARGE * scale
+      const largeBold = WCAG_LARGE_BOLD * scale
       const lum = (hex) => {
         const [r, g, b] = hex.map((v) => {
           const s = v / 255
@@ -108,15 +116,15 @@ async function audit(page, label) {
         const fg = parse(cs.color)
         const r = ratio(fg, bgOf(el))
         const sample = txt.slice(0, 26)
-        if (size < MIN_ANY) out.push(`texte ${size.toFixed(0)}px sous le plancher de ${MIN_ANY}px : "${sample}"`)
-        const needed = size >= MIN_LARGE_FOR_BLUE || (size >= 51 && weight >= 700) ? 3 : 4.5
+        if (size < floor) out.push(`texte ${size.toFixed(0)}px sous le plancher de ${floor.toFixed(0)}px : "${sample}"`)
+        const needed = size >= large || (size >= largeBold && weight >= 700) ? 3 : 4.5
         if (r < needed) {
           out.push(`contraste ${r.toFixed(2)}:1 insuffisant (il faut ${needed}) a ${size.toFixed(0)}px : "${sample}"`)
         }
       })
       return out
     },
-    { MIN_ANY, MIN_LARGE_FOR_BLUE },
+    { SEEN_FLOOR, WCAG_LARGE, WCAG_LARGE_BOLD, PHONE_VIEWPORT, PRINT_FORMATS },
   )
   found.forEach((f) => problems.push(`${label} : ${f}`))
 }
@@ -139,6 +147,7 @@ async function renderPdf(htmlPath) {
   const label = basename(htmlPath)
   const page = await open(htmlPath)
   await autoFit(page, label)
+  await audit(page, label)
   const out = join(dir, 'exports', basename(htmlPath, '.html') + '.pdf')
   await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true })
   console.log(`  PDF        ${basename(out)}`)
@@ -162,6 +171,6 @@ if (problems.length) {
   problems.forEach((p) => console.log('   - ' + p))
   process.exitCode = 1
 } else {
-  console.log('\n  CONTROLE : tout passe (plancher 30px, contrastes WCAG, poids fichier)')
+  console.log('\n  CONTROLE : tout passe (plancher de lisibilite, contrastes WCAG, poids fichier)')
 }
 console.log(`  -> ${join(dir, 'exports')}`)
