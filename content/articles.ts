@@ -182,7 +182,7 @@ export const articles: Article[] = [
 
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un club en pleine croissance</h2>
 
-      <p class="mb-6">Ce passage sur France 3 illustre le travail accompli depuis la création du club. Avec plus de <strong>65 adhérents</strong>, une pédagogie adaptée à tous les âges et un encadrement professionnel, PKBA s'impose comme une référence du parkour en Nouvelle-Aquitaine.</p>
+      <p class="mb-6">Ce passage sur France 3 illustre le travail accompli depuis la création du club. Avec <strong>66 adhérents</strong>, une pédagogie adaptée à tous les âges et un encadrement diplômé FFGym, PKBA s'impose comme une référence du parkour en Nouvelle-Aquitaine.</p>
 
       <p class="mb-6">Le reportage met en avant les valeurs qui font la force du club : <strong>l'accessibilité, la sécurité, la progression et l'esprit de communauté</strong>. Des enfants aux adultes, chacun trouve sa place et progresse à son rythme sous l'œil bienveillant d'éducateurs diplômés.</p>
 

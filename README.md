@@ -24,7 +24,7 @@ PKBA (Parkour Bassin d'Arcachon) est un club associatif dédié à la pratique d
 - Proposer une boutique de produits officiels (T‑shirts) avec paiement Stripe
 - Centraliser les informations pratiques et la prise de contact
 
-L'accent est mis sur l'encadrement professionnel, la progression et la sécurité à chaque étape du parcours des adhérents.
+L'accent est mis sur l'encadrement diplômé, la progression et la sécurité à chaque étape du parcours des adhérents.
 
 ## Sommaire
 

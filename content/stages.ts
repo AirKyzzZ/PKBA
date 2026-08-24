@@ -88,7 +88,7 @@ export const STAGES: Record<StageId, StageConfig> = {
     ),
     metadataTitle: 'Stage de Parkour - Vacances de Juillet 2026 | PKBA Bassin d\'Arcachon',
     metadataDescription:
-      'Inscrivez-vous au stage de parkour des vacances de juillet 2026 ! Du lundi au jeudi, du 6 au 16 juillet, deux formules au choix. À partir de 6 ans, encadrement professionnel.',
+      'Inscrivez-vous au stage de parkour des vacances de juillet 2026 ! Du lundi au jeudi, du 6 au 16 juillet, deux formules au choix. À partir de 6 ans, encadrement diplômé FFGym.',
   },
   'aout-2026': {
     id: 'aout-2026',
