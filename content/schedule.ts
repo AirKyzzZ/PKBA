@@ -37,6 +37,7 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
   {
     day: 'Lundi',
     slots: [
+      { time: '17h00 / 18h30', group: 'Loisir 9/12 ans', coach: 'David', category: 'loisir' },
       { time: '18h30 / 20h00', group: 'Prépa compét +12 ans', coach: 'Victor', category: 'prepa' },
     ],
   },
@@ -85,6 +86,7 @@ export const PREINSCRIPTION_GROUP_OPTIONS: GroupOption[] = [
   { value: 'Loisir 3-5 ans', label: 'Loisir 3-5 ans (le mercredi)' },
   { value: 'Loisir 6-8 ans', label: 'Loisir 6-8 ans (le mercredi)' },
   { value: 'Loisir 8-12 ans', label: 'Loisir 8-12 ans (le mercredi)' },
+  { value: 'Loisir 9-12 ans lundi', label: 'Loisir 9-12 ans (le lundi)' },
   { value: 'Loisir +12 ans', label: 'Loisir +12 ans (le mercredi)' },
   { value: 'Prépa compétition', label: 'Prépa compétition (sur sélection)' },
   { value: 'Compétition', label: 'Compétition (sur sélection)' },
