@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
 import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
+import { computeStageTotals, isFullWeekEligible } from '@/lib/stage-pricing'
 import Link from 'next/link'
 
 const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
@@ -146,28 +147,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
     }))
   }
 
-  const calculatePricing = () => {
-    const selected = formData.selectedDates
-    if (selected.length === 0) return { f1: 0, f2: 0 }
-
-    let f1Total = 0
-    if (currentStage.weekDiscount) {
-      stageWeeks.forEach((weekDays) => {
-        const weekDates = weekDays.map((d) => d.date)
-        const fullWeek = weekDates.every((d) => selected.includes(d))
-        const selectedInWeek = weekDates.filter((d) => selected.includes(d))
-        f1Total += fullWeek
-          ? (FORMULES[1].priceWeek ?? selectedInWeek.length * FORMULES[1].pricePerDay)
-          : selectedInWeek.length * FORMULES[1].pricePerDay
-      })
-    } else {
-      f1Total = selected.length * FORMULES[1].pricePerDay
-    }
-
-    const f2Total = selected.length * FORMULES[2].pricePerDay
-
-    return { f1: f1Total, f2: f2Total }
-  }
+  const calculatePricing = () => computeStageTotals(currentStage, formData.selectedDates)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -412,7 +392,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Jours : {STAGES[submittedStageId].weekDiscount ? 'Lundi au Vendredi' : 'Lundi au Jeudi (vendredis indisponibles)'}</span>
+                  <span>Jours : {STAGES[submittedStageId].daysLabel ?? (STAGES[submittedStageId].weekDiscount ? 'Lundi au Vendredi' : 'Lundi au Jeudi (vendredis indisponibles)')}</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -754,7 +734,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                         </div>
                         <div className="space-y-1 text-sm text-gray-600 font-montserrat">
                           <p>{stage.period}</p>
-                          <p>{stage.weekDiscount ? 'Lundi au Vendredi · tarif semaine disponible' : 'Lundi au Jeudi · pas de vendredi'}</p>
+                          <p>{stage.daysLabel ?? (stage.weekDiscount ? 'Lundi au Vendredi · tarif semaine disponible' : 'Lundi au Jeudi · pas de vendredi')}</p>
                         </div>
                       </button>
                     )

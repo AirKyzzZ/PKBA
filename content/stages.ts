@@ -1,4 +1,4 @@
-export type StageId = 'juillet-2026' | 'aout-2026'
+export type StageId = 'juillet-2026' | 'aout-2026' | 'toussaint-2026'
 
 export type StageDay = {
   date: string
@@ -16,6 +16,7 @@ export type StageConfig = {
   period: string
   monthLabel: string
   weekDiscount: boolean
+  daysLabel?: string
   days: StageDay[]
   metadataTitle: string
   metadataDescription: string
@@ -111,11 +112,33 @@ export const STAGES: Record<StageId, StageConfig> = {
     metadataDescription:
       'Inscrivez-vous au stage de parkour des vacances d\'août 2026 ! Du lundi au vendredi, du 17 au 28 août, deux formules au choix avec tarif semaine. À partir de 6 ans.',
   },
+  'toussaint-2026': {
+    id: 'toussaint-2026',
+    airtableType: 'Stage Vacances Toussaint 2026',
+    shortLabel: 'Toussaint',
+    fullLabel: 'Stage Toussaint 2026',
+    badgeLabel: 'Stage de la Toussaint',
+    emoji: '🍂',
+    period: 'Le vendredi 23 octobre, puis du 26 au 30 octobre 2026',
+    monthLabel: 'octobre 2026',
+    weekDiscount: true,
+    daysLabel: 'Vendredi 23 octobre, puis du lundi 26 au vendredi 30 octobre',
+    days: buildDays(
+      [
+        '2026-10-23',
+        '2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30',
+      ],
+      [1, 6],
+    ),
+    metadataTitle: 'Stage de Parkour - Vacances de la Toussaint 2026 | PKBA Bassin d\'Arcachon',
+    metadataDescription:
+      'Inscrivez-vous au stage de parkour des vacances de la Toussaint 2026 ! Le vendredi 23 octobre, puis du lundi 26 au vendredi 30 octobre, deux formules au choix avec tarif semaine. À partir de 6 ans.',
+  },
 } as const
 
-export const STAGE_ORDER: StageId[] = ['juillet-2026', 'aout-2026']
+export const STAGE_ORDER: StageId[] = ['juillet-2026', 'aout-2026', 'toussaint-2026']
 
-export const DEFAULT_STAGE_ID: StageId = 'juillet-2026'
+export const DEFAULT_STAGE_ID: StageId = 'toussaint-2026'
 
 export const getStageFirstDay = (stage: StageConfig): string => stage.days[0].date
 

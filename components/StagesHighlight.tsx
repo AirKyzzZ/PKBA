@@ -17,6 +17,11 @@ const CARD_DETAILS: Record<StageId, { headline: string; sub: string; note: strin
     sub: '10 jours',
     note: 'Tarif semaine 100€ disponible (Formule 1)',
   },
+  'toussaint-2026': {
+    headline: 'Vendredi 23, puis 26 au 30 octobre',
+    sub: '6 jours',
+    note: 'Tarif semaine 100€ sur la semaine du 26 (Formule 1)',
+  },
 }
 
 const StagesHighlight = ({ stages }: { stages: StageConfig[] }) => {
