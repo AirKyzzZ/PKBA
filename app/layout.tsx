@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: 'PKBA - Parkour Bassin d\'Arcachon',
     images: [
       {
-        url: '/images/text_white.png',
+        url: '/images/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'PKBA - Parkour Bassin d\'Arcachon - Club de Parkour Associatif',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PKBA - Parkour Bassin d\'Arcachon | Club de Parkour Associatif',
     description: 'Club de parkour associatif au Bassin d\'Arcachon. Encadrement diplômé, progression et sécurité.',
-    images: ['/images/text_white.png'],
+    images: ['/images/og-card.jpg'],
   },
   robots: {
     index: true,

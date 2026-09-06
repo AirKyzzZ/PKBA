@@ -60,6 +60,11 @@
     height: 1920px;
   }
 
+  .fmt-og {
+    width: 1200px;
+    height: 630px;
+  }
+
   .fmt-a5 {
     width: 148mm;
     height: 210mm;

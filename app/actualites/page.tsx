@@ -13,7 +13,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero_background.webp',
+        url: '/images/og-card.jpg',
         width: 1200,
         height: 630,
         alt: 'Actualités PKBA, parkour Bassin d\'Arcachon',
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Actualités PKBA',
     description: 'Les dernières nouvelles du club PKBA sur le Bassin d\'Arcachon.',
-    images: ['/images/hero_background.webp'],
+    images: ['/images/og-card.jpg'],
   },
 }
 

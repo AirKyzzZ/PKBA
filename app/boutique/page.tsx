@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Boutique PKBA - Collection Officielle | Parkour Bassin d\'Arcachon',
     description: 'Collection officielle PKBA : T-shirts personnalisables, sweats à capuche et shorts athlétiques. Paiement sécurisé.',
     url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/boutique`,
-    images: ['/images/text_white.png'],
+    images: ['/images/og-card.jpg'],
   },
   alternates: {
     canonical: '/boutique',

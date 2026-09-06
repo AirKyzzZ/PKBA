@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { CLUB } from '@/content/club'
 
 interface StructuredDataProps {
   type: 'organization' | 'sportsOrganization' | 'product' | 'event' | 'localBusiness' | 'localSportsOrganization' | 'article'
@@ -61,6 +62,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           },
           sameAs: [
             'https://www.instagram.com/parkourbassindarcachon',
+            CLUB.google.mapsUrl,
           ],
           foundingDate: '2025',
           sport: 'Parkour',
