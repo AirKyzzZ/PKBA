@@ -148,7 +148,7 @@ const AnniversairesPage = () => {
               Ce qu'on propose
             </h2>
             <p className="text-lg font-montserrat text-gray-600 max-w-2xl mx-auto">
-              Un anniversaire parkour, c'est bien plus qu'une fête — c'est une aventure !
+              Un anniversaire parkour, c'est bien plus qu'une fête, c'est une aventure !
             </p>
           </motion.div>
 

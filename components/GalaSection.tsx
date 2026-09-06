@@ -116,7 +116,7 @@ const GalaSection = () => {
                     {lot.label}
                     {lot.sponsor && (
                       <span className="text-white/70 text-xs block sm:inline sm:ml-2">
-                        — offert par {lot.sponsor}
+                        offert par {lot.sponsor}
                       </span>
                     )}
                   </span>
@@ -134,7 +134,7 @@ const GalaSection = () => {
           className="text-center"
         >
           <div className="inline-block bg-yellow-300 text-[#1d3a8a] font-cheddar font-bold text-base sm:text-lg px-6 py-3 rounded-xl shadow-lg">
-            🎟️ Tickets 3€ — au hangar &amp; auprès des traceurs
+            🎟️ Tickets 3€, au hangar et auprès des traceurs
           </div>
           <p className="mt-4 text-white/90 font-montserrat text-sm sm:text-base">
             Plus de tickets achetés = plus de chances de gagner !

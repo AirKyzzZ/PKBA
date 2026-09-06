@@ -486,7 +486,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                 <div className="bg-white rounded-lg p-4 border border-red-200">
                   <div className="flex items-center space-x-2 mb-3">
                     <Calendar size={20} className="text-red-600" />
-                    <strong className="text-gray-900">Formule 1 — Journée</strong>
+                    <strong className="text-gray-900">Formule 1 : Journée</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div>• {FORMULES[1].time}</div>
@@ -497,14 +497,14 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     <div>• À partir de {FORMULES[1].minAge} ans</div>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
-                    <p className="text-amber-900 font-semibold text-center">{FORMULES[1].pricePerDay}€ / jour — {FORMULES[1].priceWeek}€ / semaine *</p>
+                    <p className="text-amber-900 font-semibold text-center">{FORMULES[1].pricePerDay}€ / jour, {FORMULES[1].priceWeek}€ / semaine *</p>
                     <p className="text-xs text-amber-700 text-center mt-1 italic">* tarif semaine en août uniquement</p>
                   </div>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-primary/30">
                   <div className="flex items-center space-x-2 mb-3">
                     <Clock size={20} className="text-primary" />
-                    <strong className="text-gray-900">Formule 2 — Découverte</strong>
+                    <strong className="text-gray-900">Formule 2 : Découverte</strong>
                   </div>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div>• {FORMULES[2].time}</div>
@@ -759,7 +759,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <strong className="text-gray-900 font-montserrat">Formule 1 — Journée</strong>
+                      <strong className="text-gray-900 font-montserrat">Formule 1 : Journée</strong>
                       <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">Licenciés/Initiés</span>
                     </div>
                     <div className="space-y-1 text-sm text-gray-600 font-montserrat">
@@ -767,7 +767,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                       <p>À partir de {FORMULES[1].minAge} ans · 20 places</p>
                       <p className="font-semibold text-amber-900 mt-2">
                         {FORMULES[1].pricePerDay}€ / jour
-                        {currentStage.weekDiscount && ` — ${FORMULES[1].priceWeek}€ / semaine`}
+                        {currentStage.weekDiscount && `, ${FORMULES[1].priceWeek}€ / semaine`}
                       </p>
                     </div>
                   </button>
@@ -781,7 +781,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <strong className="text-gray-900 font-montserrat">Formule 2 — Découverte</strong>
+                      <strong className="text-gray-900 font-montserrat">Formule 2 : Découverte</strong>
                       <span className="px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">Débutant</span>
                     </div>
                     <div className="space-y-1 text-sm text-gray-600 font-montserrat">
@@ -806,7 +806,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               <div>
                 <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
                   <CalendarDays className="mr-2" />
-                  Jours souhaités — {currentStage.shortLabel} {currentStage.emoji}
+                  Jours souhaités : {currentStage.shortLabel} {currentStage.emoji}
                 </h3>
                 <p className="text-sm text-gray-600 font-montserrat mb-4">
                   Sélectionnez les jours où vous souhaitez participer au stage. Vous pouvez choisir des jours individuels{currentStage.weekDiscount && formData.selectedFormule === 'formule1' ? ' ou des semaines complètes (tarif semaine 100€)' : ''}.

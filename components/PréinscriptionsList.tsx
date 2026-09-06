@@ -603,10 +603,11 @@ const PréinscriptionsList = () => {
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026' ? 'Avril'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026' ? 'Juillet'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026' ? 'Août'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Toussaint 2026' ? 'Toussaint'
                             : inscription.fields['Type d\'inscription']}
                         </span>
                       ) : (
-                        <span className="text-xs text-gray-400">—</span>
+                        <span className="text-xs text-gray-400">·</span>
                       )}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900 max-w-[200px]">
@@ -617,7 +618,7 @@ const PréinscriptionsList = () => {
                       ) : inscription.fields['Nombre de séances'] ? (
                         <span className="font-medium">{inscription.fields['Nombre de séances']} séance(s)</span>
                       ) : (
-                        <span className="text-gray-400">—</span>
+                        <span className="text-gray-400">·</span>
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
