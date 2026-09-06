@@ -68,7 +68,8 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
   {
     day: 'Vendredi',
     slots: [
-      { time: '17h30 / 19h30', group: 'Compétition', coach: 'David', category: 'compet' },
+      { time: '17h00 / 18h00', group: 'Loisir 6/8 ans', coach: 'David', category: 'loisir' },
+      { time: '18h00 / 20h00', group: 'Compétition', coach: 'David', category: 'compet' },
     ],
   },
   {
@@ -84,7 +85,8 @@ export type GroupOption = { value: string; label: string }
 
 export const PREINSCRIPTION_GROUP_OPTIONS: GroupOption[] = [
   { value: 'Loisir 3-5 ans', label: 'Loisir 3-5 ans (le mercredi)' },
-  { value: 'Loisir 6-8 ans', label: 'Loisir 6-8 ans (le mercredi)' },
+  { value: 'Loisir 6-8 ans', label: 'Loisir 6-8 ans (le mercredi, complet)' },
+  { value: 'Loisir 6-8 ans vendredi', label: 'Loisir 6-8 ans (le vendredi)' },
   { value: 'Loisir 8-12 ans', label: 'Loisir 8-12 ans (le mercredi)' },
   { value: 'Loisir 9-12 ans lundi', label: 'Loisir 9-12 ans (le lundi)' },
   { value: 'Loisir +12 ans', label: 'Loisir +12 ans (le mercredi)' },
