@@ -34,8 +34,8 @@ const ContactPage = () => {
     {
       icon: Instagram,
       title: 'Instagram',
-      value: '@parkourbassindarcachon',
-      href: 'https://instagram.com/parkourbassindarcachon',
+      value: `@${CLUB.social.instagramHandle}`,
+      href: CLUB.social.instagram,
       description: 'Suivez-nous sur Instagram'
     },
     {

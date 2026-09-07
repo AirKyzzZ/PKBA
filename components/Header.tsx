@@ -9,6 +9,7 @@ import { Menu, X, Instagram, ShoppingCart, ChevronDown } from 'lucide-react'
 import { useCart } from './CartContext'
 import type { StageId } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
+import { CLUB } from '@/content/club'
 
 type NavItem = {
   name: string
@@ -185,7 +186,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
           {/* Social Links & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <a
-              href="https://instagram.com/parkourbassindarcachon"
+              href={CLUB.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-primary transition-colors duration-200"
@@ -214,7 +215,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
           {/* Mobile Quick Links */}
           <div className="flex items-center lg:hidden">
             <a
-              href="https://instagram.com/parkourbassindarcachon"
+              href={CLUB.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
@@ -317,7 +318,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               </Link>
               <div className="pt-4 border-t border-gray-200">
                 <a
-                  href="https://instagram.com/parkourbassindarcachon"
+                  href={CLUB.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors duration-200 text-sm"

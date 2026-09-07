@@ -61,7 +61,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             areaServed: 'FR',
           },
           sameAs: [
-            'https://www.instagram.com/parkourbassindarcachon',
+            CLUB.social.instagram,
+            ...(CLUB.social.facebook ? [CLUB.social.facebook] : []),
             CLUB.google.mapsUrl,
           ],
           foundingDate: '2025',

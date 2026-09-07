@@ -18,6 +18,11 @@ export const CLUB = {
     embedSrc:
       'https://www.google.com/maps?q=Parkour+Bassin+d%27Arcachon%2C+4+Av.+de+L%27actipole%2C+33470+Gujan-Mestras&output=embed',
   },
+  social: {
+    instagramHandle: 'parkourbassindarcachon',
+    instagram: 'https://instagram.com/parkourbassindarcachon',
+    facebook: null as string | null,
+  },
   travelTime: {
     arcachon: '15 min',
     laTeste: '10 min',

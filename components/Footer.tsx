@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Mail, Phone, MapPin } from 'lucide-react'
+import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react'
 import { FcGoogle } from 'react-icons/fc'
 import { CLUB } from '@/content/club'
 
@@ -32,7 +32,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center space-x-4">
               <a
-                href="https://instagram.com/parkourbassindarcachon"
+                href={CLUB.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram PKBA"
@@ -40,6 +40,17 @@ const Footer = () => {
               >
                 <Instagram size={20} />
               </a>
+              {CLUB.social.facebook && (
+                <a
+                  href={CLUB.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook PKBA"
+                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                >
+                  <Facebook size={20} />
+                </a>
+              )}
               <a
                 href={CLUB.google.mapsUrl}
                 target="_blank"
