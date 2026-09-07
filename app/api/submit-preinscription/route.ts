@@ -4,6 +4,7 @@ import {
   validatePreinscription,
   type PreinscriptionPayload,
 } from '@/lib/preinscription'
+import { notifySignup } from '@/lib/notifications'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -44,6 +45,22 @@ export async function POST(request: NextRequest) {
     }
 
     const result = await airtableResponse.json()
+
+    await notifySignup({
+      kind: 'preinscription',
+      recordId: result.id,
+      firstName: body.firstName!.trim(),
+      lastName: body.lastName!.trim(),
+      email: body.email!.trim(),
+      phone: body.phone!.trim(),
+      lines: [
+        ['Date de naissance', body.birthDate ?? ''],
+        ['Groupe souhaité', body.groupeSouhaite?.trim() ?? ''],
+        ['Responsable', body.parentName?.trim() ?? ''],
+        ['Message', body.message?.trim() ?? ''],
+      ],
+    })
+
     return NextResponse.json(
       { success: true, message: 'Préinscription enregistrée avec succès', id: result.id },
       { status: 200 },

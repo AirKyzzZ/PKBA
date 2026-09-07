@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { STAGES, type StageId } from '@/content/stages'
+import { notifySignup } from '@/lib/notifications'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -226,6 +227,22 @@ export async function POST(request: NextRequest) {
     }
 
     const result = await airtableResponse.json()
+
+    await notifySignup({
+      kind: 'stage',
+      recordId: result.id,
+      firstName: body.firstName.trim(),
+      lastName: body.lastName.trim(),
+      email: body.email.trim(),
+      phone: body.phone.trim(),
+      lines: [
+        ['Stage', stage.fullLabel],
+        ['Jours', formatDaysSelected(selectedDates)],
+        ['Nombre de séances', String(selectedDates.length)],
+        ['Date de naissance', body.birthDate],
+      ],
+    })
+
     return NextResponse.json(
       {
         success: true,
