@@ -28,19 +28,29 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
     setIsLoading(true)
     setError('')
 
-    // Simple password check (in production, this should be server-side)
-    if (password === 'vertiflow') {
-      setIsAuthenticated(true)
-      sessionStorage.setItem('admin_authenticated', 'true')
-    } else {
-      setError('Mot de passe incorrect')
-      setPassword('')
+    try {
+      const response = await fetch('/api/admin/login/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      })
+      if (response.ok) {
+        setIsAuthenticated(true)
+        sessionStorage.setItem('admin_authenticated', 'true')
+      } else {
+        const data = await response.json().catch(() => ({}))
+        setError(data.message || 'Mot de passe incorrect')
+        setPassword('')
+      }
+    } catch {
+      setError('Connexion impossible, réessayez')
+    } finally {
+      setIsLoading(false)
     }
-    
-    setIsLoading(false)
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await fetch('/api/admin/login/', { method: 'DELETE' }).catch(() => {})
     setIsAuthenticated(false)
     sessionStorage.removeItem('admin_authenticated')
   }

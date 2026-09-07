@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireAdmin } from '@/lib/admin-auth'
 
 // Configuration Airtable
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
@@ -45,6 +46,9 @@ const formatRecord = (record: any) => ({
 })
 
 export async function GET(request: NextRequest) {
+  const denied = requireAdmin(request)
+  if (denied) return denied
+
   try {
     // Vérification de la configuration
     if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
