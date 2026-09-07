@@ -34,7 +34,7 @@ changement, les corriger là-bas d'abord, puis les reporter ici et relancer le r
 
 Le premier jet portait l'echelle sur les dates seules et on ne comprenait pas qu'il s'agissait
 d'un stage pendant les vacances de la Toussaint. Quatre pistes ont ete testees, la direction creme
-a ete retenue, puis quatre declinaisons de cette direction. **La declinaison A1 est retenue**,
+a ete retenue, puis quatre declinaisons de cette direction. **La declinaison A1 est retenue**, avec l'entete E2,
 c'est `instagram.html`. Le flyer A5 est aligne dessus : meme titre, meme pave bleu pour les dates.
 
 Le principe : fond creme, bandeau encre en haut, titre encre en tres gros, bleu franc reserve aux
@@ -50,6 +50,14 @@ pas encombrer les exports. Elles restent utilisables pour un post ulterieur :
 - `instagram-a2.html`, bande bleue bord a bord portant les tarifs
 - `instagram-a3.html`, photo en haut, contenu creme en dessous, pied bleu
 - `instagram-a4.html`, calendrier d'octobre a la place du bloc de dates
+
+**L'entete.** Le logo PKBA n'est pas une pastille ronde, c'est un lockup vertical, le mot arque
+au dessus d'un medaillon. Le mettre dans un disque le compressait en bouillie illisible et
+ecrivait PKBA deux fois, une fois dans le disque et une fois a cote. Le medaillon est desormais
+detoure en asset separe, `_system/assets/pkba-medaillon.png`, masque en cercle. C'est lui qu'il
+faut utiliser dans une pastille, jamais `pkba-logo.png`, qui ne va que sur une zone large ou son
+wordmark arque a la place de respirer. Correctif applique aussi au flyer A5, a la carte de
+partage du site et aux variantes archivees.
 
 **Deux pieges rencontres, a retenir.**
 
