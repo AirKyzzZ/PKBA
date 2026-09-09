@@ -9,11 +9,14 @@ Suit l'issue #27.
 
 ## Contenu
 
-- Accroche sur le temps que ça prend et sur l'utilité pour le club
-- La raison concrète, un avis est ce que regardent en premier les parents qui cherchent une
-  activité pour leur enfant
-- Le QR, en 58 mm, assez gros pour se scanner à distance de bras
-- Adresse et compte Instagram en pied
+Affiche volontairement pauvre en texte, elle se lit de loin et en passant. Le message tient dans
+les cinq étoiles, le titre et le QR, tout le reste est visuel.
+
+- Cinq étoiles pleines en jaune, c'est ce qui dit avis sans avoir à l'écrire
+- Le logo Google en haut à droite, extrait de `react-icons` que le site utilise déjà, plutôt
+  qu'un dessin approximatif d'une marque déposée
+- Le QR en 68 mm, assez gros pour se scanner de loin
+- Un pied bleu avec deux pictos, Instagram et le site, sans phrase
 
 ## Le QR
 
