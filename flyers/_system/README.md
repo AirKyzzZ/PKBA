@@ -65,6 +65,21 @@ node flyers/_system/render.mjs                              # liste les slugs
 Tout fichier `instagram*.html` sort en JPEG qualité 88, tout fichier `print*.html` sort en PDF. Pour proposer
 deux pistes, nommer `instagram-a.html` et `instagram-b.html`, les deux seront rendues.
 
+## QR codes
+
+`qr.py` genere un QR et verifie qu'il se relit avant de rendre la main.
+
+```
+python3 flyers/_system/qr.py "https://exemple.fr" mon-affiche/assets/qr.png
+```
+
+Correction Q par defaut, pas H. H produit un code plus dense qu'OpenCV ne sait pas relire, donc
+inverifiable automatiquement, alors que Q reste robuste a l'impression. Les URL viennent de
+`content/club.ts`, jamais recopiees a la main.
+
+Toujours poser la classe `.qr` sur l'image dans le HTML, et relire le PDF final avec un telephone
+avant un gros tirage.
+
 ## Direction artistique
 
 Éditorial sportif au stencil. Ce qui fait l'identité, dans l'ordre :
