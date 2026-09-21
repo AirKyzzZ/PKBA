@@ -92,6 +92,37 @@ export const events: ClubEvent[] = [
     description: 'Gala de fin de saison du club, ouvert aux athlètes, aux familles et au grand public. Démonstrations des groupes et temps fort de la vie associative du PKBA.',
     link: '/',
   },
+  {
+    id: 8,
+    title: 'Stage de Parkour - Vacances de la Toussaint',
+    type: 'stage',
+    startDate: '2026-10-23',
+    endDate: '2026-10-30',
+    time: 'Formule 1 : 10h-16h / Formule 2 : 16h-17h30',
+    location: '4 Av. de L\'actipôle, Gujan-Mestras',
+    description: 'Stage de parkour des vacances de la Toussaint : le vendredi 23 octobre, puis du lundi 26 au vendredi 30 octobre. Pas de stage du 19 au 22, les animateurs sont en formation. Deux formules au choix, journée complète (25€/jour ou 100€ la semaine du 26) pour licenciés et initiés, ou séance découverte (15€) pour non-licenciés.',
+    link: '/stage',
+  },
+  {
+    id: 9,
+    title: 'Assemblée générale du PKBA',
+    type: 'autre',
+    startDate: '2026-11-06',
+    time: '19h00',
+    location: '4 Av. de L\'actipôle, Gujan-Mestras',
+    description: 'Assemblée générale annuelle du club, ouverte aux adhérents et à leurs représentants légaux. Les convocations sont envoyées au moins quinze jours avant.',
+    link: '/',
+  },
+  {
+    id: 10,
+    title: 'NFX 2026, open international de Rouen',
+    type: 'competition',
+    startDate: '2026-11-12',
+    endDate: '2026-11-15',
+    location: 'Rouen',
+    description: 'Open international de parkour. Le groupe compétition du PKBA fait le déplacement, encadré par le club.',
+    link: '/actualites',
+  },
 ]
 
 export function getUpcomingEvents(limit?: number): ClubEvent[] {
