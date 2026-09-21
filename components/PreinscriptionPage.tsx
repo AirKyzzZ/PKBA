@@ -131,7 +131,7 @@ const PreinscriptionPage = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
           <Sun size={20} className="text-amber-600 flex-shrink-0" />
           <span className="font-montserrat text-amber-900">
-            Vous cherchez les <strong>stages d&apos;été 2026</strong> (juillet et août) ?
+            Vous cherchez les <strong>stages des vacances scolaires</strong> ?
           </span>
           <Link
             href="/stage"

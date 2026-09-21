@@ -13,6 +13,18 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const upcomingIds = useUpcomingStageIds(initialStageIds)
+  const upcomingStages = useMemo(() => upcomingIds.map((id) => STAGES[id]), [upcomingIds])
+  const periodLabel = upcomingStages.map((stage) => stage.monthLabel).join(' et ')
+  const sessionsLabel =
+    upcomingStages.length > 1
+      ? `${upcomingStages.length} sessions au choix (${upcomingStages.map((stage) => stage.shortLabel.toLowerCase()).join(' et ')})`
+      : (upcomingStages[0]?.period ?? '')
+  const stageWord = upcomingStages.length > 1 ? 'Stages' : 'Stage'
+  const ofPeriod = /^[aeiouéèêh]/i.test(periodLabel) ? `d'${periodLabel}` : `de ${periodLabel}`
+  const heroTitle = periodLabel ? `${stageWord} de parkour, ${periodLabel}` : 'Stages de parkour'
+  const heroIntro = upcomingStages.length
+    ? `${sessionsLabel}, deux formules pour tous à partir de ${FORMULES[2].minAge} ans.`
+    : 'Les dates du prochain stage seront annoncées prochainement.'
   const [submittedStageId, setSubmittedStageId] = useState<StageId>(
     initialStageIds[0] ?? DEFAULT_STAGE_ID,
   )
@@ -422,11 +434,10 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-cheddar font-bold mb-6">
-              Stages de Parkour - Été 2026
+              {heroTitle}
             </h1>
             <p className="text-xl font-montserrat max-w-3xl mx-auto leading-relaxed">
-              Inscrivez-vous aux stages de parkour des vacances d'été !
-              Deux sessions au choix (juillet et août), deux formules pour tous à partir de 6 ans.
+              {heroIntro}
             </p>
           </motion.div>
         </div>
@@ -472,11 +483,10 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               <Calendar size={32} className="text-primary" />
             </div>
             <h2 className="text-3xl font-cheddar font-bold text-gray-900 mb-4">
-              Stages d'Été 2026 - Inscriptions Ouvertes !
+              {periodLabel ? `${stageWord} ${ofPeriod}, inscriptions ouvertes` : 'Prochains stages'}
             </h2>
             <p className="text-lg font-montserrat text-gray-600 mb-6 max-w-2xl mx-auto">
-              Profitez des vacances d'été pour découvrir ou progresser en parkour !
-              Choisissez votre session (juillet ou août) et votre formule, à partir de 6 ans.
+              {heroIntro}
             </p>
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-cheddar font-semibold text-gray-900 mb-4">
@@ -497,8 +507,12 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     <div>• À partir de {FORMULES[1].minAge} ans</div>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
-                    <p className="text-amber-900 font-semibold text-center">{FORMULES[1].pricePerDay}€ / jour, {FORMULES[1].priceWeek}€ / semaine *</p>
-                    <p className="text-xs text-amber-700 text-center mt-1 italic">* tarif semaine en août uniquement</p>
+                    <p className="text-amber-900 font-semibold text-center">
+                      {FORMULES[1].pricePerDay}€ / jour{currentStage.weekDiscount ? `, ${FORMULES[1].priceWeek}€ / semaine *` : ''}
+                    </p>
+                    {currentStage.weekDiscount && (
+                      <p className="text-xs text-amber-700 text-center mt-1 italic">* sur une semaine complète du lundi au vendredi</p>
+                    )}
                   </div>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-primary/30">
@@ -587,7 +601,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               <div className="flex items-center space-x-2">
                 <CheckCircle size={20} className="text-primary" />
                 <p className="text-gray-800 font-montserrat font-medium">
-                  Inscrivez-vous dès maintenant aux stages d'été 2026 ! Places limitées.
+                  Inscrivez-vous dès maintenant au {currentStage.fullLabel.toLowerCase()} ! Places limitées.
                 </p>
               </div>
             </div>
