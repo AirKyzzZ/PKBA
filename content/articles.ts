@@ -14,6 +14,94 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: 6,
+    slug: 'saison-2026-2027-stages-ete-rentree-toussaint-pkba',
+    title: 'Saison 2026/2027 : l\'été au PKBA, la rentrée et le stage de parkour de la Toussaint',
+    excerpt:
+      "Stages d'été en juillet et en août, reprise des cours le 7 septembre à Gujan-Mestras, groupes dès 3 ans et stage de la Toussaint du 23 au 30 octobre : le point sur la saison 2026/2027 du club de parkour du Bassin d'Arcachon.",
+    content: `
+      <p class="mb-6">Le <strong>Parkour Bassin d'Arcachon</strong> (PKBA), club de parkour affilié à la <a href="https://www.ffgym.fr/La_FFGYM/Les_disciplines/Parkour" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Fédération Française de Gymnastique</a> et installé à Gujan-Mestras, attaque sa deuxième saison. Les cours ont repris le <strong>lundi 7 septembre 2026</strong>. Pour la première fois, on démarre une année complète dans notre propre local, avec le matériel déjà monté le premier jour. Avant de parler de la suite, un petit retour sur l'été.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">L'été au local : deux sessions de stages</h2>
+
+      <p class="mb-6">Notre première saison s'est terminée en juin avec <a href="/actualites/championnat-france-parkour-bourges-podiums-gala-pkba" class="text-primary hover:underline font-semibold">quatre podiums au Championnat de France à Bourges</a>. Le hangar n'a pas fermé pour autant. Il a accueilli deux sessions de stages d'été : du <strong>6 au 16 juillet</strong>, du lundi au jeudi, puis du <strong>17 au 28 août</strong>, du lundi au vendredi.</p>
+
+      <p class="mb-6">Chaque jour, deux formules. La journée complète, de 10h à 16h, pour les licenciés et les jeunes qui avaient déjà des bases. Et une séance découverte d'une heure et demie, de 16h à 17h30, pour les curieux qui voulaient tester les trampolines et les modules <a href="https://brickparkour.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Brick Parkour</a> avant de s'engager pour l'année. Pour nos athlètes, c'était aussi le moyen de ne pas perdre le rythme pendant deux mois.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">La rentrée : deux forums et une préinscription en ligne</h2>
+
+      <p class="mb-6">Début septembre, on tenait un stand au forum des associations de <a href="https://www.latestedebuch.fr/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">La Teste-de-Buch</a> le samedi 5, puis à celui de <a href="https://ville-gujanmestras.fr/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Gujan-Mestras</a> le dimanche 6. Merci aux familles passées nous voir avec leurs questions sur les groupes et les horaires, et à celles qui ont rempli la préinscription dans la foulée.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Les groupes de la saison 2026/2027</h2>
+
+      <p class="mb-6">On accueille les enfants dès 3 ans. Le loisir est ouvert à tous, sans niveau requis. La prépa compétition et le groupe compétition se font sur sélection. Les cours sont assurés par David, Victor et Antoine, avec un encadrement diplômé FFGym.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🗓️ Les créneaux de la semaine</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li>Loisir 3-5 ans : mercredi, 11h à 11h45</li>
+          <li>Loisir 6-8 ans : mercredi de 13h à 14h (complet), ou vendredi de 17h à 18h</li>
+          <li>Loisir 8-12 ans : mercredi, 14h à 15h30</li>
+          <li>Loisir 9-12 ans : lundi, 17h à 18h30</li>
+          <li>Loisir +12 ans : mercredi, 17h30 à 19h</li>
+          <li>Prépa compétition 8-12 ans : mardi et jeudi, 17h à 18h30</li>
+          <li>Prépa compétition +12 ans : lundi et jeudi, 18h30 à 20h</li>
+          <li>Compétition : mardi, mercredi et vendredi</li>
+          <li>Samedi après-midi : anniversaires et cours privés</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Les tarifs et le détail des horaires sont sur la <a href="/horaires" class="text-primary hover:underline font-semibold">page horaires</a>. Il reste de la place dans plusieurs groupes : remplissez la <a href="/inscription" class="text-primary hover:underline font-semibold">préinscription</a> en ligne, et on vous recontacte pour trouver le bon créneau.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Vacances de la Toussaint : le stage de parkour</h2>
+
+      <p class="mb-6">Le prochain stage a lieu le <strong>vendredi 23 octobre</strong>, puis du <strong>lundi 26 au vendredi 30 octobre</strong>, au local de Gujan-Mestras. Il n'y a pas de stage du 19 au 22 : nos animateurs sont en formation ces quatre jours-là.</p>
+
+      <p class="mb-6">Les formules ne changent pas. La journée complète de 10h à 16h, dès 8 ans, pour les licenciés et les initiés : 25 € la journée, ou 100 € la semaine du 26. La séance découverte de 16h à 17h30, dès 6 ans : 15 €. Tout se passe sur la <a href="/stage" class="text-primary hover:underline font-semibold">page stage</a>.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Les dates de la saison</h2>
+
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">📌 À noter dans l'agenda</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Vendredi 6 novembre, 19h</strong> : assemblée générale, au local</li>
+          <li><strong>Du 12 au 15 novembre</strong> : NFX 2026, l'open international de Rouen, avec le groupe compétition</li>
+          <li><strong>Samedi 5 décembre</strong> : challenge interne et fête de Noël, groupe par groupe, en famille</li>
+          <li><strong>5 et 6 juin 2027</strong> : finale du Championnat de France de Parkour (lieu à confirmer)</li>
+          <li><strong>Samedi 12 juin 2027</strong> : gala de fin de saison au local</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">L'assemblée générale est ouverte aux adhérents et aux parents des adhérents mineurs. Le bureau y présente le bilan de la première saison et les projets pour celle-ci, et c'est le bon moment pour dire ce que vous aimeriez voir évoluer au club. Les convocations partent au moins quinze jours avant.</p>
+
+      <p class="mb-6">Rouen sera le premier déplacement de la saison pour le groupe compétition. Viendront ensuite les étapes du circuit national, avec la finale de juin en ligne de mire, un an après <a href="/actualites/nouveau-local-gujan-mestras-circuit-national-rennes-pkba" class="text-primary hover:underline font-semibold">les cinq podiums de Rennes</a> et ceux de Bourges. Le calendrier complet est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et les nouvelles du club passent aussi par notre <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">compte Instagram</a>.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">En dehors des cours</h2>
+
+      <p class="mb-6">Le local sert aussi le samedi pour les <a href="/anniversaires" class="text-primary hover:underline font-semibold">anniversaires</a>, pour des <a href="/cours-prive" class="text-primary hover:underline font-semibold">cours privés</a> en individuel, et il se <a href="/privatisation" class="text-primary hover:underline font-semibold">privatise</a> pour vos évènements. Merci à tous ceux qui ont fait vivre cette première année, athlètes, parents, bénévoles et partenaires, et bienvenue aux nouveaux.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Questions fréquentes</h2>
+
+      <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-2 mt-6">À partir de quel âge peut-on faire du parkour au PKBA ?</h3>
+      <p class="mb-6">Dès 3 ans en cours de loisir. Pendant les stages, la séance découverte est ouverte dès 6 ans et la journée complète dès 8 ans.</p>
+
+      <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-2 mt-6">Où se trouve le club ?</h3>
+      <p class="mb-6">Au <a href="https://share.google/UrLrtmfeh45d819kt" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">4 avenue de l'Actipôle, 33470 Gujan-Mestras</a>, à une dizaine de minutes de La Teste-de-Buch, un quart d'heure d'Arcachon et une cinquantaine de minutes de Bordeaux.</p>
+
+      <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-2 mt-6">Faut-il être licencié pour participer au stage de la Toussaint ?</h3>
+      <p class="mb-6">Non. La séance découverte de 16h à 17h30 est pensée pour les enfants qui n'ont jamais pratiqué. La journée complète demande d'avoir déjà des bases.</p>
+
+      <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-2 mt-6">Peut-on encore s'inscrire pour la saison 2026/2027 ?</h3>
+      <p class="mb-6">Oui, il reste de la place dans plusieurs groupes. La <a href="/inscription" class="text-primary hover:underline font-semibold">préinscription</a> se fait en ligne et le club vous recontacte.</p>
+    `,
+    category: 'club',
+    date: '2026-10-10',
+    author: 'Équipe PKBA',
+    readTime: '5 min',
+    image: '/images/stage-parkour-gujan-mestras-pkba.jpg',
+    featured: true,
+  },
+  {
     id: 5,
     slug: 'championnat-france-parkour-bourges-podiums-gala-pkba',
     title: 'Championnat de France à Bourges : quatre podiums pour clôturer la saison',
