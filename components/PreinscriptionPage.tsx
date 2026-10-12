@@ -14,6 +14,8 @@ import {
   CalendarClock,
 } from 'lucide-react'
 import { PREINSCRIPTION_GROUP_OPTIONS, SEASON_LABEL } from '@/content/schedule'
+import { MESSAGE_MAX_LEN, validatePreinscription } from '@/lib/preinscription'
+import { toLocalIsoDate } from '@/lib/validation'
 
 const initialForm = {
   firstName: '',
@@ -43,6 +45,11 @@ const PreinscriptionPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const validationError = validatePreinscription(formData, toLocalIsoDate())
+    if (validationError) {
+      setError(validationError)
+      return
+    }
     setIsSubmitting(true)
     setError('')
 
@@ -303,9 +310,13 @@ const PreinscriptionPage = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={3}
+                  maxLength={MESSAGE_MAX_LEN}
                   placeholder="Une question, un niveau déjà pratiqué, une précision..."
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                 />
+                <p className="text-xs text-gray-500 mt-1 text-right font-montserrat">
+                  {formData.message.length} / {MESSAGE_MAX_LEN} caractères
+                </p>
               </div>
 
               <div className="flex items-start space-x-3">

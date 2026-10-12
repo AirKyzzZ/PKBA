@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useRef, useMemo } from 'react'
+import { useState, useRef, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
-import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById } from '@/content/stages'
+import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById, getStageFirstDay } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
 import { computeStageTotals, isFullWeekEligible } from '@/lib/stage-pricing'
+import { formatWeekLabel, isMinorOn, parseFormuleId, validateStageInscription } from '@/lib/stage-inscription'
+import { ageOn, isValidIsoDate, toLocalIsoDate } from '@/lib/validation'
 import Link from 'next/link'
 
 const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
@@ -97,8 +99,9 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
   }, [currentStage])
   const allStageDates = useMemo(() => currentStage.days.map((d) => d.date), [currentStage])
 
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [isDrawing, setIsDrawing] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const isDrawingRef = useRef(false)
+  const hasStrokeRef = useRef(false)
 
   const adhesionTypes = [
     { value: 'ancien', label: 'Ancien Adhérent' },
@@ -205,48 +208,61 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
     }))
   }
 
-  // Signature handling
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    setIsDrawing(true)
-    const canvas = canvasRef.current
-    if (canvas) {
-      const ctx = canvas.getContext('2d')
-      if (ctx) {
-        const rect = canvas.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        ctx.beginPath()
-        ctx.moveTo(x, y)
-      }
+  const setupCanvas = useCallback((canvas: HTMLCanvasElement | null) => {
+    canvasRef.current = canvas
+    if (!canvas) return
+    // capped so the PNG stays under the server's SIGNATURE_MAX_LEN
+    const ratio = Math.min(window.devicePixelRatio || 1, 2)
+    canvas.width = Math.round((canvas.clientWidth || 400) * ratio)
+    canvas.height = Math.round((canvas.clientHeight || 150) * ratio)
+  }, [])
+
+  const canvasPoint = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = e.currentTarget
+    const rect = canvas.getBoundingClientRect()
+    return {
+      x: (e.clientX - rect.left - canvas.clientLeft) * (canvas.width / canvas.clientWidth),
+      y: (e.clientY - rect.top - canvas.clientTop) * (canvas.height / canvas.clientHeight),
     }
   }
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return
-    const canvas = canvasRef.current
-    if (canvas) {
-      const ctx = canvas.getContext('2d')
-      if (ctx) {
-        const rect = canvas.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        ctx.lineTo(x, y)
-        ctx.stroke()
-      }
-    }
+  const startDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (e.button !== 0) return
+    const canvas = e.currentTarget
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    e.preventDefault()
+    canvas.setPointerCapture(e.pointerId)
+    isDrawingRef.current = true
+    const { x, y } = canvasPoint(e)
+    ctx.lineWidth = 2 * (canvas.width / canvas.clientWidth)
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.strokeStyle = '#111827'
+    ctx.beginPath()
+    ctx.moveTo(x, y)
   }
 
-  const stopDrawing = () => {
-    setIsDrawing(false)
-    const canvas = canvasRef.current
-    if (canvas) {
-      const signatureData = canvas.toDataURL()
-      setFormData(prev => ({
-        ...prev,
-        signature: signatureData,
-        signatureDate: new Date().toISOString()
-      }))
-    }
+  const draw = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current) return
+    const ctx = e.currentTarget.getContext('2d')
+    if (!ctx) return
+    const { x, y } = canvasPoint(e)
+    ctx.lineTo(x, y)
+    ctx.stroke()
+    hasStrokeRef.current = true
+  }
+
+  const stopDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current) return
+    isDrawingRef.current = false
+    if (!hasStrokeRef.current) return
+    const signature = e.currentTarget.toDataURL()
+    setFormData(prev => ({
+      ...prev,
+      signature,
+      signatureDate: prev.signatureDate || toLocalIsoDate()
+    }))
   }
 
   const clearSignature = () => {
@@ -255,6 +271,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
       const ctx = canvas.getContext('2d')
       if (ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        hasStrokeRef.current = false
         setFormData(prev => ({
           ...prev,
           signature: '',
@@ -264,35 +281,22 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
     }
   }
 
-  const isMinor = () => {
-    if (!formData.birthDate) return false
-    const birthDate = new Date(formData.birthDate)
-    const today = new Date()
-    const age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-    return age < 18 || (age === 18 && monthDiff < 0)
-  }
-
-  const isTooYoung = () => {
-    if (!formData.birthDate) return false
-    const birthDate = new Date(formData.birthDate)
-    const today = new Date()
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-    const dayDiff = today.getDate() - birthDate.getDate()
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age -= 1
-    }
-    const minAge = formData.selectedFormule === 'formule1' ? FORMULES[1].minAge : FORMULES[2].minAge
-    return age < minAge
-  }
+  const hasValidBirthDate = isValidIsoDate(formData.birthDate)
+  const isMinor = hasValidBirthDate && isMinorOn(formData.birthDate, toLocalIsoDate())
+  const selectedFormuleId = parseFormuleId(formData.selectedFormule)
+  const minAge = FORMULES[selectedFormuleId ?? 2].minAge
+  const ageReferenceDay = [...formData.selectedDates].sort()[0] ?? getStageFirstDay(currentStage)
+  const isTooYoung = hasValidBirthDate && ageOn(formData.birthDate, ageReferenceDay) < minAge
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const check = validateStageInscription(formData, toLocalIsoDate())
+    if (!check.ok) {
+      setError(check.message)
+      return
+    }
     setIsSubmitting(true)
     setError('')
-
-    
 
     try {
       // Envoi vers Airtable via API
@@ -334,10 +338,10 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
         clearSignature()
       } else {
         const errorData = await response.json()
-        setError(errorData.message || 'Une erreur est survenue lors de l\'envoi de la préinscription. Veuillez réessayer.')
+        setError(errorData.message || 'Une erreur est survenue lors de l\'envoi de l\'inscription. Veuillez réessayer.')
       }
     } catch (error) {
-              setError('Une erreur est survenue lors de l\'envoi de la préinscription. Veuillez réessayer.')
+      setError('Une erreur est survenue lors de l\'envoi de l\'inscription. Veuillez réessayer.')
     } finally {
       setIsSubmitting(false)
     }
@@ -390,7 +394,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               Inscription au Stage Confirmée !
             </h1>
             <p className="text-xl font-montserrat text-gray-600 max-w-2xl mx-auto mb-8">
-              Votre inscription au {STAGES[submittedStageId].fullLabel.toLowerCase()} a été enregistrée avec succès.
+              Votre inscription au {STAGES[submittedStageId].fullLabel} a été enregistrée avec succès.
               Nous vous contacterons dans les plus brefs délais pour confirmer les détails et les modalités de paiement.
             </p>
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
@@ -601,7 +605,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               <div className="flex items-center space-x-2">
                 <CheckCircle size={20} className="text-primary" />
                 <p className="text-gray-800 font-montserrat font-medium">
-                  Inscrivez-vous dès maintenant au {currentStage.fullLabel.toLowerCase()} ! Places limitées.
+                  Inscrivez-vous dès maintenant au {currentStage.fullLabel} ! Places limitées.
                 </p>
               </div>
             </div>
@@ -805,11 +809,11 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     </div>
                   </button>
                 </div>
-                {isTooYoung() && formData.selectedFormule && (
+                {isTooYoung && formData.selectedFormule && (
                   <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-3 flex items-center space-x-2">
                     <AlertCircle size={18} className="text-red-500 flex-shrink-0" />
                     <p className="text-sm text-red-700 font-montserrat">
-                      L'enfant n'a pas l'âge minimum requis pour cette formule ({formData.selectedFormule === 'formule1' ? `${FORMULES[1].minAge} ans` : `${FORMULES[2].minAge} ans`}).
+                      L'enfant n'a pas l'âge minimum requis pour cette formule ({minAge} ans).
                     </p>
                   </div>
                 )}
@@ -831,13 +835,11 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                   const fullWeek = isFullWeek(weekDates)
                   const showWeekToggle =
                     currentStage.weekDiscount && formData.selectedFormule === 'formule1' && weekDays.length === 5
-                  const firstLabel = weekDays[0]?.label.replace(/^[A-Z]{3} /, '')
-                  const lastLabel = weekDays[weekDays.length - 1]?.label.replace(/^[A-Z]{3} /, '')
                   return (
                     <div key={weekIdx} className="mb-4">
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sm font-montserrat font-semibold text-gray-700">
-                          Semaine {weekIdx + 1} ({firstLabel} → {lastLabel})
+                          Semaine {weekIdx + 1} ({formatWeekLabel(weekDays)})
                         </p>
                         {showWeekToggle && (
                           <button
@@ -996,7 +998,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               </div>
 
               {/* Responsables Légaux (si mineur) */}
-              {isMinor() && (
+              {isMinor && (
                 <div>
                   <h3 className="text-xl font-cheddar font-bold text-gray-900 mb-4 flex items-center">
                     <Shield className="mr-2" />
@@ -1023,12 +1025,13 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                         </div>
                         <div>
                           <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                            Nom
+                            Nom <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="text"
                             value={formData.legalGuardian1.lastName}
                             onChange={(e) => handleLegalGuardianChange(0, 'lastName', e.target.value)}
+                            required
                             placeholder="ex: John"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                           />
@@ -1037,24 +1040,26 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                         <div>
                           <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                            Prénom
+                            Prénom <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="text"
                             value={formData.legalGuardian1.firstName}
                             onChange={(e) => handleLegalGuardianChange(0, 'firstName', e.target.value)}
+                            required
                             placeholder="ex: Jean"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                           />
                         </div>
                         <div>
                           <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                            Téléphone
+                            Téléphone <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="tel"
                             value={formData.legalGuardian1.phone}
                             onChange={(e) => handleLegalGuardianChange(0, 'phone', e.target.value)}
+                            required
                             placeholder="ex: 06 11 22 33 44"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-montserrat"
                           />
@@ -1207,7 +1212,6 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     name="imageRights"
                     checked={formData.imageRights}
                     onChange={handleInputChange}
-                    required
                     className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <label className="text-sm font-montserrat text-gray-700">
@@ -1250,14 +1254,12 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     </label>
                     <div className="border-2 border-gray-300 rounded-lg p-4 bg-white">
                       <canvas
-                        ref={canvasRef}
-                        width={400}
-                        height={150}
-                        className="border border-gray-300 rounded cursor-crosshair"
-                        onMouseDown={startDrawing}
-                        onMouseMove={draw}
-                        onMouseUp={stopDrawing}
-                        onMouseLeave={stopDrawing}
+                        ref={setupCanvas}
+                        className="block w-full h-[150px] border border-gray-300 rounded cursor-crosshair touch-none select-none"
+                        onPointerDown={startDrawing}
+                        onPointerMove={draw}
+                        onPointerUp={stopDrawing}
+                        onPointerCancel={stopDrawing}
                       />
                       <div className="mt-2 flex space-x-2">
                         <button
@@ -1273,7 +1275,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                   
                   <div>
                     <label className="block text-sm font-montserrat font-medium text-gray-700 mb-1">
-                      Date de préinscription <span className="text-red-500">*</span>
+                      Date d'inscription <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="date"
@@ -1300,7 +1302,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
 
               <button
                 type="submit"
-                disabled={isSubmitting || isTooYoung() || !formData.signature}
+                disabled={isSubmitting || isTooYoung || !formData.signature}
                 className="w-full bg-primary hover:bg-secondary disabled:bg-gray-400 text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
@@ -1312,8 +1314,8 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                   <>
                     <User size={20} />
                     <span>
-                      {isTooYoung() 
-                        ? 'Âge minimum 6 ans requis' 
+                      {isTooYoung
+                        ? `Âge minimum ${minAge} ans requis`
                         : !formData.signature 
                           ? 'Signature requise' 
                           : "S'inscrire au stage"

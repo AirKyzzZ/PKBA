@@ -5,6 +5,7 @@ import {
   type PreinscriptionPayload,
 } from '@/lib/preinscription'
 import { notifySignup } from '@/lib/notifications'
+import { isJsonObject } from '@/lib/validation'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -20,7 +21,9 @@ export async function POST(request: NextRequest) {
       return fail('Configuration serveur manquante', 500)
     }
 
-    const body = (await request.json()) as PreinscriptionPayload
+    const parsed: unknown = await request.json().catch(() => null)
+    if (!isJsonObject(parsed)) return fail('Requête invalide')
+    const body = parsed as PreinscriptionPayload
     const validationError = validatePreinscription(body)
     if (validationError) return fail(validationError)
 
@@ -46,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     const result = await airtableResponse.json()
 
-    await notifySignup({
+    const notifications = await notifySignup({
       kind: 'preinscription',
       recordId: result.id,
       firstName: body.firstName!.trim(),
@@ -62,7 +65,7 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(
-      { success: true, message: 'Préinscription enregistrée avec succès', id: result.id },
+      { success: true, message: 'Préinscription enregistrée avec succès', id: result.id, notifications },
       { status: 200 },
     )
   } catch (error) {

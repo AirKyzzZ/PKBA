@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Instagram, ShoppingCart, ChevronDown } from 'lucide-react'
 import { useCart } from './CartContext'
-import type { StageId } from '@/content/stages'
+import { STAGES, type StageId } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
 import { CLUB } from '@/content/club'
 
@@ -18,9 +18,14 @@ type NavItem = {
 }
 
 const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
-  const hasUpcomingStage = useUpcomingStageIds(initialStageIds).length > 0
-  const cta = hasUpcomingStage
-    ? { href: '/stage', desktop: 'Stages ☀️', mobile: "☀️ S'inscrire aux stages" }
+  const nextStageId = useUpcomingStageIds(initialStageIds)[0]
+  const stageEmoji = nextStageId ? STAGES[nextStageId].emoji : ''
+  const cta = nextStageId
+    ? {
+        href: '/stage',
+        desktop: stageEmoji ? `Stages ${stageEmoji}` : 'Stages',
+        mobile: stageEmoji ? `${stageEmoji} S'inscrire aux stages` : "S'inscrire aux stages",
+      }
     : { href: '/inscription', desktop: 'Préinscription', mobile: 'Préinscription 2026/2027' }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -58,7 +63,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
       name: 'Le Club',
       children: [
         { name: 'Planning', href: '/planning' },
-        { name: 'Stage été', href: '/stage' },
+        { name: 'Stages vacances', href: '/stage' },
         { name: 'Anniversaires', href: '/anniversaires' },
         { name: 'Privatisation', href: '/privatisation' },
         { name: 'Cours privé', href: '/cours-prive' },

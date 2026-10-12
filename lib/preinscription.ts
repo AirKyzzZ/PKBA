@@ -1,10 +1,18 @@
 import { PREINSCRIPTION_GROUP_VALUES } from '@/content/schedule'
+import {
+  ageOn,
+  isNonEmpty,
+  isValidEmail,
+  isValidFrenchPhone,
+  isValidIsoDate,
+} from '@/lib/validation'
 
 export const PREINSCRIPTION_TYPE = 'Saison 2026/2027'
+export const MESSAGE_MAX_LEN = 1000
 
-const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const MESSAGE_MAX_LEN = 1000
+const MIN_AGE = 3
+const MAX_AGE = 100
+const AGE_REFERENCE_DATE = '2026-09-01'
 const STATUS_PENDING = 'En attente'
 const MEDICAL_DEFAULT = 'Non vérifié'
 
@@ -20,20 +28,18 @@ export type PreinscriptionPayload = {
   consent?: boolean
 }
 
-const isNonEmpty = (v: unknown): v is string =>
-  typeof v === 'string' && v.trim().length > 0
-
-export const isValidIsoDate = (value: string): boolean => {
-  if (!ISO_DATE_RE.test(value)) return false
-  const d = new Date(`${value}T00:00:00Z`)
-  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === value
-}
-
-export function validatePreinscription(body: PreinscriptionPayload): string | null {
+export function validatePreinscription(
+  body: PreinscriptionPayload,
+  today: string = new Date().toISOString().slice(0, 10),
+): string | null {
   if (!isNonEmpty(body.firstName) || !isNonEmpty(body.lastName)) return 'Nom et prénom requis'
   if (!isNonEmpty(body.birthDate) || !isValidIsoDate(body.birthDate)) {
     return 'Date de naissance invalide'
   }
+  if (body.birthDate > today) return 'La date de naissance ne peut pas être dans le futur'
+  const age = ageOn(body.birthDate, AGE_REFERENCE_DATE)
+  if (age < MIN_AGE) return `L'enfant doit avoir au moins ${MIN_AGE} ans au 1er septembre 2026`
+  if (age > MAX_AGE) return 'Date de naissance invalide'
   if (
     !isNonEmpty(body.groupeSouhaite) ||
     !PREINSCRIPTION_GROUP_VALUES.includes(body.groupeSouhaite.trim())
@@ -41,7 +47,16 @@ export function validatePreinscription(body: PreinscriptionPayload): string | nu
     return 'Groupe souhaité invalide'
   }
   if (!isNonEmpty(body.phone)) return 'Téléphone requis'
-  if (!isNonEmpty(body.email) || !EMAIL_RE.test(body.email.trim())) return 'Email invalide'
+  if (!isValidFrenchPhone(body.phone)) return 'Numéro de téléphone invalide'
+  if (!isNonEmpty(body.email) || !isValidEmail(body.email)) return 'Email invalide'
+  for (const optional of [body.message, body.parentName]) {
+    if (optional !== undefined && optional !== null && typeof optional !== 'string') {
+      return 'Requête invalide'
+    }
+  }
+  if (typeof body.message === 'string' && body.message.trim().length > MESSAGE_MAX_LEN) {
+    return `Message trop long (${MESSAGE_MAX_LEN} caractères maximum)`
+  }
   if (body.consent !== true) return 'Consentement requis'
   return null
 }
@@ -51,7 +66,7 @@ export function buildPreinscriptionFields(
   today: string = new Date().toISOString().slice(0, 10),
 ): Record<string, unknown> {
   const groupe = body.groupeSouhaite!.trim()
-  const message = isNonEmpty(body.message) ? body.message.trim().slice(0, MESSAGE_MAX_LEN) : ''
+  const message = isNonEmpty(body.message) ? body.message.trim() : ''
   const wish = message
     ? `Groupe souhaité : ${groupe} · Note : ${message}`
     : `Groupe souhaité : ${groupe}`
