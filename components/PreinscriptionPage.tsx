@@ -62,6 +62,7 @@ const PreinscriptionPage = () => {
 
       if (response.ok) {
         setIsSuccess(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         setFormData(initialForm)
       } else {
         const data = await response.json().catch(() => ({}))

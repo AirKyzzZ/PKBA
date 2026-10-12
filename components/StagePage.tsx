@@ -311,6 +311,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
       if (response.ok) {
         setSubmittedStageId(formData.selectedStage)
         setIsSuccess(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         // Reset form ONLY after successful submission
         setFormData({
           selectedStage: upcomingIds[0] ?? DEFAULT_STAGE_ID,
