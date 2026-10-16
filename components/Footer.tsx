@@ -183,7 +183,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
               <p className="text-gray-400 font-montserrat text-sm">
-                Lancement Septembre 2025
+                Depuis Juillet 2025
               </p>
               <p className="text-gray-400 font-montserrat text-sm">
                 Site réalisé par{' '}
