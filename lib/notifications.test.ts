@@ -135,6 +135,23 @@ describe('rendu des mails', () => {
     expect(club.subject).toBe('Inscription au stage : <b>x</b> Martin & "fils"')
   })
 
+  it("adapte les mails à une réponse pour l'AG", () => {
+    const ag: SignupNotification = {
+      ...signup,
+      kind: 'ag',
+      phone: '',
+      lines: [['Réponse', 'Pouvoir donné à Jean Dupont']],
+    }
+    const club = renderClubEmail(ag)
+    const famille = renderFamilyEmail(ag)
+    expect(club.subject).toBe('Réponse AG du 6 novembre : Léa Martin')
+    expect(club.text).not.toContain('Téléphone')
+    expect(famille.subject).toBe("Votre réponse pour l'AG du PKBA est bien reçue")
+    expect(famille.text).toContain('Réponse : Pouvoir donné à Jean Dupont')
+    expect(famille.html).toContain('https://pkba.vertiflow.fr/ag/')
+    expect(famille.text).not.toContain('confirmer la place')
+  })
+
   it("n'utilise ni tiret long ni tiret moyen", () => {
     for (const { html, text, subject } of rendus) {
       expect(`${subject}${html}${text}`).not.toMatch(/[\u2013\u2014]/)

@@ -111,7 +111,7 @@ export const events: ClubEvent[] = [
     time: '19h00',
     location: '4 Av. de L\'actipôle, Gujan-Mestras',
     description: 'Assemblée générale annuelle du club, ouverte aux adhérents et à leurs représentants légaux. Les convocations sont envoyées au moins quinze jours avant.',
-    link: '/',
+    link: '/ag',
   },
   {
     id: 10,

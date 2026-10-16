@@ -13,7 +13,7 @@ const FONT_STACK = '-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif'
 
 export const CLUB_INBOX = 'parkourBA33@gmail.com'
 
-export type SignupKind = 'preinscription' | 'stage'
+export type SignupKind = 'preinscription' | 'stage' | 'ag'
 
 export type SignupNotification = {
   kind: SignupKind
@@ -49,11 +49,31 @@ const recordUrl = (recordId: string) =>
 const LABEL: Record<SignupKind, string> = {
   preinscription: 'Préinscription saison 2026/2027',
   stage: 'Inscription au stage',
+  ag: 'Réponse AG du 6 novembre',
 }
 
 const FAMILY_CTA: Record<SignupKind, Cta> = {
   preinscription: { label: 'Voir les horaires et tarifs', url: `${SITE_URL}/horaires/` },
   stage: { label: 'Voir les infos du stage', url: `${SITE_URL}/stage/` },
+  ag: { label: "Revoir les infos de l'AG", url: `${SITE_URL}/ag/` },
+}
+
+const FAMILY_COPY: Record<SignupKind, { subject: string; intro: string; followUp: string }> = {
+  preinscription: {
+    subject: 'Votre demande au PKBA est bien reçue',
+    intro: 'Votre préinscription est bien enregistrée.',
+    followUp: 'On revient vers vous rapidement pour confirmer la place et finaliser le dossier.',
+  },
+  stage: {
+    subject: 'Votre demande au PKBA est bien reçue',
+    intro: 'Votre inscription au stage est bien enregistrée.',
+    followUp: 'On revient vers vous rapidement pour confirmer la place et finaliser le dossier.',
+  },
+  ag: {
+    subject: "Votre réponse pour l'AG du PKBA est bien reçue",
+    intro: "Votre réponse pour l'assemblée générale du vendredi 6 novembre à 19h est bien enregistrée.",
+    followUp: "Merci, elle nous aide à préparer l'assemblée et à vérifier le quorum.",
+  },
 }
 
 const filled = (lines: Array<[string, string]>) => lines.filter(([, v]) => v && v.trim() !== '')
@@ -152,13 +172,8 @@ ${url ? buttonHtml({ label: 'Ouvrir la fiche Airtable', url }) : ''}
 }
 
 export function renderFamilyEmail(n: SignupNotification): RenderedEmail {
-  const subject = 'Votre demande au PKBA est bien reçue'
+  const { subject, intro, followUp } = FAMILY_COPY[n.kind]
   const title = 'Bien reçu, merci'
-  const intro =
-    n.kind === 'stage'
-      ? 'Votre inscription au stage est bien enregistrée.'
-      : 'Votre préinscription est bien enregistrée.'
-  const followUp = 'On revient vers vous rapidement pour confirmer la place et finaliser le dossier.'
   const question = `Une question d'ici là, appelez David au ${CLUB_PHONE}.`
   const lines: Array<[string, string]> = [['Nom', `${n.firstName} ${n.lastName}`], ...n.lines]
   const cta = FAMILY_CTA[n.kind]
