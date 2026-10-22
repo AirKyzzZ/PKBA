@@ -15,6 +15,7 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[]
+  isLoaded: boolean
   addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
   updateQuantity: (id: string, quantity: number) => void
@@ -36,6 +37,7 @@ export const useCart = () => {
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
   // Load cart from cookies on mount
   useEffect(() => {
@@ -48,10 +50,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error('Error reading cart from localStorage:', error)
       setItems([])
     }
+    setIsLoaded(true)
   }, [])
 
   // Save cart to cookies whenever items change
   useEffect(() => {
+    if (!isLoaded) return
     try {
       if (items.length > 0) {
         if (typeof window !== 'undefined') {
@@ -65,7 +69,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error) {
       console.error('Error saving cart to localStorage:', error)
     }
-  }, [items])
+  }, [items, isLoaded])
 
   const addToCart = (newItem: CartItem) => {
     setItems(prevItems => {
@@ -129,6 +133,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const value = {
     items,
+    isLoaded,
     addToCart,
     removeFromCart,
     updateQuantity,
