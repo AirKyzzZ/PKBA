@@ -271,7 +271,7 @@ export async function POST(request: NextRequest) {
     const paymentIntent = await stripe.paymentIntents
       .retrieve(orderData.paymentIntentId)
       .catch(() => null)
-    if (!paymentIntent || paymentIntent.status !== 'succeeded' || paymentIntent.metadata.type === 'donation') {
+    if (!paymentIntent || paymentIntent.status !== 'succeeded' || paymentIntent.metadata.type !== 'shop_order') {
       return NextResponse.json({ error: 'Payment not found' }, { status: 400 })
     }
     if (paymentIntent.metadata.confirmation_sent) {
@@ -288,7 +288,7 @@ export async function POST(request: NextRequest) {
       to: orderData.customer.email,
       subject: `✅ Confirmation de commande #${orderData.paymentIntentId.slice(-8)} - PKBA`,
       html: generateOrderConfirmationEmail(orderData),
-    })
+    }, { idempotencyKey: `order-confirmation/${paymentIntent.id}` })
 
     if (error) {
       console.error('Error sending email:', error)

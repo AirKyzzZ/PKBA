@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
         enabled: true,
       },
       metadata: {
+        type: 'shop_order',
         items_count: items.length.toString(),
         items_summary: items.map((item: any) => 
           `${item.name}-${item.color}-${item.size}${item.customization ? `-${item.customization}` : ''}-x${item.quantity}`
