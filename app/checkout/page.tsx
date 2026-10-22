@@ -12,19 +12,21 @@ import CheckoutForm from '@/components/CheckoutForm'
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 const CheckoutPage = () => {
-  const { items, isLoaded, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart()
+  const { items: cartItems, isLoaded, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart()
   const router = useRouter()
   const [isProcessing, setIsProcessing] = useState(false)
+  const [completedOrder, setCompletedOrder] = useState<{ items: typeof cartItems; subtotal: number } | null>(null)
 
   const shippingCost = 4.99
-  const subtotal = getTotalPrice()
+  const items = completedOrder?.items ?? cartItems
+  const subtotal = completedOrder?.subtotal ?? getTotalPrice()
   const total = subtotal + shippingCost
 
   useEffect(() => {
-    if (isLoaded && items.length === 0) {
+    if (isLoaded && items.length === 0 && !completedOrder) {
       router.push('/boutique')
     }
-  }, [isLoaded, items, router])
+  }, [isLoaded, items, completedOrder, router])
 
   if (items.length === 0) {
     return (
@@ -194,7 +196,7 @@ const CheckoutPage = () => {
                   items={items}
                   total={total}
                   onSuccess={() => {
-                    // Just clear the cart, no redirection
+                    setCompletedOrder({ items: cartItems, subtotal })
                     clearCart()
                   }}
                   onError={(error) => {
