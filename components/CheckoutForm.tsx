@@ -131,6 +131,9 @@ const CheckoutForm = ({
       })
 
       const { clientSecret } = await response.json()
+      if (!response.ok || !clientSecret) {
+        throw new Error('Impossible de préparer le paiement, réessayez ou contactez le club.')
+      }
 
       // Confirm payment with Stripe
       const { error: paymentError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
@@ -174,7 +177,7 @@ const CheckoutForm = ({
         onSuccess()
       }
     } catch (error) {
-      setError('Une erreur est survenue. Veuillez réessayer.')
+      setError(error instanceof Error && error.message.startsWith('Impossible') ? error.message : 'Une erreur est survenue. Veuillez réessayer.')
       onError(error)
     } finally {
       setIsProcessing(false)

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { computeOrderAmount } from '@/lib/shop-pricing'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',
@@ -8,14 +9,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { amount, currency, items } = body
+    const { currency, items } = body
 
-    // Ensure amount is a valid integer
-    const amountInCents = Math.round(Number(amount))
-    
-    if (isNaN(amountInCents) || amountInCents <= 0) {
+    const amountInCents = computeOrderAmount(items)
+
+    if (amountInCents === null) {
       return NextResponse.json(
-        { error: 'Invalid amount provided' },
+        { error: 'Invalid order' },
         { status: 400 }
       )
     }
