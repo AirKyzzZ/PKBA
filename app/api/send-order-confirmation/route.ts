@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import Stripe from 'stripe'
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' })
 
 interface OrderItem {
   name: string
@@ -266,6 +268,17 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    const paymentIntent = await stripe.paymentIntents
+      .retrieve(orderData.paymentIntentId)
+      .catch(() => null)
+    if (!paymentIntent || paymentIntent.status !== 'succeeded' || paymentIntent.metadata.type === 'donation') {
+      return NextResponse.json({ error: 'Payment not found' }, { status: 400 })
+    }
+    if (paymentIntent.metadata.confirmation_sent) {
+      return NextResponse.json({ success: true, alreadySent: true })
+    }
+    orderData.total = paymentIntent.amount / 100
+
     // Send the confirmation email
     if (!resend) {
       return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
@@ -285,8 +298,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    await stripe.paymentIntents
+      .update(paymentIntent.id, { metadata: { confirmation_sent: new Date().toISOString() } })
+      .catch((err) => console.error('Could not flag confirmation as sent:', err))
+
+    return NextResponse.json({
+      success: true,
       messageId: data?.id 
     })
   } catch (error) {
