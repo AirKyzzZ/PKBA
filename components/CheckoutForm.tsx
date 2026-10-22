@@ -48,6 +48,7 @@ const CheckoutForm = ({
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
         },
         body: new URLSearchParams({
           type: 'order_notification',
@@ -65,7 +66,6 @@ const CheckoutForm = ({
           order_details: JSON.stringify(orderData, null, 2),
           order_date: new Date().toISOString()
         }).toString(),
-        redirect: 'manual'
       })
 
       if (response.status < 200 || response.status >= 400) {

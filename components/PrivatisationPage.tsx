@@ -111,6 +111,7 @@ const PrivatisationPage = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json',
           },
           body: new URLSearchParams({
             _subject: `Demande privatisation salle - ${formData.contactName}`,
@@ -125,7 +126,7 @@ const PrivatisationPage = () => {
         },
       )
 
-      if (response.ok || response.status === 302 || response.status === 0) {
+      if (response.ok) {
         setIsSuccess(true)
         setFormData({
           contactName: '',

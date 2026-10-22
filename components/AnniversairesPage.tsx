@@ -63,6 +63,7 @@ const AnniversairesPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
         },
         body: new URLSearchParams({
           _subject: `Demande anniversaire parkour - ${formData.childName}`,
