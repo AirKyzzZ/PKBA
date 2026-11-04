@@ -76,7 +76,7 @@ export const articles: Article[] = [
         <ul class="space-y-2 text-gray-800 font-montserrat">
           <li>📋 <strong>Vendredi 6 novembre, 19h</strong> : assemblée générale du club, au local</li>
           <li>🏆 <strong>Du 12 au 15 novembre</strong> : NFX 2026, l'open international de Rouen, avec le groupe compétition</li>
-          <li>🎄 <strong>Samedi 5 décembre</strong> : challenge interne PKBA et fête de Noël, groupe par groupe, avec les familles</li>
+          <li>🎄 <strong>Samedi 12 décembre</strong> : challenge interne PKBA et fête de Noël, groupe par groupe, avec les familles</li>
           <li>🇫🇷 <strong>5 et 6 juin 2027</strong> : finale du Championnat de France de Parkour (lieu à confirmer)</li>
           <li>🎉 <strong>Samedi 12 juin 2027</strong> : gala de fin de saison au local</li>
         </ul>

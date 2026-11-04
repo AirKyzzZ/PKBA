@@ -68,7 +68,7 @@ export const events: ClubEvent[] = [
     id: 5,
     title: 'Challenge interne PKBA et fête de Noël',
     type: 'autre',
-    startDate: '2026-12-05',
+    startDate: '2026-12-12',
     location: '4 Av. de L\'actipôle, Gujan-Mestras',
     description: 'Événement de fin d\'année du club, groupe par groupe : challenge interne PKBA suivi de la fête de Noël. Ouvert aux adhérents et à leurs familles.',
     link: '/planning',
