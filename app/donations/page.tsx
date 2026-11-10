@@ -30,7 +30,7 @@ export default function DonationsPage() {
             </div>
           </div>
 
-          <Elements stripe={stripePromise}>
+          <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
             <DonationForm />
           </Elements>
         </div>

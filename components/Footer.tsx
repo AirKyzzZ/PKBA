@@ -56,7 +56,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Page Google Business PKBA"
-                className="bg-white rounded-full p-1 hover:scale-110 transition-transform duration-200"
+                className="bg-white rounded-full p-1 min-h-0 min-w-0 hover:scale-110 transition-transform duration-200"
               >
                 <FcGoogle size={18} />
               </a>
@@ -123,7 +123,7 @@ const Footer = () => {
                 <Phone size={16} className="text-primary" />
                 <a 
                   href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`} 
-                  className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
+                  className="inline-flex items-center text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
                 >
                   06 60 14 71 44
                 </a>
@@ -132,7 +132,7 @@ const Footer = () => {
                 <Mail size={16} className="text-primary" />
                 <a 
                   href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}`} 
-                  className="text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
+                  className="inline-flex items-center text-gray-300 hover:text-primary transition-colors duration-200 font-montserrat text-sm"
                 >
                   {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}
                 </a>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, X } from 'lucide-react'
 
@@ -20,6 +20,13 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isZoomed, setIsZoomed] = useState(false)
   const [showLightbox, setShowLightbox] = useState(false)
+
+  useEffect(() => {
+    if (!showLightbox) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previous }
+  }, [showLightbox])
 
   // Filter images by selected color
   const colorImages = images.filter(img => img.color === selectedColor)
@@ -86,6 +93,7 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
         {/* Zoom Button */}
         <button
           onClick={openLightbox}
+          aria-label="Agrandir l'image"
           className="absolute top-2 right-2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-200"
         >
           <ZoomIn size={16} className="text-gray-700" />
@@ -122,7 +130,7 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 !mt-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             <div className="relative max-w-4xl max-h-full">
@@ -137,7 +145,11 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
               {/* Zoom Controls */}
               <div className="absolute top-4 left-4 flex space-x-2 z-10">
                 <button
-                  onClick={toggleZoom}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleZoom()
+                  }}
+                  aria-label={isZoomed ? 'Dézoomer' : 'Zoomer'}
                   className="bg-white/20 hover:bg-white/30 rounded-full p-2 text-white transition-all duration-200"
                 >
                   {isZoomed ? <ZoomOut size={20} /> : <ZoomIn size={20} />}
@@ -149,7 +161,10 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
                 className={`bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden ${
                   isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'
                 }`}
-                onClick={toggleZoom}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  toggleZoom()
+                }}
               >
                 <img
                   src={currentImage?.src}
@@ -186,7 +201,7 @@ const ImageGallery = ({ images, selectedColor }: ImageGalleryProps) => {
 
               {/* Lightbox Thumbnails */}
               {colorImages.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-[calc(100%-2rem)] overflow-x-auto">
                   {colorImages.map((image, index) => (
                     <button
                       key={image.id}

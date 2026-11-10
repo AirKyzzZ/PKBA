@@ -191,7 +191,7 @@ const CheckoutPage = () => {
             </h2>
 
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <Elements stripe={stripePromise}>
+              <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
                 <CheckoutForm
                   items={items}
                   total={total}

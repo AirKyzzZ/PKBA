@@ -232,7 +232,7 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
 
                 {/* Checkout Form */}
                 <div className="p-6">
-                  <Elements stripe={stripePromise}>
+                  <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
                     {(() => {
                       const cartItems: CartItem[] = [
                         {

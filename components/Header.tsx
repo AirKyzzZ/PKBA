@@ -29,6 +29,13 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
     : { href: '/inscription', desktop: 'Préinscription', mobile: 'Préinscription 2026/2027' }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previous }
+  }, [isMenuOpen])
   const [isScrolled, setIsScrolled] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [openMobileAccordion, setOpenMobileAccordion] = useState<string | null>(null)
@@ -230,6 +237,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
             </a>
             <Link
               href="/checkout"
+              aria-label="Panier"
               className="relative p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
             >
               <ShoppingCart size={20} className="sm:w-6 sm:h-6" />
@@ -258,7 +266,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-gray-200"
+            className="lg:hidden bg-white border-t border-gray-200 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain"
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) =>

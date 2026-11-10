@@ -201,7 +201,7 @@ const HoodiePage = () => {
               {/* Children's Sizes */}
               <div className="mb-4">
                 <p className="text-sm font-montserrat text-gray-600 mb-2">Tailles enfants</p>
-                <div className="grid grid-cols-5 gap-2">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                   {product.sizes.filter(size => size.isChild).map((size) => (
                     <button
                       key={size.value}
@@ -343,16 +343,16 @@ const HoodiePage = () => {
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Taille (ans)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Poitrine (cm)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Longueur (cm)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Épaules (cm)
                       </th>
                     </tr>
@@ -360,16 +360,16 @@ const HoodiePage = () => {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {sizeGuide.filter(size => size.isChild).map((size) => (
                       <tr key={size.size}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">
                           {size.size} ans
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.chest}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.length}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.shoulders}
                         </td>
                       </tr>
@@ -390,16 +390,16 @@ const HoodiePage = () => {
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Taille
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Poitrine (cm)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Longueur (cm)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sm:tracking-wider">
                         Épaules (cm)
                       </th>
                     </tr>
@@ -407,16 +407,16 @@ const HoodiePage = () => {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {sizeGuide.filter(size => !size.isChild).map((size) => (
                       <tr key={size.size}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">
                           {size.size}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.chest}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.length}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
                           {size.shoulders}
                         </td>
                       </tr>
