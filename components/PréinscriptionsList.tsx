@@ -28,6 +28,19 @@ import {
 import { toCsv } from '@/lib/csv'
 import { ADMIN_SESSION_EXPIRED, INSCRIPTION_STATUSES, MEDICAL_STATUSES } from '@/lib/admin-statuses'
 
+const TYPE_BADGES: Record<string, { label: string; className: string }> = {
+  'Saison 2026/2027': { label: 'Saison 26/27', className: 'bg-indigo-100 text-indigo-800' },
+  'Saison 2025/2026': { label: 'Saison', className: 'bg-blue-100 text-blue-800' },
+  'Stage Vacances Hiver 2025': { label: 'Hiver', className: 'bg-purple-100 text-purple-800' },
+  'Stage Vacances Février 2026': { label: 'Février', className: 'bg-orange-100 text-orange-800' },
+  'Stage Vacances Avril 2026': { label: 'Avril', className: 'bg-green-100 text-green-800' },
+  'Stage Vacances Juillet 2026': { label: 'Juillet', className: 'bg-yellow-100 text-yellow-800' },
+  'Stage Vacances Août 2026': { label: 'Août', className: 'bg-amber-100 text-amber-800' },
+  'Stage Vacances Toussaint 2026': { label: 'Toussaint', className: 'bg-gray-100 text-gray-800' },
+  'Stage Vacances Noël 2026': { label: 'Noël', className: 'bg-gray-100 text-gray-800' },
+}
+
+
 interface Préinscription {
   id: string
   fields: {
@@ -305,6 +318,15 @@ const PréinscriptionsList = () => {
     }
   }
 
+  const TypeBadge = ({ type }: { type?: string }) =>
+    type ? (
+      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${TYPE_BADGES[type]?.className ?? 'bg-gray-100 text-gray-800'}`}>
+        {TYPE_BADGES[type]?.label ?? type}
+      </span>
+    ) : (
+      <span className="text-xs text-gray-400">·</span>
+    )
+
   const calculateAge = (birthDate: string) => {
     if (!birthDate) return 'Non renseigné'
     try {
@@ -529,7 +551,64 @@ const PréinscriptionsList = () => {
 
         {/* Préinscriptions List */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
+          <ul className="md:hidden divide-y divide-gray-200">
+            {filteredInscriptions.map((inscription) => {
+              const name = `${inscription.fields['Prénom'] || ''} ${inscription.fields['Nom'] || ''}`.trim()
+              const meta = [
+                calculateAge(inscription.fields['Date de naissance']),
+                inscription.fields['Sexe'],
+                formatDate(inscription.fields['Date d\'inscription']),
+              ].filter((part) => part && part !== 'Non renseigné').join(' · ')
+              return (
+                <li key={inscription.id} className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="font-medium text-gray-900 break-words">{name}</p>
+                      <p className="text-sm text-gray-500">{meta}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => { setUpdateError(''); setSelectedInscription(inscription) }}
+                      aria-label={`Voir la fiche de ${name}`}
+                      className="shrink-0 inline-flex items-center gap-1 min-h-[40px] px-3 rounded-lg border border-gray-300 text-sm font-medium text-primary"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Voir
+                    </button>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <TypeBadge type={inscription.fields['Type d\'inscription']} />
+                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(inscription.fields['Statut'])}`}>
+                      {inscription.fields['Statut'] || 'Non défini'}
+                    </span>
+                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getMedicalColor(inscription.fields['Certificat médical'])}`}>
+                      {inscription.fields['Certificat médical'] || 'Non défini'}
+                    </span>
+                  </div>
+                  {inscription.fields['Jours sélectionnés'] && (
+                    <p className="mt-2 text-xs text-gray-700 break-words">
+                      {inscription.fields['Nombre de séances'] ? `${inscription.fields['Nombre de séances']}j · ` : ''}{inscription.fields['Jours sélectionnés']}
+                    </p>
+                  )}
+                  <div className="mt-2 flex flex-col gap-1 text-sm text-gray-700">
+                    {inscription.fields['Email'] && (
+                      <a href={`mailto:${inscription.fields['Email']}`} className="inline-flex items-center gap-2 break-all">
+                        <Mail className="w-4 h-4 shrink-0 text-gray-400" />
+                        {inscription.fields['Email']}
+                      </a>
+                    )}
+                    {inscription.fields['Téléphone'] && (
+                      <a href={`tel:${inscription.fields['Téléphone'].replace(/\s/g, '')}`} className="inline-flex items-center gap-2">
+                        <Phone className="w-4 h-4 shrink-0 text-gray-400" />
+                        {inscription.fields['Téléphone']}
+                      </a>
+                    )}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+          <div className="hidden md:block overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -598,38 +677,7 @@ const PréinscriptionsList = () => {
                       {calculateAge(inscription.fields['Date de naissance'])}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {inscription.fields['Type d\'inscription'] ? (
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          inscription.fields['Type d\'inscription'] === 'Saison 2026/2027'
-                            ? 'bg-indigo-100 text-indigo-800'
-                            : inscription.fields['Type d\'inscription'] === 'Saison 2025/2026'
-                            ? 'bg-blue-100 text-blue-800'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025'
-                              ? 'bg-purple-100 text-purple-800'
-                              : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026'
-                                ? 'bg-orange-100 text-orange-800'
-                                : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026'
-                                  ? 'bg-green-100 text-green-800'
-                                  : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026'
-                                    ? 'bg-yellow-100 text-yellow-800'
-                                    : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026'
-                                      ? 'bg-amber-100 text-amber-800'
-                                      : 'bg-gray-100 text-gray-800'
-                        }`}>
-                          {inscription.fields['Type d\'inscription'] === 'Saison 2026/2027' ? 'Saison 26/27'
-                            : inscription.fields['Type d\'inscription'] === 'Saison 2025/2026' ? 'Saison'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Hiver 2025' ? 'Hiver'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Février 2026' ? 'Février'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Avril 2026' ? 'Avril'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026' ? 'Juillet'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026' ? 'Août'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Toussaint 2026' ? 'Toussaint'
-                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Noël 2026' ? 'Noël'
-                            : inscription.fields['Type d\'inscription']}
-                        </span>
-                      ) : (
-                        <span className="text-xs text-gray-400">·</span>
-                      )}
+                      <TypeBadge type={inscription.fields['Type d\'inscription']} />
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900 max-w-[200px]">
                       {inscription.fields['Jours sélectionnés'] ? (
@@ -731,8 +779,8 @@ const PréinscriptionsList = () => {
                         <div>
                           <label className="text-sm font-medium text-gray-500">Date de naissance</label>
                           <p className="text-gray-900">
-                            {formatDate(selectedInscription.fields['Date de naissance'])} 
-                            ({calculateAge(selectedInscription.fields['Date de naissance'])})
+                            {formatDate(selectedInscription.fields['Date de naissance'])}
+                            {selectedInscription.fields['Date de naissance'] && ` (${calculateAge(selectedInscription.fields['Date de naissance'])})`}
                           </p>
                         </div>
                         <div>
