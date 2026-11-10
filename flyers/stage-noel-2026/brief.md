@@ -22,8 +22,8 @@ semaines :
   - Formule 2, découverte, 16h00 à 17h30, dès 6 ans, 15€ la séance, sans licence
 - **Pas de tarif semaine.** Le tarif à 100€ ne vaut que pour une semaine complète de cinq jours,
   les semaines de Noël n'en ont que trois. Il n'apparaît nulle part sur les visuels.
-- Maxime appelle les formules « Stage 1 » et « Stage 2 ». Les visuels gardent « Formule 1 » et
-  « Formule 2 », les libellés du formulaire, pour que les parents s'y retrouvent.
+- Libellés : « Formule 1 » et « Formule 2 », jamais « Stage 1 / Stage 2 » (décision de Maxime
+  du 10/11).
 - « Paiement sur place » vient du formulaire de `/stage`.
 - 4 av. de l'Actipôle à Gujan-Mestras
 - Inscription sur pkba.vertiflow.fr/stage, QR code vérifié dans `assets/qr-stage.png`
@@ -100,3 +100,41 @@ pixels par le bas, et l'auto-fit écrase alors tout jusqu'à `zoom 0.6`. Un `pb-
 > 📍 4 av. de l'Actipôle, Gujan-Mestras
 >
 > #parkour #freerun #stagenoel #vacancesdenoel #bassindarcachon #gujanmestras #latestedebuch #arcachon #parkourfrance #ffgym
+
+## Version 2, 10/11/2026
+
+Un seul format fil : **le carrousel de 3 slides**, pas le post simple. Sur le compte, le carrousel
+du planning (24/08) a fait 20 likes contre 9 à 12 pour les posts simples de la même période
+(rentrée, coachs, Toussaint), et Instagram remontre un carrousel non lu avec sa slide 2. La
+couverture porte seule dates, horaires, âges et prix, donc rien n'est perdu pour qui ne glisse pas.
+
+Deux pistes explorées dans `variantes/` : A « chronophoto de nuit » (fond encre, neige en grain,
+silhouettes du salto en séquence) et B « paquet » (aplat bleu tramé, ruban encre, étiquette
+cadeau crème avec ombre dure, athlète détouré qui passe devant le ruban et l'étiquette). **B
+retenue** : un seul point focal, l'étiquette encre sur crème se lit en vignette, le bleu plein
+n'a jamais servi de fond dans le fil.
+
+- `instagram-v2-carrousel-1.html` à `-3.html` : couverture, formules et tarifs, inscription
+- `instagram-v2-story.html` : 250 px libres en haut, 270 px d'encre en bas, une bande bleue
+  libre sous l'étiquette pour le sticker lien
+- Détourages locaux (Vision macOS) dans `assets/cut-*.png` et `assets/sil-*.png`, série du
+  salto au mur IMG_5124, IMG_5127, IMG_5073
+- PNG et légende dans `exports/2026-11-10-v2/`, pistes dans `exports/2026-11-10-v2/pistes/`
+
+Les masques CSS (`mask-image`) ne marchent pas en `file://` dans Chrome, d'où les silhouettes
+pré-colorées en PNG.
+
+### Décisions de Maxime du 10/11, appliquées en v2
+
+- Tarif : **25€ la journée et 100€ la semaine complète de 3 jours**, rien d'autre. Le 15€ de la
+  Formule 2 est retiré. Remplace les lignes tarifs de la section Contenu ci-dessus.
+- **La Formule 2 n'a plus de prix affiché** : le 25€/100€ correspond à la Formule 1, aucun tarif
+  n'a été donné pour le créneau 16h-17h30. À trancher, puis ajouter un chip prix sur la slide 2
+  et une ligne sur la couverture, la story et la légende.
+- 3 jours à 25€ font 75€, moins que la semaine à 100€. À confirmer avec Maxime.
+- Le site (`content/stages.ts`, `noel-2026`) affiche encore 15€/séance et pas de tarif semaine
+  (`weekDiscount: false`). Visuels et site divergent tant que le site n'est pas aligné.
+
+Touches de Noël ajoutées : nœud crème sur le ruban encre, ficelle qui descend jusqu'à l'œillet de
+l'étiquette (couverture et story), œillet renforcé sur l'étiquette, trois petits flocons
+géométriques par visuel, hors des zones de texte.

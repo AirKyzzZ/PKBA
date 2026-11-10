@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Stage PKBA Noël 2026, carrousel v2, formules</title>
+<link rel="stylesheet" href="../_system/out.css">
+<style>
+  .halftone { background-image: radial-gradient(#0a0a0a 1.6px, transparent 2px); background-size: 14px 14px; opacity: .2; }
+  .tag { box-shadow: 16px 16px 0 #0a0a0a; }
+  .athlete { filter: grayscale(1) contrast(1.08) brightness(1.22); }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" class="absolute" aria-hidden="true"><defs><g id="flake-arm"><path d="M0 0V-18M0-11l-6-6M0-11l6-6"/></g><symbol id="flake" viewBox="-21 -21 42 42"><g fill="none" stroke="#f4f2e7" stroke-width="3.4" stroke-linecap="square"><use href="#flake-arm" transform="rotate(0)"/><use href="#flake-arm" transform="rotate(60)"/><use href="#flake-arm" transform="rotate(120)"/><use href="#flake-arm" transform="rotate(180)"/><use href="#flake-arm" transform="rotate(240)"/><use href="#flake-arm" transform="rotate(300)"/></g></symbol></defs></svg>
+  <div class="canvas fmt-ig-post bg-primary grid-rows-[400px_1fr_96px]">
+
+    <div class="relative">
+      <div class="absolute inset-0 halftone h-[1254px]"></div>
+      <div class="absolute top-0 h-[1350px] left-[868px] w-[84px] bg-ink"></div>
+      <svg class="absolute" style="left:330px; top:62px; width:40px; height:40px" aria-hidden="true"><use href="#flake"/></svg>
+      <svg class="absolute" style="left:520px; top:140px; width:28px; height:28px" aria-hidden="true"><use href="#flake"/></svg>
+      <svg class="absolute" style="left:690px; top:52px; width:34px; height:34px" aria-hidden="true"><use href="#flake"/></svg>
+      <div class="absolute top-[48px] left-[60px] w-[112px] h-[112px] rounded-full bg-cream flex items-center justify-center">
+        <img src="../_system/assets/pkba-medaillon.png" alt="PKBA" class="w-[88px] h-[88px] object-contain">
+      </div>
+      <div class="absolute top-[60px] right-[60px] h-[88px] w-[168px] bg-cream flex items-center justify-center px-[14px] py-[10px]">
+        <img src="../_system/assets/ffgym-logo.png" alt="F&eacute;d&eacute;ration fran&ccedil;aise de gymnastique" class="w-full h-full object-contain">
+      </div>
+      <p class="eyebrow absolute left-[66px] top-[214px] text-white text-[30px]">Stage de No&euml;l, au choix</p>
+      <p class="display trim absolute left-[60px] top-[272px] text-cream text-[120px]">Deux formules</p>
+      <img src="assets/cut-5073.png" alt="" class="absolute z-10" style="left:830px; top:168px; height:270px; filter: brightness(0)">
+      <img src="assets/cut-5073.png" alt="" class="absolute z-10 athlete" style="left:818px; top:156px; height:270px">
+    </div>
+
+    <section class="relative flex flex-col min-h-0 px-[60px] pt-[34px] pb-[50px] gap-[44px]">
+      <div class="tag relative flex-1 bg-cream border-[4px] border-ink rotate-[-1.5deg] px-[40px] py-[30px] flex flex-col justify-between">
+        <p class="display trim text-ink text-[130px]">10h-16h</p>
+        <div>
+          <p class="eyebrow text-ink text-[30px]">Formule 1</p>
+          <div class="flex items-end justify-between gap-[24px] mt-[10px]">
+            <p class="text-ink text-[30px] font-semibold leading-[1.3]">Licenci&eacute;s et initi&eacute;s, d&egrave;s 8 ans.<br>Pique-nique &agrave; ramener,<br>go&ucirc;ter offert.</p>
+            <div class="flex flex-col items-end gap-[12px] shrink-0"><p class="display trim bg-ink text-cream text-[56px] px-[18px] py-[14px]">25&euro; / jour</p><p class="display trim bg-ink text-cream text-[40px] px-[16px] py-[12px]">100&euro; la semaine</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tag relative flex-1 bg-cream border-[4px] border-ink rotate-[1.2deg] px-[40px] py-[30px] flex flex-col justify-between">
+        <p class="display trim text-ink text-[130px]">16h-17h30</p>
+        <div class="fit-zone">
+          <p class="eyebrow text-ink text-[30px]">Formule 2</p>
+          <div class="flex items-end justify-between gap-[24px] mt-[10px]">
+            <p class="text-ink text-[30px] font-semibold leading-[1.3]">D&eacute;couverte, d&egrave;s 6 ans.<br>Une s&eacute;ance d&rsquo;1h30.</p>
+            <p class="display trim bg-ink text-cream text-[56px] px-[18px] py-[14px] shrink-0">Sans licence</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative bg-ink safe flex items-center justify-between">
+      <span class="eyebrow text-cream text-[30px]">Un ou plusieurs jours</span>
+      <span class="eyebrow text-cream text-[30px]">Glisse &rarr;</span>
+    </footer>
+
+  </div>
+</body>
+</html>

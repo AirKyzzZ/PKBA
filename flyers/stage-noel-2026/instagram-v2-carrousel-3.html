@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Stage PKBA Noël 2026, carrousel v2, inscription</title>
+<link rel="stylesheet" href="../_system/out.css">
+<style>
+  .halftone { background-image: radial-gradient(#0a0a0a 1.6px, transparent 2px); background-size: 14px 14px; opacity: .2; }
+  .tag { box-shadow: 16px 16px 0 #0a0a0a; }
+  .athlete { filter: grayscale(1) contrast(1.08) brightness(1.22); }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" class="absolute" aria-hidden="true"><defs><g id="flake-arm"><path d="M0 0V-18M0-11l-6-6M0-11l6-6"/></g><symbol id="flake" viewBox="-21 -21 42 42"><g fill="none" stroke="#f4f2e7" stroke-width="3.4" stroke-linecap="square"><use href="#flake-arm" transform="rotate(0)"/><use href="#flake-arm" transform="rotate(60)"/><use href="#flake-arm" transform="rotate(120)"/><use href="#flake-arm" transform="rotate(180)"/><use href="#flake-arm" transform="rotate(240)"/><use href="#flake-arm" transform="rotate(300)"/></g></symbol></defs></svg>
+  <div class="canvas fmt-ig-post bg-primary grid-rows-[500px_1fr_96px]">
+
+    <div class="relative">
+      <div class="absolute inset-0 halftone h-[1254px]"></div>
+      <div class="absolute top-0 h-[1350px] left-[868px] w-[84px] bg-ink"></div>
+      <svg class="absolute" style="left:340px; top:70px; width:40px; height:40px" aria-hidden="true"><use href="#flake"/></svg>
+      <svg class="absolute" style="left:520px; top:150px; width:28px; height:28px" aria-hidden="true"><use href="#flake"/></svg>
+      <svg class="absolute" style="left:690px; top:62px; width:34px; height:34px" aria-hidden="true"><use href="#flake"/></svg>
+      <div class="absolute top-[48px] left-[60px] w-[112px] h-[112px] rounded-full bg-cream flex items-center justify-center">
+        <img src="../_system/assets/pkba-medaillon.png" alt="PKBA" class="w-[88px] h-[88px] object-contain">
+      </div>
+      <div class="absolute top-[60px] right-[60px] h-[88px] w-[168px] bg-cream flex items-center justify-center px-[14px] py-[10px]">
+        <img src="../_system/assets/ffgym-logo.png" alt="F&eacute;d&eacute;ration fran&ccedil;aise de gymnastique" class="w-full h-full object-contain">
+      </div>
+      <p class="eyebrow absolute left-[66px] top-[214px] text-white text-[30px]">S&rsquo;inscrire</p>
+      <p class="display trim absolute left-[60px] top-[286px] text-cream text-[170px]">En ligne</p>
+      <img src="assets/cut-5127.png" alt="" class="absolute z-10" style="left:674px; top:244px; width:400px; filter: brightness(0)">
+      <img src="assets/cut-5127.png" alt="" class="absolute z-10 athlete" style="left:660px; top:230px; width:400px">
+    </div>
+
+    <section class="relative flex flex-col min-h-0 px-[60px] pt-[30px] pb-[50px]">
+      <div class="tag relative flex-1 min-h-0 bg-cream border-[4px] border-ink rotate-[-1.5deg] px-[40px] py-[34px] flex flex-col">
+        <div class="fit-zone flex-1 flex flex-col">
+          <div class="flex gap-[36px] items-start">
+            <ol class="flex-1">
+              <li class="flex items-center gap-[20px] border-b-[3px] border-ink pb-[18px]"><span class="display trim text-ink text-[60px] w-[34px]">1</span><span class="text-ink text-[34px] font-semibold leading-[1.2]">QR code ou lien en bio</span></li>
+              <li class="flex items-center gap-[20px] border-b-[3px] border-ink py-[18px]"><span class="display trim text-ink text-[60px] w-[34px]">2</span><span class="text-ink text-[34px] font-semibold leading-[1.2]">Formule et jours</span></li>
+              <li class="flex items-center gap-[20px] border-b-[3px] border-ink py-[18px]"><span class="display trim text-ink text-[60px] w-[34px]">3</span><span class="text-ink text-[34px] font-semibold leading-[1.2]">Fiche et signature</span></li>
+              <li class="flex items-center gap-[20px] pt-[18px]"><span class="display trim text-ink text-[60px] w-[34px]">4</span><span class="text-ink text-[34px] font-semibold leading-[1.2]">Paiement sur place</span></li>
+            </ol>
+            <div class="w-[350px] h-[350px] bg-white border-[4px] border-ink p-[14px] shrink-0">
+              <img src="assets/qr-stage.png" alt="QR code vers pkba.vertiflow.fr/stage" class="qr w-full h-full">
+            </div>
+          </div>
+          <p class="mt-auto border-t-[4px] border-ink pt-[22px] text-ink text-[60px] font-extrabold tracking-[-0.01em]">pkba.vertiflow.fr/stage</p>
+          <p class="text-ink text-[30px] font-semibold mt-[6px]">4 av. de l&rsquo;Actip&ocirc;le, Gujan-Mestras</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative bg-ink safe flex items-center justify-between">
+      <span class="eyebrow text-cream text-[30px]">Parkour Bassin d&rsquo;Arcachon</span>
+    </footer>
+
+  </div>
+</body>
+</html>
