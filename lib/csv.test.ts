@@ -34,4 +34,14 @@ describe('toCsv', () => {
   it('commence par un BOM pour que les accents passent dans Excel', () => {
     expect(toCsv([['é']]).startsWith('﻿')).toBe(true)
   })
+
+  it('neutralise une formule saisie dans un formulaire public', () => {
+    const [row] = parse(toCsv([['=HYPERLINK("http://x","clic")', '@SUM(A1)', '-2+3*cmd']]))
+    expect(row).toEqual(["'=HYPERLINK(\"http://x\",\"clic\")", "'@SUM(A1)", "'-2+3*cmd"])
+  })
+
+  it('laisse intacts les téléphones et nombres', () => {
+    const [row] = parse(toCsv([['+33 6 00 00 00 07', '-12', '06 00 00 00 00']]))
+    expect(row).toEqual(['+33 6 00 00 00 07', '-12', '06 00 00 00 00'])
+  })
 })
