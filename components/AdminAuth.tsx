@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Lock, Eye, EyeOff } from 'lucide-react'
+import { ADMIN_SESSION_EXPIRED } from '@/lib/admin-statuses'
 
 interface AdminAuthProps {
   children: React.ReactNode
@@ -21,6 +22,16 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
     if (authStatus === 'true') {
       setIsAuthenticated(true)
     }
+  }, [])
+
+  useEffect(() => {
+    const onExpired = () => {
+      sessionStorage.removeItem('admin_authenticated')
+      setIsAuthenticated(false)
+      setError('Session expirée, reconnectez-vous')
+    }
+    window.addEventListener(ADMIN_SESSION_EXPIRED, onExpired)
+    return () => window.removeEventListener(ADMIN_SESSION_EXPIRED, onExpired)
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -25,6 +25,8 @@ import {
   Clock as ClockIcon,
   Shield as ShieldIcon
 } from 'lucide-react'
+import { toCsv } from '@/lib/csv'
+import { ADMIN_SESSION_EXPIRED, INSCRIPTION_STATUSES, MEDICAL_STATUSES } from '@/lib/admin-statuses'
 
 interface Préinscription {
   id: string
@@ -77,6 +79,7 @@ const PréinscriptionsList = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [previousCount, setPreviousCount] = useState(0)
+  const [updateError, setUpdateError] = useState('')
 
   useEffect(() => {
     fetchInscriptions()
@@ -122,6 +125,10 @@ const PréinscriptionsList = () => {
       console.log('API response status:', response.status)
       console.log('API response ok:', response.ok)
       
+      if (response.status === 401) {
+        window.dispatchEvent(new Event(ADMIN_SESSION_EXPIRED))
+        return
+      }
       if (!response.ok) {
         throw new Error('Erreur lors de la récupération des préinscriptions')
       }
@@ -204,6 +211,7 @@ const PréinscriptionsList = () => {
   }
 
   const updateInscriptionStatus = async (id: string, status: string) => {
+    setUpdateError('')
     try {
       const response = await fetch('/api/update-inscription-status', {
         method: 'POST',
@@ -221,15 +229,20 @@ const PréinscriptionsList = () => {
             : inscription
         ))
         setSelectedInscription(null)
+      } else if (response.status === 401) {
+        window.dispatchEvent(new Event(ADMIN_SESSION_EXPIRED))
       } else {
-        console.error('Failed to update status')
+        const data = await response.json().catch(() => ({}))
+        setUpdateError(data.message || 'La mise à jour du statut a échoué')
       }
     } catch (error) {
       console.error('Error updating status:', error)
+      setUpdateError('La mise à jour du statut a échoué, vérifiez la connexion')
     }
   }
 
   const updateMedicalStatus = async (id: string, medicalStatus: string) => {
+    setUpdateError('')
     try {
       const response = await fetch('/api/update-inscription-medical', {
         method: 'POST',
@@ -247,11 +260,15 @@ const PréinscriptionsList = () => {
             : inscription
         ))
         setSelectedInscription(null)
+      } else if (response.status === 401) {
+        window.dispatchEvent(new Event(ADMIN_SESSION_EXPIRED))
       } else {
-        console.error('Failed to update medical status')
+        const data = await response.json().catch(() => ({}))
+        setUpdateError(data.message || 'La mise à jour du certificat médical a échoué')
       }
     } catch (error) {
       console.error('Error updating medical status:', error)
+      setUpdateError('La mise à jour du certificat médical a échoué, vérifiez la connexion')
     }
   }
 
@@ -315,8 +332,8 @@ const PréinscriptionsList = () => {
       'Statut', 'Certificat médical', 'Type d\'inscription', 'Nombre de séances', 'Jours sélectionnés'
     ]
 
-    const csvContent = [
-      headers.join(','),
+    const csvContent = toCsv([
+      headers,
       ...filteredInscriptions.map(inscription => [
         inscription.fields['Nom'] || '',
         inscription.fields['Prénom'] || '',
@@ -343,15 +360,15 @@ const PréinscriptionsList = () => {
         inscription.fields['Contact d\'urgence - Téléphone'] || '',
         inscription.fields['Droit à l\'image'] ? 'Oui' : 'Non',
         inscription.fields['Règlement intérieur accepté'] ? 'Oui' : 'Non',
-        inscription.fields['Signature'] || '',
+        inscription.fields['Signature'] ? 'Oui' : 'Non',
         inscription.fields['Date d\'inscription'] || '',
         inscription.fields['Statut'] || '',
         inscription.fields['Certificat médical'] || '',
         inscription.fields['Type d\'inscription'] || '',
         inscription.fields['Nombre de séances'] || '',
-        `"${(inscription.fields['Jours sélectionnés'] || '').replace(/"/g, '""')}"`
-      ].join(','))
-    ].join('\n')
+        inscription.fields['Jours sélectionnés'] || ''
+      ])
+    ])
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
     const link = document.createElement('a')
@@ -640,7 +657,7 @@ const PréinscriptionsList = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <button
-                        onClick={() => setSelectedInscription(inscription)}
+                        onClick={() => { setUpdateError(''); setSelectedInscription(inscription) }}
                         className="text-primary hover:text-secondary transition-colors duration-200"
                       >
                         <Eye className="w-4 h-4" />
@@ -874,10 +891,9 @@ const PréinscriptionsList = () => {
                             onChange={(e) => updateInscriptionStatus(selectedInscription.id, e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                           >
-                            <option value="En attente">En attente</option>
-                            <option value="Validée">Validée</option>
-                            <option value="Refusée">Refusée</option>
-                            <option value="Nouvelle inscription">Nouvelle inscription</option>
+                            {INSCRIPTION_STATUSES.map((status) => (
+                              <option key={status} value={status}>{status}</option>
+                            ))}
                           </select>
                         </div>
                         <div>
@@ -887,13 +903,17 @@ const PréinscriptionsList = () => {
                             onChange={(e) => updateMedicalStatus(selectedInscription.id, e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                           >
-                            <option value="En attente">En attente</option>
-                            <option value="Vérifié">Vérifié</option>
-                            <option value="Manquant">Manquant</option>
-                            <option value="Non vérifié">Non vérifié</option>
+                            {MEDICAL_STATUSES.map((status) => (
+                              <option key={status} value={status}>{status}</option>
+                            ))}
                           </select>
                         </div>
                       </div>
+                      {updateError && (
+                        <p role="alert" className="mt-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                          {updateError}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

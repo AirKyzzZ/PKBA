@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/admin-auth'
+import { INSCRIPTION_STATUSES, isOneOf, isRecordId } from '@/lib/admin-statuses'
 
 // Configuration Airtable
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
@@ -11,12 +12,12 @@ export async function POST(request: NextRequest) {
   if (denied) return denied
 
   try {
-    const { id, status } = await request.json()
+    const body: unknown = await request.json().catch(() => null)
+    const { id, status } = (body ?? {}) as { id?: unknown; status?: unknown }
 
-    // Validation des données
-    if (!id || !status) {
+    if (!isRecordId(id) || !isOneOf(INSCRIPTION_STATUSES, status)) {
       return NextResponse.json(
-        { message: 'ID de la préinscription et statut requis' },
+        { message: 'Identifiant ou statut invalide' },
         { status: 400 }
       )
     }
@@ -42,7 +43,8 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           fields: {
             'Statut': status
-          }
+          },
+          typecast: true
         })
       }
     )
@@ -51,8 +53,8 @@ export async function POST(request: NextRequest) {
       const errorData = await response.json()
       console.error('Erreur Airtable:', errorData)
       return NextResponse.json(
-        { message: 'Erreur lors de la mise à jour du statut' },
-        { status: 500 }
+        { message: response.status === 404 ? 'Préinscription introuvable' : 'Erreur lors de la mise à jour du statut' },
+        { status: response.status === 404 ? 404 : 502 }
       )
     }
 
