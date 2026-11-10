@@ -3,7 +3,7 @@
 import { useState, useRef, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Shield, CheckCircle, AlertCircle, Users, Award, Clock, MapPin, FileText, Camera, PenTool, Euro, CalendarDays } from 'lucide-react'
-import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById, getStageFirstDay } from '@/content/stages'
+import { STAGES, DEFAULT_STAGE_ID, FORMULES, type StageId, getStageById, getStageFirstDay, formule2PriceLabel } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
 import { computeStageTotals, isFullWeekEligible } from '@/lib/stage-pricing'
 import { formatWeekLabel, isMinorOn, parseFormuleId, validateStageInscription } from '@/lib/stage-inscription'
@@ -535,7 +535,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     <div>• À partir de {FORMULES[2].minAge} ans</div>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
-                    <p className="text-amber-900 font-semibold text-center">{FORMULES[2].pricePerDay}€ / séance</p>
+                    <p className="text-amber-900 font-semibold text-center">{formule2PriceLabel(currentStage.formule2Price)}</p>
                   </div>
                 </div>
               </div>
@@ -808,7 +808,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                     <div className="space-y-1 text-sm text-gray-600 font-montserrat">
                       <p>{FORMULES[2].time}</p>
                       <p>À partir de {FORMULES[2].minAge} ans · Non-licenciés</p>
-                      <p className="font-semibold text-amber-900 mt-2">{FORMULES[2].pricePerDay}€ / séance</p>
+                      <p className="font-semibold text-amber-900 mt-2">{formule2PriceLabel(currentStage.formule2Price)}</p>
                     </div>
                   </button>
                 </div>
@@ -898,7 +898,10 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                       )}
                       {formData.selectedFormule === 'formule2' && (
                         <p>
-                          <strong>Formule 2 (Découverte) :</strong> {formData.selectedDates.length} × {FORMULES[2].pricePerDay}€ = <strong>{calculatePricing().f2}€</strong>
+                          <strong>Formule 2 (Découverte) :</strong>{' '}
+                          {currentStage.formule2Price === null
+                            ? 'tarif à confirmer par le club'
+                            : <>{formData.selectedDates.length} × {currentStage.formule2Price}€ = <strong>{calculatePricing().f2}€</strong></>}
                         </p>
                       )}
                       <p className="text-xs text-amber-600 mt-1">Le paiement se fait sur place. Le tarif exact sera confirmé par email.</p>

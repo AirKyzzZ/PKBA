@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Clock, Euro, Users, ArrowRight, Calendar, Sun, Zap } from 'lucide-react'
-import { FORMULES } from '@/content/stages'
+import { FORMULES, formule2PriceLabel } from '@/content/stages'
 import type { StageConfig, StageId } from '@/content/stages'
 
 const CARD_DETAILS: Record<StageId, { headline: string; sub: string; note: string }> = {
@@ -32,6 +32,9 @@ const CARD_DETAILS: Record<StageId, { headline: string; sub: string; note: strin
 const StagesHighlight = ({ stages }: { stages: StageConfig[] }) => {
   const stageCards = stages.map((stage) => ({ stage, ...CARD_DETAILS[stage.id] }))
   const hasWeekDiscount = stages.some((stage) => stage.weekDiscount)
+  const formule2Price = stages.every((stage) => stage.formule2Price === stages[0]?.formule2Price)
+    ? (stages[0]?.formule2Price ?? null)
+    : null
 
   return (
     <section className="py-16 bg-accent">
@@ -222,7 +225,7 @@ const StagesHighlight = ({ stages }: { stages: StageConfig[] }) => {
               <div className="flex items-center justify-center space-x-2">
                 <Euro size={20} className="text-amber-600" />
                 <p className="text-amber-900 font-montserrat font-bold text-lg">
-                  {FORMULES[2].pricePerDay}€ / séance
+                  {formule2PriceLabel(formule2Price)}
                 </p>
               </div>
             </div>

@@ -2,7 +2,7 @@ import { FORMULES, type StageConfig, type StageDay } from '@/content/stages'
 
 export const FULL_WEEK_LENGTH = 5
 
-export type StageTotals = { f1: number; f2: number }
+export type StageTotals = { f1: number; f2: number | null }
 
 export const groupDaysByWeek = (days: StageDay[]): StageDay[][] => {
   const weeks: Record<number, StageDay[]> = {}
@@ -21,7 +21,7 @@ export function computeStageTotals(
   stage: StageConfig,
   selectedDates: string[],
 ): StageTotals {
-  if (selectedDates.length === 0) return { f1: 0, f2: 0 }
+  if (selectedDates.length === 0) return { f1: 0, f2: stage.formule2Price === null ? null : 0 }
 
   let f1 = 0
   if (stage.weekDiscount) {
@@ -35,5 +35,5 @@ export function computeStageTotals(
     f1 = selectedDates.length * FORMULES[1].pricePerDay
   }
 
-  return { f1, f2: selectedDates.length * FORMULES[2].pricePerDay }
+  return { f1, f2: stage.formule2Price === null ? null : selectedDates.length * stage.formule2Price }
 }

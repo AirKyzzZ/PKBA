@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
         ['Formule', formatFormuleLabel(formuleId)],
         ['Jours', daysLabel],
         ['Nombre de séances', String(selectedDates.length)],
-        ['Total', `${total}€`],
+        ['Total', total === null ? 'tarif à confirmer par le club' : `${total}€`],
         ['Date de naissance', body.birthDate!.split('-').reverse().join('/')],
       ],
     })

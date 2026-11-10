@@ -10,12 +10,13 @@ const noel = STAGES['noel-2026']
 describe('computeStageTotals', () => {
   it('ne facture rien sans jour sélectionné', () => {
     expect(computeStageTotals(toussaint, [])).toEqual({ f1: 0, f2: 0 })
+    expect(computeStageTotals(noel, [])).toEqual({ f1: 0, f2: null })
   })
 
   it('facture le vendredi isolé de la Toussaint au tarif journée, pas au tarif semaine', () => {
     const totals = computeStageTotals(toussaint, ['2026-10-23'])
     expect(totals.f1).toBe(FORMULES[1].pricePerDay)
-    expect(totals.f2).toBe(FORMULES[2].pricePerDay)
+    expect(totals.f2).toBe(toussaint.formule2Price)
   })
 
   it('applique le tarif semaine sur la semaine complète du 26 octobre', () => {
@@ -35,11 +36,11 @@ describe('computeStageTotals', () => {
     expect(computeStageTotals(toussaint, partial).f1).toBe(2 * FORMULES[1].pricePerDay)
   })
 
-  it('facture les semaines de trois jours de Noël au tarif journée', () => {
+  it('facture Noël à la journée en Formule 1 et laisse la Formule 2 sans prix', () => {
     const all = noel.days.map((d) => d.date)
     expect(computeStageTotals(noel, all)).toEqual({
       f1: 6 * FORMULES[1].pricePerDay,
-      f2: 6 * FORMULES[2].pricePerDay,
+      f2: null,
     })
   })
 
@@ -55,7 +56,7 @@ describe('computeStageTotals', () => {
 
   it('facture la formule 2 toujours à la journée', () => {
     const all = aout.days.map((d) => d.date)
-    expect(computeStageTotals(aout, all).f2).toBe(all.length * FORMULES[2].pricePerDay)
+    expect(computeStageTotals(aout, all).f2).toBe(all.length * aout.formule2Price!)
   })
 })
 

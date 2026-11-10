@@ -13,7 +13,7 @@ const title = hasStage
   : "Stages de Parkour pendant les vacances | PKBA Bassin d'Arcachon"
 
 const description = hasStage
-  ? `Inscrivez-vous aux stages de parkour du PKBA. ${periods}. Deux formules au choix : journée complète (${FORMULES[1].time}, ${FORMULES[1].pricePerDay}€/jour) ou séance découverte (${FORMULES[2].time}, ${FORMULES[2].pricePerDay}€). À partir de 6 ans, à Gujan-Mestras.`
+  ? `Inscrivez-vous aux stages de parkour du PKBA. ${periods}. Deux formules au choix : journée complète (${FORMULES[1].time}, ${FORMULES[1].pricePerDay}€/jour) ou séance découverte (${FORMULES[2].time}${upcoming[0]?.formule2Price != null ? `, ${upcoming[0].formule2Price}€` : ''}). À partir de 6 ans, à Gujan-Mestras.`
   : "Le club PKBA organise des stages de parkour pendant les vacances scolaires à Gujan-Mestras, à partir de 6 ans. Les dates du prochain stage seront annoncées prochainement."
 
 export const metadata: Metadata = {

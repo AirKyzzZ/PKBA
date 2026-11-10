@@ -16,6 +16,7 @@ export type StageConfig = {
   period: string
   monthLabel: string
   weekDiscount: boolean
+  formule2Price: number | null
   daysLabel?: string
   days: StageDay[]
   metadataTitle: string
@@ -24,6 +25,7 @@ export type StageConfig = {
 
 const FORMULE_1_TIME = '10h-16h'
 const FORMULE_2_TIME = '16h-17h30'
+const FORMULE_2_PRICE_2026 = 15
 
 export const FORMULES = {
   1: {
@@ -44,13 +46,15 @@ export const FORMULES = {
     time: FORMULE_2_TIME,
     audience: 'Non-licenciés / découverte',
     description: 'Séance courte pour découvrir le parkour en toute sécurité.',
-    pricePerDay: 15,
     priceWeek: null as number | null,
     minAge: 6,
   },
 } as const
 
 export type FormuleId = keyof typeof FORMULES
+
+export const formule2PriceLabel = (price: number | null): string =>
+  price === null ? 'Tarif à confirmer auprès du club' : `${price}€ / séance`
 
 const buildDays = (datesIso: string[], weekBoundaries: number[]): StageDay[] => {
   const dayNames = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
@@ -80,6 +84,7 @@ export const STAGES: Record<StageId, StageConfig> = {
     period: 'Du 6 au 16 juillet 2026',
     monthLabel: 'juillet 2026',
     weekDiscount: false,
+    formule2Price: FORMULE_2_PRICE_2026,
     days: buildDays(
       [
         '2026-07-06', '2026-07-07', '2026-07-08', '2026-07-09',
@@ -101,6 +106,7 @@ export const STAGES: Record<StageId, StageConfig> = {
     period: 'Du 17 au 28 août 2026',
     monthLabel: 'août 2026',
     weekDiscount: true,
+    formule2Price: FORMULE_2_PRICE_2026,
     days: buildDays(
       [
         '2026-08-17', '2026-08-18', '2026-08-19', '2026-08-20', '2026-08-21',
@@ -122,6 +128,7 @@ export const STAGES: Record<StageId, StageConfig> = {
     period: 'Le vendredi 23 octobre, puis du 26 au 30 octobre 2026',
     monthLabel: 'octobre 2026',
     weekDiscount: true,
+    formule2Price: FORMULE_2_PRICE_2026,
     daysLabel: 'Vendredi 23 octobre, puis du lundi 26 au vendredi 30 octobre',
     days: buildDays(
       [
@@ -144,6 +151,7 @@ export const STAGES: Record<StageId, StageConfig> = {
     period: 'Du 21 au 23 décembre, puis du 28 au 30 décembre 2026',
     monthLabel: 'décembre 2026',
     weekDiscount: false,
+    formule2Price: null,
     daysLabel: 'Lundi 21, mardi 22, mercredi 23, puis lundi 28, mardi 29, mercredi 30 décembre',
     days: buildDays(
       [

@@ -131,7 +131,7 @@ export const events: ClubEvent[] = [
     endDate: '2026-12-30',
     time: 'Formule 1 : 10h-16h / Formule 2 : 16h-17h30',
     location: '4 Av. de L\'actipôle, Gujan-Mestras',
-    description: 'Stage de parkour des vacances de Noël : du lundi 21 au mercredi 23 décembre, puis du lundi 28 au mercredi 30 décembre. Deux formules au choix, journée complète (25€/jour) pour licenciés et initiés, ou séance découverte (15€) pour non-licenciés.',
+    description: 'Stage de parkour des vacances de Noël : du lundi 21 au mercredi 23 décembre, puis du lundi 28 au mercredi 30 décembre. Deux formules au choix, journée complète (25€/jour) pour licenciés et initiés, ou séance découverte de 16h à 17h30, tarif à confirmer auprès du club.',
     link: '/stage',
   },
 ]
