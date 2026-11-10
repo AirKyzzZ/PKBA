@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
-import type { StageId } from "@/content/stages";
+import { STAGES, type StageId } from "@/content/stages";
 import { useUpcomingStageIds } from "@/lib/use-upcoming-stages";
 
 const Hero = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
-  const hasUpcomingStage = useUpcomingStageIds(initialStageIds).length > 0;
-  const badge = hasUpcomingStage
-    ? { href: "/stage", label: "Stage de parkour, inscriptions ouvertes" }
+  const nextStageId = useUpcomingStageIds(initialStageIds)[0];
+  const badge = nextStageId
+    ? { href: "/stage", label: `${STAGES[nextStageId].badgeLabel}, inscriptions ouvertes` }
     : { href: "/inscription", label: "Reprise le 7 septembre, préinscriptions ouvertes" };
 
   return (

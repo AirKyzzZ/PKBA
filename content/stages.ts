@@ -1,4 +1,4 @@
-export type StageId = 'juillet-2026' | 'aout-2026' | 'toussaint-2026'
+export type StageId = 'juillet-2026' | 'aout-2026' | 'toussaint-2026' | 'noel-2026'
 
 export type StageDay = {
   date: string
@@ -134,11 +134,33 @@ export const STAGES: Record<StageId, StageConfig> = {
     metadataDescription:
       'Inscrivez-vous au stage de parkour des vacances de la Toussaint 2026 ! Le vendredi 23 octobre, puis du lundi 26 au vendredi 30 octobre, deux formules au choix avec tarif semaine. À partir de 6 ans.',
   },
+  'noel-2026': {
+    id: 'noel-2026',
+    airtableType: 'Stage Vacances Noël 2026',
+    shortLabel: 'Noël',
+    fullLabel: 'Stage Noël 2026',
+    badgeLabel: 'Stage de Noël',
+    emoji: '🎄',
+    period: 'Du 21 au 23 décembre, puis du 28 au 30 décembre 2026',
+    monthLabel: 'décembre 2026',
+    weekDiscount: false,
+    daysLabel: 'Lundi 21, mardi 22, mercredi 23, puis lundi 28, mardi 29, mercredi 30 décembre',
+    days: buildDays(
+      [
+        '2026-12-21', '2026-12-22', '2026-12-23',
+        '2026-12-28', '2026-12-29', '2026-12-30',
+      ],
+      [3, 6],
+    ),
+    metadataTitle: 'Stage de Parkour - Vacances de Noël 2026 | PKBA Bassin d\'Arcachon',
+    metadataDescription:
+      'Inscrivez-vous au stage de parkour des vacances de Noël 2026 ! Du lundi 21 au mercredi 23, puis du lundi 28 au mercredi 30 décembre, deux formules au choix. À partir de 6 ans, à Gujan-Mestras.',
+  },
 } as const
 
-export const STAGE_ORDER: StageId[] = ['juillet-2026', 'aout-2026', 'toussaint-2026']
+export const STAGE_ORDER: StageId[] = ['juillet-2026', 'aout-2026', 'toussaint-2026', 'noel-2026']
 
-export const DEFAULT_STAGE_ID: StageId = 'toussaint-2026'
+export const DEFAULT_STAGE_ID: StageId = 'noel-2026'
 
 export const getStageFirstDay = (stage: StageConfig): string => stage.days[0].date
 

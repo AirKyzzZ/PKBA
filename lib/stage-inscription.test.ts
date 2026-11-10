@@ -96,7 +96,7 @@ describe('validateStageInscription', () => {
   })
 
   it('refuse un stage inconnu ou déjà terminé', () => {
-    expect(messageOf({ ...valid, selectedStage: 'noel-2026' })).toBe('Stage invalide ou manquant')
+    expect(messageOf({ ...valid, selectedStage: 'paques-2027' })).toBe('Stage invalide ou manquant')
     expect(messageOf({ ...valid, selectedStage: 'toString' })).toBe('Stage invalide ou manquant')
     expect(
       messageOf({ ...valid, selectedStage: 'juillet-2026', selectedDates: ['2026-07-06'] }),

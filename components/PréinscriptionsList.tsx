@@ -468,6 +468,7 @@ const PréinscriptionsList = () => {
                 <option value="Stage Vacances Juillet 2026">Stage Juillet 2026</option>
                 <option value="Stage Vacances Août 2026">Stage Août 2026</option>
                 <option value="Stage Vacances Toussaint 2026">Stage Toussaint 2026</option>
+                <option value="Stage Vacances Noël 2026">Stage Noël 2026</option>
                 <option value="AG 6 novembre 2026">Réponses AG 6 novembre 2026</option>
               </select>
             </div>
@@ -606,6 +607,7 @@ const PréinscriptionsList = () => {
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Juillet 2026' ? 'Juillet'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Août 2026' ? 'Août'
                             : inscription.fields['Type d\'inscription'] === 'Stage Vacances Toussaint 2026' ? 'Toussaint'
+                            : inscription.fields['Type d\'inscription'] === 'Stage Vacances Noël 2026' ? 'Noël'
                             : inscription.fields['Type d\'inscription']}
                         </span>
                       ) : (

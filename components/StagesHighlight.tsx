@@ -22,10 +22,16 @@ const CARD_DETAILS: Record<StageId, { headline: string; sub: string; note: strin
     sub: '6 jours',
     note: 'Tarif semaine 100€ sur la semaine du 26 (Formule 1)',
   },
+  'noel-2026': {
+    headline: 'Lundi au mercredi, deux semaines',
+    sub: '6 jours',
+    note: 'Tarif à la journée, pas de tarif semaine',
+  },
 }
 
 const StagesHighlight = ({ stages }: { stages: StageConfig[] }) => {
   const stageCards = stages.map((stage) => ({ stage, ...CARD_DETAILS[stage.id] }))
+  const hasWeekDiscount = stages.some((stage) => stage.weekDiscount)
 
   return (
     <section className="py-16 bg-accent">
@@ -149,12 +155,14 @@ const StagesHighlight = ({ stages }: { stages: StageConfig[] }) => {
               <div className="flex items-center justify-center space-x-2">
                 <Euro size={20} className="text-amber-600" />
                 <p className="text-amber-900 font-montserrat font-bold text-lg">
-                  {FORMULES[1].pricePerDay}€ / jour, {FORMULES[1].priceWeek}€ / semaine *
+                  {FORMULES[1].pricePerDay}€ / jour{hasWeekDiscount && `, ${FORMULES[1].priceWeek}€ / semaine *`}
                 </p>
               </div>
-              <p className="text-center text-xs text-amber-800 font-montserrat mt-2">
-                * Tarif semaine uniquement applicable en août (lundi-vendredi complet)
-              </p>
+              {hasWeekDiscount && (
+                <p className="text-center text-xs text-amber-800 font-montserrat mt-2">
+                  * sur une semaine complète du lundi au vendredi
+                </p>
+              )}
             </div>
           </motion.div>
 

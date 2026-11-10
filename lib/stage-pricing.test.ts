@@ -5,6 +5,7 @@ import { STAGES, FORMULES } from '@/content/stages'
 const toussaint = STAGES['toussaint-2026']
 const aout = STAGES['aout-2026']
 const juillet = STAGES['juillet-2026']
+const noel = STAGES['noel-2026']
 
 describe('computeStageTotals', () => {
   it('ne facture rien sans jour sélectionné', () => {
@@ -32,6 +33,14 @@ describe('computeStageTotals', () => {
   it('facture une semaine partielle au tarif journée', () => {
     const partial = ['2026-10-26', '2026-10-27']
     expect(computeStageTotals(toussaint, partial).f1).toBe(2 * FORMULES[1].pricePerDay)
+  })
+
+  it('facture les semaines de trois jours de Noël au tarif journée', () => {
+    const all = noel.days.map((d) => d.date)
+    expect(computeStageTotals(noel, all)).toEqual({
+      f1: 6 * FORMULES[1].pricePerDay,
+      f2: 6 * FORMULES[2].pricePerDay,
+    })
   })
 
   it('garde le tarif semaine sur les deux semaines pleines du stage d\'août', () => {

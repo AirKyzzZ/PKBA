@@ -25,11 +25,12 @@ describe('bornes de dates', () => {
 })
 
 describe('getUpcomingStages', () => {
-  it('retourne les trois stages avant le début de juillet', () => {
+  it('retourne les quatre stages avant le début de juillet', () => {
     expect(getUpcomingStages('2026-06-01').map((s) => s.id)).toEqual([
       'juillet-2026',
       'aout-2026',
       'toussaint-2026',
+      'noel-2026',
     ])
   })
 
@@ -37,21 +38,30 @@ describe('getUpcomingStages', () => {
     expect(getUpcomingStages('2026-08-28').map((s) => s.id)).toEqual([
       'aout-2026',
       'toussaint-2026',
+      'noel-2026',
     ])
   })
 
   it('bascule sur la Toussaint une fois le stage d\'août terminé', () => {
-    expect(getUpcomingStages('2026-08-29').map((s) => s.id)).toEqual(['toussaint-2026'])
+    expect(getUpcomingStages('2026-08-29').map((s) => s.id)).toEqual([
+      'toussaint-2026',
+      'noel-2026',
+    ])
+  })
+
+  it('bascule sur Noël une fois le stage de la Toussaint terminé', () => {
+    expect(getUpcomingStages('2026-10-31').map((s) => s.id)).toEqual(['noel-2026'])
   })
 
   it('ne retourne rien une fois le dernier stage terminé', () => {
-    expect(getUpcomingStages('2026-10-31')).toEqual([])
+    expect(getUpcomingStages('2026-12-31')).toEqual([])
   })
 
   it('exclut juillet dès le lendemain de sa fin', () => {
     expect(getUpcomingStages('2026-07-17').map((s) => s.id)).toEqual([
       'aout-2026',
       'toussaint-2026',
+      'noel-2026',
     ])
   })
 })
@@ -98,6 +108,28 @@ describe('stage de la Toussaint 2026', () => {
       const dow = new Date(`${day.date}T12:00:00Z`).getUTCDay()
       expect(dow).toBeGreaterThanOrEqual(1)
       expect(dow).toBeLessThanOrEqual(5)
+    }
+  })
+})
+
+describe('stage de Noël 2026', () => {
+  const stage = STAGES['noel-2026']
+
+  it('propose lundi, mardi et mercredi sur la semaine du 21 décembre', () => {
+    const week0 = stage.days.filter((d) => d.weekIndex === 0)
+    expect(week0.map((d) => d.date)).toEqual(['2026-12-21', '2026-12-22', '2026-12-23'])
+  })
+
+  it('propose lundi, mardi et mercredi sur la semaine du 28 décembre', () => {
+    const week1 = stage.days.filter((d) => d.weekIndex === 1)
+    expect(week1.map((d) => d.date)).toEqual(['2026-12-28', '2026-12-29', '2026-12-30'])
+  })
+
+  it('ne tombe que du lundi au mercredi', () => {
+    for (const day of stage.days) {
+      const dow = new Date(`${day.date}T12:00:00Z`).getUTCDay()
+      expect(dow).toBeGreaterThanOrEqual(1)
+      expect(dow).toBeLessThanOrEqual(3)
     }
   })
 })
