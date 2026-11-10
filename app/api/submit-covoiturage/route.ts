@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isJsonObject, isNonEmpty, isValidEmail, isValidFrenchPhone } from '@/lib/validation'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -6,29 +7,36 @@ const AIRTABLE_TABLE_NAME = 'Covoiturage'
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.json()
+    const body: unknown = await request.json().catch(() => null)
+    if (!isJsonObject(body)) {
+      return NextResponse.json({ message: 'Requête invalide' }, { status: 400 })
+    }
+    const formData = body as Record<string, unknown>
+    const jours = Array.isArray(formData.jours) ? formData.jours.join(', ') : formData.jours
 
-    if (!formData.prenom || !formData.email || !formData.phone || !formData.type || !formData.ville || !formData.jours) {
+    if (
+      !isNonEmpty(formData.prenom) ||
+      !isNonEmpty(formData.email) ||
+      !isNonEmpty(formData.phone) ||
+      !isNonEmpty(formData.ville) ||
+      !isNonEmpty(jours)
+    ) {
       return NextResponse.json(
         { message: 'Champs obligatoires manquants' },
         { status: 400 }
       )
     }
 
-    if (
-      formData.prenom.trim() === '' ||
-      formData.email.trim() === '' ||
-      formData.phone.trim() === '' ||
-      formData.ville.trim() === ''
-    ) {
-      return NextResponse.json(
-        { message: 'Champs obligatoires incomplets' },
-        { status: 400 }
-      )
+    if (!isValidEmail(formData.email)) {
+      return NextResponse.json({ message: 'Email invalide' }, { status: 400 })
+    }
+
+    if (!isValidFrenchPhone(formData.phone)) {
+      return NextResponse.json({ message: 'Numéro de téléphone invalide' }, { status: 400 })
     }
 
     const validTypes = ['Propose', 'Cherche']
-    if (!validTypes.includes(formData.type)) {
+    if (typeof formData.type !== 'string' || !validTypes.includes(formData.type)) {
       return NextResponse.json(
         { message: 'Type d\'annonce invalide' },
         { status: 400 }
@@ -49,9 +57,9 @@ export async function POST(request: NextRequest) {
         'Téléphone': formData.phone.trim(),
         'Type': formData.type,
         'Ville de départ': formData.ville.trim(),
-        'Jours disponibles': formData.jours,
+        'Jours disponibles': jours,
         'Nombre de places': formData.places ? String(formData.places) : '',
-        'Message': formData.message ? formData.message.trim() : '',
+        'Message': typeof formData.message === 'string' ? formData.message.trim().slice(0, 1000) : '',
         'Statut': 'Actif',
         'Date': new Date().toISOString().split('T')[0],
       },

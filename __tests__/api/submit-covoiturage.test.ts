@@ -56,7 +56,7 @@ describe('POST /api/submit-covoiturage', () => {
     const res = await POST(makeRequest({ ...validBody, prenom: '   ' }))
     expect(res.status).toBe(400)
     const data = await res.json()
-    expect(data.message).toBe('Champs obligatoires incomplets')
+    expect(data.message).toBe('Champs obligatoires manquants')
   })
 
   it('returns 400 when type value is invalid', async () => {
@@ -117,5 +117,28 @@ describe('POST /api/submit-covoiturage', () => {
     const { places: _, message: __, ...requiredOnly } = validBody
     const res = await POST(makeRequest(requiredOnly))
     expect(res.status).toBe(200)
+  })
+
+  it('returns 400 on invalid JSON instead of crashing', async () => {
+    const res = await POST(new Request('http://localhost/api/submit-covoiturage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{bad',
+    }))
+    expect(res.status).toBe(400)
+    expect(mockFetch).not.toHaveBeenCalled()
+  })
+
+  it('returns 400 on non-string fields instead of crashing', async () => {
+    const res = await POST(makeRequest({ ...validBody, prenom: 123, ville: ['a'] }))
+    expect(res.status).toBe(400)
+    expect(mockFetch).not.toHaveBeenCalled()
+  })
+
+  it('rejects an invalid email or phone before writing to Airtable', async () => {
+    const badEmail = await POST(makeRequest({ ...validBody, email: 'pas-un-email' }))
+    const badPhone = await POST(makeRequest({ ...validBody, phone: '12' }))
+    expect([badEmail.status, badPhone.status]).toEqual([400, 400])
+    expect(mockFetch).not.toHaveBeenCalled()
   })
 })

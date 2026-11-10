@@ -478,7 +478,7 @@ const CovoituragePage = () => {
                   <span>06 60 14 71 44</span>
                 </a>
                 <a
-                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}`}
                   className="inline-flex items-center space-x-2 text-primary hover:text-secondary font-montserrat font-medium text-sm transition-colors"
                 >
                   <Mail size={16} />

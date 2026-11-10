@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
         ['Jours', daysLabel],
         ['Nombre de séances', String(selectedDates.length)],
         ['Total', `${total}€`],
-        ['Date de naissance', body.birthDate!],
+        ['Date de naissance', body.birthDate!.split('-').reverse().join('/')],
       ],
     })
 

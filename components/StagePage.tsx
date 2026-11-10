@@ -27,6 +27,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
   const heroIntro = upcomingStages.length
     ? `${sessionsLabel}, deux formules pour tous à partir de ${FORMULES[2].minAge} ans.`
     : 'Les dates du prochain stage seront annoncées prochainement.'
+  const [submittedDates, setSubmittedDates] = useState<string[]>([])
   const [submittedStageId, setSubmittedStageId] = useState<StageId>(
     initialStageIds[0] ?? DEFAULT_STAGE_ID,
   )
@@ -310,6 +311,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
 
       if (response.ok) {
         setSubmittedStageId(formData.selectedStage)
+        setSubmittedDates(formData.selectedDates)
         setIsSuccess(true)
         window.scrollTo({ top: 0, behavior: 'smooth' })
         // Reset form ONLY after successful submission
@@ -409,7 +411,7 @@ const StagePage = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Jours : {STAGES[submittedStageId].daysLabel ?? (STAGES[submittedStageId].weekDiscount ? 'Lundi au Vendredi' : 'Lundi au Jeudi (vendredis indisponibles)')}</span>
+                  <span>Vos jours : {STAGES[submittedStageId].days.filter((d) => submittedDates.includes(d.date)).map((d) => d.label).join(', ')}</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>

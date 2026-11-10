@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import Stripe from 'stripe'
+import { esc } from '@/lib/notifications'
+
+const h = (v: unknown) => esc(String(v ?? ''))
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' })
@@ -49,14 +52,14 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
     return `
       <tr>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">
-          <strong>${item.name}</strong><br>
+          <strong>${h(item.name)}</strong><br>
           <span style="color: #6b7280; font-size: 14px;">
-            Couleur: ${colorName} | Taille: ${item.size}
-            ${item.customization ? ` | Personnalisation: ${item.customization}` : ''}
+            Couleur: ${h(colorName)} | Taille: ${h(item.size)}
+            ${item.customization ? ` | Personnalisation: ${h(item.customization)}` : ''}
           </span>
         </td>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">
-          ${item.quantity}
+          ${h(item.quantity)}
         </td>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">
           <strong>${itemTotal.toFixed(2)}€</strong>
@@ -85,7 +88,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
                 ✅ Commande Confirmée !
               </h1>
               <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 16px; opacity: 0.9;">
-                Merci pour votre commande, ${customer.firstName} !
+                Merci pour votre commande, ${h(customer.firstName)} !
               </p>
             </td>
           </tr>
@@ -111,7 +114,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
                   <strong style="color: #111827;">Numéro de commande:</strong>
                 </p>
                 <p style="margin: 0; color: #111827; font-family: monospace; font-size: 12px; word-break: break-all;">
-                  ${paymentIntentId}
+                  ${h(paymentIntentId)}
                 </p>
               </div>
 
@@ -176,16 +179,16 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
               </h3>
               <div style="color: #1e3a8a; font-size: 14px; line-height: 1.6;">
                 <p style="margin: 0 0 8px 0;">
-                  <strong>${customer.firstName} ${customer.lastName}</strong>
+                  <strong>${h(customer.firstName)} ${h(customer.lastName)}</strong>
                 </p>
                 <p style="margin: 0 0 8px 0;">
-                  ${customer.address}
+                  ${h(customer.address)}
                 </p>
                 <p style="margin: 0 0 8px 0;">
-                  ${customer.postalCode} ${customer.city}
+                  ${h(customer.postalCode)} ${h(customer.city)}
                 </p>
                 <p style="margin: 0;">
-                  📞 ${customer.phone}
+                  📞 ${h(customer.phone)}
                 </p>
               </div>
             </td>

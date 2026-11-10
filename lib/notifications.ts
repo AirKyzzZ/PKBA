@@ -38,7 +38,7 @@ export type RenderedEmail = {
 
 type Cta = { label: string; url: string }
 
-const esc = (v: string) =>
+export const esc = (v: string) =>
   v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 const recordUrl = (recordId: string) =>

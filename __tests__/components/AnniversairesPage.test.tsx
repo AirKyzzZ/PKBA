@@ -31,7 +31,7 @@ async function fillAllRequiredFields(user: ReturnType<typeof userEvent.setup>) {
   await user.type(getInput('phone'), '0612345678')
   await user.type(getInput('childName'), 'Lucas')
   await user.type(getInput('childAge'), '8')
-  await user.type(getInput('preferredDate'), '2026-04-15')
+  await user.type(getInput('preferredDate'), '2099-04-15')
   await user.type(getInput('numberOfChildren'), '10')
 }
 
@@ -162,5 +162,18 @@ describe('AnniversairesPage', () => {
     })
 
     resolveSubmit({ ok: true })
+  })
+
+  it('refuse une date passée sans envoyer la demande', async () => {
+    const user = userEvent.setup()
+    render(<AnniversairesPage />)
+
+    await fillAllRequiredFields(user)
+    await user.clear(getInput('preferredDate'))
+    await user.type(getInput('preferredDate'), '2020-01-01')
+    await user.click(screen.getByRole('button', { name: /Envoyer la demande/ }))
+
+    expect(await screen.findByText(/date à venir/)).toBeInTheDocument()
+    expect(mockFetch).not.toHaveBeenCalled()
   })
 })

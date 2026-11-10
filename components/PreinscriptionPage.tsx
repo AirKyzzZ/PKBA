@@ -90,8 +90,8 @@ const PreinscriptionPage = () => {
             </h1>
             <p className="text-lg font-montserrat text-gray-600 max-w-2xl mx-auto mb-6">
               Merci, votre préinscription pour la saison {SEASON_LABEL} est bien enregistrée. On
-              revient vers vous pour confirmer la place et finaliser l&apos;inscription (dossier et
-              paiement) à la rentrée.
+              revient vers vous rapidement pour confirmer la place et finaliser l&apos;inscription
+              (dossier et paiement).
             </p>
             <Link
               href="/"

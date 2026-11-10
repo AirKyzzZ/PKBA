@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         items_count: items.length.toString(),
         items_summary: items.map((item: any) => 
           `${item.name}-${item.color}-${item.size}${item.customization ? `-${item.customization}` : ''}-x${item.quantity}`
-        ).join('|'),
+        ).join('|').slice(0, 500),
       },
     })
 

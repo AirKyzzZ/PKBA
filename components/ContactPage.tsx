@@ -68,7 +68,7 @@ const ContactPage = () => {
         },
         body: new URLSearchParams({
           ...formData,
-          subject: `Contact PKBA - ${formData.subject}`
+          _subject: `Contact PKBA - ${formData.subject}`
         }).toString(),
       })
 

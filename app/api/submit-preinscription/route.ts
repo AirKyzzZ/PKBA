@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       email: body.email!.trim(),
       phone: body.phone!.trim(),
       lines: [
-        ['Date de naissance', body.birthDate ?? ''],
+        ['Date de naissance', (body.birthDate ?? '').split('-').reverse().join('/')],
         ['Groupe souhaité', body.groupeSouhaite?.trim() ?? ''],
         ['Responsable', body.parentName?.trim() ?? ''],
         ['Message', body.message?.trim() ?? ''],

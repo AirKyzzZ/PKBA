@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { PartyPopper, Shield, Users, Star, CheckCircle, AlertCircle, Phone, Mail, ArrowRight } from 'lucide-react'
+import { toLocalIsoDate } from '@/lib/validation'
 
 const AnniversairesPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -55,8 +56,12 @@ const AnniversairesPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     setError('')
+    if (formData.preferredDate < toLocalIsoDate()) {
+      setError('Choisissez une date à venir pour l\'anniversaire.')
+      return
+    }
+    setIsSubmitting(true)
 
     try {
       const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_FORM_ID}`, {
@@ -398,7 +403,7 @@ const AnniversairesPage = () => {
                   <span>06 60 14 71 44</span>
                 </a>
                 <a
-                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'}`}
                   className="inline-flex items-center space-x-2 text-primary hover:text-secondary font-montserrat font-medium text-sm transition-colors"
                 >
                   <Mail size={16} />
