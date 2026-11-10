@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import emailjs from '@emailjs/browser'
 import { Calendar, Upload, FileText, Heart } from 'lucide-react'
@@ -23,8 +23,9 @@ export default function DonationForm() {
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
   const [signatureData, setSignatureData] = useState<string | null>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [isDrawing, setIsDrawing] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const isDrawingRef = useRef(false)
+  const hasStrokeRef = useRef(false)
   const [currentDate] = useState(new Date().toLocaleDateString('fr-FR'))
 
   const [formData, setFormData] = useState<DonationFormData>({
@@ -48,47 +49,54 @@ export default function DonationForm() {
     }))
   }
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    setIsDrawing(true)
-    const canvas = canvasRef.current
+  const setupCanvas = useCallback((canvas: HTMLCanvasElement | null) => {
+    canvasRef.current = canvas
     if (!canvas) return
-    
+    const ratio = Math.min(window.devicePixelRatio || 1, 2)
+    canvas.width = Math.round((canvas.clientWidth || 400) * ratio)
+    canvas.height = Math.round((canvas.clientHeight || 200) * ratio)
+  }, [])
+
+  const canvasPoint = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = e.currentTarget
+    const rect = canvas.getBoundingClientRect()
+    return {
+      x: (e.clientX - rect.left - canvas.clientLeft) * (canvas.width / canvas.clientWidth),
+      y: (e.clientY - rect.top - canvas.clientTop) * (canvas.height / canvas.clientHeight),
+    }
+  }
+
+  const startDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (e.button !== 0) return
+    const canvas = e.currentTarget
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    
-    const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
+    e.preventDefault()
+    canvas.setPointerCapture(e.pointerId)
+    isDrawingRef.current = true
+    const { x, y } = canvasPoint(e)
+    ctx.lineWidth = 2 * (canvas.width / canvas.clientWidth)
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.strokeStyle = '#1f2937'
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.strokeStyle = '#1f2937'
-    ctx.lineWidth = 2
   }
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return
-    
-    const canvas = canvasRef.current
-    if (!canvas) return
-    
-    const ctx = canvas.getContext('2d')
+  const draw = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current) return
+    const ctx = e.currentTarget.getContext('2d')
     if (!ctx) return
-    
-    const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
+    const { x, y } = canvasPoint(e)
     ctx.lineTo(x, y)
     ctx.stroke()
+    hasStrokeRef.current = true
   }
 
-  const stopDrawing = () => {
-    setIsDrawing(false)
-    const canvas = canvasRef.current
-    if (canvas) {
-      setSignatureData(canvas.toDataURL())
-    }
+  const stopDrawing = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current) return
+    isDrawingRef.current = false
+    if (hasStrokeRef.current) setSignatureData(e.currentTarget.toDataURL())
   }
 
   const clearSignature = () => {
@@ -97,6 +105,7 @@ export default function DonationForm() {
       const ctx = canvas.getContext('2d')
       if (ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        hasStrokeRef.current = false
         setSignatureData(null)
       }
     }
@@ -119,7 +128,7 @@ export default function DonationForm() {
 
     try {
       // Create payment intent
-      const response = await fetch('/api/create-donation-intent', {
+      const response = await fetch('/api/create-donation-intent/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,10 +139,13 @@ export default function DonationForm() {
         }),
       })
 
-      const { clientSecret } = await response.json()
+      const intent = await response.json().catch(() => ({}))
+      if (!response.ok || !intent.clientSecret) {
+        alert(intent.error || "Le paiement n'a pas pu être préparé. Aucun montant n'a été débité, réessayez.")
+        return
+      }
 
-      // Confirm payment
-      const { error: paymentError } = await stripe.confirmCardPayment(clientSecret, {
+      const { error: paymentError } = await stripe.confirmCardPayment(intent.clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement)!,
           billing_details: {
@@ -166,14 +178,24 @@ export default function DonationForm() {
         signature: signatureData,
       }
 
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        templateParams,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      )
+      let receiptRequested = true
+      try {
+        await emailjs.send(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+          templateParams,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        )
+      } catch (emailError) {
+        console.error('EmailJS error after successful payment:', emailError)
+        receiptRequested = false
+      }
 
-      alert('Don effectué avec succès! Un reçu vous sera envoyé par email.')
+      alert(
+        receiptRequested
+          ? 'Don effectué avec succès! Un reçu vous sera envoyé par email.'
+          : `Don effectué avec succès, merci ! Le paiement est bien passé, ne le refaites pas. Nous n'avons pas pu transmettre vos informations pour le reçu fiscal : écrivez à ${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'} avec votre nom et le montant.`
+      )
       
       // Reset form
       setFormData({
@@ -192,14 +214,14 @@ export default function DonationForm() {
 
     } catch (error) {
       console.error('Error:', error)
-      alert('Une erreur est survenue. Veuillez réessayer.')
+      alert(`Une erreur est survenue. Si un débit apparaît sur votre compte, écrivez à ${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'parkourBA33@gmail.com'} avant de réessayer.`)
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-2xl p-8">
+    <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8">
       <div className="text-center mb-8">
         <Heart className="w-12 h-12 text-red-500 mx-auto mb-4" />
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -356,27 +378,25 @@ export default function DonationForm() {
           </p>
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
             <Upload className="w-5 h-5 mr-2" />
             Signature *
           </h3>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-2 sm:p-4">
             <canvas
-              ref={canvasRef}
-              width={400}
-              height={200}
-              className="border border-gray-300 rounded bg-white cursor-crosshair"
-              onMouseDown={startDrawing}
-              onMouseMove={draw}
-              onMouseUp={stopDrawing}
-              onMouseLeave={stopDrawing}
+              ref={setupCanvas}
+              className="block w-full h-[200px] border border-gray-300 rounded bg-white cursor-crosshair touch-none select-none"
+              onPointerDown={startDrawing}
+              onPointerMove={draw}
+              onPointerUp={stopDrawing}
+              onPointerCancel={stopDrawing}
             />
             <div className="mt-4 flex gap-2">
               <button
                 type="button"
                 onClick={clearSignature}
-                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                className="shrink-0 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
               >
                 Effacer
               </button>
