@@ -143,8 +143,7 @@ géométriques par visuel, hors des zones de texte.
 ### Itération du 11/11, plus de Noël
 
 Demande de Maxime : plus d'éléments de Noël sur tous les formats, un sapin, sans tomber dans le
-clipart. Prix inchangés en attendant sa réponse : 25€/jour, ligne « 100€ la semaine » gardée
-telle quelle, Formule 2 toujours sans prix.
+clipart.
 
 - Sapin en pochoir, trois étages encre à 32 % d'opacité derrière le titre, étoile crème à ombre
   dure, une guirlande de lumières crème sur l'étage du haut. Il passe derrière « Noël », « Deux
@@ -158,3 +157,14 @@ telle quelle, Formule 2 toujours sans prix.
   l'adresse, « Inscription en ligne, lien en bio » en pied.
 - PNG et légende dans `exports/2026-11-11-v3/`. L'état v2 reste au commit cc5fb99 et dans
   `exports/2026-11-10-v2/`.
+
+### Tarif final de Maxime du 11/11
+
+« pas de semaine à 100 euros, juste 25 euros par jour, ce sera suffisant ». Remplace la décision
+du 10/11 sur le tarif semaine.
+
+- Formule 1 : **25€ par jour**, rien d'autre. La ligne 100€ est retirée de la slide 2, de la story,
+  du carré et de la légende, sans mention d'absence de forfait.
+- Formule 2 : toujours pas de prix, comme le « Tarif à confirmer » du site.
+- Le site (`weekDiscount: false`) calcule déjà 25€ par jour : visuels et site sont alignés sur la
+  Formule 1.
