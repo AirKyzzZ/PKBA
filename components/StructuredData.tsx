@@ -1,6 +1,12 @@
 import Script from 'next/script'
 import { CLUB } from '@/content/club'
 
+const SAME_AS = [
+  CLUB.social.instagram,
+  ...(CLUB.social.facebook ? [CLUB.social.facebook] : []),
+  CLUB.google.mapsUrl,
+]
+
 interface StructuredDataProps {
   type: 'organization' | 'sportsOrganization' | 'product' | 'event' | 'localBusiness' | 'localSportsOrganization' | 'article'
   data: any
@@ -60,11 +66,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             availableLanguage: 'French',
             areaServed: 'FR',
           },
-          sameAs: [
-            CLUB.social.instagram,
-            ...(CLUB.social.facebook ? [CLUB.social.facebook] : []),
-            CLUB.google.mapsUrl,
-          ],
+          sameAs: SAME_AS,
           foundingDate: '2025',
           sport: 'Parkour',
           areaServed: {
@@ -115,6 +117,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/full_white.png`,
           image: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/text_white.png`,
           hasMap: 'https://share.google/UrLrtmfeh45d819kt',
+          sameAs: SAME_AS,
           address: {
             '@type': 'PostalAddress',
             streetAddress: '4 Av. de L\'actipôle',

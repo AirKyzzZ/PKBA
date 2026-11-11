@@ -122,11 +122,13 @@ describe('rendu des mails', () => {
 
   it('pose le logo, le bouton et le pied de page du club', () => {
     const [club, famille] = rendus
-    for (const { html } of rendus) {
+    for (const { html, text } of rendus) {
       expect(html).toContain('https://pkba.vertiflow.fr/images/transparent_full.png')
       expect(html).toContain('alt="PKBA"')
       expect(html).toContain('Gujan-Mestras')
       expect(html).toContain('https://instagram.com/parkourbassindarcachon')
+      expect(html).toContain('https://www.facebook.com/profile.php?id=61596681621500')
+      expect(text).toContain('Facebook : https://www.facebook.com/profile.php?id=61596681621500')
       expect(html).toContain('06 60 14 71 44')
     }
     expect(famille.html).toContain('https://pkba.vertiflow.fr/stage/')

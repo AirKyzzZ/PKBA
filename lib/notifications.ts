@@ -120,7 +120,7 @@ ${body}
 <strong style="color:#0a0a0a">${esc(CLUB.name)}</strong><br>
 ${esc(CLUB.address.full)}<br>
 <a href="${CLUB_PHONE_HREF}" style="color:${BRAND_BLUE};text-decoration:none">${CLUB_PHONE}</a> (David)<br>
-<a href="${SITE_URL}" target="_blank" style="color:${BRAND_BLUE};text-decoration:none">pkba.vertiflow.fr</a> · <a href="${esc(CLUB.social.instagram)}" target="_blank" style="color:${BRAND_BLUE};text-decoration:none">Instagram @${esc(CLUB.social.instagramHandle)}</a>
+<a href="${SITE_URL}" target="_blank" style="color:${BRAND_BLUE};text-decoration:none">pkba.vertiflow.fr</a> · <a href="${esc(CLUB.social.instagram)}" target="_blank" style="color:${BRAND_BLUE};text-decoration:none">Instagram @${esc(CLUB.social.instagramHandle)}</a>${CLUB.social.facebook ? ` · <a href="${esc(CLUB.social.facebook)}" target="_blank" style="color:${BRAND_BLUE};text-decoration:none">Facebook</a>` : ''}
 </td></tr>
 </table>
 </td></tr>
@@ -135,6 +135,7 @@ const footerText = () =>
     `${CLUB_PHONE} (David)`,
     SITE_URL,
     `Instagram : ${CLUB.social.instagram}`,
+    ...(CLUB.social.facebook ? [`Facebook : ${CLUB.social.facebook}`] : []),
   ].join('\n')
 
 export function renderClubEmail(n: SignupNotification): RenderedEmail {
