@@ -110,7 +110,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
   const brandInfoVisibility = isScrolled ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden' : ''
 
   // Desktop nav spacing only
-  const desktopNavSpacing = isScrolled ? 'lg:space-x-3 xl:space-x-6' : 'lg:space-x-4 xl:space-x-8'
+  const desktopNavSpacing = 'lg:space-x-3 xl:space-x-6'
 
   return (
     <header
@@ -196,7 +196,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
           </nav>
 
           {/* Social Links & CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4 ml-4">
             <a
               href={CLUB.social.instagram}
               target="_blank"
