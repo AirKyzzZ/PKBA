@@ -8,6 +8,16 @@ const PRICES_CENTS: Record<string, number> = {
   'Short athlétique PKBA': 3499,
 }
 
+const EUROS = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+
+export function roundEuros(amount: number): number {
+  return Math.round(amount * 100) / 100
+}
+
+export function formatEuros(amount: number): string {
+  return EUROS.format(amount)
+}
+
 export type OrderItem = {
   name?: unknown
   quantity?: unknown

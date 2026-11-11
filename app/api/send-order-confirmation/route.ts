@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import Stripe from 'stripe'
 import { esc } from '@/lib/notifications'
+import { formatEuros } from '@/lib/shop-pricing'
 
 const h = (v: unknown) => esc(String(v ?? ''))
 
@@ -62,7 +63,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
           ${h(item.quantity)}
         </td>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">
-          <strong>${itemTotal.toFixed(2)}€</strong>
+          <strong>${formatEuros(itemTotal)}</strong>
         </td>
       </tr>
     `
@@ -148,7 +149,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
                     Sous-total:
                   </td>
                   <td style="padding: 8px 0; text-align: right; color: #111827; font-size: 14px; font-weight: 600;">
-                    ${subtotal.toFixed(2)}€
+                    ${formatEuros(subtotal)}
                   </td>
                 </tr>
                 <tr>
@@ -156,7 +157,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
                     Frais de livraison:
                   </td>
                   <td style="padding: 8px 0; text-align: right; color: #111827; font-size: 14px; font-weight: 600;">
-                    ${shippingCost.toFixed(2)}€
+                    ${formatEuros(shippingCost)}
                   </td>
                 </tr>
                 <tr style="border-top: 2px solid #e5e7eb;">
@@ -164,7 +165,7 @@ function generateOrderConfirmationEmail(orderData: OrderData): string {
                     Total:
                   </td>
                   <td style="padding: 12px 0; text-align: right; color: #667eea; font-size: 20px; font-weight: bold;">
-                    ${total.toFixed(2)}€
+                    ${formatEuros(total)}
                   </td>
                 </tr>
               </table>

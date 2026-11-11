@@ -5,6 +5,7 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { motion } from 'framer-motion'
 import { CreditCard, User, Mail, Phone, MapPin, CheckCircle, AlertCircle, Shield, Home, ShoppingCart } from 'lucide-react'
 import { CartItem } from './CartContext'
+import { formatEuros } from '@/lib/shop-pricing'
 
 interface CheckoutFormProps {
   items: CartItem[]
@@ -62,7 +63,7 @@ const CheckoutForm = ({
           items_summary: items.map(item => 
             `${item.name} - ${item.color === 'white' ? 'Blanc' : item.color === 'black' ? 'Noir' : item.color} - Taille ${item.size}${item.customization ? ` - Personnalisation: ${item.customization}` : ''} x${item.quantity}`
           ).join('\n'),
-          total_amount: total.toString(),
+          total_amount: total.toFixed(2),
           order_details: JSON.stringify(orderData, null, 2),
           order_date: new Date().toISOString()
         }).toString(),
@@ -212,7 +213,7 @@ const CheckoutForm = ({
           <div className="space-y-4">
             <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg">
               <span className="font-montserrat font-bold text-gray-700 text-lg">Montant payé:</span>
-              <span className="font-cheddar font-bold text-green-600 text-2xl">{total.toFixed(2)}€</span>
+              <span className="font-cheddar font-bold text-green-600 text-2xl">{formatEuros(total)}</span>
             </div>
             
             <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
@@ -257,7 +258,7 @@ const CheckoutForm = ({
                 </div>
                 <div className="text-right">
                   <p className="font-cheddar font-bold text-gray-900">
-                    {((item.price + (item.customization ? 5 : 0)) * item.quantity).toFixed(2)}€
+                    {formatEuros((item.price + (item.customization ? 5 : 0)) * item.quantity)}
                   </p>
                   <p className="font-montserrat text-sm text-gray-500">x{item.quantity}</p>
                 </div>
@@ -533,7 +534,7 @@ const CheckoutForm = ({
         ) : (
           <>
             <CreditCard size={20} />
-            <span>Payer {total.toFixed(2)}€</span>
+            <span>Payer {formatEuros(total)}</span>
           </>
         )}
       </button>

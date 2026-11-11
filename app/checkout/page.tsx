@@ -8,6 +8,7 @@ import { Trash2, Plus, Minus, Truck, Shield, CreditCard } from 'lucide-react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import CheckoutForm from '@/components/CheckoutForm'
+import { formatEuros, roundEuros } from '@/lib/shop-pricing'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -20,7 +21,7 @@ const CheckoutPage = () => {
   const shippingCost = 4.99
   const items = completedOrder?.items ?? cartItems
   const subtotal = completedOrder?.subtotal ?? getTotalPrice()
-  const total = subtotal + shippingCost
+  const total = roundEuros(subtotal + shippingCost)
 
   useEffect(() => {
     if (isLoaded && items.length === 0 && !completedOrder) {
@@ -124,7 +125,7 @@ const CheckoutPage = () => {
                       </div>
                       <div className="text-right">
                         <p className="font-cheddar font-bold text-gray-900">
-                          {((item.price + (item.customization ? 5 : 0)) * item.quantity).toFixed(2)}€
+                          {formatEuros((item.price + (item.customization ? 5 : 0)) * item.quantity)}
                         </p>
                         <button
                           onClick={() => removeFromCart(item.id)}
@@ -146,16 +147,16 @@ const CheckoutPage = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="font-montserrat text-gray-600">Sous-total:</span>
-                    <span className="font-cheddar font-bold text-gray-900">{subtotal.toFixed(2)}€</span>
+                    <span className="font-cheddar font-bold text-gray-900">{formatEuros(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-montserrat text-gray-600">Livraison:</span>
-                    <span className="font-cheddar font-bold text-gray-900">{shippingCost.toFixed(2)}€</span>
+                    <span className="font-cheddar font-bold text-gray-900">{formatEuros(shippingCost)}</span>
                   </div>
                   <div className="border-t pt-2 flex justify-between">
                     <span className="font-cheddar font-bold text-lg text-gray-900">Total:</span>
                     <span className="font-cheddar font-bold text-lg text-primary">
-                      {total.toFixed(2)}€
+                      {formatEuros(total)}
                     </span>
                   </div>
                 </div>
@@ -172,7 +173,7 @@ const CheckoutPage = () => {
               </div>
               <ul className="space-y-2 text-blue-800 text-sm font-montserrat">
                 <li>• Livraison en 8-10 jours ouvrés</li>
-                <li>• Frais de livraison: 4.99€ (obligatoire)</li>
+                <li>• Frais de livraison: {formatEuros(shippingCost)} (obligatoire)</li>
                 <li>• Suivi de commande par email</li>
                 <li>• Retours acceptés sous 30 jours</li>
               </ul>
