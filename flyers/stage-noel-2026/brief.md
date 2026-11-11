@@ -132,9 +132,29 @@ pré-colorées en PNG.
   n'a été donné pour le créneau 16h-17h30. À trancher, puis ajouter un chip prix sur la slide 2
   et une ligne sur la couverture, la story et la légende.
 - 3 jours à 25€ font 75€, moins que la semaine à 100€. À confirmer avec Maxime.
-- Le site (`content/stages.ts`, `noel-2026`) affiche encore 15€/séance et pas de tarif semaine
-  (`weekDiscount: false`). Visuels et site divergent tant que le site n'est pas aligné.
+- Le site (`content/stages.ts`, `noel-2026`, commit a3a3030) affiche la Formule 2 en « Tarif à
+  confirmer auprès du club » mais n'a pas de tarif semaine (`weekDiscount: false`, semaine
+  complète à 5 jours) : 3 jours y font 75€. Visuels et site divergent sur le 100€.
 
 Touches de Noël ajoutées : nœud crème sur le ruban encre, ficelle qui descend jusqu'à l'œillet de
 l'étiquette (couverture et story), œillet renforcé sur l'étiquette, trois petits flocons
 géométriques par visuel, hors des zones de texte.
+
+### Itération du 11/11, plus de Noël
+
+Demande de Maxime : plus d'éléments de Noël sur tous les formats, un sapin, sans tomber dans le
+clipart. Prix inchangés en attendant sa réponse : 25€/jour, ligne « 100€ la semaine » gardée
+telle quelle, Formule 2 toujours sans prix.
+
+- Sapin en pochoir, trois étages encre à 32 % d'opacité derrière le titre, étoile crème à ombre
+  dure, une guirlande de lumières crème sur l'étage du haut. Il passe derrière « Noël », « Deux
+  formules » et « En ligne », jamais sur un texte du corps.
+- Neige qui tombe, petits points crème semés hors des zones de texte, en plus des flocons.
+- Neige posée sur le bandeau encre du bas, avec quelques stalactites.
+- Nœud crème sur le ruban entre les deux étiquettes de la slide 2.
+- Sur la couverture et la story, « Stage de parkour » passe à côté du médaillon pour laisser
+  l'étoile au-dessus du titre.
+- Nouveau format carré `instagram-v2-carre.html` (1080x1080) : même contenu que la story, sans
+  l'adresse, « Inscription en ligne, lien en bio » en pied.
+- PNG et légende dans `exports/2026-11-11-v3/`. L'état v2 reste au commit cc5fb99 et dans
+  `exports/2026-11-10-v2/`.
