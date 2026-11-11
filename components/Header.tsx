@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Instagram, ShoppingCart, ChevronDown } from 'lucide-react'
+import { Menu, X, Instagram, Facebook, ShoppingCart, ChevronDown } from 'lucide-react'
 import { useCart } from './CartContext'
 import { STAGES, type StageId } from '@/content/stages'
 import { useUpcomingStageIds } from '@/lib/use-upcoming-stages'
@@ -205,6 +205,17 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
             >
               <Instagram size={20} />
             </a>
+            {CLUB.social.facebook && (
+              <a
+                href={CLUB.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook PKBA"
+                className="text-gray-600 hover:text-primary transition-colors duration-200"
+              >
+                <Facebook size={20} />
+              </a>
+            )}
             <Link
               href="/checkout"
               className="relative text-gray-600 hover:text-primary transition-colors duration-200"
@@ -235,6 +246,17 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
             >
               <Instagram size={20} className="sm:w-6 sm:h-6" />
             </a>
+            {CLUB.social.facebook && (
+              <a
+                href={CLUB.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200 mr-1"
+                aria-label="Facebook PKBA"
+              >
+                <Facebook size={20} className="sm:w-6 sm:h-6" />
+              </a>
+            )}
             <Link
               href="/checkout"
               aria-label="Panier"
@@ -329,7 +351,7 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
               >
                 {cta.mobile}
               </Link>
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-gray-200 space-y-3">
                 <a
                   href={CLUB.social.instagram}
                   target="_blank"
@@ -339,6 +361,17 @@ const Header = ({ initialStageIds }: { initialStageIds: StageId[] }) => {
                   <Instagram size={18} />
                   <span className="font-montserrat">@parkourbassindarcachon</span>
                 </a>
+                {CLUB.social.facebook && (
+                  <a
+                    href={CLUB.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
+                  >
+                    <Facebook size={18} />
+                    <span className="font-montserrat">{CLUB.name}</span>
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Phone, Mail, MapPin, Instagram, Clock, Send, CheckCircle, AlertCircle, Navigation, Star } from 'lucide-react'
+import { Phone, Mail, MapPin, Instagram, Facebook, Clock, Send, CheckCircle, AlertCircle, Navigation, Star } from 'lucide-react'
 import { CLUB } from '@/content/club'
 
 const ContactPage = () => {
@@ -38,6 +38,17 @@ const ContactPage = () => {
       href: CLUB.social.instagram,
       description: 'Suivez-nous sur Instagram'
     },
+    ...(CLUB.social.facebook
+      ? [
+          {
+            icon: Facebook,
+            title: 'Facebook',
+            value: CLUB.name,
+            href: CLUB.social.facebook,
+            description: 'Suivez-nous sur Facebook'
+          }
+        ]
+      : []),
     {
       icon: MapPin,
       title: 'Localisation',
@@ -138,7 +149,7 @@ const ContactPage = () => {
       {/* Contact Information */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-8 mb-16">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
@@ -155,8 +166,8 @@ const ContactPage = () => {
                 </h3>
                 <a
                   href={info.href}
-                  target={info.title === 'Instagram' || info.title === 'Localisation' ? '_blank' : undefined}
-                  rel={info.title === 'Instagram' || info.title === 'Localisation' ? 'noopener noreferrer' : undefined}
+                  target={info.href.startsWith('https://') ? '_blank' : undefined}
+                  rel={info.href.startsWith('https://') ? 'noopener noreferrer' : undefined}
                   className="text-primary hover:text-secondary font-montserrat font-medium transition-colors duration-200"
                 >
                   {info.value}
