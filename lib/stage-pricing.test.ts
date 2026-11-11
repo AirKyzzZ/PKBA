@@ -44,6 +44,11 @@ describe('computeStageTotals', () => {
     })
   })
 
+  it('facture une semaine de Noël complète à 3 × 25€, sans forfait semaine', () => {
+    const week = noel.days.filter((d) => d.weekIndex === 0).map((d) => d.date)
+    expect(computeStageTotals(noel, week).f1).toBe(75)
+  })
+
   it('garde le tarif semaine sur les deux semaines pleines du stage d\'août', () => {
     const all = aout.days.map((d) => d.date)
     expect(computeStageTotals(aout, all).f1).toBe(2 * FORMULES[1].priceWeek!)
