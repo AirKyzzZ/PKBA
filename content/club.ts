@@ -21,7 +21,7 @@ export const CLUB = {
   social: {
     instagramHandle: 'parkourbassindarcachon',
     instagram: 'https://instagram.com/parkourbassindarcachon',
-    facebook: 'https://www.facebook.com/profile.php?id=61596681621500' as string | null,
+    facebook: 'https://www.facebook.com/parkourbassindarcachon' as string | null,
   },
   travelTime: {
     arcachon: '15 min',

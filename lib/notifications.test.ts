@@ -127,8 +127,8 @@ describe('rendu des mails', () => {
       expect(html).toContain('alt="PKBA"')
       expect(html).toContain('Gujan-Mestras')
       expect(html).toContain('https://instagram.com/parkourbassindarcachon')
-      expect(html).toContain('https://www.facebook.com/profile.php?id=61596681621500')
-      expect(text).toContain('Facebook : https://www.facebook.com/profile.php?id=61596681621500')
+      expect(html).toContain('https://www.facebook.com/parkourbassindarcachon')
+      expect(text).toContain('Facebook : https://www.facebook.com/parkourbassindarcachon')
       expect(html).toContain('06 60 14 71 44')
     }
     expect(famille.html).toContain('https://pkba.vertiflow.fr/stage/')
