@@ -1,5 +1,30 @@
 import { describe, expect, it } from 'vitest'
-import { computeOrderAmount } from './shop-pricing'
+import { computeOrderAmount, formatEuros, roundEuros } from './shop-pricing'
+
+const plainSpaces = (text: string) => text.replace(/\s/g, ' ')
+
+describe('roundEuros', () => {
+  it('rounds a float cart total to the cent', () => {
+    const total = roundEuros(19.99 + 5 + 4.99)
+    expect(total).toBe(29.98)
+    expect(total.toFixed(2)).toBe('29.98')
+    expect(JSON.stringify({ total })).toBe('{"total":29.98}')
+  })
+
+  it('keeps exact amounts unchanged', () => {
+    expect(roundEuros(64.97)).toBe(64.97)
+    expect(roundEuros(30)).toBe(30)
+  })
+})
+
+describe('formatEuros', () => {
+  it('formats amounts the French way', () => {
+    expect(plainSpaces(formatEuros(19.99 + 5 + 4.99))).toBe('29,98 €')
+    expect(plainSpaces(formatEuros(4.99))).toBe('4,99 €')
+    expect(plainSpaces(formatEuros(30))).toBe('30,00 €')
+    expect(plainSpaces(formatEuros(1234.5))).toBe('1 234,50 €')
+  })
+})
 
 describe('computeOrderAmount', () => {
   it('prices a hoodie with shipping', () => {
