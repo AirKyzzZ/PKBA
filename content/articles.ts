@@ -18,7 +18,7 @@ export const articles: Article[] = [
     slug: 'assemblee-generale-2026-nouveau-bureau-nfx-rouen-pkba',
     title: 'Assemblée générale, nouveau bureau et NFX à Rouen : un mois de novembre chargé au PKBA',
     excerpt:
-      "AG du 6 novembre, nouveau bureau, un juge de niveau 2 au club et une 4e place en finale internationale à Rouen : retour sur un mois de novembre chargé au Parkour Bassin d'Arcachon.",
+      "AG du 6 novembre, nouveau bureau, deux juges de niveau 2 au club et une 4e place en finale internationale à Rouen : retour sur un mois de novembre chargé au Parkour Bassin d'Arcachon.",
     content: `
       <p class="mb-6">On vous l'avait annoncé dans <a href="/actualites/saison-2026-2027-stages-ete-rentree-toussaint-pkba" class="text-primary hover:underline font-semibold">notre article de rentrée</a> : novembre allait être chargé. Il l'a été. En dix jours, le <strong>Parkour Bassin d'Arcachon</strong> a tenu son <strong>assemblée générale</strong>, élu un <strong>nouveau bureau</strong>, envoyé deux de ses membres en <strong>formation de juges</strong> à Paris, puis pris la route de <strong>Rouen</strong> pour le premier grand rendez-vous compétitif de la saison. On vous raconte.</p>
 
@@ -58,7 +58,7 @@ export const articles: Article[] = [
 
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un nouveau bureau pour le club</h2>
 
-      <p class="mb-6">L'assemblée s'est terminée par l'élection d'un nouveau bureau. <strong>David Andro</strong>, qui porte le club depuis sa création, passe la main à la présidence [À COMPLÉTER : la raison, formulée comme David le souhaite]. Il reste bien sûr aux commandes de l'entraînement. Les trois candidats ont été élus à l'unanimité.</p>
+      <p class="mb-6">L'assemblée s'est terminée par l'élection d'un nouveau bureau. <strong>David Andro</strong>, qui porte le club depuis sa création, passe la main à la présidence. Comme annoncé en assemblée générale, le club prévoit de l'embaucher au 1er juillet 2027, et on ne peut pas être à la fois salarié du club et président. Il reste bien sûr aux commandes de l'entraînement. Les trois candidats ont été élus à l'unanimité.</p>
 
       <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Le bureau 2026/2027</h3>
@@ -73,7 +73,7 @@ export const articles: Article[] = [
 
       <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
         <p class="text-gray-800 font-montserrat italic text-lg">
-          "[À COMPLÉTER : le mot de Maxime en tant que nouveau président, deux ou trois phrases]"
+          "On a déjà fait une bonne partie de la route ensemble, et pour moi, c'est une aventure humaine extraordinaire. Il faut qu'on continue à offrir le meilleur environnement et le meilleur cadre, pour que tout le monde puisse progresser dans ce magnifique sport, dans les meilleures conditions."
         </p>
         <p class="text-gray-700 font-montserrat mt-2">Maxime Mansiet, président du PKBA</p>
       </div>
@@ -84,9 +84,9 @@ export const articles: Article[] = [
 
       <p class="mb-6">Une piste, une idée, un contact ? Écrivez-nous via la <a href="/contact" class="text-primary hover:underline font-semibold">page contact</a>, ou soutenez directement le club sur la <a href="/donations" class="text-primary hover:underline font-semibold">page dons</a>.</p>
 
-      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un juge de niveau 2 au club</h2>
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Deux juges de niveau 2 au club</h2>
 
-      <p class="mb-6">Dès le lendemain de l'AG, les <strong>7 et 8 novembre</strong>, Maxime et <strong>Viktor Terrou</strong> étaient à Paris pour la formation de juges de parkour de la FFGym. Maxime en revient avec le <strong>niveau 2 de juge parkour</strong>. [À COMPLÉTER : le niveau obtenu par Viktor, s'il souhaite que ce soit publié]</p>
+      <p class="mb-6">Dès le lendemain de l'AG, les <strong>7 et 8 novembre</strong>, Maxime et <strong>Viktor Terrou</strong> étaient à Paris pour la formation de juges de parkour de la FFGym. Ils en reviennent tous les deux avec le <strong>niveau 2 de juge parkour</strong>.</p>
 
       <p class="mb-6">Pour valider un niveau, il faut passer un QCM sur le règlement, puis juger des runs en vidéo, en difficulté comme en exécution, avec un minimum à atteindre dans chaque épreuve. Avoir des juges formés au club, c'est mieux comprendre ce qui est attendu en compétition, et pouvoir le transmettre à nos traceurs dès l'entraînement.</p>
 
@@ -94,17 +94,16 @@ export const articles: Article[] = [
 
       <p class="mb-6">Du <strong>12 au 15 novembre</strong>, Rouen accueillait la toute première édition de la <strong>Normandie Freestyle Xperience (NFX)</strong>, un open international de parkour organisé à la halle Saint-Exupéry, avec 25 nations annoncées. En parallèle, les <strong>14 et 15 novembre</strong>, s'y tenait la <strong>première étape du Circuit national FFGym 2026/2027</strong>, qualificative pour le Championnat de France : le freestyle le samedi, le speed le dimanche.</p>
 
-      <p class="mb-6">Une semaine à peine après sa formation, Maxime y a officié comme juge [À COMPLÉTER : sur la NFX ou sur l'étape du Circuit national, et dans quelle discipline], et a pu suivre nos traceurs depuis le bord du parcours.</p>
+      <p class="mb-6">Une semaine à peine après sa formation, Maxime y a jugé l'exécution sur l'étape du Circuit national, et a pu suivre nos traceurs depuis le bord du parcours.</p>
 
-      <p class="mb-6">Cinq traceurs du club étaient engagés, répartis entre les deux compétitions, puisqu'un athlète ne peut pas disputer la même discipline sur les deux. Sur la NFX, en catégorie Junior (14-17 ans), <strong>Esaya Kety</strong>, <strong>Tilio Ferreira</strong> et <strong>Milan Terrade-Prior</strong> se sont mesurés à un plateau international en Freestyle et en Skill Comp. Sur l'étape du Circuit national, <strong>Antoine Pressler</strong> et <strong>Samuel Fuchs</strong> ont disputé le Parkour Freestyle des 18 ans et plus, rejoints par Milan.</p>
+      <p class="mb-6">Quatre traceurs du club étaient de la partie, répartis entre les deux compétitions, puisqu'un athlète ne peut pas disputer la même discipline sur les deux. Sur la NFX, en catégorie Junior (14-17 ans), <strong>Esaya Kety</strong> et <strong>Tilio Ferreira</strong> se sont mesurés à un plateau international. Sur l'étape du Circuit national, <strong>Antoine Pressler</strong> et <strong>Samuel Fuchs</strong> ont disputé le Parkour Freestyle des 18 ans et plus.</p>
 
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Sur la NFX, l'open international</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
           <li>🏅 <strong>Esaya Kety</strong>, 4e de la finale Freestyle Junior hommes avec 61,65</li>
           <li><strong>Esaya Kety</strong>, en tête des qualifications Skill Comp Junior hommes, épreuve sans finale junior</li>
-          <li><strong>Tilio Ferreira</strong>, qualifié pour la finale Freestyle Junior hommes [À COMPLÉTER : Tilio n'a pas de note en finale, pourquoi ?]</li>
-          <li><strong>Milan Terrade-Prior</strong>, engagé en Skill Comp Junior hommes</li>
+          <li><strong>Tilio Ferreira</strong>, qualifié pour la finale Freestyle Junior hommes, mais sorti sur une talonnade</li>
         </ul>
       </div>
 
@@ -113,11 +112,10 @@ export const articles: Article[] = [
         <ul class="space-y-2 text-gray-800 font-montserrat">
           <li><strong>Antoine Pressler</strong>, 6e sur 28 en Parkour Freestyle 18 ans et plus hommes (fédéral) avec 60,250</li>
           <li><strong>Samuel Fuchs</strong>, 16e en Parkour Freestyle 18 ans et plus hommes (performance) avec 55,300</li>
-          <li><strong>Milan Terrade-Prior</strong>, engagé en Parkour Freestyle 18 ans et plus hommes (performance), non classé [À COMPLÉTER : la raison, ou retirer la ligne]</li>
         </ul>
       </div>
 
-      <p class="mb-6">Une 4e place en finale internationale pour Esaya, pour le premier rendez-vous de la saison : c'est un très bon départ, et une belle base avant les prochaines étapes du Circuit national. [À COMPLÉTER : un mot sur l'ambiance du week-end, si tu veux]</p>
+      <p class="mb-6">Le week-end a été électrique, tout le monde était à fond : un très beau plateau, une organisation géniale et un setup en modules Brick extrêmement varié et très dense, parfait pour le freestyle. Une 4e place en finale internationale pour Esaya, pour le premier rendez-vous de la saison, c'est un très bon départ avant les prochaines étapes du Circuit national. Et on souhaite un bon rétablissement à Tilio.</p>
 
       <p class="mb-6">Merci à David et aux familles qui ont fait la route jusqu'en Normandie pour encourager nos traceurs.</p>
 
