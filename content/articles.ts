@@ -18,7 +18,7 @@ export const articles: Article[] = [
     slug: 'assemblee-generale-2026-nouveau-bureau-nfx-rouen-pkba',
     title: 'Assemblée générale, nouveau bureau et NFX à Rouen : un mois de novembre chargé au PKBA',
     excerpt:
-      "AG du 6 novembre, nouveau bureau, un juge de niveau 2 au club et la NFX à Rouen : retour sur un mois de novembre chargé au Parkour Bassin d'Arcachon.",
+      "AG du 6 novembre, nouveau bureau, un juge de niveau 2 au club et une 4e place en finale internationale à Rouen : retour sur un mois de novembre chargé au Parkour Bassin d'Arcachon.",
     content: `
       <p class="mb-6">On vous l'avait annoncé dans <a href="/actualites/saison-2026-2027-stages-ete-rentree-toussaint-pkba" class="text-primary hover:underline font-semibold">notre article de rentrée</a> : novembre allait être chargé. Il l'a été. En dix jours, le <strong>Parkour Bassin d'Arcachon</strong> a tenu son <strong>assemblée générale</strong>, élu un <strong>nouveau bureau</strong>, envoyé deux de ses membres en <strong>formation de juges</strong> à Paris, puis pris la route de <strong>Rouen</strong> pour le premier grand rendez-vous compétitif de la saison. On vous raconte.</p>
 
@@ -96,14 +96,28 @@ export const articles: Article[] = [
 
       <p class="mb-6">Une semaine à peine après sa formation, Maxime y a officié comme juge [À COMPLÉTER : sur la NFX ou sur l'étape du Circuit national, et dans quelle discipline], et a pu suivre nos traceurs depuis le bord du parcours.</p>
 
-      <p class="mb-6">[À COMPLÉTER : les athlètes PKBA engagés, la compétition (NFX ou Circuit national), la discipline et la catégorie de chacun, et un mot sur l'ambiance du week-end]</p>
+      <p class="mb-6">Cinq traceurs du club étaient engagés, répartis entre les deux compétitions, puisqu'un athlète ne peut pas disputer la même discipline sur les deux. Sur la NFX, en catégorie Junior (14-17 ans), <strong>Esaya Kety</strong>, <strong>Tilio Ferreira</strong> et <strong>Milan Terrade-Prior</strong> se sont mesurés à un plateau international en Freestyle et en Skill Comp. Sur l'étape du Circuit national, <strong>Antoine Pressler</strong> et <strong>Samuel Fuchs</strong> ont disputé le Parkour Freestyle des 18 ans et plus, rejoints par Milan.</p>
 
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
-        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Les résultats PKBA à Rouen</h3>
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Sur la NFX, l'open international</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
-          <li>[À COMPLÉTER : prénom nom, place, discipline, catégorie et niveau, comme dans les articles de Rennes et de Bourges]</li>
+          <li>🏅 <strong>Esaya Kety</strong>, 4e de la finale Freestyle Junior hommes avec 61,65</li>
+          <li><strong>Esaya Kety</strong>, en tête des qualifications Skill Comp Junior hommes, épreuve sans finale junior</li>
+          <li><strong>Tilio Ferreira</strong>, qualifié pour la finale Freestyle Junior hommes [À COMPLÉTER : Tilio n'a pas de note en finale, pourquoi ?]</li>
+          <li><strong>Milan Terrade-Prior</strong>, engagé en Skill Comp Junior hommes</li>
         </ul>
       </div>
+
+      <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Sur l'étape 1 du Circuit national FFGym</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Antoine Pressler</strong>, 6e sur 28 en Parkour Freestyle 18 ans et plus hommes (fédéral) avec 60,250</li>
+          <li><strong>Samuel Fuchs</strong>, 16e en Parkour Freestyle 18 ans et plus hommes (performance) avec 55,300</li>
+          <li><strong>Milan Terrade-Prior</strong>, engagé en Parkour Freestyle 18 ans et plus hommes (performance), non classé [À COMPLÉTER : la raison, ou retirer la ligne]</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Une 4e place en finale internationale pour Esaya, pour le premier rendez-vous de la saison : c'est un très bon départ, et une belle base avant les prochaines étapes du Circuit national. [À COMPLÉTER : un mot sur l'ambiance du week-end, si tu veux]</p>
 
       <p class="mb-6">Merci à David et aux familles qui ont fait la route jusqu'en Normandie pour encourager nos traceurs.</p>
 
