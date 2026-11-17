@@ -138,9 +138,11 @@ export const articles: Article[] = [
       <p class="mb-6">Pour la finale de juin, l'objectif est de qualifier à nouveau <strong>une dizaine d'athlètes</strong>. Le calendrier complet est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et toute la vie du club se suit sur <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Instagram</a> et sur notre <a href="https://www.facebook.com/parkourbassindarcachon" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">page Facebook</a>.</p>
 
       <p class="mb-6 mt-8">À tous les adhérents, parents, coachs, bénévoles et partenaires : <strong>merci</strong>. Une deuxième saison commence avec un nouveau bureau et beaucoup d'envie. On se retrouve au hangar. 🚀</p>
+
+      <p class="text-sm text-gray-500 italic mt-10 pt-4 border-t border-gray-200">Photo de couverture, prise à Tecnópolis (Argentine) en 2011 : <a href="https://commons.wikimedia.org/wiki/File:Parkour_3_(5991841241).jpg" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">« Parkour 3 »</a>, Laura Szenkierman / Tecnópolis Argentina, via Wikimedia Commons, sous licence <a href="https://creativecommons.org/licenses/by/2.0/deed.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">CC BY 2.0</a>, recadrée.</p>
     `,
     category: 'club',
-    date: '2026-11-16',
+    date: '2026-11-17',
     author: 'Équipe PKBA',
     readTime: '7 min',
     image: '/images/ag-2026-nouveau-bureau-nfx-rouen-pkba.jpg',
