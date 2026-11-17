@@ -18,7 +18,7 @@ export const articles: Article[] = [
     slug: 'assemblee-generale-2026-nouveau-bureau-nfx-rouen-pkba',
     title: 'Assemblée générale, nouveau bureau et NFX à Rouen : un mois de novembre chargé au PKBA',
     excerpt:
-      "AG du 6 novembre, nouveau bureau, deux juges de niveau 2 au club et une 4e place en finale internationale à Rouen : retour sur un mois de novembre chargé au Parkour Bassin d'Arcachon.",
+      "AG du 6 novembre, nouveau bureau, deux juges de niveau 2 et une 4e place en finale internationale à Rouen : dix jours intenses au Parkour Bassin d'Arcachon.",
     content: `
       <p class="mb-6">On vous l'avait annoncé dans <a href="/actualites/saison-2026-2027-stages-ete-rentree-toussaint-pkba" class="text-primary hover:underline font-semibold">notre article de rentrée</a> : novembre allait être chargé. Il l'a été. En dix jours, le <strong>Parkour Bassin d'Arcachon</strong> a tenu son <strong>assemblée générale</strong>, élu un <strong>nouveau bureau</strong>, envoyé deux de ses membres en <strong>formation de juges</strong> à Paris, puis pris la route de <strong>Rouen</strong> pour le premier grand rendez-vous compétitif de la saison. On vous raconte.</p>
 
@@ -26,7 +26,7 @@ export const articles: Article[] = [
 
       <p class="mb-6">Le <strong>vendredi 6 novembre</strong>, adhérents et parents se sont retrouvés au hangar de Gujan-Mestras pour l'assemblée générale annuelle du club. Merci à tous ceux qui sont venus ou qui ont confié leur pouvoir, et merci à <strong>M. André Moustié</strong>, adjoint aux sports de Gujan-Mestras, d'avoir pris le temps d'être parmi nous.</p>
 
-      <p class="mb-6">David Andro a ouvert la soirée en rappelant d'où l'on vient. Le club est parti de rien en 2025, sans salle et sans matériel. Les premiers cours ont eu lieu dans la petite yourte du cirque Komono à La Teste-de-Buch, avec trois modules, puis l'hiver s'est passé dans le hangar de <strong>Vertical T'Air</strong>, que l'on remercie encore pour leur accueil, avant l'arrivée dans notre propre hangar en avril 2026.</p>
+      <p class="mb-6">David Andro a ouvert la soirée en rappelant d'où l'on vient. Le club est parti de rien en 2025, sans salle et sans matériel. Les premiers cours ont eu lieu dans la petite yourte du cirque Komono à La Teste-de-Buch, avec trois modules, puis l'hiver s'est passé dans le hangar de <strong>Vertical T'Air</strong>, que l'on remercie encore pour son accueil, avant l'arrivée dans notre propre hangar en avril 2026.</p>
 
       <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
         <p class="text-gray-800 font-montserrat italic text-lg">
@@ -39,7 +39,7 @@ export const articles: Article[] = [
 
       <p class="mb-6">Le bilan de la saison 2025/2026 a été présenté chiffres à l'appui. Au 30 juin, le club comptait <strong>66 licenciés</strong>, avec un encadrement entièrement bénévole. Côté compétition, nos <strong>15 compétiteurs</strong> ont disputé trois compétitions fédérales, à Thouars, <a href="/actualites/nouveau-local-gujan-mestras-circuit-national-rennes-pkba" class="text-primary hover:underline font-semibold">Rennes</a> et <a href="/actualites/championnat-france-parkour-bourges-podiums-gala-pkba" class="text-primary hover:underline font-semibold">Bourges</a>. <strong>Dix athlètes</strong> se sont qualifiés pour le Championnat de France, et le club s'est aussi qualifié pour la finale par équipe.</p>
 
-      <p class="mb-6">Résultat : dans le classement des clubs publié par la FFGym le 9 octobre 2026, le PKBA se classe <strong>6e sur 75 clubs</strong> de parkour en France, dès sa première saison. Ce classement tient compte notamment du nombre de licenciés, des résultats sportifs et du nombre de formateurs diplômés. L'objectif pour cette saison est posé : <strong>le top 5, voire le top 3</strong>.</p>
+      <p class="mb-6">Résultat : dans le classement des clubs publié par la FFGym le 9 octobre 2026, le PKBA est <strong>6e sur 75 clubs</strong> de parkour en France, dès sa première saison. Ce classement tient compte notamment du nombre de licenciés, des résultats sportifs et du nombre de formateurs diplômés. L'objectif pour cette saison est posé : <strong>le top 5, voire le top 3</strong>.</p>
 
       <p class="mb-6">Autre chiffre dont on est fiers : les filles représentent <strong>17 % de nos licenciés</strong>, contre environ 5 % dans le parkour au niveau national. Les entraînements sont mixtes, et on voit un vrai effet de groupe cette année : quelques filles s'inscrivent, elles amènent leurs copines, et tout le monde s'entraîne ensemble.</p>
 
@@ -58,7 +58,7 @@ export const articles: Article[] = [
 
       <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un nouveau bureau pour le club</h2>
 
-      <p class="mb-6">L'assemblée s'est terminée par l'élection d'un nouveau bureau. <strong>David Andro</strong>, qui porte le club depuis sa création, passe la main à la présidence. Comme annoncé en assemblée générale, le club prévoit de l'embaucher au 1er juillet 2027, et on ne peut pas être à la fois salarié du club et président. Il reste bien sûr aux commandes de l'entraînement. Les trois candidats ont été élus à l'unanimité.</p>
+      <p class="mb-6">L'assemblée s'est terminée par l'élection d'un nouveau bureau. <strong>David Andro</strong>, qui porte le club depuis sa création, cède la présidence. Comme annoncé en assemblée générale, le club prévoit de l'embaucher au 1er juillet 2027, et on ne peut pas être à la fois salarié du club et président. Il reste bien sûr aux commandes de l'entraînement. Les trois candidats ont été élus à l'unanimité.</p>
 
       <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Le bureau 2026/2027</h3>
@@ -101,7 +101,7 @@ export const articles: Article[] = [
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Sur la NFX, l'open international</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
-          <li>🏅 <strong>Esaya Kety</strong>, 4e de la finale Freestyle Junior hommes avec 61,65</li>
+          <li><strong>Esaya Kety</strong>, 4e de la finale Freestyle Junior hommes avec 61,65</li>
           <li><strong>Esaya Kety</strong>, en tête des qualifications Skill Comp Junior hommes, épreuve sans finale junior</li>
           <li><strong>Tilio Ferreira</strong>, qualifié pour la finale Freestyle Junior hommes, mais sorti sur une talonnade</li>
         </ul>
@@ -115,7 +115,7 @@ export const articles: Article[] = [
         </ul>
       </div>
 
-      <p class="mb-6">Le week-end a été électrique, tout le monde était à fond : un très beau plateau, une organisation géniale et un setup en modules Brick extrêmement varié et très dense, parfait pour le freestyle. Une 4e place en finale internationale pour Esaya, pour le premier rendez-vous de la saison, c'est un très bon départ avant les prochaines étapes du Circuit national. Et on souhaite un bon rétablissement à Tilio.</p>
+      <p class="mb-6">Le week-end a été électrique, tout le monde était à fond : un très beau plateau, une organisation géniale et un setup en modules Brick extrêmement varié et très dense, parfait pour le freestyle. Une 4e place en finale internationale pour Esaya dès le premier rendez-vous de la saison, c'est un très bon départ avant les prochaines étapes du Circuit national. Et on souhaite un bon rétablissement à Tilio.</p>
 
       <p class="mb-6">Merci à David et aux familles qui ont fait la route jusqu'en Normandie pour encourager nos traceurs.</p>
 
@@ -133,7 +133,7 @@ export const articles: Article[] = [
         </ul>
       </div>
 
-      <p class="mb-6">Pour le <strong>stage de Noël</strong>, deux formules : la journée complète dès 8 ans pour les licenciés et les initiés, à 25 € la journée, et la séance découverte dès 6 ans. Les inscriptions sont ouvertes sur la <a href="/stage" class="text-primary hover:underline font-semibold">page stage</a>. D'autres stages suivront en février, en avril et cet été, les dates arriveront bientôt.</p>
+      <p class="mb-6">Pour le <strong>stage de Noël</strong>, deux formules : la journée complète à 25 €, dès 8 ans, pour les licenciés et les initiés, et la séance découverte dès 6 ans. Les inscriptions sont ouvertes sur la <a href="/stage" class="text-primary hover:underline font-semibold">page stage</a>. D'autres stages suivront en février, en avril et cet été, les dates arriveront bientôt.</p>
 
       <p class="mb-6">Pour la finale de juin, l'objectif est de qualifier à nouveau <strong>une dizaine d'athlètes</strong>. Le calendrier complet est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et toute la vie du club se suit sur <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Instagram</a> et sur notre <a href="https://www.facebook.com/parkourbassindarcachon" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">page Facebook</a>.</p>
 
