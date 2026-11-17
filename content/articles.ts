@@ -124,7 +124,7 @@ export const articles: Article[] = [
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">📌 À noter dans vos agendas</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
-          <li>❤️ <strong>Samedi 5 décembre</strong> : Téléthon de Gujan-Mestras, de 10h à 16h avec le club de pentathlon, et un speed run à 2 € reversés au Téléthon [À COMPLÉTER : lieu]</li>
+          <li>❤️ <strong>Samedi 5 décembre</strong> : Téléthon de Gujan-Mestras, de 10h à 16h avec le club de pentathlon, et un speed run à 2 € reversés au Téléthon</li>
           <li>🎄 <strong>Samedi 12 décembre</strong> : challenge interne PKBA et fête de Noël, groupe par groupe</li>
           <li>🏆 <strong>12 et 13 décembre, 30 et 31 janvier, 20 et 21 mars</strong> : étapes suivantes du Circuit national, lieux à préciser</li>
           <li>⛄ <strong>Du 21 au 23 et du 28 au 30 décembre</strong> : stage de parkour des vacances de Noël au hangar</li>
@@ -135,11 +135,11 @@ export const articles: Article[] = [
 
       <p class="mb-6">Pour le <strong>stage de Noël</strong>, deux formules : la journée complète à 25 €, dès 8 ans, pour les licenciés et les initiés, et la séance découverte dès 6 ans. Les inscriptions sont ouvertes sur la <a href="/stage" class="text-primary hover:underline font-semibold">page stage</a>. D'autres stages suivront en février, en avril et cet été, les dates arriveront bientôt.</p>
 
-      <p class="mb-6">Pour la finale de juin, l'objectif est de qualifier à nouveau <strong>une dizaine d'athlètes</strong>. Le calendrier complet est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et toute la vie du club se suit sur <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Instagram</a> et sur notre <a href="https://www.facebook.com/parkourbassindarcachon" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">page Facebook</a>.</p>
+      <p class="mb-6">Pour la finale de juin, l'objectif est de qualifier à nouveau <strong>une dizaine d'athlètes</strong>. Le calendrier du club est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et toute la vie du club se suit sur <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Instagram</a> et sur notre <a href="https://www.facebook.com/parkourbassindarcachon" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">page Facebook</a>.</p>
 
       <p class="mb-6 mt-8">À tous les adhérents, parents, coachs, bénévoles et partenaires : <strong>merci</strong>. Une deuxième saison commence avec un nouveau bureau et beaucoup d'envie. On se retrouve au hangar. 🚀</p>
 
-      <p class="text-sm text-gray-500 italic mt-10 pt-4 border-t border-gray-200">Photo de couverture, prise à Tecnópolis (Argentine) en 2011 : <a href="https://commons.wikimedia.org/wiki/File:Parkour_3_(5991841241).jpg" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">« Parkour 3 »</a>, Laura Szenkierman / Tecnópolis Argentina, via Wikimedia Commons, sous licence <a href="https://creativecommons.org/licenses/by/2.0/deed.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">CC BY 2.0</a>, recadrée.</p>
+      <p class="text-sm text-gray-500 italic mt-10 pt-4 border-t border-gray-200">Photo de couverture : la NFX à Rouen, par <a href="https://www.instagram.com/nfx_parkour/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">@nfx_parkour</a> sur <a href="https://www.instagram.com/p/DfttGO_jf0U/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Instagram</a>, recadrée.</p>
     `,
     category: 'club',
     date: '2026-11-17',
