@@ -124,7 +124,7 @@ export const articles: Article[] = [
       <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
         <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">📌 À noter dans vos agendas</h3>
         <ul class="space-y-2 text-gray-800 font-montserrat">
-          <li>❤️ <strong>Samedi 5 décembre</strong> : Téléthon de Gujan-Mestras, avec un speed run à 2 €, reversés au Téléthon [À COMPLÉTER : lieu et horaires]</li>
+          <li>❤️ <strong>Samedi 5 décembre</strong> : Téléthon de Gujan-Mestras, de 10h à 16h avec le club de pentathlon, et un speed run à 2 € reversés au Téléthon [À COMPLÉTER : lieu]</li>
           <li>🎄 <strong>Samedi 12 décembre</strong> : challenge interne PKBA et fête de Noël, groupe par groupe</li>
           <li>🏆 <strong>12 et 13 décembre, 30 et 31 janvier, 20 et 21 mars</strong> : étapes suivantes du Circuit national, lieux à préciser</li>
           <li>⛄ <strong>Du 21 au 23 et du 28 au 30 décembre</strong> : stage de parkour des vacances de Noël au hangar</li>
