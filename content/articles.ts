@@ -14,6 +14,141 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: 7,
+    slug: 'assemblee-generale-2026-nouveau-bureau-nfx-rouen-pkba',
+    title: 'Assemblée générale, nouveau bureau et NFX à Rouen : un mois de novembre chargé au PKBA',
+    excerpt:
+      "AG du 6 novembre, nouveau bureau, deux juges de niveau 2 et une 4e place en finale internationale à Rouen : dix jours intenses au Parkour Bassin d'Arcachon.",
+    content: `
+      <p class="mb-6">On vous l'avait annoncé dans <a href="/actualites/saison-2026-2027-stages-ete-rentree-toussaint-pkba" class="text-primary hover:underline font-semibold">notre article de rentrée</a> : novembre allait être chargé. Il l'a été. En dix jours, le <strong>Parkour Bassin d'Arcachon</strong> a tenu son <strong>assemblée générale</strong>, élu un <strong>nouveau bureau</strong>, envoyé deux de ses membres en <strong>formation de juges</strong> à Paris, puis pris la route de <strong>Rouen</strong> pour le premier grand rendez-vous compétitif de la saison. On vous raconte.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Une assemblée générale au hangar</h2>
+
+      <p class="mb-6">Le <strong>vendredi 6 novembre</strong>, adhérents et parents se sont retrouvés au hangar de Gujan-Mestras pour l'assemblée générale annuelle du club. Merci à tous ceux qui sont venus ou qui ont confié leur pouvoir, et merci à <strong>M. André Moustié</strong>, adjoint aux sports de Gujan-Mestras, d'avoir pris le temps d'être parmi nous.</p>
+
+      <p class="mb-6">David Andro a ouvert la soirée en rappelant d'où l'on vient. Le club est parti de rien en 2025, sans salle et sans matériel. Les premiers cours ont eu lieu dans la petite yourte du cirque Komono à La Teste-de-Buch, avec trois modules, puis l'hiver s'est passé dans le hangar de <strong>Vertical T'Air</strong>, que l'on remercie encore pour son accueil, avant l'arrivée dans notre propre hangar en avril 2026.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "On revient de loin, mais aujourd'hui on peut travailler."
+        </p>
+        <p class="text-gray-700 font-montserrat mt-2">David Andro</p>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Une première saison dans le top 6 national</h2>
+
+      <p class="mb-6">Le bilan de la saison 2025/2026 a été présenté chiffres à l'appui. Au 30 juin, le club comptait <strong>66 licenciés</strong>, avec un encadrement entièrement bénévole. Côté compétition, nos <strong>15 compétiteurs</strong> ont disputé trois compétitions fédérales, à Thouars, <a href="/actualites/nouveau-local-gujan-mestras-circuit-national-rennes-pkba" class="text-primary hover:underline font-semibold">Rennes</a> et <a href="/actualites/championnat-france-parkour-bourges-podiums-gala-pkba" class="text-primary hover:underline font-semibold">Bourges</a>. <strong>Dix athlètes</strong> se sont qualifiés pour le Championnat de France, et le club s'est aussi qualifié pour la finale par équipe.</p>
+
+      <p class="mb-6">Résultat : dans le classement des clubs publié par la FFGym le 9 octobre 2026, le PKBA est <strong>6e sur 75 clubs</strong> de parkour en France, dès sa première saison. Ce classement tient compte notamment du nombre de licenciés, des résultats sportifs et du nombre de formateurs diplômés. L'objectif pour cette saison est posé : <strong>le top 5, voire le top 3</strong>.</p>
+
+      <p class="mb-6">Autre chiffre dont on est fiers : les filles représentent <strong>17 % de nos licenciés</strong>, contre environ 5 % dans le parkour au niveau national. Les entraînements sont mixtes, et on voit un vrai effet de groupe cette année : quelques filles s'inscrivent, elles amènent leurs copines, et tout le monde s'entraîne ensemble.</p>
+
+      <p class="mb-6">Le rapport moral et d'activité, les comptes de la saison 2025/2026 et le budget de la saison 2026/2027 ont tous été <strong>approuvés à l'unanimité</strong>. Merci pour votre confiance.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">103 licenciés, et ce n'est pas fini</h2>
+
+      <p class="mb-6">La rentrée a dépassé nos attentes. Les forums de septembre ont permis de recueillir 140 contacts pour une séance d'essai, et le club est passé de 66 licenciés en fin de saison dernière à <strong>103 licenciés au 5 novembre</strong>. L'objectif est d'atteindre 115 d'ici la fin de la saison. Le PKBA reste un club ancré sur le Bassin : <strong>84 % de nos licenciés habitent la COBAS</strong>, et près de trois sur quatre ont moins de 13 ans.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "C'est un plaisir de côtoyer des sportifs, mais là je vois une passion et une détermination rares. J'ai rarement vu cela dans une AG."
+        </p>
+        <p class="text-gray-700 font-montserrat mt-2">André Moustié, adjoint aux sports de Gujan-Mestras</p>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Un nouveau bureau pour le club</h2>
+
+      <p class="mb-6">L'assemblée s'est terminée par l'élection d'un nouveau bureau. <strong>David Andro</strong>, qui porte le club depuis sa création, cède la présidence. Comme annoncé en assemblée générale, le club prévoit de l'embaucher au 1er juillet 2027, et on ne peut pas être à la fois salarié du club et président. Il reste bien sûr aux commandes de l'entraînement. Les trois candidats ont été élus à l'unanimité.</p>
+
+      <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Le bureau 2026/2027</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Président</strong> : Maxime Mansiet</li>
+          <li><strong>Secrétaire</strong> : Lorraine Millot</li>
+          <li><strong>Trésorière</strong> : Gwendoline Berchoux</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Maxime était jusque-là trésorier du club, et Lorraine reste secrétaire. Bienvenue à <strong>Gwendoline</strong>, qui reprend la trésorerie. Et un immense merci à <strong>David</strong> pour tout ce qu'il a construit comme président.</p>
+
+      <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+        <p class="text-gray-800 font-montserrat italic text-lg">
+          "On a déjà fait une bonne partie de la route ensemble, et pour moi, c'est une aventure humaine extraordinaire. Il faut qu'on continue à offrir le meilleur environnement et le meilleur cadre, pour que tout le monde puisse progresser dans ce magnifique sport, dans les meilleures conditions."
+        </p>
+        <p class="text-gray-700 font-montserrat mt-2">Maxime Mansiet, président du PKBA</p>
+      </div>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Familles, entreprises : le club a besoin de vous</h2>
+
+      <p class="mb-6">Un hangar, des déplacements en compétition, du matériel : un club qui grandit, ça coûte. La commission <strong>« Des fonds pour PKBA »</strong> lance un appel aux familles. Vous pouvez présenter le club à votre employeur, nous mettre en relation avec une entreprise qui aimerait soutenir un club sportif du Bassin, ou donner un coup de main lors des compétitions, de la fête de Noël et du gala. On cherche aussi un <strong>minibus aux couleurs d'un partenaire</strong> pour emmener nos traceurs en compétition.</p>
+
+      <p class="mb-6">Une piste, une idée, un contact ? Écrivez-nous via la <a href="/contact" class="text-primary hover:underline font-semibold">page contact</a>, ou soutenez directement le club sur la <a href="/donations" class="text-primary hover:underline font-semibold">page dons</a>.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Deux juges de niveau 2 au club</h2>
+
+      <p class="mb-6">Dès le lendemain de l'AG, les <strong>7 et 8 novembre</strong>, Maxime et <strong>Viktor Terrou</strong> étaient à Paris pour la formation de juges de parkour de la FFGym. Ils en reviennent tous les deux avec le <strong>niveau 2 de juge parkour</strong>.</p>
+
+      <p class="mb-6">Pour valider un niveau, il faut passer un QCM sur le règlement, puis juger des runs en vidéo, en difficulté comme en exécution, avec un minimum à atteindre dans chaque épreuve. Avoir des juges formés au club, c'est mieux comprendre ce qui est attendu en compétition, et pouvoir le transmettre à nos traceurs dès l'entraînement.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Rouen : la NFX et la première étape du Circuit national</h2>
+
+      <p class="mb-6">Du <strong>12 au 15 novembre</strong>, Rouen accueillait la toute première édition de la <strong>Normandie Freestyle Xperience (NFX)</strong>, un open international de parkour organisé à la halle Saint-Exupéry, avec 25 nations annoncées. En parallèle, les <strong>14 et 15 novembre</strong>, s'y tenait la <strong>première étape du Circuit national FFGym 2026/2027</strong>, qualificative pour le Championnat de France : le freestyle le samedi, le speed le dimanche.</p>
+
+      <p class="mb-6">Une semaine à peine après sa formation, Maxime y a jugé l'exécution sur l'étape du Circuit national, et a pu suivre nos traceurs depuis le bord du parcours.</p>
+
+      <p class="mb-6">Quatre traceurs du club étaient de la partie, répartis entre les deux compétitions, puisqu'un athlète ne peut pas disputer la même discipline sur les deux. Sur la NFX, en catégorie Junior (14-17 ans), <strong>Esaya Kety</strong> et <strong>Tilio Ferreira</strong> se sont mesurés à un plateau international. Sur l'étape du Circuit national, <strong>Antoine Pressler</strong> et <strong>Samuel Fuchs</strong> ont disputé le Parkour Freestyle des 18 ans et plus.</p>
+
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">🏆 Sur la NFX, l'open international</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Esaya Kety</strong>, 4e de la finale Freestyle Junior hommes avec 61,65</li>
+          <li><strong>Esaya Kety</strong>, en tête des qualifications Skill Comp Junior hommes, épreuve sans finale junior</li>
+          <li><strong>Tilio Ferreira</strong>, qualifié pour la finale Freestyle Junior hommes, mais sorti sur une talonnade</li>
+        </ul>
+      </div>
+
+      <div class="bg-gray-50 border-l-4 border-gray-300 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">Sur l'étape 1 du Circuit national FFGym</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li><strong>Antoine Pressler</strong>, 6e sur 28 en Parkour Freestyle 18 ans et plus hommes (fédéral) avec 60,250</li>
+          <li><strong>Samuel Fuchs</strong>, 16e en Parkour Freestyle 18 ans et plus hommes (performance) avec 55,300</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Le week-end a été électrique, tout le monde était à fond : un très beau plateau, une organisation géniale et un setup en modules Brick extrêmement varié et très dense, parfait pour le freestyle. Une 4e place en finale internationale pour Esaya dès le premier rendez-vous de la saison, c'est un très bon départ avant les prochaines étapes du Circuit national. Et on souhaite un bon rétablissement à Tilio.</p>
+
+      <p class="mb-6">Merci à David et aux familles qui ont fait la route jusqu'en Normandie pour encourager nos traceurs.</p>
+
+      <h2 class="text-2xl font-cheddar font-bold text-gray-900 mb-4 mt-8">Les prochains rendez-vous</h2>
+
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg my-8">
+        <h3 class="text-xl font-cheddar font-bold text-gray-900 mb-3">📌 À noter dans vos agendas</h3>
+        <ul class="space-y-2 text-gray-800 font-montserrat">
+          <li>❤️ <strong>Samedi 5 décembre</strong> : Téléthon de Gujan-Mestras avec le club de pentathlon, de 10h à 16h, et un speed run à 2 € intégralement reversés</li>
+          <li>🎄 <strong>Samedi 12 décembre</strong> : challenge interne PKBA et fête de Noël, groupe par groupe</li>
+          <li>🏆 <strong>12 et 13 décembre, 30 et 31 janvier, 20 et 21 mars</strong> : étapes suivantes du Circuit national, lieux à préciser</li>
+          <li>⛄ <strong>Du 21 au 23 et du 28 au 30 décembre</strong> : stage de parkour des vacances de Noël au hangar</li>
+          <li>🇫🇷 <strong>5 et 6 juin 2027</strong> : finale du Championnat de France, lieu à confirmer</li>
+          <li>🎉 <strong>Samedi 12 juin 2027</strong> : gala de fin de saison</li>
+        </ul>
+      </div>
+
+      <p class="mb-6">Pour le <strong>stage de Noël</strong>, deux formules : la journée complète à 25 €, dès 8 ans, pour les licenciés et les initiés, et la séance découverte dès 6 ans. Les inscriptions sont ouvertes sur la <a href="/stage" class="text-primary hover:underline font-semibold">page stage</a>. D'autres stages suivront en février, en avril et l'été prochain, dates bientôt annoncées.</p>
+
+      <p class="mb-6">Pour la finale de juin, l'objectif est de qualifier à nouveau <strong>une dizaine d'athlètes</strong>. Le calendrier du club est sur la <a href="/planning" class="text-primary hover:underline font-semibold">page planning</a>, et toute la vie du club se suit sur <a href="https://www.instagram.com/parkourbassindarcachon/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">Instagram</a> et sur notre <a href="https://www.facebook.com/parkourbassindarcachon" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-semibold">page Facebook</a>.</p>
+
+      <p class="mb-6 mt-8">À tous les adhérents, parents, coachs, bénévoles et partenaires : <strong>merci</strong>. Une deuxième saison commence avec un nouveau bureau et beaucoup d'envie. On se retrouve au hangar. 🚀</p>
+
+      <p class="text-sm text-gray-500 italic mt-10 pt-4 border-t border-gray-200">Photo de couverture : la NFX à Rouen, par <a href="https://www.instagram.com/nfx_parkour/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">@nfx_parkour</a> sur <a href="https://www.instagram.com/p/DfttGO_jf0U/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Instagram</a>, recadrée.</p>
+    `,
+    category: 'club',
+    date: '2026-11-17',
+    author: 'Équipe PKBA',
+    readTime: '7 min',
+    image: '/images/ag-2026-nouveau-bureau-nfx-rouen-pkba.jpg',
+    featured: true,
+  },
+  {
     id: 6,
     slug: 'saison-2026-2027-stages-ete-rentree-toussaint-pkba',
     title: 'Saison 2026/2027 : l\'été au PKBA, la rentrée et le stage de parkour de la Toussaint',
